@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+  <mapper namespace="com.ocsy.checkin.dao.HotelDao">
+  	<resultMap type="Hotel" id="HotelResult">
+  		<result property="hotelid" column="hotelid"/>
+  		<result property="hotelcountry" column="hotelcountry"/>
+  		<result property="hotelname" column="hotelname"/>
+  		<result property="hoteladdress" column="hoteladdress"/>
+  		<result property="roomtype" column="roomtype"/>
+  		<result property="roomprice" column="roomprice"/>
+  		<result property="hotelimage" column="hotelimage"/>
+  		<result property="roomimage" column="roomimage"/>
+  		<result property="hzzim" column="hzzim"/>
+  	</resultMap>
+  	<resultMap type="Hotel_rs" id="Hotel_rsResult">
+  		<result property="hrs_num" column="hrs_num"/>
+  		<result property="hotelid" column="hotelid"/>
+  		<result property="mid" column="mid"/>
+  		<result property="checkin" column="checkin"/>
+  		<result property="checkout" column="checkout"/>
+  		<result property="headcount" column="headcount"/>
+  	</resultMap>
+  	<resultMap type="Hotel_ZZim" id="Hotel_ZZimResult">
+  		<result property="hzzim" column="hzzim"/>
+  		<result property="mid" column="mid"/>
+  		<result property="hotelid" column="hotelid"/>
+  		<result property="hzdate" column="hzdate"/>
+  	</resultMap>
+  	<!--  hotel 관련  -->
+  	<insert id="insertHotel1" parameterType="Hotel">
+  		INSERT INTO HOTEL VALUES (UPPER(#{hotelcode} || '-SD'), #{hotelcountry},#{hotelname},#{hoteladdress},'스탠다드',#{standateprice},#{hotelimage},#{standardimage});
+  	</insert>
+  	<insert id="insertHotel2" parameterType="Hotel">
+		INSERT INTO HOTEL VALUES (UPPER(#{hotelcode} || '-DL'), #{hotelcountry},#{hotelname},#{hoteladdress},'디럭스',#{deluxeprice},#{hotelimage},#{deluxeimage});
+  	</insert>
+  	<insert id="insertHotel3" parameterType="Hotel">
+		INSERT INTO HOTEL VALUES (UPPER(#{hotelcode} || '-SW'), #{hotelcountry},#{hotelname},#{hoteladdress},'스위트',#{sweetprice},#{hotelimage},#{sweetimage});
+  	</insert>
+  	<delete id="deleteHZZim" parameterType="String">
+  		DELETE FROM HOTEL_ZZIM WHERE HOTELID LIKE #{hotelid} || '%';   
+  	</delete>
+  	<delete id="deleteHotel" parameterType="String">
+		DELETE FROM HOTEL WHERE HOTELID LIKE #{hotelid} || '%'; 
+  	</delete>
+  	<update id="updateHotel" parameterType="Hotel">
+  		UPDATE HOTEL SET HOTELNAME = #{hotelname},
+                    HOTELCOUNTRY = #{hotelcountry},
+                        HOTELADDRESS = #{hotelcountry}
+                        <if test="hotelimage != null and hotelimage != '' ">
+                           , HOTELIMAGE = #{hotelimage}        
+                        </if>                           
+                    WHERE HOTELID LIKE SUBSTR(#{hotelid},1,3) || '%'
+  	</update>
+  	<select id="getHotelDetail" parameterType="String" resultMap="HotelResult">
+  		SELECT * FROM HOTEL WHERE HOTELID LIKE #{hotelid} || '%'
+  	</select>
+  	<update id="updateHotelRoom" parameterType="Hotel">
+  		UPDATE HOTEL SET
+  					<if test="rommimage != null and roomimage != '' ">
+  						ROOMIMAGE = #{rommimage},
+  					</if>  
+  							ROMMPRICE = #{rommprice}                 			
+                     WHERE HOTELID = #{hotelid}
+  	</update>
+  	<select id="checkHotelReservationList" parameterType="Hotel" resultMap="HotelResult">
+  		<![CDATA[  
+  		SELECT DISTINCT SUBSTR(HOTELID,1,3) HOTELID,HOTELNAME,HOTELCOUNTRY, HOTELADDRESS,HOTELIMAGE FROM HOTEL 
+   		 WHERE (HOTELNAME, ROOMTYPE) NOT IN 
+			(SELECT HOTELNAME, ROOMTYPE FROM HOTEL_RS R, HOTEL H WHERE (( #{schcheckindate} >= CHECKIN OR #{schcheckindate} < CHECKOUT)
+   				 AND (#{schcheckoutdate} BETWEEN CHECKIN AND CHECKOUT))
+       				 AND R.HOTELID = H.HOTELID AND HOTELCOUNTRY LIKE '%' || #{schcountry} || '%') 
+       	 AND HOTELCOUNTRY LIKE '%' || #{schcountry} || '%'
+       	 ]]>	
+  	</select>
+  	<!--   -->
+  	<!--  숙소 예약 관련 -->
+  	<select id="myHotelReservationList" parameterType="String" resultMap="Hotel_rsResult">
+  		SELECT * FROM HOTEL_RS WHERE MID = #{mid}
+  	</select>
+  	<delete id="canselHotel" parameterType="int">
+  		DELETE FROM HOTEL_RS WHERE HRS_NUM = #{hrs_num}
+  	</delete>
+  	<insert id="insertHotelReservation" parameterType="Hotel_rs">
+  		INSERT INTO HOTEL_RS VALUES (HRS_SEQ.NEXTVAL,#{hotelid},#{mid},#{schcheckindate},#{schcheckoutdate},#{headcount})
+  	</insert>
+  	<select id="checkHotelReservation" parameterType="Hotel" resultMap="HotelResult">
+  	<![CDATA[  
+  		SELECT * FROM HOTEL 
+    WHERE HOTELID LIKE #{hotelid} || '%'
+        AND (HOTELNAME, ROOMTYPE) NOT IN (
+                SELECT HOTELNAME, ROOMTYPE FROM HOTEL_RS R, HOTEL H WHERE ((#{schcheckindate} >= CHECKIN OR #{schcheckindate} < CHECKOUT)
+    AND (#{schcheckoutdate} BETWEEN CHECKIN AND CHECKOUT))
+        AND R.HOTELID = H.HOTELID AND R.HOTELID LIKE #{hotelid} || '%')
+    ]]>	
+  	</select> 	
+  	<!--  -->
+  	<!--  호텔 찜 관련 -->
+  		<insert id="insertHZZim" parameterType="Hotel_ZZim">
+  			INSERT INTO HOTEL_ZZIM VALUES (HZZIM_SEQ.NEXTVAL, #{mid}, #{hotelid},SYSDATE )
+  		</insert>
+  		<select id="checkZZim" parameterType="Hotel_ZZim" resultType="int">
+  			SELECT COUNT(*) FROM HOTEL_ZZIM WHERE MID= #{mid} AND HOTELID = #{hotelid}
+  		</select>
+  		<select id="myHZZimList" parameterType="String" resultMap="HotelResult">
+  			SELECT HZZIM, H.HOTELID,HOTELCOUNTRY, HOTELNAME,ROOMTYPE FROM HOTEL_ZZIM HZ, HOTEL H WHERE HZ.HOTELID = H.HOTELID AND MID= #{mid};
+  		</select>
+  		<delete id="cancelHZZim" parameterType="Hotel_ZZim">
+  			DELETE FROM HOTEL_ZZIM WHERE MID= #{mid} AND HZZIM = #{hzzim};
+  		</delete>
+  	<!--  -->
+  </mapper>  
