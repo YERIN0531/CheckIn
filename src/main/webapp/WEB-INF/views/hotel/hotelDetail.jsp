@@ -96,7 +96,7 @@
 						<td>스탠다드</td>
 						<td>방 가격 : <fmt:formatNumber value="${hotel.roomprice }" pattern="#,###" /></td>
 						<td>
-							<button onclick="location='${conPath }/hotel.do?method=insertHotelReservation&hotelid=${hotel.hotelid }
+							<button onclick="location'${conPath }/hotel.do?method=insertHotelReservation&hotelid=${hotel.hotelid }
 								&schcheckindate=${hotelDto.schcheckindate }&schcheckoutdate=${hotelDto.schcheckoutdate }&headcount=${hoteldDto.headcount }'">예약하기</button>				
 						</td>					
 					</tr>

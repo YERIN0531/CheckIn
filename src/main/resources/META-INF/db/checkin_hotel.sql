@@ -7,7 +7,7 @@ CREATE TABLE HOTEL(
     HOTELNAME VARCHAR2(50) NOT NULL, -- 호텔 이름
     HOTELADDRESS VARCHAR2(200) NOT NULL, -- 호텔 주소
     ROOMTYPE VARCHAR2(40) NOT NULL, -- 호텔 룸 타입
-    ROMMPRICE NUMBER(10) NOT NULL, -- 호텔 룸 가격
+    ROOMPRICE NUMBER(10) NOT NULL, -- 호텔 룸 가격
     HOTELIMAGE VARCHAR2(50),  -- 호텔 사진
     ROOMIMAGE VARCHAR2(50)  -- 호텔 룸 사진
 );
@@ -166,29 +166,30 @@ SELECT * FROM HOTEL_ZZIM;
 
 -- HOTEL
 -- 관리자가 숙소 등록  id= insertHotel
-INSERT INTO HOTEL VALUES ('TPB'|| '-SD','태국','풀만 방콕 킹 파워','태국 방콕 Ratchathewi 8/2 Rangnam Road 10400','스탠다드',100000,NULL,NULL);
-INSERT INTO HOTEL VALUES ('TPB'|| '-DL','태국','풀만 방콕 킹 파워','태국 방콕 Ratchathewi 8/2 Rangnam Road 10400','디럭스',200000,NULL,NULL);
-INSERT INTO HOTEL VALUES ('TPB'|| '-SW','태국','풀만 방콕 킹 파워','태국 방콕 Ratchathewi 8/2 Rangnam Road 10400','스위트',300000,NULL,NULL);
+INSERT INTO HOTEL VALUES (UPPER('TPB'|| '-SD'),'태국','풀만 방콕 킹 파워','태국 방콕 Ratchathewi 8/2 Rangnam Road 10400','스탠다드',100000,NULL,NULL);
+INSERT INTO HOTEL VALUES (UPPER('TPB'|| '-DL'),'태국','풀만 방콕 킹 파워','태국 방콕 Ratchathewi 8/2 Rangnam Road 10400','디럭스',200000,NULL,NULL);
+INSERT INTO HOTEL VALUES (UPPER('TPB'|| '-SW'),'태국','풀만 방콕 킹 파워','태국 방콕 Ratchathewi 8/2 Rangnam Road 10400','스위트',300000,NULL,NULL);
 -- 'TPB' 부분을 ? 로 바꾸고 INSERT문에는 3줄이 들어가야함 한번 id =insertHotel 을 실행하면 3줄 insert 되도록
 
 
 -- 관리자가 호텔 삭제 id = deleteHotel
 DELETE FROM HOTEL_ZZIM WHERE HOTELID LIKE 'TPB' || '%';   -- 먼저 찜 삭제 후
 DELETE FROM HOTEL WHERE HOTELID LIKE 'TPB' || '%';   -- 호텔 삭제
-
+COMMIT;
+ROLLBACK;
 SELECT * FROM HOTEL;
 -- 관리자가 호텔 수정 id = modifyHotel
 UPDATE HOTEL SET HOTELNAME = '수정할 이름입니다.',
                     HOTELCOUNTRY = '수정할 나라입니다.',
                         HOTELADDRESS = '수정할 호텔주소입니다.',
                             HOTELIMAGE = '수정할 호텔사진입니다.'                               
-                    WHERE HOTELID= ' ' || '%';             
-
+                    WHERE HOTELID LIKE SUBSTR('TPB-SD',1,3) || '%'; 
+SELECT * FROM HOTEL WHERE HOTELID LIKE 'TPB' || '%' ;
 -- 관리자 특정 호텔 특정 방 수정 id= modifyHotelRoom
 UPDATE HOTEL SET ROOMIMAGE = '수정할 사진입니다.',
                     ROMMPRICE = 0
                      WHERE HOTELID = '호텔 풀 아이디 입니다. (TBS-SD) ';
-          
+         
 -- 전체 숙소 개수     id = totHotel
 SELECT COUNT(DISTINCT HOTELNAME) FROM HOTEL;
 
@@ -196,17 +197,28 @@ SELECT COUNT(DISTINCT HOTELNAME) FROM HOTEL;
 SELECT COUNT(DISTINCT HOTELNAME) FROM HOTEL WHERE HOTELCOUNTRY = '태국';
 
 -- 숙소 상세보기      id = hotelDetail
-SELECT * FROM HOTEL WHERE HOTELID LIKE '%' || 'TBS' || '%';
+SELECT * FROM HOTEL WHERE HOTELID LIKE 'TBS' || '%';
 
 -- 특정 지역 숙소리스트 보기   id = hotelListLoc
 SELECT DISTINCT(HOTELNAME),HOTELCOUNTRY,HOTELADDRESS,HOTELIMAGE FROM HOTEL WHERE HOTELCOUNTRY = '태국';
 
 -- 체크인, 체크아웃, 지역 으로 예약 가능한 호텔 리스트  id = hotelReservationList
-SELECT DISTINCT HOTELNAME FROM HOTEL 
+SELECT DISTINCT SUBSTR(HOTELID,1,3) HOTELID, HOTELNAME ,HOTELCOUNTRY, HOTELADDRESS,HOTELIMAGE FROM HOTEL 
     WHERE (HOTELNAME, ROOMTYPE) NOT IN (
-select HOTELNAME, ROOMTYPE from HOTEL_RS R, HOTEL H where (('2022-08-01' >= CHECKIN OR '2022-08-01' < CHECKOUT)
+SELECT HOTELNAME, ROOMTYPE FROM HOTEL_RS R, HOTEL H WHERE (('2022-08-01' >= CHECKIN OR '2022-08-01' < CHECKOUT)
     AND ('2022-08-10' BETWEEN CHECKIN AND CHECKOUT))
         AND R.HOTELID = H.HOTELID AND HOTELCOUNTRY LIKE '%' || '스위스' || '%') AND HOTELCOUNTRY LIKE '%' || '스위스' || '%' ;
+COMMIT;
+SELECT * FROM HOTEL_RS;
+
+-- 만약 사용자가 호텔 창에서 날짜를 변경시 다시 확인해줘야하니까
+-- 그거 확인하는 쿼리
+SELECT * FROM HOTEL 
+    WHERE HOTELID LIKE 'SKI' || '%'
+        AND (HOTELNAME, ROOMTYPE) NOT IN (
+                SELECT HOTELNAME, ROOMTYPE FROM HOTEL_RS R, HOTEL H WHERE (('2022-08-017' >= CHECKIN OR '2022-08-017' < CHECKOUT)
+    AND ('2022-08-20' BETWEEN CHECKIN AND CHECKOUT))
+        AND R.HOTELID = H.HOTELID AND R.HOTELID LIKE 'SKI' || '%');
 
 
 -- HOTEL_RS
@@ -240,10 +252,10 @@ INSERT INTO HOTEL_ZZIM VALUES (HZZIM_SEQ.NEXTVAL, 'aaa', 'BDD-SW',SYSDATE );
 SELECT COUNT(*) FROM HOTEL_ZZIM WHERE MID='aaa' AND HOTELID = 'BDD-SW';
 
 -- 내가 찜한 리스트  id = myZZimList
-SELECT H.HOTELID,HOTELCOUNTRY, HOTELNAME,ROOMTYPE FROM HOTEL_ZZIM HZ, HOTEL H WHERE HZ.HOTELID = H.HOTELID AND MID='aaa';
+SELECT HZZIM, H.HOTELID,HOTELCOUNTRY, HOTELNAME,ROOMTYPE FROM HOTEL_ZZIM HZ, HOTEL H WHERE HZ.HOTELID = H.HOTELID AND MID='aaa';
 
 -- 찜취소
-DELETE FROM HOTEL_ZZIM WHERE MID='aaa' AND HOTELID = 'BDD-SW';
+DELETE FROM HOTEL_ZZIM WHERE MID='aaa' AND HZZIM = 1;
 
 
 SELECT * FROM HOTEL_ZZIM;
