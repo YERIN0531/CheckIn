@@ -7,18 +7,24 @@
  	<typeAliases>
  		<typeAlias type="com.ocsy.checkin.dto.Member" alias="Member"/>
  		<typeAlias type="com.ocsy.checkin.dto.Air" alias="Air"/>
+ 		<typeAlias type="com.ocsy.checkin.dto.ReviewBoard" alias="ReviewBoard"/>
  		<typeAlias type="com.ocsy.checkin.dto.Taxfree" alias="Taxfree"/>
  		<typeAlias type="com.ocsy.checkin.dto.Hotel" alias="Hotel"/>
  		<typeAlias type="com.ocsy.checkin.dto.Hotel_rs" alias="Hotel_rs"/>
  		<typeAlias type="com.ocsy.checkin.dto.Hotel_ZZim" alias="Hotel_ZZim"/>
 
+
  	</typeAliases>
  	<mappers>
  		<mapper resource="META-INF/sqlmap/mappers/Member.xml"/>
  		<mapper resource="META-INF/sqlmap/mappers/Air.xml"/>
+
+ 		<mapper resource="META-INF/sqlmap/mappers/ReviewBoard.xml"/>
+
  		<mapper resource="META-INF/sqlmap/mappers/Taxfree.xml"/>
  		
 
  		<mapper resource="META-INF/sqlmap/mappers/Hotel.xml"/>
+
  	</mappers>
  </configuration>
