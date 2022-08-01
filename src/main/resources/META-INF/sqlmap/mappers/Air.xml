@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<!--   private String acode; -->
+<!-- 	private String airline; -->
+<!-- 	private String adepartloc; -->
+<!-- 	private String aariveloc; -->
+<!-- 	private String agotime; -->
+<!-- 	private String ago_arrivetime; -->
+<!-- 	private String acome_departtime; -->
+<!-- 	private String acome_arrivetime; -->
+<!-- 	private int aprice; -->
+	
+<!-- 	// reserve join 부분 떄문에 불러올 아이들  -->
+<!-- 	private int asno; -->
+<!-- 	private String mid; -->
+<!-- 	private Date agodate; -->
+<!-- 	private Date acomdate; -->
+<!-- 	private String seatid; -->
+<!-- 	private Date ardate; -->
+  
+  <mapper namespace="com.ocsy.checkin.dao.AirDao">
+	<resultMap type="Air" id="AirResult">
+		<result property="acode" column="acode"/>
+		<result property="airline" column="airline    "/>
+		<result property="adepartloc" column="adepartloc"/>
+		<result property="aariveloc" column="aariveloc"/>
+		<result property="agotime" column="agotime"/>
+		<result property="ago_arrivetime" column="ago_arrivetime"/>
+		<result property="acome_departtime" column="acome_departtime"/>
+		<result property="acome_arrivetime" column="acome_arrivetime"/>
+		<result property="aprice" column="aprice"/>
+		
+		<result property="asno" column="asno"/>
+		<result property="mid" column="mid"/>
+		<result property="agodate" column="agodate"/>
+		<result property="acomedate" column="acomedate"/>
+		<result property="seatid" column="seatid"/>
+		<result property="ardate" column="ardate"/>
+	</resultMap>
+	
+	<select id="airList" parameterType="Air" resultMap="AirResult">
+	SELECT DISTINCT A.ACODE, ADEPARTLOC, AARIVELOC, AGOTIME, AGO_ARRIVETIME, ACOME_DEPARTTIME, ACOME_ARRIVETIME FROM ASCD A, AIR_RESERVE R WHERE A.ACODE=R.ACODE AND
+    (AGODATE=#{agodate} AND ACOMEDATE=#{acomedate} AND ADEPARTLOC LIKE '%'||#{adepartloc}||'%' AND AARIVELOC LIKE '%'||#{aariveloc}||'%') AND
+    A.ACODE NOT IN (SELECT AR.ACODE
+    FROM AIR_RESERVE AR, ASCD A WHERE A.ACODE=AR.ACODE AND
+    (AGODATE=#{agodate} AND ACOMEDATE=#{acomedate} AND ADEPARTLOC LIKE '%'||#{adepartloc}||'%' AND AARIVELOC LIKE '%'||#{aariveloc}||'%') GROUP BY AR.ACODE HAVING COUNT(SEATID) >= 10) OR
+    A.ACODE IN (SELECT DISTINCT ACODE FROM ASCD
+    WHERE (ACODE, AGOTIME, ACOME_DEPARTTIME) NOT IN 
+    (SELECT S.ACODE, S.AGOTIME, S.ACOME_DEPARTTIME FROM ASCD S, AIR_RESERVE R WHERE S.ACODE=R.ACODE
+    AND AGODATE=#{agodate} AND ACOMEDATE=#{acomedate} AND ADEPARTLOC LIKE '%'||#{adepartloc}||'%' AND AARIVELOC LIKE '%'||#{aariveloc}||'%' )) ORDER BY A.ACODE
+	</select>
+	<select id="getAirInfo" parameterType="String" resultType="Air">
+	SELECT * FROM ASCD A , AIR_RESERVE R WHERE A.ACODE=R.ACODE AND A.ACODE=#{acode}
+	</select>
+	<insert id="airReserve" parameterType="Air">
+	INSERT INTO AIR_RESERVE VALUES(ARESERVE_SEQ.NEXTVAL ,#{acode}, #{mid}, #{agodate},#{acomedate}, #{seatid},SYSDATE)
+	</insert>
+	
+  </mapper>
