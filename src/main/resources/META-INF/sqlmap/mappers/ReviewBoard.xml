@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ocsy.checkin.dao.ReviewBoardDao">
+	<resultMap type="ReviewBoard" id="ReviewResult">
+		<result property="rnum" column="rnum"/>
+		<result property="mid" column="mid"/>
+		<result property="rtitle" column="rtitle"/>
+		<result property="rcontent" column="rcontent"/>
+		<result property="rimage1" column="rimage1"/>
+		<result property="rimage2" column="rimage2"/>
+		<result property="rimage3" column="rimage3"/>
+		<result property="rimage4" column="rimage4"/>
+		<result property="rimage5" column="rimage5"/>
+		<result property="rhit" column="rhit"/>
+		<result property="rrdate" column="rrdate"/>
+		<result property="rgroup" column="rgroup"/>
+		<result property="rstep" column="rstep"/>
+		<result property="rindent" column="rindent"/>
+	</resultMap>
+<!--1. 글목록 listReview -->
+	<select id="listReview" parameterType="ReviewBoard" resultMap="ReviewResult">
+		SELECT * FROM (SELECT ROWNUM RN, A.* 
+            FROM (SELECT * FROM REVIEW_BOARD ORDER BY RGROUP DESC, RSTEP) A)
+        WHERE RN BETWEEN #{startRow} AND #{endRow}
+	</select>
+<!-- 2.글개수 countReview-->
+	<select id="countReview" resultType="int">
+		SELECT COUNT(*) FROM REVIEW_BOARD
+	</select>
+<!--3. 글 상세보기 detailReview-->
+	<select id="detailReview" parameterType="int" resultType="ReviewBoard">
+		SELECT * FROM REVIEW_BOARD WHERE RNUM=#{rnum}
+	</select>
+<!--3. 글 상세보기 (조회수안올리고) modifyViewreplyView-->
+	<select id="reviewModifyReplyView" parameterType="int" resultType="ReviewBoard">
+		SELECT * FROM REVIEW_BOARD WHERE RNUM=#{rnum}
+	</select>
+<!--4. 후기쓰기 원글  insertReview-->
+	<insert id="insertReview" parameterType="ReviewBoard">
+		INSERT INTO REVIEW_BOARD (RNUM , MID ,RTITLE ,RCONTENT,RIMAGE1,RIMAGE2,RIMAGE3,RIMAGE4,RIMAGE5,RIP, RGROUP,RSTEP,RINDENT)
+        VALUES (REVIEW_SEQ.NEXTVAL,#{mid},#{rtitle},#{rcontent},#{rimage1},#{rimage2},#{rimage3},#{rimage4},#{rimage5},#{rip} ,REVIEW_SEQ.CURRVAL,#{rstep},#{rindent})
+	</insert>
+<!--5. 조회수 올리기 revuewHitUp -->
+	<update id="revuewHitUp" parameterType="int">
+		UPDATE REVIEW_BOARD SET RHIT = RHIT +1 WHERE RNUM=#{rnum}
+	</update>
+<!--6. 답변글 추가전 step a replyPreStepReview  -->
+	<update id="replyPreStepReview" parameterType="ReviewBoard">
+		UPDATE REVIEW_BOARD SET RSTEP = RSTEP+1 
+   			 WHERE RGROUP = #{bgroup} AND RSTEP>#{bstep}
+	</update>
+<!--7. 1번글에대한 답변 replyReview  -->
+	<insert id="replyReview" parameterType="ReviewBoard">
+		INSERT INTO REVIEW_BOARD (RNUM , MID ,RTITLE ,RCONTENT,RIMAGE1,RIMAGE2,RIMAGE3,RIMAGE4,RIMAGE5, RGROUP,RSTEP,RINDENT,RIP)
+        VALUES (REVIEW_SEQ.NEXTVAL,#{mid},#{rtitle},#{rcontent},#{rimage1},#{rimage2},#{rimage3},#{rimage4},#{rimage5},#{rgroup},#{rstep}+1,#{rindent}+1,#{rip})
+	</insert>
+<!-- 8. 글수정 -->
+	<update id="modifyReview" parameterType="ReviewBoard">
+	UPDATE REVIEW_BOARD SET 
+					 RTITLE =#{rtitle},
+                     RCONTENT = #{rcontent},
+                     <if test="rimage1 != null and rimage1 !=''">RIMAGE1 = #{rimage1},</if> 
+                     <if test="rimage2 != null and rimage2 !=''">RIMAGE2 = #{rimage2},</if> 
+                     <if test="rimage3 != null and rimage3 !=''">RIMAGE3 = #{rimage3},</if> 
+                     <if test="rimage4 != null and rimage4 !=''">RIMAGE4 = #{rimage4},</if> 
+                     <if test="rimage5 != null and rimage5 !=''">RIMAGE5 = #{rimage5},</if> 
+                     RIP    = #{rip}
+                     WHERE RNUM = #{rnum}
+	</update>
+
+<!-- 9.글삭제 (원글 지울때 답글 다지우기) -->
+	<!-- <delete id="deleteReview" parameterType="int">
+		DELETE FROM REVIEW_BOARD WHERE RGROUP = #{rgroup} AND (RSTEP>=#{rstep} AND RSTEP<(select NVL(MIN(RSTEP),9999) FROM REVIEW_BOARD WHERE RGROUP=#{rgroup} AND RSTEP>0 AND RINDENT<=0))
+	</delete> -->
+
+</mapper>

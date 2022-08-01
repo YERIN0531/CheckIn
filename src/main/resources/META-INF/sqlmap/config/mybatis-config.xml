@@ -7,9 +7,11 @@
  	<typeAliases>
  		<typeAlias type="com.ocsy.checkin.dto.Member" alias="Member"/>
  		<typeAlias type="com.ocsy.checkin.dto.Air" alias="Air"/>
+ 		<typeAlias type="com.ocsy.checkin.dto.ReviewBoard" alias="ReviewBoard"/>
  	</typeAliases>
  	<mappers>
  		<mapper resource="META-INF/sqlmap/mappers/Member.xml"/>
  		<mapper resource="META-INF/sqlmap/mappers/Air.xml"/>
+ 		<mapper resource="META-INF/sqlmap/mappers/ReviewBoard.xml"/>
  	</mappers>
  </configuration>
