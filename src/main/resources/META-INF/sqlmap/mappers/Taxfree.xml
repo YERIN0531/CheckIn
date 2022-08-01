@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.ocsy.checkin.dao.TaxfreeDao">
+  	<resultMap type="Taxfree" id="TaxfreeResult">
+  		<result property="pnum" column="pnum"/>
+  		<result property="pname" column="pname"/>
+  		<result property="pprice" column="pprice"/>
+  		<result property="pimage1" column="pimage1"/>
+  		<result property="pimage2" column="pimage2"/>
+  		<result property="pimage3" column="pimage3"/>
+  		<result property="pstock" column="pstock"/>
+  		<result property="ploc" column="ploc"/>
+  	</resultMap>
+  	
+  	<!-- insertProduct -->
+  	<insert id="insertProduct" parameterType="Taxfree">
+  		INSERT INTO TAXFREE (PNUM, PNAME, PPRICE, PIMAGE1, PIMAGE2, PIMAGE3, PSTOCK, PLOC)
+    		VALUES(PRODUCT_SEQ.NEXTVAL, #{pname}, #{pprice}, #{pimage1}, #{pimage2}, #{pimage3}, #{pstock}, #{ploc})
+  	</insert>
+  	
+  	<!-- listProduct -->
+  	<select id="listProduct" resultMap="TaxfreeResult">
+		SELECT * FROM (SELECT ROWNUM RN, A.* FROM (SELECT * FROM TAXFREE ORDER BY PNUM DESC)A) WHERE RN BETWEEN 1 AND 2
+	</select>
+  	
+  </mapper>
