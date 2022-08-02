@@ -49,7 +49,7 @@
 <!--6. 답변글 추가전 step a replyPreStepReview  -->
 	<update id="replyPreStepReview" parameterType="ReviewBoard">
 		UPDATE REVIEW_BOARD SET RSTEP = RSTEP+1 
-   			 WHERE RGROUP = #{bgroup} AND RSTEP>#{bstep}
+   			 WHERE RGROUP = #{rgroup} AND RSTEP>#{rstep}
 	</update>
 <!--7. 1번글에대한 답변 replyReview  -->
 	<insert id="replyReview" parameterType="ReviewBoard">
@@ -66,13 +66,16 @@
                      <if test="rimage3 != null and rimage3 !=''">RIMAGE3 = #{rimage3},</if> 
                      <if test="rimage4 != null and rimage4 !=''">RIMAGE4 = #{rimage4},</if> 
                      <if test="rimage5 != null and rimage5 !=''">RIMAGE5 = #{rimage5},</if> 
+                     RRDATE = SYSDATE,
                      RIP    = #{rip}
                      WHERE RNUM = #{rnum}
 	</update>
 
 <!-- 9.글삭제 (원글 지울때 답글 다지우기) -->
-	<!-- <delete id="deleteReview" parameterType="int">
-		DELETE FROM REVIEW_BOARD WHERE RGROUP = #{rgroup} AND (RSTEP>=#{rstep} AND RSTEP<(select NVL(MIN(RSTEP),9999) FROM REVIEW_BOARD WHERE RGROUP=#{rgroup} AND RSTEP>0 AND RINDENT<=0))
-	</delete> -->
+	<delete id="deleteReview" parameterType="ReviewBoard" >
+	<![CDATA[
+		DELETE FROM REVIEW_BOARD WHERE RGROUP = #{rgroup} AND (RSTEP>=#{rstep} AND RSTEP<(select NVL(MIN(RSTEP),9999) FROM REVIEW_BOARD WHERE RGROUP=#{rgroup} AND RSTEP>#{rstep} AND RINDENT<=#{rindent}))
+		      ]]>
+	</delete> 
 
 </mapper>

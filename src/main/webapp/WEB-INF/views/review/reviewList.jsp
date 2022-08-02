@@ -23,6 +23,8 @@
 	</script>
 </head>
 <body>
+
+
 	<c:if test="${not empty member }">
 			<button onclick="location='${conPath}/review.do?method=insertReviewForm&pageNum=${pageNum }'">글쓰기</button>
 	</c:if>
@@ -47,7 +49,7 @@
 	   <c:forEach items="${reviewList }" var ="review" >
 	     <tr>
 	    	 <td>
-	    	 <a href="${conPath }/review.do?method=detailReview&rnum=${review.rnum }&pageNum=${paging.currentPage}">상세보기</a>
+	    	 <a href="${conPath }/review.do?method=detailReview&rnum=${review.rnum }&pageNum=${paging.currentPage}">${review.rnum }</a>
 	    	 </td>
 	    	<td> ${review.mid }</td>
 	    	<td class="left">

@@ -13,7 +13,7 @@
 <body>
  <div id="content">
    <form action="${conPath }/review.do?method=replyReview" method="post" enctype="multipart/form-data">
-   		<input type="text" name="mid" value="${mid }">
+   		<input type="text" name="mid" value= "${mid}">
    		<input type="text" name="pageNum" value="${param.pageNum }">
 		<input type="text" name="rgroup" value="${replyDto.rgroup }">
 		<input type="text" name="rstep" value="${replyDto.rstep }">

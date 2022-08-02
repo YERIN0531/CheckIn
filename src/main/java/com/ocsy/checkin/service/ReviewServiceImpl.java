@@ -139,9 +139,7 @@ public class ReviewServiceImpl implements ReviewService{
 
 	@Override
 	public int modifyReview(MultipartHttpServletRequest mRequest,HttpServletRequest request, ReviewBoard review) {
-		System.out.println(1);
 		review.setRip(request.getRemoteAddr()); // ip  셋팅
-		System.out.println(2);
 		String uploadPath = mRequest.getRealPath("fileUpload/");
 		Iterator<String> params = mRequest.getFileNames(); // tempBimg1 , tempBimg2 
 		String[] rimg = new String[5]; // 이미지 5개 들어오니 배열로 
@@ -179,10 +177,17 @@ public class ReviewServiceImpl implements ReviewService{
 		return reviewDao.modifyReview(review); // DB insert
 	}
 
+	
 	@Override
-	public int deleteReview(int rnum) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int deleteReview(ReviewBoard review) {
+		review.getRgroup();
+		review.getRstep();
+		review.getRindent();
+		System.out.println(review.getRgroup());
+		System.out.println(review.getRindent());
+		System.out.println(review.getRindent());
+		System.out.println(review);
+		return reviewDao.deleteReview(review);
 	}
 
 	private boolean fileCopy(String serverFile, String backupFile) {
