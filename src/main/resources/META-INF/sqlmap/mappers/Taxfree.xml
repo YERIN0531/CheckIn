@@ -21,9 +21,20 @@
     		VALUES(PRODUCT_SEQ.NEXTVAL, #{pname}, #{pprice}, #{pimage1}, #{pimage2}, #{pimage3}, #{pstock}, #{ploc})
   	</insert>
   	
+  	<!-- countProduct 페이징 처리 -->
+  	<select id="countProduct" resultType="int">
+		SELECT COUNT(*) FROM TAXFREE  	
+  	</select>
+  	
   	<!-- listProduct -->
   	<select id="listProduct" resultMap="TaxfreeResult">
-		SELECT * FROM (SELECT ROWNUM RN, A.* FROM (SELECT * FROM TAXFREE ORDER BY PNUM DESC)A) WHERE RN BETWEEN 1 AND 2
+		SELECT * FROM (SELECT ROWNUM RN, A.* FROM (SELECT * FROM TAXFREE ORDER BY PNUM DESC)A) 
+			WHERE RN BETWEEN #{startrow} AND #{endrow}
 	</select>
+  	<!-- detailProduct -->
+  	<select id="detailProduct" resultMap="TaxfreeResult">
+		SELECT * FROM TAXFREE WHERE PNUM = #{pnum}
+	</select>
+  	
   	
   </mapper>

@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.ocsy.checkin.dto.Taxfree;
 import com.ocsy.checkin.service.TaxfreeService;
+import com.ocsy.checkin.util.Paging;
 
 @Controller
 @RequestMapping(value="taxfree")
@@ -24,27 +25,26 @@ public class TaxfreeController {
 		return "taxfree/insertProduct"; // insertProduct 로 넘어가는 로직
 	}
 	// 상품 등록 처리 - O
-	@RequestMapping(params="method=insert", method= {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(params="method=insert", method= RequestMethod.POST)
 	public String insertProduct(MultipartHttpServletRequest mRequest, @ModelAttribute("tDto") Taxfree taxfree, Model model) {
 		model.addAttribute("insertResult", taxfreeService.insertProduct(mRequest, taxfree));
-		return "taxfree/insertProduct";
+		return "redirect:taxfree.do?method=list";
 	}
 	
-	// 상품 리스트 출력
-	/*@RequestMapping(params="method=list", method=RequestMethod.GET)
-	public listProduct(String pageNum, Model model, Taxfree taxfree) {
-		model.addAttribute("productList", );
-		model.addAttribute("paging", new Paging(total, pageNum))
+	// 상품 리스트 출력 - O
+	@RequestMapping(params="method=list", method={RequestMethod.GET, RequestMethod.POST})
+	public String listProduct(String pageNum, Model model, Taxfree taxfree) {
+		model.addAttribute("productList", taxfreeService.listProduct(pageNum, taxfree));
+		model.addAttribute("paging", new Paging(taxfreeService.countProduct(taxfree), pageNum, 9, 5));
 		return "taxfree/listProduct";
-	}*/
+	}
 	
-	
-	/*@RequestMapping(params="method=list", method= {RequestMethod.GET, RequestMethod.POST})
-	public String list(String pageNum, Model model, Book book) {
-		model.addAttribute("bookList", bookService.bookList(pageNum, book));
-		model.addAttribute("paging", new Paging(bookService.totCntBook(book), pageNum, 3, 3));
-		return "book/list";		
-	}*/
+	// 상품 상세보기 - 진행 중
+	@RequestMapping(params="method=detail", method=RequestMethod.GET)
+	public String detailProduct(int pnum, Model model) {
+		model.addAttribute("taxfreeDto", taxfreeService.detailProduct(pnum));
+		return "taxfree/detailProduct";
+	}
 	
 	
 }
