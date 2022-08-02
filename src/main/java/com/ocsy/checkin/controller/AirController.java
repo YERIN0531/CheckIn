@@ -29,10 +29,20 @@ public class AirController {
 		model.addAttribute("airDto",air);
 		return "air/airReserveForm";		
 	}
-	@RequestMapping(params="method=airReserve", method= {RequestMethod.GET, RequestMethod.POST})
-	public String airReserve(Air air, Model model) {
-		model.addAttribute("reserveResult", airService.airReserve(air));
-		return "air/airmain";		
+	
+	
+	@RequestMapping(params="method=airReserveInfo", method= {RequestMethod.GET, RequestMethod.POST})
+	public String airReserveInfo(Air air, Model model) {
+		model.addAttribute("airDto",air);
+		return "air/airReserveInfo";	
 	}
+	
+//airReserve 실제로 예약되는 페이지 
+//	@RequestMapping(params="method=airReserve", method= {RequestMethod.GET, RequestMethod.POST})
+//	public String airReserve(Air air, Model model) {
+//		model.addAttribute("reserveResult", airService.airReserve(air));
+//		return "air/airReserveInfo";	
+//	}
+	
 	
 }

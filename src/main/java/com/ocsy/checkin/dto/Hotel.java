@@ -25,5 +25,7 @@ public class Hotel {
 	private String schcountry;
 	private int hzzim;
 	private int headcount;
+	private int startRow;
+	private int endRow;
 	
 }

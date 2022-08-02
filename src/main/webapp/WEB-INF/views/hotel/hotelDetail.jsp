@@ -10,7 +10,7 @@
   <title>Insert title here</title>
   <link href="${conPath }/css/style.css" rel="stylesheet">
  <style>
- 
+
  </style>
  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
  <script>
@@ -57,7 +57,7 @@
 			<c:forEach var="hotel" items="${hotelDetail }" >
 			<c:if test="${hotel.roomtype eq '스탠다드' }">
 				<tr>
-					<td> 호텔 아이디 : ${hotel.hotelid }</td>
+					<td > 호텔 아이디 : ${hotel.hotelid }</td>
 					<td>방 사진 : ${hotel.roomimage }</td>
 					<td>스탠다드</td>
 					<td>매진</td>						
@@ -94,10 +94,9 @@
 						<td> 호텔 아이디 : ${hotel.hotelid }</td>
 						<td>방 사진 : ${hotel.roomimage }</td>
 						<td>스탠다드</td>
-						<td>방 가격 : <fmt:formatNumber value="${hotel.roomprice }" pattern="#,###" /></td>
+						<td>방 가격 : <fmt:formatNumber value="${hotel.roomprice }" pattern="#,### 원" /></td>
 						<td>
-							<button onclick="location'${conPath }/hotel.do?method=insertHotelReservation&hotelid=${hotel.hotelid }
-								&schcheckindate=${hotelDto.schcheckindate }&schcheckoutdate=${hotelDto.schcheckoutdate }&headcount=${hoteldDto.headcount }'">예약하기</button>				
+							<button onclick="location='${conPath }/hotel.do?method=insertHotelReservationView&hotelid=${hotel.hotelid }&schcheckindate=${hotelDto.schcheckindate }&schcheckoutdate=${hotelDto.schcheckoutdate }&headcount=${hotelDto.headcount }'">예약하기</button>				
 						</td>					
 					</tr>
 				</c:if>
@@ -124,10 +123,9 @@
 						<td> 호텔 아이디 : ${hotel.hotelid }</td>
 						<td>방 사진 : ${hotel.roomimage }</td>
 						<td>디럭스</td>
-						<td>방 가격 : <fmt:formatNumber value="${hotel.roomprice }" pattern="#,###" /></td>		
+						<td>방 가격 : <fmt:formatNumber value="${hotel.roomprice }" pattern="#,### 원" /></td>		
 						<td>
-							<button onclick="location='${conPath }/hotel.do?method=insertHotelReservation&hotelid=${hotel.hotelid }&
-								schcheckindate=${hotelDto.schcheckindate }&schcheckoutdate=${hotelDto.schcheckoutdate }&headcount=${hoteldDto.headcount }'">예약하기</button>			
+							<button onclick="location='${conPath }/hotel.do?method=insertHotelReservationView&hotelid=${hotel.hotelid }&schcheckindate=${hotelDto.schcheckindate }&schcheckoutdate=${hotelDto.schcheckoutdate }&headcount=${hotelDto.headcount }'">예약하기</button>			
 						</td>			
 					</tr>
 				</c:if>
@@ -153,10 +151,9 @@
 						<td> 호텔 아이디 : ${hotel.hotelid }</td>
 						<td>방 사진 : ${hotel.roomimage }</td>
 						<td>스위트</td>
-						<td>방 가격 : <fmt:formatNumber value="${hotel.roomprice }" pattern="#,###" /></td>	
+						<td>방 가격 : <fmt:formatNumber value="${hotel.roomprice }" pattern="#,### 원" /></td>	
 						<td>
-							<button onclick="location='${conPath }/hotel.do?method=insertHotelReservation&hotelid=${hotel.hotelid }&
-								schcheckindate=${hotelDto.schcheckindate }&schcheckoutdate=${hotelDto.schcheckoutdate }&headcount=${hoteldDto.headcount }'">예약하기</button>				
+							<button onclick="location='${conPath }/hotel.do?method=insertHotelReservationView&hotelid=${hotel.hotelid }&schcheckindate=${hotelDto.schcheckindate }&schcheckoutdate=${hotelDto.schcheckoutdate }&headcount=${hotelDto.headcount }'">예약하기</button>				
 						</td>				
 					</tr>
 				</c:if>
@@ -176,6 +173,9 @@
 				</c:forEach>	
 			</c:if>
 		</c:if>
+		<tr>
+			<td><button onclick="history.back()">뒤로가기</button></td>
+		</tr>
 	</table>
   </body>
 </html>

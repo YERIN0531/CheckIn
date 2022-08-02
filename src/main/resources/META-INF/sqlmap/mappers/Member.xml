@@ -23,11 +23,22 @@
   		<result property="mmileage" column="mmileage"/>
   	</resultMap>
   	<select id="getDetailMember" parameterType="String" resultType="Member">
-  	SELECT * FROM CUSTOMER WHERE MID = #{mid}
+  		SELECT * FROM CUSTOMER WHERE MID = #{mid}
   	</select>
   	<select id="loginCheck" parameterType="Member" resultType="Member">
-  	SELECT * FROM CUSTOMER WHERE MID = #{mid} AND MPW= #{mpw}
+  		SELECT * FROM CUSTOMER WHERE MID = #{mid} AND MPW= #{mpw}
   	</select>
+  	<select id="getMember" parameterType="String" resultType="Member">
+  		SELECT * FROM CUSTOMER WHERE MID= #{mid}
+  	</select>
+  	<update id="minusMileage" parameterType="Member">
+  		UPDATE CUSTOMER SET MMILEAGE = MMILEAGE - #{mmileage}
+                    WHERE MID= #{mid}
+  	</update>
+  	<update id="plusMileage" parameterType="Member">
+  		UPDATE CUSTOMER SET MMILEAGE = MMILEAGE + ( #{paymoney} *0.03)
+                    WHERE MID= #{mid}
+  	</update>
   </mapper>
   
   
