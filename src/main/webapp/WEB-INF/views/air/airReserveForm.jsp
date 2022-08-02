@@ -14,7 +14,7 @@
 	<div class="seat">
         <div class="image">
  		<form action="air.do">
- 		<input type="hidden" name="method" value="airReserve">
+ 		<input type="hidden" name="method" value="airReserveInfo">
  		<input type="hidden" name="acode" value="${param.acode }">
  		<input type="hidden" name="mid" value="${member.mid }">
  		<input type="hidden" name="agodate" value="${airDto.agodate }">
