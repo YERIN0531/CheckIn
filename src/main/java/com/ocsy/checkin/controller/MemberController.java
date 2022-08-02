@@ -40,5 +40,6 @@ public class MemberController {
 		memberService.logout(httpSession);
 		return "redirect:main.do";
 	}
+	
 
 }

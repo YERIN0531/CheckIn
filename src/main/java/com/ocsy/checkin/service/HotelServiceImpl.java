@@ -19,6 +19,7 @@ import com.ocsy.checkin.dao.HotelDao;
 import com.ocsy.checkin.dto.Hotel;
 import com.ocsy.checkin.dto.Hotel_ZZim;
 import com.ocsy.checkin.dto.Hotel_rs;
+import com.ocsy.checkin.util.Paging;
 
 @Service
 public class HotelServiceImpl implements HotelService {
@@ -216,6 +217,7 @@ public class HotelServiceImpl implements HotelService {
 		return result;
 	}
 	
+	
 	private boolean filecopy(String serverFile, String backupFile) {
 		boolean isCopy = false;
 		// 복사
@@ -253,5 +255,19 @@ public class HotelServiceImpl implements HotelService {
 		}
 		return isCopy;
 	}
+
+	@Override
+	public List<Hotel> adminHotelList(String pageNum, Hotel hotel) {
+		Paging paging = new Paging(hotelDao.totAllHotel(), pageNum,10,5);
+		hotel.setStartRow(paging.getStartRow());
+		hotel.setEndRow(paging.getEndRow());
+		return hotelDao.adminHotelList(hotel);
+	}
+
+	@Override
+	public int totAllHotel() {
+		return hotelDao.totAllHotel();
+	}
+
 
 }

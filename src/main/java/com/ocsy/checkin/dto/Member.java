@@ -1,6 +1,7 @@
 package com.ocsy.checkin.dto;
 import java.sql.Date;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,6 +26,7 @@ public class Member {
 	private Date mrdate;
 	private int mtotal;
 	private int mmileage;
+	private int paymoney;  // 결제금액
 
 	
 }

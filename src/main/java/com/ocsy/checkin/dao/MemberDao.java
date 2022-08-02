@@ -7,4 +7,10 @@ public interface MemberDao {
 
 //	public Member getDetailMember(String mid);
 	public Member loginCheck(Member member);
+	
+	public Member getMember(String mid);  // member dto 가져오기 (진영필요 지우지마세요)
+	
+	public int minusMileage(Member member);
+	
+	public int plusMileage(Member member);
 }

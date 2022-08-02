@@ -163,6 +163,7 @@ INSERT INTO HOTEL_RS VALUES (HRS_SEQ.NEXTVAL,'ESP-SW','aaa','2022-08-01','2022-0
 SELECT * FROM HOTEL;
 SELECT * FROM HOTEL_RS;
 SELECT * FROM HOTEL_ZZIM;
+COMMIT;
 
 -- HOTEL
 -- 관리자가 숙소 등록  id= insertHotel
@@ -189,8 +190,18 @@ SELECT * FROM HOTEL WHERE HOTELID LIKE 'TPB' || '%' ;
 UPDATE HOTEL SET ROOMIMAGE = '수정할 사진입니다.',
                     ROMMPRICE = 0
                      WHERE HOTELID = '호텔 풀 아이디 입니다. (TBS-SD) ';
-         
--- 전체 숙소 개수     id = totHotel
+SELECT * FROM HOTEL;
+-- 전체 숙소 리스트
+SELECT DISTINCT HOTELNAME,HOTELCOUNTRY,HOTELADDRESS,HOTELIMAGE FROM HOTEL;
+
+-- 관리자가 숙소 리스트 볼때 
+SELECT * FROM 
+    (SELECT ROWNUM RN, A.* FROM (SELECT DISTINCT HOTELNAME,HOTELCOUNTRY,HOTELADDRESS,HOTELIMAGE FROM HOTEL ORDER BY HOTELCOUNTRY) A)
+        WHERE RN BETWEEN 1 AND 10;
+
+
+
+-- 전체 숙소 개수     id = totHotel 
 SELECT COUNT(DISTINCT HOTELNAME) FROM HOTEL;
 
 -- 특정 지역 숙소 개수  id = totHotelLoc
@@ -199,6 +210,8 @@ SELECT COUNT(DISTINCT HOTELNAME) FROM HOTEL WHERE HOTELCOUNTRY = '태국';
 -- 숙소 상세보기      id = hotelDetail
 SELECT * FROM HOTEL WHERE HOTELID LIKE 'TBS' || '%';
 
+-- 한개 숙소 상세보기
+SELECT * FROM HOTEL WHERE HOTELID = 'TBS-SD';
 -- 특정 지역 숙소리스트 보기   id = hotelListLoc
 SELECT DISTINCT(HOTELNAME),HOTELCOUNTRY,HOTELADDRESS,HOTELIMAGE FROM HOTEL WHERE HOTELCOUNTRY = '태국';
 
@@ -260,9 +273,17 @@ DELETE FROM HOTEL_ZZIM WHERE MID='aaa' AND HZZIM = 1;
 
 SELECT * FROM HOTEL_ZZIM;
 
+SELECT * FROM CUSTOMER;
 
 
-
-
+UPDATE CUSTOMER SET MMILEAGE = MMILEAGE - 400000
+                    WHERE MID='aaa';
+                    
+UPDATE CUSTOMER SET MMILEAGE = MMILEAGE + (10000000*0.1)
+                    WHERE MID='aaa';
+    select * from customer;                    
+SELECT * FROM CUSTOMER WHERE MID= 'aaa';
 commit;
+
+select * from hotel_rs;
 
