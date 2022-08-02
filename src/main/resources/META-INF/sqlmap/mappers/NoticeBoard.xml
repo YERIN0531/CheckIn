@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.ocsy.checkin.dao.NoticeBoardDao">
+	<resultMap type="NoticeBoard" id="NoticeResult">
+		<result property="nnum" column="nnum"/>
+		<result property="aid" column="aid"/>
+		<result property="ntitle" column="ntitle"/>
+		<result property="ncontent" column="ncontent"/>
+		<result property="nimage" column="nimage"/>
+		<result property="nhit" column="nhit"/>
+		<result property="nrdate" column="nrdate"/>
+	</resultMap>
+	
+	
+<!-- 1.글목록 listNotice -->
+<select id="listNotice" parameterType="NoticeBoard" resultMap="NoticeResult">
+SELECT * FROM (SELECT ROWNUM RN, A.* 
+            FROM (SELECT * FROM NOTICE_BOARD ORDER BY NNUM DESC)A)
+        WHERE RN BETWEEN #{startRow} AND #{endRow}
+</select>
+
+<!-- 2.글상세보기(nnum) detailNotice -->
+<select id="detailNotice" parameterType="int" resultType="NoticeBoard">
+SELECT * FROM NOTICE_BOARD WHERE NNUM=#{nnum}
+</select>
+
+<!-- 2.글상세보기(nnum) 수정하기 view  조회수 안올리고  -->
+<select id="modifylView" parameterType="int" resultType="NoticeBoard">
+SELECT * FROM NOTICE_BOARD WHERE NNUM=#{nnum}
+</select>
+
+<!-- 3.글개수 countNotice -->
+<select id="countNotice" resultType="int">
+SELECT COUNT(*) FROM NOTICE_BOARD
+</select>
+
+<!-- 4.원글작성 insertNotice -->
+<insert id="insertNotice" parameterType="NoticeBoard" >
+INSERT INTO NOTICE_BOARD(NNUM , AID ,NTITLE ,NCONTENT,NIMAGE)
+        VALUES (NOTICE_SEQ.NEXTVAL,#{aid},#{ntitle},#{ncontent},#{nimage})
+</insert>
+
+<!-- 5.hitup  hitupNotice -->
+<update id="hitupNotice" parameterType="int">
+UPDATE NOTICE_BOARD SET NHIT = NHIT +1 WHERE NNUM=#{nnum}
+</update>
+
+<!-- 6.글수정 modifyNotice -->
+<update id="modifyNotice" parameterType="NoticeBoard">
+UPDATE NOTICE_BOARD SET NTITLE =#{ntitle},
+                     NCONTENT = #{ncontent},
+                    <if test="nimage != null and nimage !=''"> NIMAGE = #{nimage},</if>
+                     NRDATE = SYSDATE
+                     WHERE NNUM = #{nnum}
+</update>
+
+<!-- 7.글삭제 deleteNotice -->
+<delete id="deleteNotice" parameterType="int">
+DELETE FROM NOTICE_BOARD WHERE NNUM =#{nnum}
+</delete>
+	</mapper>

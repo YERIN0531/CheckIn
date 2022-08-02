@@ -16,5 +16,6 @@ public interface ReviewService {
 	public int insertReview(MultipartHttpServletRequest mRequest,HttpServletRequest request,ReviewBoard review);
 	public int replyReview(MultipartHttpServletRequest mRequest,HttpServletRequest request,ReviewBoard review);
 	public int modifyReview(MultipartHttpServletRequest mRequest,HttpServletRequest request,ReviewBoard review);
-	public int deleteReview(int rnum);
+	public int deleteReview(ReviewBoard review);
+	
 }

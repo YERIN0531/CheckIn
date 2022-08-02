@@ -17,5 +17,5 @@ public interface ReviewBoardDao {
 	public int replyPreStepReview(ReviewBoard review);
 	public int replyReview(ReviewBoard review);
 	public int modifyReview(ReviewBoard review);
-	public int deleteReview(int rnum);
+	public int deleteReview(ReviewBoard review);
 }
