@@ -17,4 +17,9 @@ public class Taxfree {
 	private String pstock;  // 상품 재고
 	private String ploc;    // 상품 위치
 	
+	
+	// 페이징 처리
+	private int startrow; 
+	private int endrow;
+	
 }

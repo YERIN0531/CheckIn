@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Iterator;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,17 +16,18 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.ocsy.checkin.dao.TaxfreeDao;
 import com.ocsy.checkin.dto.Taxfree;
+import com.ocsy.checkin.util.Paging;
 
 @Service
 public class TaxfreeServiceImpl implements TaxfreeService {
 	
 	@Autowired
 	private TaxfreeDao taxfreeDao;
-	String backupPath = "C:/TeamCheckin/CheckIn/src/main/webapp/img/";
+	String backupPath = "C:\\TeamCheckin\\CheckIn\\src\\main\\webapp\\taxfree\\";
 	
 	@Override
 	public int insertProduct(MultipartHttpServletRequest mRequest, Taxfree taxfree) {
-		String uploadPath = mRequest.getRealPath("fileUpload/");
+		String uploadPath = mRequest.getRealPath("taxfree/");
 		Iterator<String> params = mRequest.getFileNames(); // tempBimg1, tempBimg2
 		String[] pimg = new String[3];
 		int idx = 0;
@@ -59,10 +61,34 @@ public class TaxfreeServiceImpl implements TaxfreeService {
 		taxfree.setPimage2(pimg[1]); // 두번째 첨부한 파일 이름
 		taxfree.setPimage3(pimg[2]); // 세번째 첨부한 파일 이름
 		
-		System.out.println("등록할 책 정보 : " + taxfree);
+		System.out.println("면세품 등록 정보(bookList): " + taxfree);
 		return taxfreeDao.insertProduct(taxfree); // DB insert
 		
 	}
+	
+	// 파일 리스트 출력 - 진행중
+	@Override
+	public List<Taxfree> listProduct(String pageNum, Taxfree taxfree) {
+		Paging paging = new Paging(taxfreeDao.countProduct(taxfree), pageNum, 9, 5);
+		taxfree.setStartrow(paging.getStartRow());
+		taxfree.setEndrow(paging.getEndRow());
+		System.out.println("면세품 리스트 출력 (bookList): " + taxfree);
+		return taxfreeDao.listProduct(taxfree);
+	}
+	
+	// 페이징 처리를 위한 
+	@Override
+	public int countProduct(Taxfree taxfree) {
+		return taxfreeDao.countProduct(taxfree);
+	}
+	
+	// 면세품 상세보기 페이지
+	@Override
+	public Taxfree detailProduct(int pnum) {
+		System.out.println("면세품 상세보기 출력" + pnum + " : " + taxfreeDao.detailProduct(pnum));
+		return taxfreeDao.detailProduct(pnum);
+	}
+	
 	
 	
 	// 파일 복사 진행 로직 - fileCopy

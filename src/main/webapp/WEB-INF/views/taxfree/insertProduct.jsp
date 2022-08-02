@@ -20,8 +20,6 @@
 
 <body>
 	
-	<c:if test=""></c:if>
-	
 	<jsp:include page="../main/header.jsp"/>
 	
 	<section>
@@ -53,7 +51,7 @@
 					<td><input type="text" name="ploc" required="required"></td>
 				</tr>
 				<!-- <tr><th>상세설명</th>
-					<td><textarea rows="5" cols="10" name="binfo"></textarea> </td>
+					<td><textarea rows="5" cols="10" name="pcontent"></textarea> </td>
 				</tr> -->
 				<tr><td colspan="2">
 					<input type="submit" value="등록하기">
