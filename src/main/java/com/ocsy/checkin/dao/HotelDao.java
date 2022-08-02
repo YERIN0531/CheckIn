@@ -50,6 +50,12 @@ public interface HotelDao {
 	
 	public int cancelHZZim(Hotel_ZZim hzzim);  // 찜 취소
 	
+	public List<Hotel> adminHotelList(Hotel hotel);  // 관리자가 호텔 리스트 조회 
+	
+	public int totAllHotel();
+	
+	
+	
 	
 	
 }

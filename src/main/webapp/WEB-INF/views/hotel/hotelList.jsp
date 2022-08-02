@@ -43,6 +43,9 @@
 				</tr>
 			</c:forEach>
 		</c:if>
+		<tr>
+			<td><button onclick="history.back()">뒤로가기</button></td>
+		</tr>
 	</table>
 </body>
 </html>

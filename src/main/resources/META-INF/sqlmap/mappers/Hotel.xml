@@ -14,6 +14,8 @@
   		<result property="hotelimage" column="hotelimage"/>
   		<result property="roomimage" column="roomimage"/>
   		<result property="hzzim" column="hzzim"/>
+  		<result property="startRow" column="startRow"/>
+		<result property="endRow" column="endRow" />
   	</resultMap>
   	<resultMap type="Hotel_rs" id="Hotel_rsResult">
   		<result property="hrs_num" column="hrs_num"/>
@@ -31,13 +33,13 @@
   	</resultMap>
   	<!--  hotel 관련  -->
   	<insert id="insertHotel1" parameterType="Hotel">
-  		INSERT INTO HOTEL VALUES (UPPER(#{hotelcode} || '-SD'), #{hotelcountry},#{hotelname},#{hoteladdress},'스탠다드',#{standateprice},#{hotelimage},#{standardimage});
+  		INSERT INTO HOTEL VALUES (UPPER(#{hotelid} || '-SD'), #{hotelcountry},#{hotelname},#{hoteladdress},'스탠다드',#{standardprice},#{hotelimage},#{standardimage})
   	</insert>
   	<insert id="insertHotel2" parameterType="Hotel">
-		INSERT INTO HOTEL VALUES (UPPER(#{hotelcode} || '-DL'), #{hotelcountry},#{hotelname},#{hoteladdress},'디럭스',#{deluxeprice},#{hotelimage},#{deluxeimage});
+		INSERT INTO HOTEL VALUES (UPPER(#{hotelid} || '-DL'), #{hotelcountry},#{hotelname},#{hoteladdress},'디럭스',#{deluxeprice},#{hotelimage},#{deluxeimage})
   	</insert>
   	<insert id="insertHotel3" parameterType="Hotel">
-		INSERT INTO HOTEL VALUES (UPPER(#{hotelcode} || '-SW'), #{hotelcountry},#{hotelname},#{hoteladdress},'스위트',#{sweetprice},#{hotelimage},#{sweetimage});
+		INSERT INTO HOTEL VALUES (UPPER(#{hotelid} || '-SW'), #{hotelcountry},#{hotelname},#{hoteladdress},'스위트',#{sweetprice},#{hotelimage},#{sweetimage})
   	</insert>
   	<delete id="deleteHZZim" parameterType="String">
   		DELETE FROM HOTEL_ZZIM WHERE HOTELID LIKE #{hotelid} || '%';   
@@ -75,6 +77,14 @@
        	 AND HOTELCOUNTRY LIKE '%' || #{schcountry} || '%'
        	 ]]>	
   	</select>
+  	<select id="adminHotelList" parameterType="Hotel" resultMap="HotelResult">
+  		SELECT * FROM 
+   			 (SELECT ROWNUM RN, A.* FROM (SELECT DISTINCT HOTELNAME,HOTELCOUNTRY,HOTELADDRESS,HOTELIMAGE FROM HOTEL ORDER BY HOTELCOUNTRY) A)
+      		  WHERE RN BETWEEN #{startRow} AND #{endRow}
+  	</select>
+  	<select id="totAllHotel" resultType="int">
+  		SELECT COUNT(DISTINCT HOTELNAME) FROM HOTEL
+  	</select>
   	<!--   -->
   	<!--  숙소 예약 관련 -->
   	<select id="myHotelReservationList" parameterType="String" resultMap="Hotel_rsResult">
@@ -84,7 +94,7 @@
   		DELETE FROM HOTEL_RS WHERE HRS_NUM = #{hrs_num}
   	</delete>
   	<insert id="insertHotelReservation" parameterType="Hotel_rs">
-  		INSERT INTO HOTEL_RS VALUES (HRS_SEQ.NEXTVAL,#{hotelid},#{mid},#{schcheckindate},#{schcheckoutdate},#{headcount})
+  		INSERT INTO HOTEL_RS VALUES (HRS_SEQ.NEXTVAL,#{hotelid},#{mid},#{checkin},#{checkout},#{headcount})
   	</insert>
   	<select id="checkHotelReservation" parameterType="Hotel" resultMap="HotelResult">
   	<![CDATA[  
@@ -105,10 +115,10 @@
   			SELECT COUNT(*) FROM HOTEL_ZZIM WHERE MID= #{mid} AND HOTELID = #{hotelid}
   		</select>
   		<select id="myHZZimList" parameterType="String" resultMap="HotelResult">
-  			SELECT HZZIM, H.HOTELID,HOTELCOUNTRY, HOTELNAME,ROOMTYPE FROM HOTEL_ZZIM HZ, HOTEL H WHERE HZ.HOTELID = H.HOTELID AND MID= #{mid};
+  			SELECT HZZIM, H.HOTELID,HOTELCOUNTRY, HOTELNAME,ROOMTYPE FROM HOTEL_ZZIM HZ, HOTEL H WHERE HZ.HOTELID = H.HOTELID AND MID= #{mid}
   		</select>
   		<delete id="cancelHZZim" parameterType="Hotel_ZZim">
-  			DELETE FROM HOTEL_ZZIM WHERE MID= #{mid} AND HZZIM = #{hzzim};
+  			DELETE FROM HOTEL_ZZIM WHERE MID= #{mid} AND HZZIM = #{hzzim}
   		</delete>
   	<!--  -->
   </mapper>  

@@ -1,20 +1,35 @@
 package com.ocsy.checkin.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.ocsy.checkin.dto.Hotel;
+import com.ocsy.checkin.dto.Hotel_rs;
+import com.ocsy.checkin.dto.Member;
 import com.ocsy.checkin.service.HotelService;
+import com.ocsy.checkin.service.MemberService;
+import com.ocsy.checkin.util.Paging;
 
 @Controller
 @RequestMapping(value="hotel")
 public class HotelController {
 	@Autowired
 	private HotelService hotelService;
+	
+	@Autowired
+	private MemberService memberService;
+	
+	@Autowired
+	private JavaMailSender mailSender;
 	
 	@RequestMapping(params = "method=schHotel", method= {RequestMethod.GET, RequestMethod.POST })    // 호텔 목록 조회할때 
 	public String schHotel(Hotel hotel, Model model) {
@@ -28,4 +43,60 @@ public class HotelController {
 		model.addAttribute("checkHotelDetail",hotelService.checkHotelReservation(hotel));
 		return "hotel/hotelDetail";
 	}
+	@RequestMapping(params = "method=insertHotelReservationView",method = {RequestMethod.GET, RequestMethod.POST})
+	public String insertHotelReservationView(Hotel hotel,Model model,HttpSession session) {
+		model.addAttribute("reservationInfo",hotel);
+		model.addAttribute("hotelInfo",hotelService.getHotelDetail(hotel.getHotelid()));
+		return "hotel/hotelReservationInfo";
+	}
+	@RequestMapping(params="method=payPage",method= {RequestMethod.GET,RequestMethod.POST})
+	public String payPage(Hotel_rs hotel_rs,int payprice,String roomtype, String hotelname,String roomimage, Model model) {	
+		model.addAttribute("payprice",payprice);
+		model.addAttribute("roomtype",roomtype);
+		model.addAttribute("hotelname",hotelname);
+		model.addAttribute("roomimage",roomimage);
+		return "main/payPage";
+	}
+	
+	@RequestMapping(params="method=insertHotelReservation",method= {RequestMethod.GET, RequestMethod.POST})
+	public String insertHotelReservation(Hotel_rs hotel_rs,Member member,HttpSession session, Model model) {
+		memberService.minusMileage(member);
+		memberService.plusMileage(member,session);
+		model.addAttribute("insertHotelReservation",hotelService.insertHotelReservation(hotel_rs));
+		return "main/reserveResult";
+	}
+	
+	/* ****************************************관리자 영역***********************************/
+	@RequestMapping(params="method=insertHotel",method= {RequestMethod.GET,RequestMethod.POST})
+	public String insertHotelView() {
+		return "adminHotel/insertView";
+	}
+	
+	@RequestMapping(params="method=adminInsertHotel",method =RequestMethod.POST)
+	public String insertHotel(MultipartHttpServletRequest mRequest,Hotel hotel, Model model) {
+		model.addAttribute("insertHotelResult",hotelService.insertHotel(mRequest, hotel));
+		return "forward:hotel.do?method=adminHotelList";
+	}
+	
+	@RequestMapping(params="method=adminHotelList",method= {RequestMethod.GET,RequestMethod.POST})
+	public String adminHotelList(String pageNum,Hotel hotel,Model model) {
+		model.addAttribute("hotelList",hotelService.adminHotelList(pageNum, hotel));
+		model.addAttribute("paging",new Paging(hotelService.totAllHotel(), pageNum));
+		return "adminHotel/hotelList";
+	}
+
+	@RequestMapping(params="method=failInsertHotelMail",method= {RequestMethod.GET,RequestMethod.POST})
+	public String failInsertHotelMail(Model model) {
+		SimpleMailMessage message = new SimpleMailMessage();
+		message.setFrom("tjqud531@gmail.com");
+		message.setTo("chlwlsdud43@gmail.com");
+		message.setSubject("[급신]관리자가 호텔 등록중 오류가 발생했습니다. 빠른 확인 부탁드립니다.[급신]");
+		String content = "최진영 관리자님 호텔 등록중 오류가 발생했습니다. 빠른 확인 및 처리 부탁드립니다.";
+		message.setText(content);
+		mailSender.send(message);
+		model.addAttribute("errorResult","관리자가 해결할 동안 잠시 호텔등록을 멈춰주세요.");
+		return "forward:hotel.do?method=adminHotelList";
+	}
+	
+	
 }

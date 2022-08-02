@@ -37,4 +37,9 @@ public interface HotelService {
 	
 	public int cancelHZZim(Hotel_ZZim hzzim);  // 찜취소
 	
+	public List<Hotel> adminHotelList(String pageNum,Hotel hotel);
+	
+	public int totAllHotel();
+	
+	
 }

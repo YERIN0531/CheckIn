@@ -45,5 +45,18 @@ public class MemberServiceImpl implements MemberService {
 		}
 		return result;
 	}
+	@Override
+	public int minusMileage(Member member) {
+		return memberDao.minusMileage(member);
+	}
+	@Override
+	public int plusMileage(Member member,HttpSession httpSession) {
+		System.out.println("매개변수로 받은 멤버 : "+member);
+		Member newMember = memberDao.getMember(member.getMid());
+		System.out.println("매개변수로 받은 아이디로 다시 멤버 조회 후 멤버 : "+newMember);
+		httpSession.setAttribute("member", newMember);
+		return memberDao.plusMileage(member);
+	}
+	
 
 }
