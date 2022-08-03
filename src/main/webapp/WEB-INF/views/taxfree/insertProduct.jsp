@@ -10,6 +10,12 @@
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
 	<link href="conPath/css/style.css" rel="stylesheet">
+	<style>
+		* {
+		border: 1px solid red;
+		text-align: center;
+		}
+	</style>
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	<script>
 	$(document).ready(function(){

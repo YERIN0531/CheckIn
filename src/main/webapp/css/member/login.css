@@ -1,0 +1,92 @@
+@charset "UTF-8";
+  /******************************************section********************************************/
+        *{padding:0;
+          margin:0;}
+        
+        section {
+            margin: 0 auto;
+            width: 100%;
+        }
+
+            section #main {
+                width: 100%;
+                background: url('../../image/back4.png') no-repeat;
+                height:800px;
+            }
+            
+            section #main table{
+            margin:0 auto;
+            background-color:white;
+            }
+                section #main table .firsttd {
+                    background: url('../../img/login3.png') no-repeat;
+                    width:600px;
+                    object-fit:cover;
+                    height:600px;
+                }
+        #border {
+            margin: 0 auto;
+            margin-top: 150px;
+            max-width: 800px;
+            margin-top: 15px;
+            margin-bottom: 50px;
+            padding: 32px;
+            background: #fff;
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            border-radius: 10px;
+            -webkit-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+            -moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+            box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
+        }
+
+        caption {
+            font-family: 'Domine', serif;
+            color: black;
+            font-size: 1.7em;
+            font-weight: bold;
+            padding-left: 30px;
+        }
+
+        .login {
+            font-family: 'Domine', serif;
+            text-align: center;
+            font-size: 1.3em;
+            color: lightgray;
+        }
+        
+        table tr{
+            padding:0px;
+            height:60px;
+            margin:0px;
+        }
+        table td {
+            font-family: 'IBM Plex Sans KR', sans-serif;
+            font-size: 1.0em;
+            padding:0px;
+            padding-left:20px;
+            
+        }
+
+        input {
+            border: 1px solid white;
+            border: 1px solid lightgray;
+            width: 325px;
+            height: 40px;
+        }
+
+            input[type='submit'] {
+                width: 330px;
+                height: 40px;
+                color: white;
+                background-color: #c0acbb;
+                background-color: #d1c2cd;
+                background-color: #c6b3c1;
+                background-color: #c2bcc0;
+                background-color: #888279;
+                background-color: #757169;
+                background-color: #7c8591;
+                background-color: #a4acb6;
+                background-color: #d6dae0;
+                background-color: #b5c4c3;
+            }

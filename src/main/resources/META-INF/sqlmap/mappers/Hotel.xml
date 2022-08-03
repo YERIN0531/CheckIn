@@ -41,16 +41,16 @@
   	<insert id="insertHotel3" parameterType="Hotel">
 		INSERT INTO HOTEL VALUES (UPPER(#{hotelid} || '-SW'), #{hotelcountry},#{hotelname},#{hoteladdress},'스위트',#{sweetprice},#{hotelimage},#{sweetimage})
   	</insert>
-  	<delete id="deleteHZZim" parameterType="String">
-  		DELETE FROM HOTEL_ZZIM WHERE HOTELID LIKE #{hotelid} || '%';   
+  	<delete id="deleteHidZZim" parameterType="String">
+  		DELETE FROM HOTEL_ZZIM WHERE HOTELID LIKE #{hotelid} || '%'   
   	</delete>
   	<delete id="deleteHotel" parameterType="String">
-		DELETE FROM HOTEL WHERE HOTELID LIKE #{hotelid} || '%'; 
+		DELETE FROM HOTEL WHERE HOTELID LIKE #{hotelid} || '%' 
   	</delete>
   	<update id="updateHotel" parameterType="Hotel">
   		UPDATE HOTEL SET HOTELNAME = #{hotelname},
                     HOTELCOUNTRY = #{hotelcountry},
-                        HOTELADDRESS = #{hotelcountry}
+                        HOTELADDRESS = #{hoteladdress}
                         <if test="hotelimage != null and hotelimage != '' ">
                            , HOTELIMAGE = #{hotelimage}        
                         </if>                           
@@ -61,25 +61,24 @@
   	</select>
   	<update id="updateHotelRoom" parameterType="Hotel">
   		UPDATE HOTEL SET
-  					<if test="rommimage != null and roomimage != '' ">
-  						ROOMIMAGE = #{rommimage},
+  					<if test="roomimage != null and roomimage != '' ">
+  						ROOMIMAGE = #{roomimage},
   					</if>  
-  							ROMMPRICE = #{rommprice}                 			
+  							ROOMPRICE = #{roomprice}                 			
                      WHERE HOTELID = #{hotelid}
   	</update>
   	<select id="checkHotelReservationList" parameterType="Hotel" resultMap="HotelResult">
-  		<![CDATA[  
-  		SELECT DISTINCT SUBSTR(HOTELID,1,3) HOTELID,HOTELNAME,HOTELCOUNTRY, HOTELADDRESS,HOTELIMAGE FROM HOTEL 
-   		 WHERE (HOTELNAME, ROOMTYPE) NOT IN 
-			(SELECT HOTELNAME, ROOMTYPE FROM HOTEL_RS R, HOTEL H WHERE (( #{schcheckindate} >= CHECKIN OR #{schcheckindate} < CHECKOUT)
-   				 AND (#{schcheckoutdate} BETWEEN CHECKIN AND CHECKOUT))
-       				 AND R.HOTELID = H.HOTELID AND HOTELCOUNTRY LIKE '%' || #{schcountry} || '%') 
-       	 AND HOTELCOUNTRY LIKE '%' || #{schcountry} || '%'
+  		<![CDATA[    	 
+       	 SELECT DISTINCT SUBSTR(HOTELID,1,3) HOTELID, HOTELNAME ,HOTELCOUNTRY, HOTELADDRESS,HOTELIMAGE FROM HOTEL 
+  		  WHERE (HOTELNAME, ROOMTYPE) NOT IN 
+			(SELECT HOTELNAME, ROOMTYPE FROM HOTEL_RS R, HOTEL H WHERE ((#{schcheckindate} >= CHECKIN AND #{schcheckindate} < CHECKOUT)
+    			OR (#{schcheckoutdate} >= CHECKIN AND #{schcheckoutdate} < CHECKOUT ))
+      			  AND R.HOTELID = H.HOTELID AND HOTELCOUNTRY LIKE '%' || #{schcountry} || '%') AND HOTELCOUNTRY LIKE '%' || #{schcountry} || '%'
        	 ]]>	
   	</select>
   	<select id="adminHotelList" parameterType="Hotel" resultMap="HotelResult">
   		SELECT * FROM 
-   			 (SELECT ROWNUM RN, A.* FROM (SELECT DISTINCT HOTELNAME,HOTELCOUNTRY,HOTELADDRESS,HOTELIMAGE FROM HOTEL ORDER BY HOTELCOUNTRY) A)
+   			 (SELECT ROWNUM RN, A.* FROM (SELECT DISTINCT SUBSTR(HOTELID,1,3) HOTELID, HOTELNAME,HOTELCOUNTRY,HOTELADDRESS,HOTELIMAGE FROM HOTEL ORDER BY HOTELCOUNTRY) A)
       		  WHERE RN BETWEEN #{startRow} AND #{endRow}
   	</select>
   	<select id="totAllHotel" resultType="int">
@@ -97,13 +96,13 @@
   		INSERT INTO HOTEL_RS VALUES (HRS_SEQ.NEXTVAL,#{hotelid},#{mid},#{checkin},#{checkout},#{headcount})
   	</insert>
   	<select id="checkHotelReservation" parameterType="Hotel" resultMap="HotelResult">
-  	<![CDATA[  
-  		SELECT * FROM HOTEL 
-    WHERE HOTELID LIKE #{hotelid} || '%'
-        AND (HOTELNAME, ROOMTYPE) NOT IN (
-                SELECT HOTELNAME, ROOMTYPE FROM HOTEL_RS R, HOTEL H WHERE ((#{schcheckindate} >= CHECKIN OR #{schcheckindate} < CHECKOUT)
-    AND (#{schcheckoutdate} BETWEEN CHECKIN AND CHECKOUT))
-        AND R.HOTELID = H.HOTELID AND R.HOTELID LIKE #{hotelid} || '%')
+  	<![CDATA[         
+        SELECT * FROM HOTEL 
+   			 WHERE HOTELID LIKE #{hotelid} || '%'
+       			 AND (HOTELNAME, ROOMTYPE) NOT IN 
+             	   (SELECT HOTELNAME, ROOMTYPE FROM HOTEL_RS R, HOTEL H WHERE ((#{schcheckindate} >= CHECKIN AND #{schcheckindate} < CHECKOUT)
+  						 OR (#{schcheckoutdate} >= CHECKIN AND #{schcheckoutdate} < CHECKOUT) )
+      		  AND R.HOTELID = H.HOTELID AND R.HOTELID LIKE #{hotelid} || '%')
     ]]>	
   	</select> 	
   	<!--  -->

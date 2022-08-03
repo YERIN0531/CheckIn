@@ -8,34 +8,43 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
-	<link href="${conPath }/css/style.css" rel="stylesheet">
+	<link href="${conPath }/css/member/login.css" rel="stylesheet">
 </head>
 <body>
-	<div id="content">
-      <form action="member.do?method=login" method="post" >
-         <table>
-            <caption>로그인</caption>
-            <tr>
-               <th>아이디</th>
-               <td>
-                  <input type="text" name="mid" value="${mid }" required="required">
-               </td>
-            </tr>
-            <tr>
-               <th>비밀번호</th>
-               <td>
-                  <input type="password" name="mpw" required="required">
-               </td>
-            </tr>
-            <tr>
-               <td colspan="2">
-                  <input type="submit" value="로그인">
-                  <input type="button" value="뒤로가기" onclick="location='main.do'" >
-               </td>
-            </tr>
-         </table>
-      </form>     
-     </div>
-	
+<jsp:include page="../main/header.jsp"/>
+	 <section>
+        <div id="main">
+            <form action="member.do?method=login" method="post">
+                <div id="border">
+                    <table>
+                        <tr>
+                            <td rowspan="7" class="firsttd"></td>
+                            <td colspan="2">아이디</td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" name="mid" placeholder="아이디" /></td>
+                        </tr>
+                        <tr>
+                            <td><input type="password" name="mpw" placeholder="사용자암호" /></td>
+                        </tr>
+                        <tr>
+                            <td><input type="submit" value="로그인" /></td>
+                        </tr>
+                        <tr>
+                            <td>5행2열</td>
+                        </tr>
+                        <tr>
+                            <td>6행2열</td>
+                        </tr>
+                        <tr>
+                            <td>7행2열</td>
+                        </tr>
+                    </table>
+                </div>
+            </form>
+        </div>
+
+    </section>
+	<jsp:include page="../main/footer.jsp"/>
 </body>
 </html>

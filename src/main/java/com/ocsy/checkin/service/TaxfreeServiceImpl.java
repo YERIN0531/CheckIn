@@ -25,72 +25,6 @@ public class TaxfreeServiceImpl implements TaxfreeService {
 	private TaxfreeDao taxfreeDao;
 	String backupPath = "C:\\TeamCheckin\\CheckIn\\src\\main\\webapp\\taxfree\\";
 	
-	@Override
-	public int insertProduct(MultipartHttpServletRequest mRequest, Taxfree taxfree) {
-		String uploadPath = mRequest.getRealPath("taxfree/");
-		Iterator<String> params = mRequest.getFileNames(); // tempBimg1, tempBimg2
-		String[] pimg = new String[3];
-		int idx = 0;
-		
-		while(params.hasNext()) {
-			String param = params.next();
-			MultipartFile mFile = mRequest.getFile(param); // 파라미터에 첨부된 파일 객체
-			pimg[idx] = mFile.getOriginalFilename(); 
-			if(pimg[idx]!=null && !pimg[idx].equals("")) { // 첨부함
-				if(new File(uploadPath + pimg[idx]).exists()) {
-					// 서버에 같은 파일이름이 있을 경우(첨부파일과)
-					pimg[idx] = System.currentTimeMillis() + "_" + pimg[idx];
-				}//if
-				try {
-					mFile.transferTo(new File(uploadPath + pimg[idx])); // 서버에 저장
-					System.out.println("서버파일 : " + uploadPath + pimg[idx]);
-					System.out.println("백업파일 : " + backupPath + pimg[idx]);
-					boolean result = fileCopy(uploadPath + pimg[idx], backupPath + pimg[idx]);
-					System.out.println(result ? idx+"번째 백업성공":idx+"번째 백업실패");
-				} catch (IOException e) {
-					System.out.println(e.getMessage());
-				}
-			}else {
-				// 파일 첨부 안 하면 bimg[idx] = ""
-				// bimg[idx] = "";
-			}//if
-			idx++;
-		}//while
-
-		taxfree.setPimage1(pimg[0]); // 첫번째 첨부한 파일 이름
-		taxfree.setPimage2(pimg[1]); // 두번째 첨부한 파일 이름
-		taxfree.setPimage3(pimg[2]); // 세번째 첨부한 파일 이름
-		
-		System.out.println("면세품 등록 정보(bookList): " + taxfree);
-		return taxfreeDao.insertProduct(taxfree); // DB insert
-		
-	}
-	
-	// 파일 리스트 출력 - 진행중
-	@Override
-	public List<Taxfree> listProduct(String pageNum, Taxfree taxfree) {
-		Paging paging = new Paging(taxfreeDao.countProduct(taxfree), pageNum, 9, 5);
-		taxfree.setStartrow(paging.getStartRow());
-		taxfree.setEndrow(paging.getEndRow());
-		System.out.println("면세품 리스트 출력 (bookList): " + taxfree);
-		return taxfreeDao.listProduct(taxfree);
-	}
-	
-	// 페이징 처리를 위한 
-	@Override
-	public int countProduct(Taxfree taxfree) {
-		return taxfreeDao.countProduct(taxfree);
-	}
-	
-	// 면세품 상세보기 페이지
-	@Override
-	public Taxfree detailProduct(int pnum) {
-		System.out.println("면세품 상세보기 출력" + pnum + " : " + taxfreeDao.detailProduct(pnum));
-		return taxfreeDao.detailProduct(pnum);
-	}
-	
-	
-	
 	// 파일 복사 진행 로직 - fileCopy
 	private boolean fileCopy(String serverFile, String backupFile) {
 		boolean isCopy = false;
@@ -118,6 +52,122 @@ public class TaxfreeServiceImpl implements TaxfreeService {
 			}
 		}
 		return isCopy;
+	}
+	
+	// 상품 등록
+	@Override
+	public int insertProduct(MultipartHttpServletRequest mRequest, Taxfree taxfree) {
+		String uploadPath = mRequest.getRealPath("taxfree/");
+		Iterator<String> params = mRequest.getFileNames(); // tempBimg1, tempBimg2
+		String[] pimg = new String[3];
+		int idx = 0;
+		
+		while(params.hasNext()) {
+			String param = params.next();
+			MultipartFile mFile = mRequest.getFile(param); // 파라미터에 첨부된 파일 객체
+			pimg[idx] = mFile.getOriginalFilename(); 
+			if(pimg[idx]!=null && !pimg[idx].equals("")) { // 첨부함
+				if(new File(uploadPath + pimg[idx]).exists()) {
+					// 서버에 같은 파일이름이 있을 경우(첨부파일과)
+					pimg[idx] = System.currentTimeMillis() + "_" + pimg[idx];
+				}//if
+				try {
+					mFile.transferTo(new File(uploadPath + pimg[idx])); // 서버에 저장
+					System.out.println("서버파일 : " + uploadPath + pimg[idx]);
+					System.out.println("백업파일 : " + backupPath + pimg[idx]);
+					boolean result = fileCopy(uploadPath + pimg[idx], backupPath + pimg[idx]);
+					System.out.println(result ? idx+"번째 백업성공":idx+"번째 백업실패");
+				} catch (IOException e) {
+					System.out.println(e.getMessage());
+				}
+			}else {
+				System.out.println("파일 첨부 안 하면 noimg로");
+				// 파일 첨부 안 하면 bimg[idx] = ""
+				// bimg[idx] = "";
+				pimg[idx] = "noimg.jpg";
+			}//if
+			idx++;
+		}//while
+
+		taxfree.setPimage1(pimg[0]); // 첫번째 첨부한 파일 이름
+		taxfree.setPimage2(pimg[1]); // 두번째 첨부한 파일 이름
+		taxfree.setPimage3(pimg[2]); // 세번째 첨부한 파일 이름
+		
+		System.out.println("면세품 등록 정보(bookList): " + taxfree);
+		return taxfreeDao.insertProduct(taxfree); // DB insert
+	}
+	
+	// 파일 리스트 출력
+	@Override
+	public List<Taxfree> listProduct(String pageNum, Taxfree taxfree) {
+		Paging paging = new Paging(taxfreeDao.countProduct(taxfree), pageNum, 9, 5);
+		taxfree.setStartrow(paging.getStartRow());
+		taxfree.setEndrow(paging.getEndRow());
+		System.out.println("면세품 리스트 출력 (bookList): " + taxfree);
+		return taxfreeDao.listProduct(taxfree);
+	}
+	
+	// 페이징 처리를 위한 상품개수
+	@Override
+	public int countProduct(Taxfree taxfree) {
+		return taxfreeDao.countProduct(taxfree);
+	}
+	
+	// 면세품 상세보기
+	@Override
+	public Taxfree detailProduct(int pnum) {
+		System.out.println("면세품 상세보기 출력" + pnum + " : " + taxfreeDao.detailProduct(pnum));
+		return taxfreeDao.detailProduct(pnum);
+	}
+
+	// 면세품 수정
+	@Override
+	public int modifyProduct(MultipartHttpServletRequest mRequest, Taxfree taxfree) {
+		String uploadPath = mRequest.getRealPath("taxfree/");
+		Iterator<String> params = mRequest.getFileNames(); // temppimg1, temppimg2
+		String[] pimg = new String[3];
+		int idx = 0;
+		
+		while(params.hasNext()) {
+			String param = params.next();
+			MultipartFile mFile = mRequest.getFile(param); // 파라미터에 첨부된 파일 객체
+			pimg[idx] = mFile.getOriginalFilename(); 
+			if(pimg[idx]!=null && !pimg[idx].equals("")) { // 첨부함
+				if(new File(uploadPath + pimg[idx]).exists()) {
+					// 서버에 같은 파일이름이 있을 경우(첨부파일과)
+					pimg[idx] = System.currentTimeMillis() + "_" + pimg[idx];
+				}//if
+				try {
+					mFile.transferTo(new File(uploadPath + pimg[idx])); // 서버에 저장
+					System.out.println("서버파일 : " + uploadPath + pimg[idx]);
+					System.out.println("백업파일 : " + backupPath + pimg[idx]);
+					boolean result = fileCopy(uploadPath + pimg[idx], backupPath + pimg[idx]);
+					System.out.println(result ? idx+"번째 백업성공":idx+"번째 백업실패");
+				} catch (IOException e) {
+					System.out.println(e.getMessage());
+				}
+			}else {
+				System.out.println("파일 첨부 안 하면 noimg로");
+				// 파일 첨부 안 하면 bimg[idx] = ""
+				// bimg[idx] = "";
+				pimg[idx] = "noimg.jpg";
+			}//if
+			idx++;
+		}//while
+
+		taxfree.setPimage1(pimg[0]); // 첫번째 첨부한 파일 이름
+		taxfree.setPimage2(pimg[1]); // 두번째 첨부한 파일 이름
+		taxfree.setPimage3(pimg[2]); // 세번째 첨부한 파일 이름
+		
+		int result = taxfreeDao.updateProduct(taxfree);
+		System.out.println("면세품 수정 updatsProduct : " + result == "1" ? "업데이트 성공" : "업데이트 실패");
+		return taxfreeDao.updateProduct(taxfree);// DB insert
+	}
+
+	// 상품 삭제
+	@Override
+	public int deleteProduct(String pageNum, int pnum) {
+		return 0;
 	}
 
 

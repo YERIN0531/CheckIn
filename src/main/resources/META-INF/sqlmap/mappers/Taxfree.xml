@@ -31,10 +31,28 @@
 		SELECT * FROM (SELECT ROWNUM RN, A.* FROM (SELECT * FROM TAXFREE ORDER BY PNUM DESC)A) 
 			WHERE RN BETWEEN #{startrow} AND #{endrow}
 	</select>
+	
   	<!-- detailProduct -->
   	<select id="detailProduct" resultMap="TaxfreeResult">
 		SELECT * FROM TAXFREE WHERE PNUM = #{pnum}
 	</select>
+	
+	<!-- updateProduct -->
+  	<update id="updateProduct" parameterType="Taxfree">
+		UPDATE TAXFREE SET PNAME = #{pname}, 
+				   PPRICE = #{pprice},
+                   PIMAGE1 = #{pimage1},
+                   PIMAGE2 = #{pimage2},
+                   PIMAGE3 = #{pimage3},
+                   PSTOCK = #{pstock},
+                   PLOC   = #{ploc}
+                WHERE PNUM = #{pnum}
+	</update>
+	
+	<!-- deleteProduct -->
+	<delete id="deleteProduct" parameterType="Taxfree">
+		DELETE FROM TAXFREE WHERE PNUM = #{pnum}
+	</delete>
   	
   	
   </mapper>

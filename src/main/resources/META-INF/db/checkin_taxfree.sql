@@ -27,6 +27,7 @@ INSERT INTO TAXFREE (PNUM, PNAME, PPRICE, PIMAGE1, PIMAGE2, PIMAGE3, PSTOCK, PLO
 INSERT INTO TAXFREE (PNUM, PNAME, PPRICE, PIMAGE1, PIMAGE2, PIMAGE3, PSTOCK, PLOC)
     VALUES(PRODUCT_SEQ.NEXTVAL, '디올향수', 180, NULL, NULL, NULL, 100, 'TOKYO');
 
+
 -- (2) CART TABLE
 DROP TABLE CART;
 DROP SEQUENCE CART_SEQ;
@@ -119,7 +120,8 @@ SELECT * FROM TAXFREE;
 INSERT INTO TAXFREE (PNUM, PNAME, PPRICE, PIMAGE1, PIMAGE2, PIMAGE3, PSTOCK, PLOC)
     VALUES(PRODUCT_SEQ.NEXTVAL, '초콜릿', 10, NULL, NULL, NULL, 32, 'OASAKA');
 -- 2. modifyProduct 상품수정
-UPDATE TAXFREE SET PPRICE = 12,
+UPDATE TAXFREE SET PNAME = 'LIPSTICK',
+                   PPRICE = 12,
                    PIMAGE1 = NULL,
                    PIMAGE2 = NULL,
                    PIMAGE3 = NULL,
@@ -173,5 +175,7 @@ insert into order_Detail
     select orderdetail_seq.nextval,  TO_CHAR(SYSDATE, 'YYMMDD') || TRIM(TO_CHAR(ORDER_SEQ.currVAL, '0000')), pnum, cost, qty from cart where mid='aaa' ;
 -- deleteCart 장바구니에 담겨진 물품 삭제
 delete cart where mid='aaa';
+
+
 
 commit;
