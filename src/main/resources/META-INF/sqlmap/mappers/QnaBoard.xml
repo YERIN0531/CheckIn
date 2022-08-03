@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ocsy.checkin.dao.QnaBoardDao">
+	<resultMap type="QnaBoard" id="QnaResult">
+		<result property="qnum" column="qnum"/>
+		<result property="qid" column="qid"/>
+		<result property="qtitle" column="qtitle"/>
+		<result property="qcontent" column="qcontent"/>
+		<result property="qfile1" column="qfile1"/>
+		<result property="qfile2" column="qfile2"/>
+		<result property="qip" column="qip"/>
+		<result property="qrdate" column="qrdate"/>
+		<result property="qsecret" column="qsecret"/>
+		<result property="qrgroup" column="qrgroup"/>
+		<result property="qstep" column="qstep"/>
+		<result property="qindent" column="qindent"/>
+	</resultMap>
+	<!-- 1.글목록 listQna -->
+	<select id="listQna" parameterType="QnaBoard" resultMap="QnaResult">
+	SELECT * FROM (SELECT ROWNUM RN, A.* 
+            FROM (SELECT * FROM QNA_BOARD ORDER BY QGROUP DESC, QSTEP) A)
+        WHERE RN BETWEEN #{startRow} AND #{endRow}
+	</select>
+	
+	<!-- 2. 글개수 countQna -->
+	<select id="countQna" resultType="int">
+		SELECT COUNT(*) FROM QNA_BOARD
+	</select>
+	
+	<!-- 3. 본인글 상세보기 비밀글여부로  detailQna-->
+	<select id="detailQna" parameterType="int" resultType="QnaBoard" >
+	SELECT * FROM QNA_BOARD WHERE 
+			QNUM=#{qnum} AND QPASSWORD=#{qpassword}
+	</select>
+	<!-- 3. 본인글 비번확인 view -->
+	<select id="secreatView" parameterType="int" resultType="QnaBoard">
+	SELECT * FROM QNA_BOARD WHERE QNUM=#{qnum} 
+	</select>
+	<!-- 3. (관리자모드)조회수 안올리고 상세보기 그냥 글번호로만(수정하기 답글 view) modifyreplyView -->
+	<select id="modifyreplyView" parameterType="int" resultType="QnaBoard">
+	SELECT * FROM QNA_BOARD WHERE QNUM=#{qnum}
+	</select>
+	
+	<!-- 4. 문의하기 원글 insertQna-->
+	<insert id="insertQna" parameterType="QnaBoard">
+	INSERT INTO QNA_BOARD(QNUM,QID,QTITLE,QCONTENT,QFILE1,QFILE2,QIP,QSECRET,QPASSWORD,QGROUP,QSTEP,QINDENT)
+    VALUES(QNA_SEQ.NEXTVAL,#{qid},#{qtitle},#{qcontnet},#{qfile1},#{qfile2},#{qip},#{qsecret},#{qpassword},QNA_SEQ.NEXTVAL,#{qstep},#{qindent})
+	</insert>
+	<!-- 5. 조회수 올리기 hitupQna -->
+	<update id="hitupQna" parameterType="int">
+	UPDATE QNA_BOARD SET QHIT = QHIT +1 WHERE QNUM=#{qnum}
+	</update>
+	<!-- 6. 답변글(관리자만) 작성 한개만 가능 replyQna-->
+	<update id="replyQna" parameterType="QnaBoard">
+	INSERT INTO QNA_BOARD (QNUM,QID,QSECRET,QPASSWORD, QTITLE, QCONTENT,QGROUP, QSTEP, QINDENT, QIP)
+    VALUES (QNA_SEQ.NEXTVAL, #{qid},#{qsecret},#{qpassword},#{qtitle},#{qcontent},#{qgroup}, #{qstep}, #{qindent}, #{qip})
+	</update>
+	<!-- 7. 글수정 modifyQna-->
+	<update id="modifyQna" parameterType="QnaBoard">
+	UPDATE QNA_BOARD SET QTITLE =#{qtitle},
+                     QCONTENT = #{qcontent},
+                     QIP    = '#{qip},
+                     QFILE1 = #{qfile1},
+                     QFILE2 = #{qfile2},
+                     QPASSWORD = #{qpassword}
+                     WHERE QNUM = #{qnum}
+	</update>
+	<!-- 8. 원글 삭제 하면 답글도 삭제  deleteQna -->
+	<delete id="deleteQna" parameterType="QnaBoard">
+	<![CDATA[	
+	DELETE FROM QNA_BOARD WHERE QGROUP = #{rgroup} AND (QSTEP>=#{qstep} AND QSTEP<(select NVL(MIN(QSTEP),9999) FROM QNA_BOARD WHERE QGROUP=#{qgroup} AND QSTEP>#{qstep} AND QINDENT<=#{qindent}))
+	  ]]>
+	</delete>
+	<!--  9. 답변글 여부  -->
+	<select id="adminreply" parameterType="int" >
+		SELECT  count(*) from qna_board WHERE QGROUP =#{qgroup}
+	</select>
+</mapper>

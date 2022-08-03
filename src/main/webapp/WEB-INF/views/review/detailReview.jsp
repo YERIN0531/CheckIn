@@ -32,16 +32,24 @@
    		</tr>  
    		<tr>
    			<th>사진</th>
-   		 <!--  	<c:if test="${empty reviewDto.rimage1 or reviewDto.rimage2 or reviewDto.rimage3 or reviewDto.rimage4 or reviewDto.rimage5 }">
+   			<c:if test="${ reviewDto.rimage1  eq null or  ''  and reviewDto.rimage2 eq null or  ''  and reviewDto.rimage3 eq null or  ''  and 
+   			reviewDto.rimage4 eq null or  ''  and reviewDto.rimage5 == null or  ''  }">
    			<td colspan="2">등록된 사진이 없습니다</td>
-   			</c:if>-->
+   			</c:if>
    		<td colspan="2">
-   			<!--  <img src="${conPath }/fileUpload/${reviewDto.rimage1}">${reviewDto.rimage1}-->
-   			<c:if test="${ not empty reviewDto.rimage1} "><img src="${conPath }/fileUpload/${reviewDto.rimage1}"></c:if>
-   			<c:if test="${ not empty reviewDto.rimage2} "><img src="${conPath }/fileUpload/${reviewDto.rimage2 }"><br></c:if>
-   			<c:if test="${ not empty reviewDto.rimage3} "><img src="${conPath }/fileUpload/${reviewDto.rimage3 }"><br></c:if>
-   			<c:if test="${ not empty reviewDto.rimage4} "><img src="${conPath }/fileUpload/${reviewDto.rimage4 }"><br></c:if>
-   			<c:if test="${ not empty reviewDto.rimage5} "><img src="${conPath }/fileUpload/${reviewDto.rimage5 }"><br></c:if>
+   			
+   			<c:if test="${reviewDto.rimage1 != null or '' }">
+   			<img src="${conPath }/fileUpload/${reviewDto.rimage1}"><br>
+   			</c:if>
+   			<c:if test="${reviewDto.rimage2 != null or '' }">
+   			<img src="${conPath }/fileUpload/${reviewDto.rimage2}"><br>
+   			</c:if><c:if test="${reviewDto.rimage3 != null or '' }">
+   			<img src="${conPath }/fileUpload/${reviewDto.rimage3}"><br>
+   			</c:if><c:if test="${reviewDto.rimage4 != null or '' }">
+   			<img src="${conPath }/fileUpload/${reviewDto.rimage4}"><br>
+   			</c:if><c:if test="${reviewDto.rimage5 != null or '' }">
+   			<img src="${conPath }/fileUpload/${reviewDto.rimage5}">
+   			</c:if>
    		</td>	
    		</tr>
    		<tr>

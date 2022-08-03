@@ -43,7 +43,7 @@ public class ReviewController {
 	@RequestMapping(params="method=modifyReview", method=RequestMethod.POST)
 		public String modifyReview(MultipartHttpServletRequest mRequest,HttpServletRequest request, ReviewBoard review , Model model, String pageNum) {
 		model.addAttribute("modifyReview", reviewService.modifyReview(mRequest, request, review));
-		return "redirect:review.do?method=reviewList&pageNum="+pageNum;
+		return "forward:review.do?method=reviewList&pageNum="+pageNum;
 	}
 	//5. 글 작성 view
 	@RequestMapping(params="method=insertReviewForm", method={RequestMethod.GET, RequestMethod.POST})
@@ -54,7 +54,8 @@ public class ReviewController {
 	@RequestMapping(params="method=insertReview", method= RequestMethod.POST)
 	public String insertReview(MultipartHttpServletRequest mRequest,HttpServletRequest request, ReviewBoard review , Model model, String pageNum) {
 		model.addAttribute("insertReview", reviewService.insertReview(mRequest, request, review));
-		return "redirect:review.do?method=reviewList";
+		return "forward:review.do?method=reviewList";
+		
 	}
 	//7. 답변글 view 
 	@RequestMapping(params="method=replyForm", method = RequestMethod.GET)
@@ -66,13 +67,13 @@ public class ReviewController {
 	@RequestMapping(params="method=replyReview", method = RequestMethod.POST)
 	public String replyReview(MultipartHttpServletRequest mRequest,HttpServletRequest request, ReviewBoard review , Model model, String pageNum) {
 		model.addAttribute("replyReview", reviewService.replyReview(mRequest, request, review));
-		return "redirect:review.do?method=reviewList";
+		return "forward:review.do?method=reviewList";
 	}
 	//9. 원글 삭제하면 답변글 까지 삭제  아직 안됌 
 	@RequestMapping(params="method=deleteReview", method = RequestMethod.GET)
 	public String deleteReview(ReviewBoard review ,Model model) {
-		model.addAttribute("deleteResult", reviewService.deleteReview(review));
-		return "redirect:review.do?method=reviewList";
+		model.addAttribute("reviewDelete", reviewService.deleteReview(review));
+		return "forward:review.do?method=reviewList";
 	}
 }
 

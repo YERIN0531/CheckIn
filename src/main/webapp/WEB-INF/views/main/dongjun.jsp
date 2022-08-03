@@ -15,6 +15,7 @@
 
 <a href="${conPath }/review.do?method=reviewList&pageNum=1">리뷰게시판</a>
 <a href="${conPath }/notice.do?method=noticeList&pageNum=1">공지사항!</a>
+<a href="${conPath }/qna.do?method=qnaList&pageNum=1">문의하기</a>
 <!--${conPath }/hotel.do?method=schHotel  -->
 </body>
 
