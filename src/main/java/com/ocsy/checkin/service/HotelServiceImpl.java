@@ -71,13 +71,7 @@ public class HotelServiceImpl implements HotelService {
 
 	@Override
 	public int deleteHotel(String hotelid) {
-		int result = 0;
-		result += hotelDao.deleteHZZim(hotelid);
-		result += hotelDao.deleteHotel(hotelid);
-		if(result >= 1) {
-			System.out.println("호텔 삭제 성공");
-		}
-		return result;
+		return hotelDao.deleteHotel(hotelid);
 	}
 
 	@Override
@@ -210,11 +204,7 @@ public class HotelServiceImpl implements HotelService {
 
 	@Override
 	public int cancelHZZim(Hotel_ZZim hzzim) {
-		int result = hotelDao.cancelHZZim(hzzim);
-		if(result == 1) {
-			System.out.println("찜 취소 성공");
-		}
-		return result;
+		return hotelDao.cancelHZZim(hzzim);
 	}
 	
 	
@@ -267,6 +257,11 @@ public class HotelServiceImpl implements HotelService {
 	@Override
 	public int totAllHotel() {
 		return hotelDao.totAllHotel();
+	}
+
+	@Override
+	public int deleteHidZZim(String hotelid) {
+		return hotelDao.deleteHidZZim(hotelid);
 	}
 
 

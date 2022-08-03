@@ -11,7 +11,9 @@ import com.ocsy.checkin.dto.Hotel_rs;
 public interface HotelService {
 	public int insertHotel(MultipartHttpServletRequest mRequest,Hotel hotel);   // 호텔 등록 (방3개 포함)
 	
-	public int deleteHotel(String hotelid);  // 호텔 삭제 ( deleteZZim, deleteHotel 같이)
+	public int deleteHidZZim(String hotelid); // 호텔아이디로 찜 삭제 
+	
+	public int deleteHotel(String hotelid);  // 호텔 삭제
 	
 	public int updateHotel(MultipartHttpServletRequest mRequest,Hotel hotel); // 호텔 수정 
 	
