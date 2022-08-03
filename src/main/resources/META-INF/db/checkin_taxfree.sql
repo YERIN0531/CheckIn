@@ -174,4 +174,4 @@ insert into order_Detail
 -- deleteCart 장바구니에 담겨진 물품 삭제
 delete cart where mid='aaa';
 
-
+commit;

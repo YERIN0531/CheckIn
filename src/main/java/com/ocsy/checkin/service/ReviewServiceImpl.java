@@ -180,13 +180,7 @@ public class ReviewServiceImpl implements ReviewService{
 	
 	@Override
 	public int deleteReview(ReviewBoard review) {
-		review.getRgroup();
-		review.getRstep();
-		review.getRindent();
-		System.out.println(review.getRgroup());
-		System.out.println(review.getRindent());
-		System.out.println(review.getRindent());
-		System.out.println(review);
+		
 		return reviewDao.deleteReview(review);
 	}
 

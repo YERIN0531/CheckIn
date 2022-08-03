@@ -12,25 +12,40 @@
    <script src="http://code.jquery.com/jquery-3.6.0.js"></script>
 	<script>
 	$(document).ready(function(){ // jquery 
-		/*		var rnum = Number($(this).children().eq(0).text());
-			if(!isNaN(rnum)){
-			 alert(rnum); 
-			// location.href = '${conPath }/review.do?method=detailReview&rnum='+}+'&pageNum=${pageNum}';
+			$('tr').click(function(){
+				var rnum = Number($(this).children().eq(0).text());
+				if(!isNaN(rnum)){
+					 alert(rnum); 
+					 location.href = '${conPath }/review.do?method=detailReview&rnum='+rnum+'&pageNum=${paging.currentPage}';
 			}
-		});*/
+		});
 	});
-
 	</script>
 </head>
 <body>
-
-
+	<c:if test="${not empty reviewDelete  and reviewDelete eq 1 }">
+   	    <script>
+   	    	alert(' 글삭제 성공');
+   	    </script>
+   	  </c:if>
+   	<c:if test="${not empty modifyReview and modifyReview eq 1 }">
+   		<script>
+   			alert('후기글 수정 성공');
+   		</script>
+   	</c:if>
+   	
+   	<c:if test="${not empty replyReview and replyReview eq 1 }">
+   		<script>
+   			alert('답변 성공');
+   		</script>
+   	</c:if>
+   	
+   	   		 
 	<c:if test="${not empty member }">
 			<button onclick="location='${conPath}/review.do?method=insertReviewForm&pageNum=${pageNum }'">글쓰기</button>
 	</c:if>
 	<c:if test="${empty member }">
-		<tr>
-		  <td>로그인해주세요</td>
+		  <button onclick="location='${conPath}/member.do?method=loginForm'">로그인</button>
 	</c:if>
 	<div id="content">
 	<table>
@@ -42,15 +57,13 @@
 			<th>조회수</th>
 			<th>ip</th>
 			</tr>
-			<c:if test="${totCnt eq 0 }">
+			<c:if test="${reviewList.size() == 0 }">
 				<tr><th colspan="7">등록된 글이 없습니다</th></tr>
 			</c:if>
-	   <c:if test="${totCnt != 0 }">
+	   <c:if test="${reviewList.size() != 0 }">
 	   <c:forEach items="${reviewList }" var ="review" >
 	     <tr>
-	    	 <td>
-	    	 <a href="${conPath }/review.do?method=detailReview&rnum=${review.rnum }&pageNum=${paging.currentPage}">${review.rnum }</a>
-	    	 </td>
+	    	 <td>${review.rnum } </td>
 	    	<td> ${review.mid }</td>
 	    	<td class="left">
 	    		<c:forEach var="i" begin="1" end="${review.rindent }">

@@ -73,7 +73,7 @@
 
 <!-- 9.글삭제 (원글 지울때 답글 다지우기) -->
 	<delete id="deleteReview" parameterType="ReviewBoard" >
-	<![CDATA[
+	<![CDATA[							 
 		DELETE FROM REVIEW_BOARD WHERE RGROUP = #{rgroup} AND (RSTEP>=#{rstep} AND RSTEP<(select NVL(MIN(RSTEP),9999) FROM REVIEW_BOARD WHERE RGROUP=#{rgroup} AND RSTEP>#{rstep} AND RINDENT<=#{rindent}))
 		      ]]>
 	</delete> 

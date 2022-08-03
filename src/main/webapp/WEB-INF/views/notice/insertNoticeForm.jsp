@@ -43,8 +43,7 @@
    			    
    					<tr><td colspan="2">
 				<input type="submit" value="등록">
-				<input type="button" value="목록" onclick="location='notice.do?method=noticeList&pageNum=${param.pageNum}'">	
-   		</table>
+				<button onclick="location='notice.do?method=noticeList&pageNum=${param.pageNum}'">목록</button>	   		</table>
    </form>
    </div>   
   </body>

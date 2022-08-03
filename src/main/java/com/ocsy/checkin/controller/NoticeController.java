@@ -57,7 +57,7 @@ public class NoticeController {
 	@RequestMapping(params = "method=deleteNotice", method = RequestMethod.GET)
 	public String delete(int nnum , Model model) {
 		model.addAttribute("deleteResult", noticeService.deleteNotice(nnum));
-		return "redirect:notice.do?method=noticeList";
+		return "forward:notice.do?method=noticeList";
 	}
 	
 }

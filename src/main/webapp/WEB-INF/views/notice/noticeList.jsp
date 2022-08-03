@@ -14,30 +14,42 @@
  </style>
  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
  <script>
-    $(document).ready(function(){
-       
-    });
+ $(document).ready(function(){ // jquery 
+		$('tr').click(function(){
+			var nnum = Number($(this).children().eq(0).text());
+			if(!isNaN(nnum)){
+				 alert(nnum); 
+				 location.href = '${conPath }/notice.do?method=detailNotice&nnum='+nnum+'&pageNum=${paging.currentPage}';
+		}
+	});
+});
  </script>  
 </head>
   <body>
- <button onclick="location='${conPath}/notice.do?method=insertNoticeForm&pageNum=${pageNum }'">공지글등록</button>
+  <c:set var="SUCESS" value="1"></c:set>
+   <c:if test="${not empty deleteResult  and deleteResult eq 1 }">
+   	    <script>
+   	    	alert('글삭제 성공');
+   	    </script>
+   	  </c:if>
+ <button onclick="location='${conPath}/notice.do?method=insertNoticeForm&pageNum=${param.pageNum }'">공지글등록</button>
    <div id = "content">
    <table>
-   	<tr>
-   	  <th>글번호</th>
+    <tr>
+      <th>글번호</th>
    	  <th>관리자아이디</th>
    	  <th>제목</th>
    	  <th>조회수</th>
    	  <th>작성일</th>
    	  </tr>
-   	  <c:if test="${totCnt eq 0 }">
-   	    <tr><th colspan="6">등록된 공지사항이 없습니다</th></tr>
-   	  </c:if>
-   	 <c:if test="${totCnt != 0 }">
+	      <c:if test="${noticeList.size() == 0 }">
+	   	    <tr><th colspan="5">등록된 공지사항이 없습니다</th></tr>
+	   	  </c:if>
+   	 <c:if test="${noticeList.size() != 0 }">
    	   <c:forEach items="${noticeList }" var = "notice">
    	     <tr>
    	      	 <td>
-   	      	 <a href="${conPath }/notice.do?method=detailNotice&nnum=${notice.nnum }&pageNum=${paging.currentPage}">${notice.nnum }</a>
+   	      	 ${notice.nnum }
 			 </td>
 			 <td> ${notice.aid }</td>
 			 <td> ${notice.ntitle }</td>
