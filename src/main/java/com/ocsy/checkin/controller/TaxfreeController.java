@@ -28,7 +28,8 @@ public class TaxfreeController {
 	@RequestMapping(params="method=insert", method= RequestMethod.POST)
 	public String insertProduct(MultipartHttpServletRequest mRequest, @ModelAttribute("tDto") Taxfree taxfree, Model model) {
 		model.addAttribute("insertResult", taxfreeService.insertProduct(mRequest, taxfree));
-		return "redirect:taxfree.do?method=list";
+		/* return "redirect:taxfree.do?method=list"; */
+		return "forward:taxfree.do?method=list";
 	}
 	
 	// 상품 리스트 출력 - O
@@ -39,12 +40,26 @@ public class TaxfreeController {
 		return "taxfree/listProduct";
 	}
 	
-	// 상품 상세보기 - 진행 중
+	// 상품 상세보기 - O
 	@RequestMapping(params="method=detail", method=RequestMethod.GET)
 	public String detailProduct(int pnum, Model model) {
 		model.addAttribute("taxfreeDto", taxfreeService.detailProduct(pnum));
 		return "taxfree/detailProduct";
 	}
 	
+	// 상품 업데이트 뷰단 - O
+	@RequestMapping(params="method=updateForm", method={RequestMethod.GET, RequestMethod.POST})
+	public String modifyProductView(int pnum, Model model) {
+		model.addAttribute("taxfreeDto", taxfreeService.detailProduct(pnum));
+		return "taxfree/modifyProduct"; // modifyProduct.jsp 로 넘어가는 로직
+	}
+	// 상품 업데이트 - O
+	@RequestMapping(params="method=update", method={RequestMethod.GET, RequestMethod.POST})
+	public String updateProduct(MultipartHttpServletRequest mRequest, @ModelAttribute("tDto") Taxfree taxfree, Model model) {
+		model.addAttribute("modifyResult", taxfreeService.modifyProduct(mRequest, taxfree));
+		/* return "redirect:taxfree.do?method=list"; */
+		System.out.println("수정완료");
+		return "forward:taxfree.do?method=list";
+	}
 	
 }

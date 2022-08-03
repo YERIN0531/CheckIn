@@ -18,6 +18,10 @@
  	div{
  	margin-top: 20px;
  	}
+ 	caption{
+ 	font-size: 2em;
+ 	padding: 10px;
+ 	}
  </style>
  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
  <script>
@@ -29,25 +33,41 @@
   <body>
   
   <c:set var="SUCCESS" value="1"></c:set>
-	<c:if test="${insertResult == SUCCESS }">
+	<c:if test="${not empty insertResult and insertResult eq SUCCESS }">
 		<script>
-			alert('상품 등록 성공');
+			alert('상품등록 성공');
 		</script>
 	</c:if>
 	<c:set var="FAIL" value="0"></c:set>
-	<c:if test="${insertResult == FAIL }">
-  	<script>alert('상품 등록 실패');</script>
+	<c:if test="${not empty insertResult and insertResult eq FAIL }">
+  	<script>alert('상품등록 실패');</script>
+  </c:if>
+   <c:set var="SUCCESS" value="1"></c:set>
+	<c:if test="${not empty modifyResult and modifyResult eq SUCCESS }">
+		<script>
+			alert('상품정보수정 성공');
+		</script>
+	</c:if>
+	<c:set var="FAIL" value="0"></c:set>
+	<c:if test="${not empty modifyResult and modifyResult eq FAIL }">
+  	<script>alert('상품정보수정 실패');</script>
   </c:if>
 	
-	<!--  -->	
    	<table>
-   	<caption>Check In_ DUTY FREE</caption>
+   	<caption>DUTY FREE</caption>
    		<tr>
    		<c:set var="i" value="0"/>
    		<c:forEach items="${productList }" var="pDto">
-   				<td onclick="location.href='${conPath}/taxfree.do?method=detail&pnum=${pDto.pnum }'">
+   				<td onclick="location.href='${conPath}/taxfree.do?method=detail&pnum=${pDto.pnum }&pageNum=${param.pageNum}'">
    				${pDto.pnum } <br>
-   				<img src="${conPath }/taxfree/${pDto.pimage1 }" width=220 height=220><br>
+
+   				<c:if test="${pDto.pimage1 eq null or '' }">
+	   			<img src="${conPath }/taxfree/noimg.jpg" alt="noimg.jpg" width="300" height="300">
+	   			</c:if>
+	   			<c:if test="${pDto.pimage1 != null or '' }">
+	   			<img src="${conPath }/taxfree/${pDto.pimage1 }" alt="${pDto.pimage1 }" width="300" height="300">
+	   			</c:if>
+   				<br>
    				${pDto.pname }<br>
    				USD ${pDto.pprice }</td>
    				<c:if test="${i % 3 == 2 }">

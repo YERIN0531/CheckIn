@@ -12,4 +12,6 @@ public interface TaxfreeDao {
 	public List<Taxfree> listProduct(Taxfree taxfree);
 	public int countProduct(Taxfree taxfree);
 	public Taxfree detailProduct(int pnum);
+	public int updateProduct(Taxfree taxfree);
+	public int deleteProduct(int pnum);
 }
