@@ -98,5 +98,34 @@ public class HotelController {
 		return "forward:hotel.do?method=adminHotelList";
 	}
 	
+	@RequestMapping(params="method=updateHotelView",method= {RequestMethod.GET, RequestMethod.POST})
+	public String updateHotelView(String hotelid, String pageNum, Model model) {
+		hotelid = hotelid.substring(0,3);
+		model.addAttribute("hotelDetail",hotelService.getHotelDetail(hotelid));
+		return "adminHotel/updateHotelView";
+	}
 	
+	@RequestMapping(params="method=updateHotel",method= {RequestMethod.GET,RequestMethod.POST})
+	public String updateHotel(MultipartHttpServletRequest mRequest,Hotel hotel,Model model) {
+		model.addAttribute("updateHotelResult",hotelService.updateHotel(mRequest, hotel));
+		return "forward:hotel.do?method=updateHotelView&hotelid"+hotel.getHotelid();
+	}
+	
+	@RequestMapping(params="method=updateHotelRoom",method= {RequestMethod.GET,RequestMethod.POST})
+	public String updateHotelRoom(MultipartHttpServletRequest mRequest,Hotel hotel,Model model) {
+		model.addAttribute("updateHotelRoomResult",hotelService.updateHotelRoom(mRequest, hotel));
+		return "forward:hotel.do?method=updateHotelView&hotelid"+hotel.getHotelid().substring(0,3);
+	}
+	
+	@RequestMapping(params="method=deleteHotelView",method= {RequestMethod.GET,RequestMethod.POST})
+	public String deleteHotelView(String hotelid) {
+		return "adminHotel/deleteHotelView";
+	}
+	
+	@RequestMapping(params="method=deleteHotel",method= {RequestMethod.GET, RequestMethod.POST})
+	public String deleteHotel(String hotelid,Model model) {
+		hotelService.deleteHidZZim(hotelid);
+		model.addAttribute("deleteHotelResult",hotelService.deleteHotel(hotelid));
+		return "forward:hotel.do?method=adminHotelList";
+	}
 }

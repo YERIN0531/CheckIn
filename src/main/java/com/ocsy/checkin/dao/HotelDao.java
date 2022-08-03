@@ -17,7 +17,7 @@ public interface HotelDao {
 	
 	public int insertHotel3(Hotel hotel);
 	
-	public int deleteHZZim(String hotelid);
+	public int deleteHidZZim(String hotelid);   //  찜목록 호텔아이디로 삭제
 	
 	public int deleteHotel(String hotelid); // 근데 hotelid를 파라미터에 넣어줄때
 				// substring 사용해서 0,2 (ex: PTB, STB 등등을 넣어주어야함)
