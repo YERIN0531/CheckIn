@@ -12,4 +12,7 @@ public interface TaxfreeService {
 	public List<Taxfree> listProduct(String pageNum, Taxfree taxfree);
 	public int countProduct(Taxfree taxfree);
 	public Taxfree detailProduct(int pnum);
+	public int modifyProduct(MultipartHttpServletRequest mRequest, Taxfree taxfree);
+	public int deleteProduct(String pageNum, int pnum);
+	
 }
