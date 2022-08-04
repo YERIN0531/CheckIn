@@ -46,5 +46,6 @@
 	</form>
 	<button onclick="location='${conPath }/hotel.do?method=insertHotel'">관리자가 숙소등록하기</button>
 	<button onclick="location='${conPath }/hotel.do?method=adminHotelList'">관리자 숙소리스트</button>
+	<button onclick="location='${conPath }/trip.do?method=tripBoardList&pageNum=1'">동행 게시판</button>
 </body>
 </html>

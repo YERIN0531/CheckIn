@@ -38,7 +38,7 @@
 			alert('호텔 삭제에 성공했습니다.');
 		</script>
 	</c:if>
-	<c:if test="${deleteHotelResult != 3 }" >
+	<c:if test="${not empty deleteHotelResult and deleteHotelResult != 3 }" >
 		<script>
 			alert('호텔 삭제에 실패했습니다.');
 		</script>
