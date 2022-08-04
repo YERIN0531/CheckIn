@@ -15,12 +15,30 @@
  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
  <script>
     $(document).ready(function(){
-       
+    	var airprice = Number('${airDto.totalprice }');
+ 		var mmileage = Number($('input[name=mmileage]').val());
+ 		$('.result').val(airprice - mmileage); 		
+ 		$('input[name="mmileage"]').keyup(function(){
+ 			var airprice = Number('${airDto.totalprice }');
+ 			var mmileage = Number($('input[name=mmileage]').val());
+ 			if(mmileage > Number('${member.mmileage }') ){
+ 				mmileage = Number('${member.mmileage}');
+ 				$('input[name="mmileage"]').val(Number('${member.mmileage }'));
+ 			}
+ 			$('.result').val(airprice - mmileage);
+ 		});
     });
  </script>  
 </head>
   <body>
-   <form action="뷰단">
+   <form action="${conPath }/air.do?method=airReserve" method="post">
+ 		<input type="hidden" name="acode" value="${param.acode }">
+ 		<input type="hidden" name="mid" value="${member.mid }">
+ 		<input type="hidden" name="agodate" value="${airDto.agodate }">
+ 		<input type="hidden" name="acomedate" value="${airDto.acomedate }">
+ 		<input type="hidden" name="seatid" value="${airDto.aprice }">
+ 		
+ 		
    	<div id=Customerinfo>
    		<p>예약자정보</p>
    		<input type="text" name="cname" placeholder="이름">
@@ -89,9 +107,9 @@
    	</div> <!-- Pay -->
    		
    	<div id="mileage">
-   		<p>결제금액 :${airDto.aprice } <p>
-   		<p>사용가능한 마일리지 <input type="text" name="mileage" value="${member.mmileage }"></p>
-   		<p>총 결제금액 : </p>
+   		<p>항공권가격 :<fmt:formatNumber value="${airDto.totalprice }" pattern="#,### 원"/> <p>
+   		<p>사용가능한 마일리지 <input type="text" name="mmileage" value="${member.mmileage }"></p>
+   		<p>총 결제금액 :<input type="number" name="paymoney" value=""  class="result" readonly="readonly" > </p>
    	</div>
    	
    	<input type="submit" value="예약하기">

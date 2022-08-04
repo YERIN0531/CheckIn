@@ -9,6 +9,17 @@
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
 	<link href="${conPath }/css/style.css" rel="stylesheet">
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			$("input[type='checkbox']").click(function(){
+				var checknum = $("input:checkbox[name='seatid']:checked").length;
+	 			var totalprice = Number('${airDto.aprice}')*checknum;
+	 			$('input[name="totalprice"]').val(totalprice);
+			});
+ 		 			
+		});
+	</script>
 </head>
 <body>
 	<div class="seat">
@@ -19,6 +30,9 @@
  		<input type="hidden" name="mid" value="${member.mid }">
  		<input type="hidden" name="agodate" value="${airDto.agodate }">
  		<input type="hidden" name="acomedate" value="${airDto.acomedate }">
+ 		<input type="hidden" name="aprice" value="${airDto.aprice }">
+ 		<input type="text" name="totalprice">
+
         <table>
         <tr>
 	        <td><input type="checkbox" name="seatid" value="a1"></td>

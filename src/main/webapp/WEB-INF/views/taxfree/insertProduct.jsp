@@ -11,10 +11,20 @@
 	<title>Insert title here</title>
 	<link href="conPath/css/style.css" rel="stylesheet">
 	<style>
-		* {
+	table {
 		border: 1px solid red;
 		text-align: center;
+		margin: 0 auto;
+		margin-top: 30px;
+		width: 400px;
+		height: 500px;
 		}
+	td{
+		border: 1px solid blue;
+	}
+	input[type="file"] {
+		margin-left: 30px;
+	}
 	</style>
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	<script>
@@ -56,9 +66,6 @@
 				<tr><th>제품위치</th>
 					<td><input type="text" name="ploc" required="required"></td>
 				</tr>
-				<!-- <tr><th>상세설명</th>
-					<td><textarea rows="5" cols="10" name="pcontent"></textarea> </td>
-				</tr> -->
 				<tr><td colspan="2">
 					<input type="submit" value="등록하기">
 					<input type="reset" value="초기화">
@@ -69,6 +76,7 @@
 		</form>
 	</section>
 	
+	<jsp:include page="../main/footer.jsp"/>
 	
 </body>
 </html>

@@ -10,10 +10,13 @@
   <title>Insert title here</title>
   <link href="${conPath }/css/style.css" rel="stylesheet">
  <style>
- 	* {
+ 	table {
  	margin: 0 auto;
  	padding: 0;
  	text-align: center;
+ 	}
+ 	tr, td {
+ 	border: 1px solid red;
  	}
  	div{
  	margin-top: 20px;
@@ -21,6 +24,10 @@
  	caption{
  	font-size: 2em;
  	padding: 10px;
+ 	}
+ 	.paging {
+ 	text-align: center;
+ 	margin-bottom: 70px;
  	}
  </style>
  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -33,34 +40,44 @@
   <body>
   
   <c:set var="SUCCESS" value="1"></c:set>
+  <c:set var="FAIL" value="0"></c:set>
+  <c:set var="DELETE_SUCCESS" value="1"></c:set>
+  <c:set var="DELETE_FAIL" value="0"></c:set>
 	<c:if test="${not empty insertResult and insertResult eq SUCCESS }">
 		<script>
 			alert('상품등록 성공');
 		</script>
 	</c:if>
-	<c:set var="FAIL" value="0"></c:set>
 	<c:if test="${not empty insertResult and insertResult eq FAIL }">
   	<script>alert('상품등록 실패');</script>
   </c:if>
-   <c:set var="SUCCESS" value="1"></c:set>
 	<c:if test="${not empty modifyResult and modifyResult eq SUCCESS }">
 		<script>
 			alert('상품정보수정 성공');
 		</script>
 	</c:if>
-	<c:set var="FAIL" value="0"></c:set>
 	<c:if test="${not empty modifyResult and modifyResult eq FAIL }">
-  	<script>alert('상품정보수정 실패');</script>
+  	<script>
+  		alert('상품정보수정 실패');
+  	</script>
   </c:if>
+	<c:if test="${not empty deleteResult}">
+		<script>
+			alert('삭제성공');
+		</script>
+	</c:if>
+		
+		
+	<jsp:include page="../main/header.jsp"/>
 	
    	<table>
    	<caption>DUTY FREE</caption>
+   	
    		<tr>
    		<c:set var="i" value="0"/>
    		<c:forEach items="${productList }" var="pDto">
-   				<td onclick="location.href='${conPath}/taxfree.do?method=detail&pnum=${pDto.pnum }&pageNum=${param.pageNum}'">
+   				<td onclick="location.href='${conPath}/taxfree.do?method=detail&pnum=${pDto.pnum }&pageNum=${paging.currentPage}'">
    				${pDto.pnum } <br>
-
    				<c:if test="${pDto.pimage1 eq null or '' }">
 	   			<img src="${conPath }/taxfree/noimg.jpg" alt="noimg.jpg" width="300" height="300">
 	   			</c:if>
@@ -85,7 +102,7 @@
    	</table>
 	
 	<!-- 페이징 처리 -->   	
-   	<div>
+   	<div class="paging">
 	<c:if test="${paging.startPage>paging.blockSize}">
 		[ <a href="${conPath }/taxfree.do?method=list&pageNum=${paging.startPage+1 }">이전</a> ]
 	</c:if>	
@@ -101,6 +118,8 @@
 		[ <a href="${conPath }/taxfree.do?method=list&pageNum=${paging.endPage+1 }">다음</a> ]
 	</c:if>
 	</div>
+   	
+   	<jsp:include page="../main/footer.jsp"/>
    	
   </body>
 </html>

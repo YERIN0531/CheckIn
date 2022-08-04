@@ -4,20 +4,23 @@
     "http://mybatis.org/dtd/mybatis-3-config.dtd">
     
  <configuration>
-    <typeAliases>
-       <typeAlias type="com.ocsy.checkin.dto.Member" alias="Member"/>
-       <typeAlias type="com.ocsy.checkin.dto.Air" alias="Air"/>
-       
-       <typeAlias type="com.ocsy.checkin.dto.ReviewBoard" alias="ReviewBoard"/>
-       <typeAlias type="com.ocsy.checkin.dto.NoticeBoard" alias="NoticeBoard"/>
-       <typeAlias type="com.ocsy.checkin.dto.QnaBoard" alias="QnaBoard"/>
-       
-       <typeAlias type="com.ocsy.checkin.dto.Taxfree" alias="Taxfree"/>
-       <typeAlias type="com.ocsy.checkin.dto.Hotel" alias="Hotel"/>
-       <typeAlias type="com.ocsy.checkin.dto.Hotel_rs" alias="Hotel_rs"/>
-       <typeAlias type="com.ocsy.checkin.dto.Hotel_ZZim" alias="Hotel_ZZim"/>
-
-
+ 	<typeAliases>
+ 		<typeAlias type="com.ocsy.checkin.dto.Member" alias="Member"/>
+ 		<typeAlias type="com.ocsy.checkin.dto.Air" alias="Air"/>
+ 		
+ 		<typeAlias type="com.ocsy.checkin.dto.ReviewBoard" alias="ReviewBoard"/>
+ 		<typeAlias type="com.ocsy.checkin.dto.NoticeBoard" alias="NoticeBoard"/>
+ 		<typeAlias type="com.ocsy.checkin.dto.QnaBoard" alias="QnaBoard"/>
+ 		
+ 		<typeAlias type="com.ocsy.checkin.dto.Taxfree" alias="Taxfree"/>
+ 		<typeAlias type="com.ocsy.checkin.dto.Cart" alias="Cart"/>
+ 		<typeAlias type="com.ocsy.checkin.dto.Hotel" alias="Hotel"/>
+ 		<typeAlias type="com.ocsy.checkin.dto.Hotel_rs" alias="Hotel_rs"/>
+ 		<typeAlias type="com.ocsy.checkin.dto.Hotel_ZZim" alias="Hotel_ZZim"/>
+ 		
+ 		<typeAlias type="com.ocsy.checkin.dto.TripMate_Board" alias="TripMate_Board" />
+ 		<typeAlias type="com.ocsy.checkin.dto.TripRequest" alias="TripRequest" />
+ 		<typeAlias type="com.ocsy.checkin.dto.TripTeam" alias="TripTeam" />
     </typeAliases>
     <mappers>
        <mapper resource="META-INF/sqlmap/mappers/Member.xml"/>
@@ -27,10 +30,17 @@
        <mapper resource="META-INF/sqlmap/mappers/NoticeBoard.xml"/>
        <mapper resource="META-INF/sqlmap/mappers/QnaBoard.xml"/>
 
-       <mapper resource="META-INF/sqlmap/mappers/Taxfree.xml"/>
-       
 
        <mapper resource="META-INF/sqlmap/mappers/Hotel.xml"/>
+
+ 		<mapper resource="META-INF/sqlmap/mappers/Taxfree.xml"/>
+ 		<mapper resource="META-INF/sqlmap/mappers/Cart.xml"/>
+ 		
+
+ 		<mapper resource="META-INF/sqlmap/mappers/Hotel.xml"/>
+ 		
+ 		<mapper resource="META-INF/sqlmap/mappers/TripMate.xml"/>
+
 
     </mappers>
  </configuration>
