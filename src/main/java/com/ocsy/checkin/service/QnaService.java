@@ -12,7 +12,7 @@ import com.ocsy.checkin.dto.QnaBoard;
 public interface QnaService {
 	public List<QnaBoard> listQna(String pageNum);
 	public int countQna();
-	public QnaBoard detailQna(int qnum, int qpassword);
+	public QnaBoard detailQna(QnaBoard qna);
 	public QnaBoard modifyreplyView(int qnum);
 	public int insertQna(MultipartHttpServletRequest mRequest,HttpServletRequest request,QnaBoard qna);
 	public int replyQna(MultipartHttpServletRequest mRequest,HttpServletRequest request,QnaBoard qna);

@@ -10,10 +10,12 @@ import com.ocsy.checkin.dto.QnaBoard;
 public interface QnaBoardDao {
 	public List<QnaBoard> listQna(QnaBoard qna); // 글목록
 	public int countQna();						 // 글개수
-	public QnaBoard detailQna(int qnum, int qpassword);		 // 본인글 상세보기
+	public QnaBoard detailQna(QnaBoard qna);		 // 본인글 상세보기
+	//원래 public int detailQna(int qnum)
 	public QnaBoard modifyreplyView(int qnum);   // 관리자글 수정 , 답변 view
 	public int insertQna(QnaBoard qna);			// 문의하기 원글
-	public int hitupQna(int qnum);				// 히트업
+	//public int hitupQna(int qnum);				// 히트업
+	public int hitupQna(QnaBoard qna);
 	public int replyQna(QnaBoard qna);			// 관리자 답글
 	public int modifyQna(QnaBoard qna);			// 글수정
 	public int deleteQna(QnaBoard qna);		// 글삭제 답글까지 

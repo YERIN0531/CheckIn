@@ -18,7 +18,7 @@ CREATE TABLE QNA_BOARD(
   QIP         VARCHAR2(50) NOT NULL,
   QRDATE      DATE    DEFAULT SYSDATE,
   QSECRET     NUMBER(10) NOT NULL,
-  QPASSWORD   NUMBER(10) NOT NULL,
+  QPASSWORD   NUMBER(10) ,
   QGROUP      NUMBER(10) NOT NULL,
   QSTEP       NUMBER(10) NOT NULL,
   QINDENT     NUMBER(10) NOT NULL
@@ -53,6 +53,7 @@ SELECT * FROM (SELECT ROWNUM RN, A.*
 --replyQna
 INSERT INTO QNA_BOARD (QNUM,QID,QSECRET,QPASSWORD, QTITLE, QCONTENT,QGROUP, QSTEP, QINDENT, QIP)
     VALUES (QNA_SEQ.NEXTVAL, 'admin',1,111,'관리자답변1','관리자답변본문1',1, 1, 1, '192.168.20.31');
+    commit;
 -- 더미데이터 (위의 1번글에 대한 두번째 답변글)
 
 -- 3. 답변글 추가전 STEP a 수행
@@ -70,9 +71,13 @@ SELECT * FROM QNA_BOARD WHERE QNUM=1 AND QPASSWORD=111 AND QSECRET=1;
 -- countQna
 SELECT COUNT(*) FROM QNA_BOARD;
 --6. 후기쓰기 원글
---insertQna
+--insertQna(비밀글)
 INSERT INTO QNA_BOARD(QNUM,QID,QTITLE,QCONTENT,QFILE1,QFILE2,QIP,QSECRET,QPASSWORD,QGROUP,QSTEP,QINDENT)
     VALUES(QNA_SEQ.NEXTVAL,'ccc','문의제목4','문의본문4','noimg.jpg4','noimg.jpg4','192.168.10.30',1,111,QNA_SEQ.NEXTVAL,0,0);
+--insertQna(공개글 qsecret 0  , qpassword 없이)
+INSERT INTO QNA_BOARD(QNUM,QID,QTITLE,QCONTENT,QFILE1,QFILE2,QIP,QSECRET,QGROUP,QSTEP,QINDENT)
+    VALUES(QNA_SEQ.NEXTVAL,'ccc','공개글','공개글','noimg.jpg4','noimg.jpg4','192.168.10.30',0,QNA_SEQ.NEXTVAL,0,0);
+commit;
 --7. HITUP
 --hitupQna
 SELECT * FROM QNA_BOARD;
@@ -92,7 +97,7 @@ UPDATE QNA_BOARD SET QTITLE ='수정제목1',
 SELECT * FROM QNA_BOARD;
 DELETE FROM QNA_BOARD WHERE QGROUP = 1 AND (QSTEP>=0 AND QSTEP<(select NVL(MIN(QSTEP),9999) FROM QNA_BOARD WHERE QGROUP=1 AND QSTEP>0 AND QINDENT<=0));
 --qnum으로 글지우기 
-DELETE FROM QNA_BOARD WHERE qnum =7;
+DELETE FROM QNA_BOARD WHERE qnum =8;
 ----------------------------QNA_BOARD-----------------------------------------
 ------------------------------------------------------------------------------
 ------------------------------------------------------------------------------

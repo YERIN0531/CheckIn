@@ -21,16 +21,17 @@
  		<typeAlias type="com.ocsy.checkin.dto.TripMate_Board" alias="TripMate_Board" />
  		<typeAlias type="com.ocsy.checkin.dto.TripRequest" alias="TripRequest" />
  		<typeAlias type="com.ocsy.checkin.dto.TripTeam" alias="TripTeam" />
+    </typeAliases>
+    <mappers>
+       <mapper resource="META-INF/sqlmap/mappers/Member.xml"/>
+       <mapper resource="META-INF/sqlmap/mappers/Air.xml"/>
+
+       <mapper resource="META-INF/sqlmap/mappers/ReviewBoard.xml"/>
+       <mapper resource="META-INF/sqlmap/mappers/NoticeBoard.xml"/>
+       <mapper resource="META-INF/sqlmap/mappers/QnaBoard.xml"/>
 
 
- 	</typeAliases>
- 	<mappers>
- 		<mapper resource="META-INF/sqlmap/mappers/Member.xml"/>
- 		<mapper resource="META-INF/sqlmap/mappers/Air.xml"/>
-
- 		<mapper resource="META-INF/sqlmap/mappers/ReviewBoard.xml"/>
- 		<mapper resource="META-INF/sqlmap/mappers/NoticeBoard.xml"/>
- 		<mapper resource="META-INF/sqlmap/mappers/QnaBoard.xml"/>
+       <mapper resource="META-INF/sqlmap/mappers/Hotel.xml"/>
 
  		<mapper resource="META-INF/sqlmap/mappers/Taxfree.xml"/>
  		<mapper resource="META-INF/sqlmap/mappers/Cart.xml"/>
@@ -40,5 +41,6 @@
  		
  		<mapper resource="META-INF/sqlmap/mappers/TripMate.xml"/>
 
- 	</mappers>
+
+    </mappers>
  </configuration>

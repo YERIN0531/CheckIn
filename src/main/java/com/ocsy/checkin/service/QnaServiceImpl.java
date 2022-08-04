@@ -39,13 +39,7 @@ public class QnaServiceImpl implements QnaService {
 		return qnaDao.countQna();
 	}
 
-	@Override
-	public QnaBoard detailQna(int qnum, int qpassword) {
-		
-		System.out.println(qnum);
-		System.out.println(qpassword);
-		return qnaDao.detailQna(qnum, qpassword);
-	}
+	
 	
 
 	@Override
@@ -87,7 +81,7 @@ public class QnaServiceImpl implements QnaService {
 		} // while
 
 		qna.setQfile1(qimg[0]); //
-		qna.setQfile1(qimg[1]); //
+		qna.setQfile2(qimg[1]); //
 		System.out.println("정보" + qna);
 		return qnaDao.insertQna(qna); // DB insert
 	}
@@ -125,7 +119,7 @@ public class QnaServiceImpl implements QnaService {
 		} // while
 
 		qna.setQfile1(qimg[0]); //
-		qna.setQfile1(qimg[1]); //
+		qna.setQfile2(qimg[1]); //
 		System.out.println("정보" + qna);
 		return qnaDao.insertQna(qna); // DB insert
 	}
@@ -163,9 +157,10 @@ public class QnaServiceImpl implements QnaService {
 		} // while
 
 		qna.setQfile1(qimg[0]); //
-		qna.setQfile1(qimg[1]); //
+		qna.setQfile2(qimg[1]); //
 		System.out.println("정보" + qna);
-		return qnaDao.insertQna(qna); // DB insert
+		System.out.println("뭐가 틀린 거야 ?");
+		return qnaDao.modifyQna(qna); //
 	}
 
 	@Override
@@ -212,6 +207,12 @@ public class QnaServiceImpl implements QnaService {
 	@Override
 	public QnaBoard screatView(int qnum) {
 		return qnaDao.secreatView(qnum);
+	}
+
+	@Override
+	public QnaBoard detailQna(QnaBoard qna) {
+		qnaDao.hitupQna(qna);
+		return qnaDao.detailQna(qna);
 	}
 
 }

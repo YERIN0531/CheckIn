@@ -17,7 +17,7 @@ public class QnaBoard {
 	private Date qrdate;
 	private int qsecret;
 	private int qpassword;
-	private int qrgroup;
+	private int qgroup;
 	private int qstep;
 	private int qindent;
 //	private int adminreply;
