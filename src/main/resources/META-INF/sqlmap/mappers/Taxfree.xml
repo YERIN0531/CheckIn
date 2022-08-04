@@ -41,9 +41,9 @@
   	<update id="updateProduct" parameterType="Taxfree">
 		UPDATE TAXFREE SET PNAME = #{pname}, 
 				   PPRICE = #{pprice},
-                   PIMAGE1 = #{pimage1},
-                   PIMAGE2 = #{pimage2},
-                   PIMAGE3 = #{pimage3},
+                   <if test="pimage1 != null and pimage1 !=''">PIMAGE1 = #{pimage1},</if> 
+                   <if test="pimage2 != null and pimage2 !=''">PIMAGE2 = #{pimage2},</if> 
+                   <if test="pimage3 != null and pimage3 !=''">PIMAGE3 = #{pimage3},</if> 
                    PSTOCK = #{pstock},
                    PLOC   = #{ploc}
                 WHERE PNUM = #{pnum}

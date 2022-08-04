@@ -98,6 +98,7 @@ public class TaxfreeServiceImpl implements TaxfreeService {
 	}
 	
 	// 파일 리스트 출력
+	
 	@Override
 	public List<Taxfree> listProduct(String pageNum, Taxfree taxfree) {
 		Paging paging = new Paging(taxfreeDao.countProduct(taxfree), pageNum, 9, 5);
@@ -150,7 +151,6 @@ public class TaxfreeServiceImpl implements TaxfreeService {
 				System.out.println("파일 첨부 안 하면 noimg로");
 				// 파일 첨부 안 하면 bimg[idx] = ""
 				// bimg[idx] = "";
-				pimg[idx] = "noimg.jpg";
 			}//if
 			idx++;
 		}//while
@@ -160,14 +160,16 @@ public class TaxfreeServiceImpl implements TaxfreeService {
 		taxfree.setPimage3(pimg[2]); // 세번째 첨부한 파일 이름
 		
 		int result = taxfreeDao.updateProduct(taxfree);
-		System.out.println("면세품 수정 updatsProduct : " + result == "1" ? "업데이트 성공" : "업데이트 실패");
+		System.out.println("면세품 수정 updateProduct : " + result == "1" ? "수정성공" : "수정실패");
 		return taxfreeDao.updateProduct(taxfree);// DB insert
 	}
 
 	// 상품 삭제
 	@Override
-	public int deleteProduct(String pageNum, int pnum) {
-		return 0;
+	public int deleteProduct(Taxfree taxfree) {
+		int result = taxfreeDao.deleteProduct(taxfree);
+		System.out.println("면세품삭제(deleteProduct) : " + ((result == 1) ? "삭제성공" : "삭제실패"));
+		return taxfreeDao.deleteProduct(taxfree);
 	}
 
 

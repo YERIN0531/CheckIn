@@ -10,29 +10,67 @@
   <title>Insert title here</title>
   <link href="${conPath }/css/style.css" rel="stylesheet">
  <style>
- *{
+ table{
  	margin: 0 auto;
  	border: 1px solid red;
- 	text-align: center;
+ 	text-align: left;
+ 	padding-left: 10px;
+ 	box-sizing: border-box;
+ 	margin-top: 30px;
+	margin-bottom : 70px;
  }
  caption {
  	font-size: 2em;
  	font-weight: bold;
  }
+ tr, td {
+ 	border: 1px solid red;
+ }
+ .btn {
+ 	text-align: center;
+ }
+ .image {
+ text-align: center;
+ }
+img {
+ 	text-align: center;
+ 	margin: 0 auto;
+ 	width: 250px;
+ 	height : 300px;
+ 
+ }
+ h3, h4, p {
+ 	padding-left: 10px;
+ 	box-sizing: border-box;
+ }
+ li {
+ 	list-style: none;
+ 	padding-left: 10px;
+ }
  </style>
  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
  <script>
+ /* 버튼을 클릭하면 로그인 유무 확인 후 로그인 창으로 이동하도록 하는 로직 추가해야 함*/
     $(document).ready(function(){
-       
+       var AddCart = document.querySelector('#btn');
+       cart.onclick(){};
     });
  </script>  
 </head>
-  <body>
+  <body>	
    	<!-- 면세상품 상세보기 페이지 -->
+   	<c:if test="${not empty insertCart }">
+   		<script>
+   			alert('상품이 장바구니에 담겼습니다.');
+   		</script>
+   	</c:if>
+   	
+   	<jsp:include page="../main/header.jsp"/>
    	<table>
    		<caption>${taxfreeDto.pname }</caption>
+   		
    		<tr>
-   		<td rowspan="6">
+   		<td rowspan="8" class="image">
 	   			<c:if test="${taxfreeDto.pimage1 eq null or '' }">
 	   			<img src="${conPath }/taxfree/noimg.jpg" alt="noimg.jpg" width="250" height="300">
 	   			</c:if>
@@ -44,26 +82,35 @@
    		<tr><td>판매가</td><td>USD ${taxfreeDto.pprice }</td></tr>
    		<tr><td>재고수량</td><td>${taxfreeDto.pstock }</td></tr>
    		<tr><td>상품위치</td><td>${taxfreeDto.ploc }</td></tr>
-   		<!-- value를 1로 넣어놓으면 되는지 안되는지 -->
-   		<tr><td>수량</td><td><form action=""><input type="number" name="qty" value="1"></form></td></tr>
+
+   		<tr><td>수량</td>
+   		<td>
+   			<form action="${conPath }/cart.do">
+   			<input type="hidden" name="method" value="insert">
+   				<input type="hidden" name="mid" value="${member.mid }">
+   				<input type="hidden" name="pnum" value="${taxfreeDto.pnum }">   				
+   				<input type="number" name="qty" value="1">
+   				<input type="submit" value="장바구니" id="cart" onclick="idCheck();">
+   			</form>
+   		</td></tr>
    		<tr>
-   			<td colspan="3"> 사용자모드
+   			<td colspan="2" class="btn"> 사용자모드
    				<button onclick="location='${conPath}/taxfree.do?method=list'">목록</button>	
-   				<button onclick="location='${conPath}/taxfree.do?method=list'">바로구매</button>	
-   				<button onclick="location='${conPath}/taxfree.do?method=list'">장바구니</button>	
+   				<button onclick="#">바로구매</button>	
    			</td>
    		</tr>
    		<tr>
-   			<td colspan="3"> 관리자모드
+   			<td colspan="2" class="btn"> 관리자모드
    				<button onclick="location='${conPath}/taxfree.do?method=list'">목록</button>	
-   				<button onclick="location='${conPath}/taxfree.do?method=updateForm&pnum=${taxfreeDto.pnum }'">제품정보수정</button>	
+   				<button onclick="location='${conPath}/taxfree.do?method=updateForm&pnum=${taxfreeDto.pnum }&pageNum=${param.pageNum }'">제품정보수정</button>	
+   				<button onclick="location='${conPath}/taxfree.do?method=delete&pnum=${taxfreeDto.pnum }&pageNum=${param.pageNum }'">제품 삭제</button>	
    			</td>
    		</tr>
    		<tr>
-   			<td colspan="3">상세 이미지</td>
+   			<td colspan="3" class="btn">상세 이미지</td>
    		</tr>
    		<tr>
-   			<td colspan="3">
+   			<td colspan="3" class="image">
    			<c:if test="${taxfreeDto.pimage2 eq null or '' }">
    			<img src="${conPath }/taxfree/noimg.jpg" width="250" height="300">
    			</c:if>
@@ -73,9 +120,9 @@
    			</td>
    		</tr>
    		<tr>
-   			<td colspan="3">
+   			<td colspan="3" class="image">
    			<c:if test="${taxfreeDto.pimage3 eq null or '' }">
-   			<img src="${conPath }/taxfree/noimg.jpg" width="250" height="300">
+   			<img src="${conPath }/taxfree/noimg.jpg" width="250" height="300" >
    			</c:if>
    			<c:if test="${taxfreeDto.pimage3 != null or '' }">
    			<img src="${conPath }/taxfree/${taxfreeDto.pimage3 }" alt="${pDto.pimage3 }" width="250" height="300">
@@ -87,21 +134,21 @@
    				<h3>면세점 이용안내</h3>
    				<h4>면세점 이용</h4>
    				<ol>
-					<li>해외로 출국하시는 고객님(내,외국인)은 롯데면세점 이용이 가능합니다. (단 제주도 포함 국내여행시에는 구입 불가합니다.)</li>   					
-					<li>면세품 구입 시 반드시 출국자 본인 ID로 로그인하여 구입하셔야합니다.<br>
+					<li>1. 해외로 출국하시는 고객님(내,외국인)은 롯데면세점 이용이 가능합니다. (단 제주도 포함 국내여행시에는 구입 불가합니다.)</li>   					
+					<li>2. 면세품 구입 시 반드시 출국자 본인 ID로 로그인하여 구입하셔야합니다.<br>
 						회원가입 및 주문 시 입력한 정보(국적, 생년월일, 성별, 여권상 영문이름, 여권번호)가 출국자 본인 여권정보와 불일치 할 경우 상품 인도가 불가합니다.</li>
-					<li>구입하신 상품은 반드시 출국일에 지정된 인도장에서 수령하셔야 합니다.</li>   					
+					<li>3. 구입하신 상품은 반드시 출국일에 지정된 인도장에서 수령하셔야 합니다.</li>   					
    				</ol>
    				<h4>여권정보</h4>
    				<ol>
-					<li>반드시 출국자명으로 로그인 하셔야 하며 여권정보는 출국자 본인의 여권정보를 입력해 주셔야 합니다. <br>
+					<li>1. 반드시 출국자명으로 로그인 하셔야 하며 여권정보는 출국자 본인의 여권정보를 입력해 주셔야 합니다. <br>
 						(구여권번호 또는 잘못입력하신 여권번호로 주문 시 상품수령이 불가합니다.)
 					</li>   					
-					<li>여권 정보수정은 마이페이지 > 회원정보에서 변경가능합니다. <br>
+					<li>2. 여권 정보수정은 마이페이지 > 회원정보에서 변경가능합니다. <br>
 						(연1회는 사이트에서 직접 변경 가능하나, 1회이상은 신규여권이미지를 업로드하여 신청하여 주시기 바랍니다.)<br>
 						CHECK IN에서는 1인 1여권번호 정책으로 동일 여권번호를 다른아이디에 중복등록할 수 없습니다.
 					</li>
-					<li>주문하신 교환권 여권정보 수정은 출국 3일전까지 고객센터로 연락하여 주시기 바랍니다.</li>   					
+					<li>3. 주문하신 교환권 여권정보 수정은 출국 3일전까지 고객센터로 연락하여 주시기 바랍니다.</li>   					
    				</ol>
    			</td>
    		</tr>
@@ -130,7 +177,7 @@
    				</p>
    			</td>
    		</tr>
-   		
    	</table>
+   		<jsp:include page="../main/footer.jsp"/>
   </body>
 </html>

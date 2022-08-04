@@ -8,10 +8,10 @@ import com.ocsy.checkin.dto.Taxfree;
 
 @Mapper
 public interface TaxfreeDao {
-	public int insertProduct(Taxfree taxfree);
-	public List<Taxfree> listProduct(Taxfree taxfree);
-	public int countProduct(Taxfree taxfree);
-	public Taxfree detailProduct(int pnum);
-	public int updateProduct(Taxfree taxfree);
-	public int deleteProduct(int pnum);
+	public int insertProduct(Taxfree taxfree); // 면세품 등록
+	public List<Taxfree> listProduct(Taxfree taxfree); // 면세점 리스트 출력
+	public int countProduct(Taxfree taxfree); // 페이징 위한 상품개수 
+	public Taxfree detailProduct(int pnum); // pnum으로 상품 상세보기
+	public int updateProduct(Taxfree taxfree); // 상품 수정하기
+	public int deleteProduct(Taxfree taxfree); // 상품 삭제하기
 }

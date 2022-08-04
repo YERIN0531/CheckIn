@@ -19,6 +19,7 @@
  		<input type="hidden" name="mid" value="${member.mid }">
  		<input type="hidden" name="agodate" value="${airDto.agodate }">
  		<input type="hidden" name="acomedate" value="${airDto.acomedate }">
+ 		<input type="hidden" name="aprice" value="${airDto.aprice }">
         <table>
         <tr>
 	        <td><input type="checkbox" name="seatid" value="a1"></td>

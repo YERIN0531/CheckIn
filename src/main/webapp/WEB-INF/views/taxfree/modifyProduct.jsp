@@ -10,7 +10,28 @@
   <title>Insert title here</title>
   <link href="${conPath }/css/style.css" rel="stylesheet">
  <style>
- 
+ 	table, tr, td {
+ 		border: 1px solid red;
+ 		margin: 0 auto;
+ 		text-align: left;
+ 		padding-left: 10px;
+ 		box-sizing: border-box;
+ 	}
+ 	table {
+ 		margin-top: 30px;
+		margin-bottom : 70px;
+		width: 550px;
+		height: 600px;
+ 	}
+ 	caption {
+ 		font-size: 2em;
+ 	}
+ 	th{
+ 		width: 150px;
+ 	}
+ 	.btn {
+ 		text-align: center;
+ 	}
  </style>
  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
  <script>
@@ -40,13 +61,13 @@
 					<td><input type="number" name="pprice" required="required" min="0" value="${taxfreeDto.pprice }"></td>
 				</tr>
 				<tr><th>대표 이미지</th>
-					<td><input type="file" name="temp_pimage1" required="required" value="${taxfreeDto.pimage1 }"></td>
+					<td><input type="file" name="temp_pimage1">${taxfreeDto.pimage1 }</td>
 				</tr>
 				<tr><th>상세이미지1</th>
-					<td><input type="file" name="temp_pimage2" value="${taxfreeDto.pimage2 }"></td>
+					<td><input type="file" name="temp_pimage2">${taxfreeDto.pimage2 }</td>
 				</tr>
 				<tr><th>상세이미지2</th>
-					<td><input type="file" name="temp_pimage3" value="${taxfreeDto.pimage3 }"></td>
+					<td><input type="file" name="temp_pimage3">${taxfreeDto.pimage3 }</td>
 				</tr>
 				<tr><th>재고수량</th>
 					<td><input type="text" name="pstock" required="required" min="0" value="${taxfreeDto.pstock }"></td>
@@ -54,16 +75,17 @@
 				<tr><th>제품위치</th>
 					<td><input type="text" name="ploc" required="required" value="${taxfreeDto.ploc }"></td>
 				</tr>
-				<tr><td colspan="2">
+				<tr><td colspan="2" class="btn">
 					<input type="submit" value="수정하기">
 					<button onclick="location='${conPath}/taxfree.do?method=list'">목록으로</button>
-					<button onclick="location='${conPath}/taxfree.do?method=delete'">상품삭제</button>
 					<button onclick="history.back();">이전으로</button>
 					<button onclick="location='main.do'">메인페이지로</button>
 				</td></tr>
 			</table>
 		</form>
 	</section>
+   
+   <jsp:include page="../main/footer.jsp"/>
    
   </body>
 </html>
