@@ -43,9 +43,9 @@
 		
 			
 		<table>
-			<caption>항공권 LIST</caption>
+			<caption>항공 LIST</caption>
 			<tr>
-			<td>항공코드</td><td>출발지</td><td>도착지</td><td>출발시간</td><td>도착시간</td><td>출발시간</td><td>도착시간</td>
+			<td>항공코드</td><td>출발지</td><td>도착지</td><td>출발시간</td><td>도착시간</td><td>출발시간</td><td>도착시간</td><td>가격</td>
 			<td>예약</td>
 			</tr>			
 			<c:forEach var="air" items="${airList }">
@@ -72,7 +72,10 @@
 					${air.acome_arrivetime }
 					</td>
 					<td>
-						<button onclick="location='${conPath }/air.do?method=airReserveForm&acode=${air.acode }&agodate=${param.agodate }&acomedate=${param.acomedate }'">예약하기</button>
+					${air.aprice }
+					</td>
+					<td>
+						<button onclick="location='${conPath }/air.do?method=airReserveForm&acode=${air.acode }&agodate=${param.agodate }&acomedate=${param.acomedate }&aprice=${air.aprice }'">예약하기</button>
 					</td>
 			</tr>
 			</c:forEach>						

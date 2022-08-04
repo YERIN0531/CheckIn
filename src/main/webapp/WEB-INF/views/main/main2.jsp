@@ -51,7 +51,7 @@
                 <tr>
                     <td id="one"></td>
                     <td id="two">
-                        <a href="#">AIR<br>RESERVATION</a>
+                        <a href="${conPath }/air.do?method=airMain">AIR<br>RESERVATION</a>
                         <div>&nbsp;</div>
                         <p>
                             This is a page where you can reserve the airplne.<br />

@@ -1,4 +1,6 @@
 package com.ocsy.checkin.controller;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -6,13 +8,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.ocsy.checkin.dto.Air;
+import com.ocsy.checkin.dto.AirRs;
+import com.ocsy.checkin.dto.Member;
 import com.ocsy.checkin.service.AirService;
+import com.ocsy.checkin.service.MemberService;
+import com.ocsy.checkin.util.Paging;
 
 @Controller
 @RequestMapping(value = "air")
 public class AirController {
 	@Autowired
 	private AirService airService;
+	@Autowired
+	private MemberService memberService;
 	
 	@RequestMapping(params = "method=airMain", method = { RequestMethod.GET, RequestMethod.POST })
 	public String airMain() {
@@ -37,12 +45,51 @@ public class AirController {
 		return "air/airReserveInfo";	
 	}
 	
-//airReserve 실제로 예약되는 페이지 
-//	@RequestMapping(params="method=airReserve", method= {RequestMethod.GET, RequestMethod.POST})
-//	public String airReserve(Air air, Model model) {
-//		model.addAttribute("reserveResult", airService.airReserve(air));
-//		return "air/airReserveInfo";	
-//	}
+	@RequestMapping(params="method=airReserve", method= {RequestMethod.GET, RequestMethod.POST})
+	public String airReserve(Member member, Air air, HttpSession session, Model model) {
+		memberService.minusMileage(member);
+		memberService.plusMileage(member, session);
+		model.addAttribute("reserveResult", airService.airReserve(air));
+		return "air/airmain";	
+	}
+	@RequestMapping(params="method=airInsertView", method= {RequestMethod.GET, RequestMethod.POST})
+	public String airInsertView() {
+		return "adminAir/airInsertView";
+	}
+	
+	@RequestMapping(params="method=airInsert", method= {RequestMethod.GET, RequestMethod.POST})
+	public String airInsert(Air air, Model model) {
+		model.addAttribute("insertAirResult", airService.airInsert(air)); ///////////에어리스트 단으로 넘어갈때 페이징 정보 가지고 가야하는지 
+		return "adminAir/airList"; 
+	}
+	
+	@RequestMapping(params="method=allAirList", method= {RequestMethod.GET, RequestMethod.POST})
+	public String allAirList(Model model, String pageNum) {
+		model.addAttribute("allAirList",airService.allAirList(pageNum) );
+		model.addAttribute("paging", new Paging(airService.totCntAir(), pageNum, 8, 5));
+		return "adminAir/airList";		
+	}
 	
 	
+	@RequestMapping(params="method=airModifyView", method= {RequestMethod.GET, RequestMethod.POST})
+	public String airModifyView(String pageNum, Model model, String acode) {
+		// detail 만들고 (xml,service,dao 다 생성해놓고, jsp 만들지말고 컨트롤러만 생성해준다음 그 부분 model에 attribute 해서 modifyview에 뿌려주기)
+		model.addAttribute("airdetail", airService.detailAir(acode));
+		return "adminAir/airModifyForm";
+	}
+	@RequestMapping(params="method=airModify", method= {RequestMethod.GET, RequestMethod.POST})
+	public String airModify(Air air, Model model, String pageNum) {
+		model.addAttribute("airModifyResult", airService.airUpdate(air));
+		model.addAttribute("allAirList",airService.allAirList(pageNum) );
+		model.addAttribute("paging", new Paging(airService.totCntAir(), pageNum, 8, 5));
+		return "adminAir/airList";
+	}
+	
+	@RequestMapping(params="method=airDelete", method= {RequestMethod.GET, RequestMethod.POST})
+	public String airDelete(Air air, Model model, String pageNum) {
+		model.addAttribute("airDeleteResult", airService.airDelete(air));
+		model.addAttribute("allAirList",airService.allAirList(pageNum) );
+		model.addAttribute("paging", new Paging(airService.totCntAir(), pageNum, 8, 5));
+		return "adminAir/airList";
+	}
 }
