@@ -17,6 +17,10 @@
  		<typeAlias type="com.ocsy.checkin.dto.Hotel" alias="Hotel"/>
  		<typeAlias type="com.ocsy.checkin.dto.Hotel_rs" alias="Hotel_rs"/>
  		<typeAlias type="com.ocsy.checkin.dto.Hotel_ZZim" alias="Hotel_ZZim"/>
+ 		
+ 		<typeAlias type="com.ocsy.checkin.dto.TripMate_Board" alias="TripMate_Board" />
+ 		<typeAlias type="com.ocsy.checkin.dto.TripRequest" alias="TripRequest" />
+ 		<typeAlias type="com.ocsy.checkin.dto.TripTeam" alias="TripTeam" />
 
 
  	</typeAliases>
@@ -33,6 +37,8 @@
  		
 
  		<mapper resource="META-INF/sqlmap/mappers/Hotel.xml"/>
+ 		
+ 		<mapper resource="META-INF/sqlmap/mappers/TripMate.xml"/>
 
  	</mappers>
  </configuration>

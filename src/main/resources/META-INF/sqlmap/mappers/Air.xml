@@ -32,6 +32,8 @@
 		<result property="acome_departtime" column="acome_departtime"/>
 		<result property="acome_arrivetime" column="acome_arrivetime"/>
 		<result property="aprice" column="aprice"/>
+		<result property="startRow" column="startRow"/>
+		<result property="endRow" column="endRow" />
 		
 		<result property="asno" column="asno"/>
 		<result property="mid" column="mid"/>
@@ -59,4 +61,36 @@
 	INSERT INTO AIR_RESERVE VALUES(ARESERVE_SEQ.NEXTVAL ,#{acode}, #{mid}, #{agodate},#{acomedate}, #{seatid},SYSDATE)
 	</insert>
 	
+	
+	<insert id="airInsert" parameterType="Air">
+	INSERT INTO ASCD VALUES (#{acode},#{airline},#{adepartloc},#{aariveloc},#{agotime},#{ago_arrivetime},#{acome_departtime},#{acome_arrivetime},#{aprice})
+	</insert>
+	
+	<select id="allAirList" parameterType="Air" resultMap="AirResult">
+		SELECT * FROM (SELECT ROWNUM RN, A.* FROM (SELECT * FROM ASCD ORDER BY ACODE) A) WHERE RN BETWEEN #{startRow} AND #{endRow}
+	</select>
+	
+	<select id="totCntAir"  resultType="int">
+		SELECT COUNT(*) FROM ASCD
+	</select>
+	
+	<update id="airUpdate" parameterType="Air">
+	UPDATE ASCD SET AGOTIME=#{agotime},AGO_ARRIVETIME=#{ago_arrivetime},ACOME_DEPARTTIME=#{acome_departtime},ACOME_ARRIVETIME=#{acome_arrivetime}, APRICE=#{aprice} WHERE ACODE=#{acode}
+	</update>
+	
+	<select id="detailAir" parameterType="String" resultType="Air">
+	SELECT * FROM ASCD WHERE ACODE=#{acode}
+	</select>
+	
+	<delete id="airDelete" parameterType="Air">
+	DELETE FROM ASCD WHERE ACODE=#{acode}
+	</delete>
+		
   </mapper>
+  
+  
+  
+  
+  
+  
+  

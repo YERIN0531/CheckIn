@@ -82,16 +82,31 @@ INSERT INTO AIR_ZZIM VALUES(AZZIM_SEQ.NEXTVAL, SYSDATE, 'aaa','KO001');
 INSERT INTO AIR_ZZIM VALUES(AZZIM_SEQ.NEXTVAL, SYSDATE, 'ccc','KO002');
 INSERT INTO AIR_ZZIM VALUES(AZZIM_SEQ.NEXTVAL, SYSDATE, 'ddd','KO001');
 SELECT * FROM CUSTOMER;
-
+COMMIT;
 
 ---------------------------------- 항공관련쿼리 ----------------------------------
 
                             ----- 관리자 영역 -----
+-- AGOTIME          VARCHAR2(50) NOT NULL,  -- 가는시간 
+    AGO_ARRIVETIME   VARCHAR2(50) NOT NULL,  -- 가는도착시간
+    ACOME_DEPARTTIME VARCHAR2(50) NOT NULL,  -- 오는시간
+    ACOME_ARRIVETIME                             
+                            
+                            
 -- 항공 스케쥴 등록 
+SELECT * FROM ASCD;
 INSERT INTO ASCD VALUES ('JE001','제주항공','한국(인천)','필리핀(보라카이)','10:00','12:00','12:00','14:00',420000); 
+INSERT INTO ASCD VALUES ('JE003','제주항공','한국(인천)','필리핀(보라카이)','12:00','18:00','11:00','15:00',280000); 
 -- 항공 스케쥴 삭제
 SELECT * FROM ASCD;
 DELETE FROM ASCD WHERE ACODE='JE001';
+-- 항공 스케쥴 수정
+UPDATE ASCD SET AGOTIME='15:30',AGO_ARRIVETIME='17:30',ACOME_DEPARTTIME='18:00',ACOME_ARRIVETIME='20:00', APRICE=320000
+WHERE ACODE='JE001';
+
+-- 항공 디테일 
+SELECT * FROM ASCD WHERE ACODE='KO001';
+SELECT * FROM AIR_RESERVE;
 COMMIT;
 
                             ----- 항공권 예약  -----
@@ -159,7 +174,11 @@ SELECT SEATID FROM AIR_RESERVE WHERE ACODE='KO001';
 SELECT * FROM AIR_RESERVE;
 -- 좌석 선택 갱신
 
-
+-- 비행기리스트
+SELECT * FROM ASCD;
+SELECT * FROM (SELECT ROWNUM RN, A.* FROM (SELECT * FROM ASCD ORDER BY ACODE) A) WHERE RN BETWEEN 1 AND 3;
+-- 총 비행기 수 
+SELECT COUNT(*) FROM ASCD;
 -- 예약된 정보 뿌리기 
 SELECT * FROM ASCD S, AIR_RESERVE R WHERE S.ACODE=R.ACODE;
 

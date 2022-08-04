@@ -3,6 +3,7 @@
         *{padding:0;
           margin:0;}
         
+            
         section {
             margin: 0 auto;
             width: 100%;
@@ -10,27 +11,51 @@
 
             section #main {
                 width: 100%;
-                background: url('../../image/back4.png') no-repeat;
-                height:800px;
+                height: 1000px;
+                background: url('../../image/back5.png') no-repeat;
+                border:1px solid white;
             }
-            
-            section #main table{
-            margin:0 auto;
-            background-color:white;
-            }
-                section #main table .firsttd {
-                    background: url('../../img/login3.png') no-repeat;
-                    width:600px;
-                    object-fit:cover;
-                    height:600px;
+
+                section #main table {
+                    margin: 0 auto;
+                    background-color: white;
                 }
+
+                    section #main table .firsttd {
+                        background: url('../../image/login3.png') no-repeat;
+                        width: 100%;
+                        object-fit: cover;
+                        height: 600px;
+                    }
+                    section #main table .secondtd {
+                        text-align: center;
+                        font-size: 1.2em;
+                        font-family: 'Domine', serif;
+                        color: #3c5d79;
+                        font-weight:bold;
+                    }
+
+                    section #main table .thirdtd {
+                        text-align: center;
+                        color: #3c5d79;
+                        font-weight: bold;
+
+                    }
+                        section #main table .thirdtd a {
+                            text-align: center;
+                            text-decoration: none;
+                            color: #3c5d79;
+                            font-size: 0.8em;
+                        }
+
         #border {
             margin: 0 auto;
             margin-top: 150px;
-            max-width: 800px;
-            margin-top: 15px;
+            max-width: 670px;
+            margin-top: 120px;
             margin-bottom: 50px;
-            padding: 32px;
+            padding: 5px;
+            border: 1px solid white;
             background: #fff;
             -webkit-border-radius: 10px;
             -moz-border-radius: 10px;
@@ -54,39 +79,31 @@
             font-size: 1.3em;
             color: lightgray;
         }
-        
-        table tr{
-            padding:0px;
-            height:60px;
-            margin:0px;
+
+        table tr {
+            padding: 0px;
+            height: 60px;
+            margin: 0px;
         }
+
         table td {
             font-family: 'IBM Plex Sans KR', sans-serif;
             font-size: 1.0em;
-            padding:0px;
-            padding-left:20px;
-            
+            padding: 0px;
+            padding-left: 10px;
+            height:50px;
         }
 
         input {
             border: 1px solid white;
-            border: 1px solid lightgray;
+            border: 1px double lightgray;
             width: 325px;
-            height: 40px;
+            height: 45px;
         }
 
             input[type='submit'] {
                 width: 330px;
                 height: 40px;
                 color: white;
-                background-color: #c0acbb;
-                background-color: #d1c2cd;
-                background-color: #c6b3c1;
-                background-color: #c2bcc0;
-                background-color: #888279;
-                background-color: #757169;
-                background-color: #7c8591;
-                background-color: #a4acb6;
-                background-color: #d6dae0;
-                background-color: #b5c4c3;
+                background-color: #83a4ad
             }

@@ -31,6 +31,8 @@
   	<select id="getMember" parameterType="String" resultType="Member">
   		SELECT * FROM CUSTOMER WHERE MID= #{mid}
   	</select>
+  	
+  	
   	<update id="minusMileage" parameterType="Member">
   		UPDATE CUSTOMER SET MMILEAGE = MMILEAGE - #{mmileage}
                     WHERE MID= #{mid}
@@ -39,6 +41,7 @@
   		UPDATE CUSTOMER SET MMILEAGE = MMILEAGE + ( #{paymoney} *0.03)
                     WHERE MID= #{mid}
   	</update>
+  	
   </mapper>
   
   

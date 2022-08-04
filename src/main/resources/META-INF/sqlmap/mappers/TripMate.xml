@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+    
+<mapper namespace="com.ocsy.checkin.dao.TripBoardDao">
+	<resultMap type="TripMate_Board" id="TripBoardResult">
+		<result property="tnum" column="tnum" />
+		<result property="mid" column="mid" />
+		<result property="ttitle" column="ttitle" />
+		<result property="tgender" column="tgender" />
+		<result property="tmaxmembercount" column="tmaxmembercount" />
+		<result property="tnowmembercount" column="tnowmembercount" />
+		<result property="tstyle" column="tstyle" />
+		<result property="thotelstyle" column="thotelstyle" />
+		<result property="tplaystyle" column="tplaystyle" />
+		<result property="tcontent" column="tcontent" />
+		<result property="teamname" column="teamname" />
+		<result property="timage" column="timage" />
+		<result property="thit" column="thit" />
+		<result property="trdate" column="trdate" />
+		<result property="tip" column="tip" />		
+	</resultMap>
+	<resultMap type="TripTeam" id="TripTeamResult">
+		<result property="teamname" column="teamname" />
+		<result property="teamid" column="teamid" />
+		<result property="tnum" column="tnum" />
+		<result property="mid" column="mid" />
+		<result property="tstep" column="tstep" />
+		<result property="mname" column="mname" />
+		<result property="mtel" column="mtel" />
+		<result property="mgender" column="mgender" />
+		<result property="mbirth" column="mbirth" />
+		<result property="memail" column="memail" />
+	</resultMap>
+	<resultMap type="TripRequest" id="TripRequestResult"> 
+		<result property="trnum" column="trnum" />
+		<result property="tnum" column="tnum" />
+		<result property="mid" column="mid" />
+		<result property="trmemo" column="trmemo" />
+		<result property="mname" column="mname" />
+		<result property="mgender" column="mgender" />
+		<result property="mtel" column="mtel" />
+		<result property="mbirth" column="mbirth" />
+	</resultMap>
+	
+	<select id="tripBoardList" parameterType="TripMate_Board" resultMap="TripBoardResult"> <!-- 게시판 페이징처리해서 리스트 출력  -->
+		SELECT * FROM (SELECT ROWNUM RN, A.* 
+            FROM (SELECT * FROM TRIPMATE_BOARD ORDER BY TNUM DESC)A)
+       			 WHERE RN BETWEEN #{startRow} AND #{endRow}
+       		<if test="tgender != null and tgender != '' ">
+				AND TGENDER = #{tgender}
+			</if>
+			<if test="tstyle != null and tstyle != '' ">
+   				AND TSTYLE = #{tstyle}
+   			</if>
+   			<if test="thotelstyle != null and tstyle != '' ">
+        		AND THOTELSTYLE = #{thotelstyle}
+        	</if>
+        	<if test="tplaystyle != null and tplaystyle != '' ">	
+           			AND TPLAYSTYLE = #{tplaystyle}
+           	</if>
+	</select>
+	<select id="totCnt" parameterType="TripMate_Board" resultType="int">
+		SELECT COUNT(*) FROM TRIPMATE_BOARD WHERE 1=1
+			<if test="tgender != null and tgender != '' ">
+				AND TGENDER = #{tgender}
+			</if>
+			<if test="tstyle != null and tstyle != '' ">
+   				AND TSTYLE = #{tstyle}
+   			</if>
+   			<if test="thotelstyle != null and tstyle != '' ">
+        		AND THOTELSTYLE = #{thotelstyle}
+        	</if>
+        	<if test="tplaystyle != null and tplaystyle != '' ">	
+           			AND TPLAYSTYLE = #{tplaystyle}
+           	</if>		
+	</select>
+	<select id="tripBoardDetail" parameterType="int" resultType="TripMate_Board"> <!-- 게시판 상세보기  -->
+		SELECT * FROM TRIPMATE_BOARD WHERE TNUM= #{tnum}
+	</select>
+	<update id="tripBoardHitUp" parameterType="int">  <!--  게시판 상세보기시 hitup -->
+		UPDATE TRIPMATE_BOARD SET THIT = THIT +1 WHERE TNUM= #{tnum}
+	</update>
+	
+	<insert id="tripBoardWriteBoard" parameterType="TripMate_Board">  <!--  동행게시판 원글 쓰기  -->
+		INSERT INTO TRIPMATE_BOARD VALUES (TRIP_SEQ.NEXTVAL, #{mid}, #{ttitle},#{tgender},#{tmaxmembbercount},#{tnowmembercount}
+			, #{tstyle},#{thotelstyle},#{tplaystyle},#{tcontent},#{teamname},#{timage},#{thit},SYSDATE,#{tip})
+	</insert>
+	<insert id="tripTeamLeaderInsert" parameterType="String">  <!--  동행게시판 원글 작성시 팀장 생성 -->
+		INSERT INTO TRIPTEAM VALUES (TT_SEQ.NEXTVAL,TRIP_SEQ.CURRVAL,#{mid},0)
+	</insert>
+	
+	<!-- 특정 팀의 리더 아이디 뽑아내기 -->
+	<select id="teamLeaderSelect" parameterType="int" resultType="String" >  
+		SELECT MID FROM TRIPTEAM WHERE TNUM=#{tnum} AND TSTEP=0
+	</select>
+	
+	<!--  내가 속한 팀 리스트 뽑기  -->
+	<select id="myTeamList" parameterType="String" resultMap="TripTeamResult"> 
+		SELECT TT.*,TRB.TEAMNAME FROM TRIPTEAM TT, TRIPMATE_BOARD TRB WHERE TT.TNUM = TRB.TNUM AND TT.MID=#{mid}
+	</select>
+	
+	<!--  내 특정 여행팀 조회하기 (팀원 조회) -->
+	<select id="myTeamDetail" parameterType="int" resultMap="TripTeamResult"> 
+		SELECT TMB.TEAMNAME,TT.*,M.* FROM TRIPTEAM TT, CUSTOMER M, TRIPMATE_BOARD TMB
+    		WHERE TT.MID = M.MID
+       			AND TT.TNUM = TMB.TNUM
+            		AND TT.TNUM = #{tnum}
+	</select>
+	
+	<!--  여행팀에 들어가고싶어서 신청하기 -->
+	<insert id="applyTeam" parameterType="TripRequest">  
+		INSERT INTO TRIPREQUEST VALUES (TR_SEQ.NEXTVAL,#{tnum},#{mid},#{trmemo})
+	</insert>
+	
+	 <!-- 여행팀장이 요청 수락 리스트  -->
+	<select id="myTeamApplyList" parameterType="TripRequest" resultMap="TripRequestResult"> 
+		SELECT TR.*, MNAME,MGENDER,MTEL,MBIRTH FROM TRIPREQUEST TR, CUSTOMER M
+   		 WHERE TR.MID = M.MID
+      		  AND TNUM IN (SELECT TNUM FROM TRIPMATE_BOARD WHERE MID= #{mid})
+      		  	AND TNUM= #{tnum}
+	</select>
+	
+	<!--  여행팀 가입 요청 수락 시  -->
+	<insert id="agreeTeam1" parameterType="TripRequest"> 
+		INSERT INTO TRIPTEAM VALUES (TR_SEQ.NEXTVAL,#{tnum},#{mid},1)
+	</insert>
+	<delete id="agreeTeam2" parameterType="TripRequest">
+		DELETE FROM TRIPREQUEST WHERE TNUM=#{tnum} AND MID=#{mid}
+	</delete>
+	<update id="agreeTeam3" parameterType="TripRequest">
+		UPDATE TRIPMATE_BOARD SET TNOWMEMBERCOUNT = TNOWMEMBERCOUNT +1 WHERE TNUM=#{tnum}
+	</update>
+	
+	<!-- 여행팀 가입 요청 거절 시 -->
+	<delete id="disagreeTeam" parameterType="TripRequest">
+		DELETE FROM TRIPREQUEST WHERE TNUM=#{tnum} AND MID=#{mid}
+	</delete>
+	
+	
+	
+	
+	
+</mapper>

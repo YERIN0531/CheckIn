@@ -39,9 +39,9 @@ public interface HotelService {
 	
 	public int cancelHZZim(Hotel_ZZim hzzim);  // 찜취소
 	
-	public List<Hotel> adminHotelList(String pageNum,Hotel hotel);
+	public List<Hotel> adminHotelList(String pageNum,Hotel hotel);  // 관리자전용 호텔 리스트 출력
 	
-	public int totAllHotel();
+	public int totAllHotel();  // 모든 호텔 개수 
 	
 	
 }

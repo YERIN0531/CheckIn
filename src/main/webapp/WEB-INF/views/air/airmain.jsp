@@ -45,6 +45,7 @@
 		<table>
 			<caption>항공 LIST</caption>
 			<tr>
+
 			<td>항공코드</td><td>출발지</td><td>도착지</td><td>출발시간</td><td>도착시간</td><td>출발시간</td><td>도착시간</td><td>항공가격</td>
 			<td>예약</td>
 			</tr>			

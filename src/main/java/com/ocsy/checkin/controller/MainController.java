@@ -19,6 +19,12 @@ public class MainController {
 	public String intro(Locale locale, Model model) {
 		return "main/intro";
 	}
+	
+	@RequestMapping(value = "main2.do", method= {RequestMethod.GET, RequestMethod.POST})
+	public String main2(Locale locale, Model model) {
+		return "main/main2";
+	}
+	
 	@RequestMapping(value = "dongjun")
 	public String dongjun() {
 		return "main/dongjun";

@@ -22,5 +22,10 @@ public class Air {
 	private Date acomedate;
 	private String seatid;
 	private Date ardate;
+	private int totalprice;
+	
+	//페이징
+	private int startRow;
+	private int endRow;
 	
 }
