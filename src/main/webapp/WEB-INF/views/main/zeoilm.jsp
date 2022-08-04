@@ -12,7 +12,7 @@
 <body>
 	<h1>정임이가 구현할 기능들 여기에 버튼 만들고 구현하면 될거같아</h1>
 	<button onclick="#">구현 전</button>
-	<button onclick="location='${conPath}/taxfree.do?method=insertForm'">면세점상품등록</button>
+	<button onclick="location='${conPath}/taxfree.do?method=insertForm&pageNum=1'">면세점상품등록</button>
 	<button onclick="location='${conPath}/taxfree.do?method=list'">면세점리스트(페이징)</button>
 	
 	

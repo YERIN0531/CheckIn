@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.ocsy.checkin.dao.CartDao">
+  	<resultMap type="Cart" id="CartResult">
+  		<result property="cartnum" column="cartnum"/>
+  		<result property="pnum" column="pnum"/>
+  		<result property="mid" column="mid"/>
+  		<result property="cost" column="cost"/>
+  		<result property="qty" column="qty"/>
+  	</resultMap>
+  	
+  	<!-- insertCart / 장바구니 상품 입력 -->
+  	<insert id="insertCart" parameterType="Cart">
+  	<![CDATA[
+         INSERT INTO CART (CARTNUM, PNUM, MID, COST, QTY)
+    VALUES(CART_SEQ.NEXTVAL, #{pnum}, #{mid}, #{qty}*(SELECT PPRICE FROM TAXFREE WHERE PNUM = #{pnum}), #{qty})
+      ]]>
+  	</insert>
+  	
+  	<!-- updateCart / 장바구니 물건 개수 수정? -->
+  	<!-- deleteCart -->
+  	
+  
+  </mapper>

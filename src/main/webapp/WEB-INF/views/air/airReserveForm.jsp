@@ -32,6 +32,7 @@
  		<input type="hidden" name="acomedate" value="${airDto.acomedate }">
  		<input type="hidden" name="aprice" value="${airDto.aprice }">
  		<input type="text" name="totalprice">
+
         <table>
         <tr>
 	        <td><input type="checkbox" name="seatid" value="a1"></td>

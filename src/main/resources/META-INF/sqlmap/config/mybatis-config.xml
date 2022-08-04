@@ -13,6 +13,7 @@
  		<typeAlias type="com.ocsy.checkin.dto.QnaBoard" alias="QnaBoard"/>
  		
  		<typeAlias type="com.ocsy.checkin.dto.Taxfree" alias="Taxfree"/>
+ 		<typeAlias type="com.ocsy.checkin.dto.Cart" alias="Cart"/>
  		<typeAlias type="com.ocsy.checkin.dto.Hotel" alias="Hotel"/>
  		<typeAlias type="com.ocsy.checkin.dto.Hotel_rs" alias="Hotel_rs"/>
  		<typeAlias type="com.ocsy.checkin.dto.Hotel_ZZim" alias="Hotel_ZZim"/>
@@ -32,6 +33,7 @@
  		<mapper resource="META-INF/sqlmap/mappers/QnaBoard.xml"/>
 
  		<mapper resource="META-INF/sqlmap/mappers/Taxfree.xml"/>
+ 		<mapper resource="META-INF/sqlmap/mappers/Cart.xml"/>
  		
 
  		<mapper resource="META-INF/sqlmap/mappers/Hotel.xml"/>
