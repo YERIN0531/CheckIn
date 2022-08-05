@@ -43,13 +43,17 @@
 	     <c:if test="${qnaDto.qfile2 != null or '' }">
 	       <img src="${conPath }/fileUpload/${qnaDto.qfile2 }" width='200'>
 	    </c:if>
-	     
+	   
 	</tr>
 	<tr>
 	  <td colspan="3">
     	 <button onclick="location='qna.do?method=qnaModifyForm&qnum=${qnaDto.qnum}&pageNum=${param.pageNum}'">수정</button>
 		 <button onclick="location='qna.do?method=qnaList&pageNum=${param.pageNum}'">목록</button>	
-		 <button onclick="location='qna.do?method=deleteQna&qgroup=${qnaDto.qgroup}$qstep=${qnaDto.qstep }$qindent=${qnaDto.qindent }&pageNum=${param.pageNum}'">삭제</button>
+		 <button onclick="location='qna.do?method=deleteQna&qgroup=${qnaDto.qgroup}&qstep=${qnaDto.qstep }&qindent=${qnaDto.qindent }&pageNum=${param.pageNum}'">삭제</button>
+	  	
+	  	<c:if test="${qnaDto.qindent != 1 }">
+	  	<button onclick="location='qna.do?method=qnareplyForm&qnum=${qnaDto.qnum}&pageNum=${param.pageNum}'">답변</button>
+	  	</c:if>
 	  </td>
 	  
 	  <c:if test="${not empty admin }">

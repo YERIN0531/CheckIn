@@ -69,7 +69,7 @@ public class ReviewController {
 		model.addAttribute("replyReview", reviewService.replyReview(mRequest, request, review));
 		return "forward:review.do?method=reviewList";
 	}
-	//9. 원글 삭제하면 답변글 까지 삭제  아직 안됌 
+	//9. 원글 삭제하면 답변글 까지 삭제  아직  
 	@RequestMapping(params="method=deleteReview", method = RequestMethod.GET)
 	public String deleteReview(ReviewBoard review ,Model model) {
 		model.addAttribute("reviewDelete", reviewService.deleteReview(review));

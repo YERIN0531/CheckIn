@@ -14,6 +14,7 @@
 	<button onclick="#">구현 전</button>
 	<button onclick="location='${conPath}/taxfree.do?method=insertForm&pageNum=1'">면세점상품등록</button>
 	<button onclick="location='${conPath}/taxfree.do?method=list'">면세점리스트(페이징)</button>
+	<button onclick="location='${conPath}/cart.do?method=list'">장바구니리스트</button>
 	
 	
 </body>

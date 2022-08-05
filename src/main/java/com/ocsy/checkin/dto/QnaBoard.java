@@ -16,11 +16,11 @@ public class QnaBoard {
 	private String qip;
 	private Date qrdate;
 	private int qsecret;
-	private int qpassword;
+	private Integer qpassword;
 	private int qgroup;
 	private int qstep;
 	private int qindent;
-//	private int adminreply;
+	private int replycnt;
 	private int startRow;
 	private int endRow;
 }

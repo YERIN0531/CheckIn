@@ -13,8 +13,9 @@
 <body>
    <div id="content">
       <form action="${conPath }/qna.do?method=secreat" method="post" >
-      <input type="text" name="qnum" value="${param.qnum }">
-      <input type="text" name="pageNum" value="${param.pageNum }">
+      <input type="hidden" name="qnum" value="${param.qnum }">
+      <input type="hidden" name="pageNum" value="${param.pageNum }">
+      
       <c:if test=""></c:if>
          <table>
             <caption>비밀글</caption>
@@ -22,7 +23,8 @@
             <tr>
                <th>비밀번호</th>
                <td>
-                  <input type="password" name="qpassword">
+                  <input type="password" name="qpassword"><br>
+                  (관리자 글비밀번호는 회원이 입력하신  글 비밀 번호 입니다)
                </td>
             </tr>
             <tr>

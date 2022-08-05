@@ -18,6 +18,7 @@ public interface QnaService {
 	public int replyQna(MultipartHttpServletRequest mRequest,HttpServletRequest request,QnaBoard qna);
 	public int modifyQna(MultipartHttpServletRequest mRequest,HttpServletRequest request,QnaBoard qna);
 	public int deleteQna(QnaBoard qna);
-	public int adminreply();
+	public QnaBoard detailSecreat(QnaBoard qna); // 비번체크 view
+	public int adminreply(QnaBoard qna);
 	public QnaBoard screatView(int qnum);
 }

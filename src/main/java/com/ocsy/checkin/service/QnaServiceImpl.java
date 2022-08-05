@@ -10,7 +10,6 @@ import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,7 +43,6 @@ public class QnaServiceImpl implements QnaService {
 
 	@Override
 	public QnaBoard modifyreplyView(int qnum) { // 관리자모드 답변 수정 뷰
-		// TODO Auto-generated method stub
 		return qnaDao.modifyreplyView(qnum);
 	}
 
@@ -83,6 +81,7 @@ public class QnaServiceImpl implements QnaService {
 		qna.setQfile1(qimg[0]); //
 		qna.setQfile2(qimg[1]); //
 		System.out.println("정보" + qna);
+		
 		return qnaDao.insertQna(qna); // DB insert
 	}
 
@@ -121,7 +120,7 @@ public class QnaServiceImpl implements QnaService {
 		qna.setQfile1(qimg[0]); //
 		qna.setQfile2(qimg[1]); //
 		System.out.println("정보" + qna);
-		return qnaDao.insertQna(qna); // DB insert
+		return qnaDao.replyQna(qna); // DB insert
 	}
 
 	@Override
@@ -159,7 +158,6 @@ public class QnaServiceImpl implements QnaService {
 		qna.setQfile1(qimg[0]); //
 		qna.setQfile2(qimg[1]); //
 		System.out.println("정보" + qna);
-		System.out.println("뭐가 틀린 거야 ?");
 		return qnaDao.modifyQna(qna); //
 	}
 
@@ -169,8 +167,8 @@ public class QnaServiceImpl implements QnaService {
 	}
 
 	@Override
-	public int adminreply() {
-		return qnaDao.adminreply();
+	public int adminreply(QnaBoard qna) {
+		return qnaDao.adminreply(qna);
 	}
 
 	private boolean fileCopy(String serverFile, String backupFile) {
@@ -211,8 +209,14 @@ public class QnaServiceImpl implements QnaService {
 
 	@Override
 	public QnaBoard detailQna(QnaBoard qna) {
-		qnaDao.hitupQna(qna);
+		qnaDao.hitupQna(qna.getQnum());
 		return qnaDao.detailQna(qna);
+	}
+
+	@Override
+	public QnaBoard detailSecreat(QnaBoard qna) {
+		
+		return qnaDao.detailSecreat(qna);
 	}
 
 }

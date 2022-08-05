@@ -10,7 +10,11 @@
   		<result property="mid" column="mid"/>
   		<result property="cost" column="cost"/>
   		<result property="qty" column="qty"/>
+  		<result property="pimage1" column="pimage1"/>
+  		<result property="pname" column="pname"/>
+  		<result property="pprice" column="pprice"/>
   	</resultMap>
+  	
   	
   	<!-- insertCart / 장바구니 상품 입력 -->
   	<insert id="insertCart" parameterType="Cart">
@@ -20,8 +24,29 @@
       ]]>
   	</insert>
   	
-  	<!-- updateCart / 장바구니 물건 개수 수정? -->
-  	<!-- deleteCart -->
+  	<!-- listCart / mid로 장바구니 담긴 것 출력 -->
+  	<select id="listCart" parameterType="String" resultMap="CartResult">
+  	<![CDATA[
+		SELECT * FROM CART C, TAXFREE T WHERE C.PNUM = T.PNUM AND MID = #{mid}
+      ]]>
+    </select>
   	
+  	<!-- deleteCart -->
+  	<delete id="deleteCart" parameterType="Cart">
+  	DELETE FROM CART WHERE CARTNUM = #{cartnum}
+  	</delete>
+  	<!-- deleteCartAll -->
+  	<delete id="deleteCartAll" parameterType="Cart">
+  	DELETE FROM CART WHERE MID = #{mid}
+  	</delete>
+  	
+  	<!-- updateCart / 장바구니 물건 개수 수정? -->
+  	<update id = "updateCart" parameterType="Cart">
+  	<![CDATA[
+  	UPDATE CART SET QTY = #{qty} + (SELECT QTY FROM CART WHERE PNUM = #{pnum} AND MID = #{mid}),
+                COST = (2 + (SELECT QTY FROM CART WHERE PNUM = #{pnum} AND MID = #{mid})) * (SELECT PPRICE FROM TAXFREE WHERE PNUM = #{pnum})
+            WHERE PNUM = #{pnum} AND MID = #{mid}
+    ]]>
+  	</update>
   
   </mapper>

@@ -13,4 +13,10 @@ public class Cart {
 	private String mid; // 회원 아이디(fk)
 	private int cost; // 총 가격
 	private int qty; // 수량
+	
+	// taxfree테이블에서 join 해서 가져올 데이터들 변수 추가
+	private String pname; // 상품이름
+	private String pimage1; // 상품이미지
+	private int pprice;  // 상품 하나의 정가
+	
 }
