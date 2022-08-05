@@ -1,5 +1,7 @@
 package com.ocsy.checkin.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.ocsy.checkin.dto.Cart;
+import com.ocsy.checkin.dto.Hotel_rs;
+import com.ocsy.checkin.dto.Member;
 import com.ocsy.checkin.service.CartService;
 
 @Controller
@@ -17,12 +21,32 @@ public class CartController {
 	@Autowired
 	private CartService cartService;
 	
-	// 상품 상세보기에서 카트로 상품 추가 - 진행중 
+	// 상품 상세보기에서 카트로 상품 추가 - O
 	@RequestMapping(params="method=insert", method= {RequestMethod.GET, RequestMethod.POST})
 	public String insertCart(Cart cart, Model model) {
 		model.addAttribute("insertCart", cartService.insertCart(cart));
 		System.out.println("cart insert controller");
 		return "forward:taxfree.do?method=detail&pnum="+cart.getPnum();
 	}
+	
+	// 장바구니 리스트 출력 - O
+	@RequestMapping(params="method=list", method= {RequestMethod.GET, RequestMethod.POST})
+	public String listCart(HttpSession session, Model model) {
+		System.out.println("controller : before to start Service");
+		model.addAttribute("cartList", cartService.listCart(session));
+		System.out.println("controller : finish and go to listCart.jsp");
+		return "cart/listCart";
+	}
+	
+	// 장바구니 항목 1개 삭제 - 진행중
+	@RequestMapping(params="method=delete", method= {RequestMethod.GET, RequestMethod.POST})
+	public String deleteCart(int cartnum, Model model) {
+		model.addAttribute("deleteCart", cartService.deleteCart(cartnum));
+		System.out.println(cartnum + "항목 삭제 완료");
+		return "forward:cart.do?method=list";
+	}
+	
+	
+	
 	
 }
