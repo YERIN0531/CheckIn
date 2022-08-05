@@ -1,0 +1,167 @@
+@charset "UTF-8";
+ section{
+        width:100%;
+        margin: 0 auto;
+        }
+        #list {
+            width: 800px;
+            margin-left:50px;
+        }
+        #lnb{
+        overflow:hidden;
+        width:800px;
+        }
+        #list #lnb ul {
+        }
+            #list #lnb ul li {
+                background-color: #8fa8b3;
+                float: left;
+                width: 12%;
+                height: 35px;
+                line-height: 35px;
+                text-align: center;
+                list-style: none;
+                border-radius: 5px 5px 0 0;
+                margin-left:1px;
+            }
+                #list #lnb ul li:hover {
+                    background-color: #3e6170;
+                }
+
+                #list #lnb ul li a {
+                    font-family: 'IBM Plex Sans KR', sans-serif;
+                    text-decoration: none;
+                    color: white;
+                    font-size: 0.9em;
+                }
+
+            #list #lnb ul li:first-child {
+                background-color: #3e6170;
+            }
+                #list #lnb ul li:first-child a {
+                    font-family: 'IBM Plex Sans KR', sans-serif;
+                    color: white;
+                    font-size:0.9em;
+                    
+                }
+               
+
+         
+            #reserve {
+                padding-left: 4px;
+                background: url("../../image/air.jpg") no-repeat;
+                width: 100%;
+                height: 400px;
+            }
+        #word {
+            color: white;
+            width: 70%;
+            text-align: center;
+            margin: 0 auto;
+            padding-top: 55px;
+        }
+            #word p {
+                font-size: 2.5em;
+                font-family: 'IBM Plex Sans KR', sans-serif;
+                font-family: 'Satisfy', cursive;
+                font-family: 'The Nautigal', cursive;
+                font-family: 'Domine', serif;
+                color: #d1dde4;
+            }
+        #rsform {
+            width: 80%;
+            height: 50%;
+            text-align: center;
+            margin: 0 auto;
+            margin-top: 15px;
+        }
+        #rsform table{
+            padding:2% 3% 3% 3%;
+        }
+            #rsform table .w1 {
+                font-family: 'IBM Plex Sans KR', sans-serif;
+                font-size: 0.7em;
+                color: white;
+                text-align:left;
+                padding-bottom:4px;
+            }
+        #rsform table input{
+            border:1px solid lightgray;
+            height:40px;
+            width:350px;
+
+        }
+
+            #rsform table input[type=submit] {
+                margin: 0 auto;
+                margin-top: 50px;
+                width: 230px;
+                height: 45px;
+                border: none;
+                border-radius: 5px;
+                background-color: #3e6170; /*마지막*/
+                background-color: #3c5d79;
+                background-color: #368e9b;
+                background-color: #2a8593;
+                background-color: #108395;
+                background-color: #3c7f9c;
+                background-color: #50798a;
+                background-color: #214d5f;
+                background-color: #4f6f7c;
+                background-color: #214d5f;
+                background-color: white;
+                background-color: #d1dde4;
+                color:black;
+                color: #3c5d79;
+                font-family: 'IBM Plex Sans KR', sans-serif;
+                font-size: 0.9em;
+                font-weight: bold;
+            }
+
+        h2 {
+            text-align: center;
+            font-family: 'Domine', serif;
+            margin-top: 30px;
+            color: #3c5d79;
+        }
+        #airlist {
+            font-family: 'IBM Plex Sans KR', sans-serif;
+            margin-top: 20px;
+            text-align: center;
+        }
+                #airlist .airticket{
+                width:50%;
+                margin: 0 auto;
+                height:160px;
+                margin-bottom:20px;
+                }
+                #airlist .airticket table{
+                border:1px solid lightgray;
+                box-shadow:3px 3px 3px 3px gray;
+                border-radius:5px;
+                margin:0 auto;
+                height:100%;
+                padding:20px;
+                }
+                    #airlist .airticket table .w2{
+                        font-size:0.9em;
+                    }
+                    #airlist .airticket table .w3 {
+                        font-size: 0.9em;
+                        width:150px;
+                        border-left:1px dashed black;
+                    }
+                    #airlist .airticket table td{
+                    width:200px;
+                    }
+                    #airlist .airticket table button {
+                        margin-top: 15px;
+                        font-family: 'IBM Plex Sans KR', sans-serif;
+                        height: 30px;
+                        width: 75px;
+                        background-color: #3e6170;
+                        background-color: #3c5d79;
+                        color: white;
+                        border: none;
+                        border-radius: 5px;
+                    }

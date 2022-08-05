@@ -8,79 +8,100 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
-	<link href="${conPath }/css/style.css" rel="stylesheet">
+	<link href="${conPath }/css/air/airmain.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Domine:wght@500&family=IBM+Plex+Sans+KR:wght@300;400&family=Libre+Baskerville&family=Nanum+Gothic&family=Satisfy&family=The+Nautigal:wght@400;700&display=swap" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	
 </head>
 <body>
-	<div id="content">
-		<div>
-			<form action="${conPath }/air.do">
-				<input type="hidden" name="method" value="airList">
-				<table>
-				<tr>
-					<td>
-					출발지<br>
-					<input type="text" name="adepartloc" value="${param.adepartloc }">
-					</td>
-					<td>
-					도착지<br>
-					<input type="text" name="aariveloc" value="${param.aariveloc }">
-					</td>
-					<td>
-					가는날<br>
-					<input type="date" name="agodate" value="${param.agodate }">
-					</td>
-					<td>
-					오는날<br>
-					<input type="date" name="acomedate" value="${param.acomedate }">
-					</td>
-					</tr>
-					<tr><td colspan="5">
-						<input type="submit" value="항공권검색">
-					</td></tr>
-				</table>
-			</form>
-		</div>
-		
-			
-		<table>
-			<caption>항공 LIST</caption>
-			<tr>
+<jsp:include page="../main/header.jsp"/>
+	<section>
+        <div id="list">
+            <div id="lnb">
+                <ul>
+                    <li><a href="#">항공</a></li>
+                    <li><a href="#">호텔</a></li>
+                    <li><a href="#">면세점</a></li>
+                    <li><a href="#">게시판</a></li>
+                </ul>
+            </div>
+        </div>
 
-			<td>항공코드</td><td>출발지</td><td>도착지</td><td>출발시간</td><td>도착시간</td><td>출발시간</td><td>도착시간</td><td>항공가격</td>
-			<td>예약</td>
-			</tr>			
-			<c:forEach var="air" items="${airList }">
-			<tr>
-				<td>
-					${air.acode }
-					</td>
-					<td>
-					${air.adepartloc }
-					</td>
-					<td>
-					${air.aariveloc }
-					</td>
-					<td>
-					${air.agotime} 
-					</td>
-					<td>
-					${air.ago_arrivetime }
-					</td>
-					<td>
-					${air.acome_departtime }
-					</td>
-					<td>
-					${air.acome_arrivetime }
-					</td>
-					<td>
-					${air.aprice }
-					</td>
-					<td>
-						<button onclick="location='${conPath }/air.do?method=airReserveForm&acode=${air.acode }&agodate=${param.agodate }&acomedate=${param.acomedate }&aprice=${air.aprice }'">예약하기</button>
-					</td>
-			</tr>
-			</c:forEach>						
-		</table>
-	</div>
+        <div id="reserve">
+            <div id="word">
+                <p>AIR RESERVATION</p>
+            </div>
+            <div id="rsform">
+                <form action="${conPath }/air.do">
+                    <input type="hidden" name="method" value="airList">
+                    <table>
+                        <tr>
+                            <td>
+                                <p class="w1">출발지</p>
+                                <input type="text" name="adepartloc" value="" placeholder="국가(도시)">
+                            </td>
+                            <td>
+                                <p class="w1">도착지</p>
+                                <input type="text" name="aariveloc" value="" placeholder="국가(도시)">
+                            </td>
+                            <td>
+                                <p class="w1">가는날</p>
+                                <input type="date" name="agodate" value="">
+                            </td>
+                            <td>
+                                <p class="w1">오는날</p>
+                                <input type="date" name="acomedate" value="">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="5">
+                                <input type="submit" value="항공권검색">
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+
+        <h2>AIR LIST</h2>
+        <div id="airlist">
+
+            <c:forEach var="air" items="${airList }">
+                <div class="airticket">
+                    <table>
+                        <tr>
+                            <td>
+                                ${air.acode }
+                            </td>
+                            <td>
+                                ${air.agotime}
+                            </td>
+                            <td>------------------------</td>
+                            <td>
+                                ${air.ago_arrivetime }
+                            </td>
+                            <td rowspan="2" colspan="2" class="w3">
+                            ${air.aprice}<br />
+                                <button onclick="location='${conPath }/air.do?method=airReserveForm&acode=${air.acode }&agodate=${param.agodate }&acomedate=${param.acomedate }&aprice=${air.aprice }'">선택</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td> ${air.acode}</td>
+                            <td>
+                                ${air.acome_departtime }
+                            </td>
+                            <td>------------------------</td>
+
+                            <td>
+                                ${air.acome_arrivetime }
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </c:forEach>
+        </div>
+    </section>
+    <jsp:include page="../main/footer.jsp"/>
+<%-- 	<jsp:include page="../main/footer.jsp"/> --%>
 </body>
 </html>
