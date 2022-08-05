@@ -22,6 +22,7 @@
 	</c:if>
 	<c:if test="${not empty member }">
 	<button onclick="location='${conPath}/member.do?method=logout'">로그아웃</button>
+		<h2>${member.mname } 으로 로그인함</h2>
 	</c:if>
 		
 	<button onclick="location='${conPath}/dongjun.do'">동준</button>

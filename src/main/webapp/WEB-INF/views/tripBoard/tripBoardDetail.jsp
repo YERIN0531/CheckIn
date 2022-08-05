@@ -16,8 +16,8 @@
  <script>
  	$(document).ready(function(){
  		$('form').submit(function(){
- 			var mgender = ${member.mgender };
- 			var tgender = ${tripBoard.tgender };
+ 			var mgender = '${member.mgender }';
+ 			var tgender = '${tripBoard.tgender }';
  			if(mgender == tgender || tgender == 'MG'){				
  				return true;
  			} else {
@@ -26,7 +26,7 @@
  			}			
  		});
  	});
- 	function finish(){
+ 	function finishMate(){
  		alert('마감되었습니다.');
  	}
  </script>  
@@ -51,7 +51,18 @@
 				<td>제목 : ${tripBoard.ttitle }</td>
 			</tr>
 			<tr>
-				<td>모집 성별 : ${tripBoard.tgender }</td>
+				<td>
+					모집 성별 :
+					<c:if test="${tripBoard.tgender eq 'M' }">
+						남성
+					</c:if>
+					<c:if test="${tripBoard.tgender eq 'F' }">
+						여성
+					</c:if>
+					<c:if test="${tripBoard.tgender eq 'MG' }">
+						혼성
+					</c:if>
+				</td>
 			</tr>
 			<tr>
 				<td>팀 이름 : ${tripBoard.teamname }</td>
@@ -80,17 +91,24 @@
 				<td>글 본문 : ${tripBoard.tcontent }</td>
 			</tr>
 			<tr>
-				<td>작성 시점 : ${tripBoard.trdate }</td>
+				<td>이미지 태그 써서 사진 뿌리세요 : ${tripBoard.timage }</td>
+			</tr>
+			<tr>
+				<td>작성 시점 : ${tripBoard.trdate }</td>  
 			</tr>
 			<tr>
 				<td>
-					<c:if test="${tripBoard.tnowmembercount != tripBoard.tmaxmembercount }">
+					<c:if test="${tripBoard.tnowmembercount != tripBoard.tmaxmembercount and member.mid != tripBoard.mid}">
 						<input type="submit" value="신청하기">
 					</c:if>										
 					<c:if test="${tripBoard.tnowmembercount eq tripBoard.tmaxmembercount }">
-						<input type="button" value="마감" onclick="finish()">
+						<input type="button" value="마감" onclick="finishMate()">
 					</c:if>
 					<input type="button" value="뒤로가기" onclick="location='${conPath }/trip.do?method=tripBoardList&pageNum=${param.pageNum }'">
+					<c:if test="${mid eq tripBoard.mid }">
+						<input type="button" value="글 수정하기" onclick="location='${conPath }/trip.do?method=tripBoardModifyView&tnum=${tripBoard.tnum }'">
+					</c:if>
+					
 				</td>
 			</tr>
 		</table>

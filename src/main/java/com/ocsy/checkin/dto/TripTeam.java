@@ -16,5 +16,6 @@ public class TripTeam {
 	private String mgender;
 	private Date mbirth;
 	private String memail;
+	private Date ttrdate;
 	
 }

@@ -16,6 +16,8 @@ public interface TripBoardService {
 	public int totCnt(TripMate_Board tripBoard);
 		
 	public TripMate_Board tripBoardDetail(int tnum);
+	
+	public TripMate_Board tripBoardDetailNoHit(int tnum);
 		
 	public int tripWriteBoard(MultipartHttpServletRequest mRequest,HttpServletRequest request,TripMate_Board tripBoard); // 여기에 리더 등록도 같이
 	
@@ -32,4 +34,9 @@ public interface TripBoardService {
 	public int agreeTeam(TripRequest tripRequest);
 	
 	public int disagreeTeam(TripRequest tripRequest);
+	
+	public void applyMailSend(int tnum);
+	
+	public int tripBoardModify(MultipartHttpServletRequest mRequest,TripMate_Board tripBoard);
+	
 }

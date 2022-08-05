@@ -21,7 +21,8 @@
 </head>
   <body>
 	<h1>여행메이트 구인 글 작성 페이지입니다.</h1>
-	<form action="" method="post" enctype="multipart/form-data">
+	<form action="${conPath }/trip.do?method=tripWriteBoard" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="mid" value="${mid }">
 		<table>
 			<tr>
 				<td>
@@ -40,20 +41,28 @@
 			</tr>
 			<tr>
 				<td>
-					여행 스타일 : <input type="radio" name="tstyle" value="tripbusy">바쁜 일정
-								<input type="radio" name="tstyle" value="tripStay">호캉스
+					같이가고싶은 성별 (작성자 성별 : <c:if test="${member.mgender eq 'F' }">여성</c:if>
+											  <c:if test="${member.mgender eq 'M' }">남성</c:if>)
+								<input type="radio" name="tgender" value="${member.mgender }">동성
+								<input type="radio" name="tgender" value="MG">혼성
 				</td>
 			</tr>
 			<tr>
 				<td>
-					숙소 스타일 : <input type="radio" name="thotelstyle" value="cheap">가성비
-								<input type="radio" name="thotelstyle" value="expensive">호화로운
+					여행 스타일 : <input type="radio" name="tstyle" value="TRIPBUSY">바쁜 일정
+								<input type="radio" name="tstyle" value="TRIPSTAY">호캉스
 				</td>
 			</tr>
 			<tr>
 				<td>
-					노는 스타일 : <input type="radio" name="tplaystyle" value="quiet">휴양
-								<input type="radio" name="tplaystyle" value="activity">액티비티
+					숙소 스타일 : <input type="radio" name="thotelstyle" value="CHEAP">가성비
+								<input type="radio" name="thotelstyle" value="EXPENSIVE">호화로운
+				</td>
+			</tr>
+			<tr>
+				<td>
+					노는 스타일 : <input type="radio" name="tplaystyle" value="QUIET">휴양
+								<input type="radio" name="tplaystyle" value="ACTIVITY">액티비티
 				</td>
 			</tr>
 			<tr>
@@ -63,7 +72,7 @@
 			</tr>
 			<tr>
 				<td>
-					파일 : <input type="file" name="timage">
+					파일 : <input type="file" name="temptimage">
 				</td>
 			</tr>
 			<tr>

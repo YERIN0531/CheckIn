@@ -40,4 +40,6 @@ public interface TripBoardDao {
 	public int agreeTeam3(TripRequest tripRequest);
 	
 	public int disagreeTeam(TripRequest tripRequest);
+	
+	public int tripBoardModify(TripMate_Board tripBoard);
 }

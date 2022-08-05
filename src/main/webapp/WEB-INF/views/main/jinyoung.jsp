@@ -11,41 +11,11 @@
 </head>
 <body>
 	<h1>진영이가 구현할 기능들 여기에 버튼 만들고 구현하면 될거같아</h1>
-	<form action="${conPath }/hotel.do?method=schHotel" method="post">
-		<table>
-			<tr>
-				<td>어디에 숙소를 잡고 싶으신가요?</td>	
-			</tr>
-			<tr>
-				<td colspan="3">
-					<input type="text" name="schcountry">
-				</td>
-			</tr>
-			<tr>
-				<td>체크인</td>
-				<td>체크아웃</td>
-				<td>투숙객 인원수</td>
-			</tr>
-			<tr>
-				<td>
-					<input type="date" name="schcheckindate" required="required">
-				</td>
-				<td>
-					<input type="date" name="schcheckoutdate" required="required">
-				</td>
-				<td>
-					<input type="number" name="headcount" required="required">
-				</td>
-			</tr>
-			<tr>
-				<td colspan="3">
-					<input type="submit" value="호텔검색 ->">
-				</td>
-			</tr>
-		</table>
-	</form>
+	
+	<button onclick="location='${conPath }/hotel.do?method=hotelSearch'">호텔 검색하기</button>
 	<button onclick="location='${conPath }/hotel.do?method=insertHotel'">관리자가 숙소등록하기</button>
 	<button onclick="location='${conPath }/hotel.do?method=adminHotelList'">관리자 숙소리스트</button>
 	<button onclick="location='${conPath }/trip.do?method=tripBoardList&pageNum=1'">동행 게시판</button>
+	<button onclick="location='${conPath }/trip.do?method=myTeamList'">나의 동행팀 요청 수락창</button>
 </body>
 </html>
