@@ -227,7 +227,8 @@ CREATE TABLE TRIPTEAM(
     TEAMID NUMBER(10) PRIMARY KEY,   -- 의미없는 시퀀스?
     TNUM REFERENCES TRIPMATE_BOARD(TNUM) NOT NULL,   -- 팀 이름
     MID REFERENCES CUSTOMER(MID) NOT NULL, -- 회원 아이디
-    TSTEP NUMBER(10) NOT NULL
+    TSTEP NUMBER(10) NOT NULL, -- 직급 0이면 팀장 1 이면 팀원
+    TTRDATE DATE DEFAULT SYSDATE NOT NULL  -- 가입 시점
 );
 DROP SEQUENCE TR_SEQ;
 CREATE SEQUENCE TR_SEQ
@@ -240,37 +241,52 @@ CREATE TABLE TRIPREQUEST(
     TRNUM NUMBER(10) PRIMARY KEY,  -- 의미없는 시퀀스
     TNUM REFERENCES TRIPMATE_BOARD(TNUM) NOT NULL, -- 글 번호 
     MID REFERENCES CUSTOMER(MID) NOT NULL, -- 신청한 회원 아이디
-    TRMEMO VARCHAR2(1000) NOT NULL  --  메모 남기기
+    TRMEMO VARCHAR2(1000) NOT NULL,  --  메모 남기기
+    TRRDATE DATE DEFAULT SYSDATE NOT NULL  -- 신청 시점
 );
 
 SELECT * FROM TRIPREQUEST WHERE TNUM IN (SELECT TNUM FROM TRIPMATE_BOARD WHERE MID = 'aaa');
 
 
 SELECT * FROM TRIPMATE_BOARD;
-
-
-SELECT * FROM TRIPMATE_BOARD;
+select * from tripteam;
+select * from tripRequest;
 SELECT * FROM CUSTOMER;
 
-
+commit;
 --동행게시판  글 작성
 INSERT INTO TRIPMATE_BOARD VALUES (TRIP_SEQ.NEXTVAL, 'aaa', '예린이와 여행갈 사람 구해요','MG',5,1,'TRIPBUSY','EXPENSIVE','ACTIVITY','예리니와 여행가실분~!','예린콩순이','예린.JPG',0,SYSDATE,'192.168.10.30');
 INSERT INTO TRIPMATE_BOARD VALUES (TRIP_SEQ.NEXTVAL, 'ccc', '동준이와 여행갈 사람 구해요','MG',5,1, 'TRIPBUSY', 'CHEAP','QUIET','동주니와 여행가실분~!','동준콩돌이','동준.JPG',0,SYSDATE,'192.111.12.30');
+
 -- 글 작성시에 여행팀에도 자동으로 글 작성
-INSERT INTO TRIPTEAM VALUES (TT_SEQ.NEXTVAL,TRIP_SEQ.CURRVAL,'aaa',0);
-INSERT INTO TRIPTEAM VALUES (TT_SEQ.NEXTVAL,2,'aaa',0);
+INSERT INTO TRIPTEAM VALUES (TT_SEQ.NEXTVAL,(select  max(tnum) from TRIPMATE_BOARD ),'aaa',0,SYSDATE);
+INSERT INTO TRIPTEAM VALUES (TT_SEQ.NEXTVAL,(select  max(tnum) from TRIPMATE_BOARD ),'eee',0,SYSDATE);
 
+commit;
 
-    
+-- 원글 수정
+UPDATE TRIPMATE_BOARD SET TTITLE = '수정글',
+                            TGENDER = 'MG',
+                                TMAXMEMBERCOUNT = 4,
+                                    TSTYLE = 'TRIPSTAY',
+                                        THOTELSTYLE = 'CHEAP',
+                                            TPLAYSTYLE = 'QUIET',
+                                                TCONTENT = '수정본문',
+                                                    TEAMNAME = '수정팀이름',
+                                                        TIMAGE = 'ZZ.JPG'
+                                             WHERE TNUM = 1;               
+  select * from tripteam;
+  commit;
 -- 내 여행팀 팀장 조회
-SELECT MID FROM TRIPTEAM WHERE TNUM=1 AND TSTEP=0;
+SELECT MID FROM TRIPTEAM WHERE TSTEP=0;
 -- 내 특정 여행팀 조회
 SELECT TMB.TEAMNAME,TT.*,M.* FROM TRIPTEAM TT, CUSTOMER M, TRIPMATE_BOARD TMB
     WHERE TT.MID = M.MID
         AND TT.TNUM = TMB.TNUM
-            AND TT.TNUM = 1;
+            AND TT.TNUM = 1
+                ORDER BY TSTEP,TTRDATE;
 -- 여행팀에 들어가고싶어서 신청하기
-INSERT INTO TRIPREQUEST VALUES (TR_SEQ.NEXTVAL,1,'bbb','저 이팀에 껴서 같이 여행가고싶어요 제발 껴주세요ㅠㅠ');
+INSERT INTO TRIPREQUEST VALUES (TR_SEQ.NEXTVAL,4,'eee','저 이팀에 껴서 같이 여행가고싶어요 제발 껴주세요ㅠㅠ',SYSDATE);
 INSERT INTO TRIPREQUEST VALUES (TR_SEQ.NEXTVAL,1,'ddd','저 껴주세요 예린님');
 
 -- 내 여행팀 리스트
@@ -280,12 +296,13 @@ SELECT TRB.TEAMNAME,TT.* FROM TRIPTEAM TT, TRIPMATE_BOARD TRB WHERE TT.TNUM = TR
 SELECT TR.*, MNAME,MGENDER,MTEL,MBIRTH FROM TRIPREQUEST TR, CUSTOMER M
     WHERE TR.MID = M.MID
         AND TNUM IN (SELECT TNUM FROM TRIPMATE_BOARD WHERE MID='aaa')
-            AND TNUM=1;
-
+            AND TNUM = 1
+                ORDER BY TRRDATE;
+    commit;       
 -- 여행팀장이 수락했을경우
-INSERT INTO TRIPTEAM VALUES (TR_SEQ.NEXTVAL,1,'ddd',1);
-DELETE FROM TRIPREQUEST WHERE TNUM=1 AND MID='ddd';
-UPDATE TRIPMATE_BOARD SET TNOWMEMBERCOUNT = TNOWMEMBERCOUNT +1 WHERE TNUM=1;
+INSERT INTO TRIPTEAM VALUES (TR_SEQ.NEXTVAL,4,'aaa',1,SYSDATE);
+DELETE FROM TRIPREQUEST WHERE TNUM=2 AND MID='aaa';
+UPDATE TRIPMATE_BOARD SET TNOWMEMBERCOUNT = TNOWMEMBERCOUNT +1 WHERE TNUM=2;
 
 -- 여행팀장이 거절했을경우
 DELETE FROM TRIPREQUEST WHERE TNUM=1 AND MID='bbb';

@@ -43,6 +43,7 @@
 		<result property="mgender" column="mgender" />
 		<result property="mtel" column="mtel" />
 		<result property="mbirth" column="mbirth" />
+		<result property="trrdate" column="trrdate" />
 	</resultMap>
 	
 	<select id="tripBoardList" parameterType="TripMate_Board" resultMap="TripBoardResult"> <!-- 게시판 페이징처리해서 리스트 출력  -->
@@ -60,6 +61,10 @@
         	</if>
         	<if test="tplaystyle != null and tplaystyle != '' ">	
            			AND TPLAYSTYLE = #{tplaystyle}
+           	</if>
+           	<if test="tboard != null and tboard != '' ">
+           				AND MID LIKE '%' || #{tboard} || '%'
+           					OR TTITLE LIKE '%' || #{tboard} || '%'
            	</if>
 	</select>
 	<select id="totCnt" parameterType="TripMate_Board" resultType="int">
@@ -81,15 +86,15 @@
 		SELECT * FROM TRIPMATE_BOARD WHERE TNUM= #{tnum}
 	</select>
 	<update id="tripBoardHitUp" parameterType="int">  <!--  게시판 상세보기시 hitup -->
-		UPDATE TRIPMATE_BOARD SET THIT = THIT +1 WHERE TNUM= #{tnum}
+		UPDATE TRIPMATE_BOARD SET THIT = THIT +1 WHERE TNUM= #{tnum} 
 	</update>
 	
 	<insert id="tripBoardWriteBoard" parameterType="TripMate_Board">  <!--  동행게시판 원글 쓰기  -->
-		INSERT INTO TRIPMATE_BOARD VALUES (TRIP_SEQ.NEXTVAL, #{mid}, #{ttitle},#{tgender},#{tmaxmembbercount},#{tnowmembercount}
-			, #{tstyle},#{thotelstyle},#{tplaystyle},#{tcontent},#{teamname},#{timage},#{thit},SYSDATE,#{tip})
+		INSERT INTO TRIPMATE_BOARD VALUES (TRIP_SEQ.NEXTVAL, #{mid}, #{ttitle},#{tgender},#{tmaxmembercount},1,
+			 #{tstyle},#{thotelstyle},#{tplaystyle},#{tcontent},#{teamname},#{timage},#{thit},SYSDATE,#{tip})
 	</insert>
 	<insert id="tripTeamLeaderInsert" parameterType="String">  <!--  동행게시판 원글 작성시 팀장 생성 -->
-		INSERT INTO TRIPTEAM VALUES (TT_SEQ.NEXTVAL,TRIP_SEQ.CURRVAL,#{mid},0)
+		INSERT INTO TRIPTEAM VALUES (TT_SEQ.NEXTVAL,(SELECT  MAX(TNUM) FROM TRIPMATE_BOARD ),#{mid},0,SYSDATE)
 	</insert>
 	
 	<!-- 특정 팀의 리더 아이디 뽑아내기 -->
@@ -108,11 +113,12 @@
     		WHERE TT.MID = M.MID
        			AND TT.TNUM = TMB.TNUM
             		AND TT.TNUM = #{tnum}
+            			ORDER BY TSTEP,TTRDATE
 	</select>
 	
 	<!--  여행팀에 들어가고싶어서 신청하기 -->
 	<insert id="applyTeam" parameterType="TripRequest">  
-		INSERT INTO TRIPREQUEST VALUES (TR_SEQ.NEXTVAL,#{tnum},#{mid},#{trmemo})
+		INSERT INTO TRIPREQUEST VALUES (TR_SEQ.NEXTVAL,#{tnum},#{mid},#{trmemo},SYSDATE)
 	</insert>
 	
 	 <!-- 여행팀장이 요청 수락 리스트  -->
@@ -121,11 +127,12 @@
    		 WHERE TR.MID = M.MID
       		  AND TNUM IN (SELECT TNUM FROM TRIPMATE_BOARD WHERE MID= #{mid})
       		  	AND TNUM= #{tnum}
+      		  		ORDER BY TRRDATE
 	</select>
 	
 	<!--  여행팀 가입 요청 수락 시  -->
 	<insert id="agreeTeam1" parameterType="TripRequest"> 
-		INSERT INTO TRIPTEAM VALUES (TR_SEQ.NEXTVAL,#{tnum},#{mid},1)
+		INSERT INTO TRIPTEAM VALUES (TR_SEQ.NEXTVAL,#{tnum},#{mid},1,SYSDATE)
 	</insert>
 	<delete id="agreeTeam2" parameterType="TripRequest">
 		DELETE FROM TRIPREQUEST WHERE TNUM=#{tnum} AND MID=#{mid}
@@ -138,6 +145,21 @@
 	<delete id="disagreeTeam" parameterType="TripRequest">
 		DELETE FROM TRIPREQUEST WHERE TNUM=#{tnum} AND MID=#{mid}
 	</delete>
+	
+	<update id="tripBoardModify" parameterType="TripMate_Board">
+		UPDATE TRIPMATE_BOARD SET TTITLE = #{ttitle},
+                            TGENDER = #{tgender},
+                                TMAXMEMBERCOUNT = #{tmaxmembercount},
+                                    TSTYLE = #{tstyle},
+                                        THOTELSTYLE = #{thotelstyle},
+                                            TPLAYSTYLE = #{tplaystyle},
+                                                TCONTENT = #{tcontent},
+                                                    TEAMNAME = #{teamname}
+                                                    <if test="timage != null and timage != '' ">
+                                                       , TIMAGE = #{timage}
+                                                    </if>   
+                                             WHERE TNUM = #{tnum}
+	</update>
 	
 	
 	
