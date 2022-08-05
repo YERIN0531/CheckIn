@@ -20,6 +20,17 @@
  		 			
 		});
 	</script>
+	<style>
+	.seat{
+	 overflow:hidden;
+	}
+	.seat1{
+	float:left;
+	}
+	.seat2{
+	float:left;
+	}
+	</style>
 </head>
 <body>
 	<div class="seat">
@@ -33,47 +44,54 @@
  		<input type="hidden" name="aprice" value="${airDto.aprice }">
  		<input type="text" name="totalprice">
 
-        <table>
+        <table class="seat1">
         <tr>
-	        <td><input type="checkbox" name="seatid" value="a1"></td>
-	        <td><input type="checkbox" name="seatid" value="a2"></td>
-	        <td><input type="checkbox" name="seatid" value="a3"></td>
-	        <td><input type="checkbox" name="seatid" value="a4"></td>
+	        <td><input type="checkbox" name="seatid" value="A1"></td>
+	        <td><input type="checkbox" name="seatid" value="A2"></td>
+	    </tr>
+	    <tr>
+	        <td><input type="checkbox" name="seatid" value="A3"></td>
+	        <td><input type="checkbox" name="seatid" value="A4"></td>
         </tr>
         <tr>
-	        <td><input type="checkbox" name="seatid" value="a5"></td>
-	        <td><input type="checkbox" name="seatid" value="a6"></td>
-	        <td><input type="checkbox" name="seatid" value="a7"></td>
-	        <td><input type="checkbox" name="seatid" value="a8"></td>
+	        <td><input type="checkbox" name="seatid" value="A5"></td>
+	        <td><input type="checkbox" name="seatid" value="A6"></td>
+	    </tr>
+	    <tr>
+	        <td><input type="checkbox" name="seatid" value="A7"></td>
+	        <td><input type="checkbox" name="seatid" value="A8"></td>
         </tr>
         <tr>
-	        <td><input type="checkbox" name="seatid" value="a9"></td>
-	        <td><input type="checkbox" name="seatid" value="a10"></td>
-	        <td><input type="checkbox" name="seatid" value="a11"></td>
-	        <td><input type="checkbox" name="seatid" value="a12"></td>
+	        <td><input type="checkbox" name="seatid" value="A9"></td>
+	        <td><input type="checkbox" name="seatid" value="A10"></td>
+	    </tr>
+	    </table>
+		<table class="seat1">
+	    <tr>
+	        <td><input type="checkbox" name="seatid" value="A11"></td>
+	        <td><input type="checkbox" name="seatid" value="A12"></td>
         </tr>
+		
 		<tr>
-	        <td><input type="checkbox" name="seatid" value="a13"></td>
-	        <td><input type="checkbox" name="seatid" value="a14"></td>
-	        <td><input type="checkbox" name="seatid" value="a15"></td>
-	        <td><input type="checkbox" name="seatid" value="a16"></td>
+	        <td><input type="checkbox" name="seatid" value="A13"></td>
+	        <td><input type="checkbox" name="seatid" value="A14"></td>
+	    </tr>
+	    <tr>
+	        <td><input type="checkbox" name="seatid" value="A15"></td>
+	        <td><input type="checkbox" name="seatid" value="A16"></td>
         </tr>
         <tr>
-	        <td><input type="checkbox" name="seatid" value="a17"></td>
-	        <td><input type="checkbox" name="seatid" value="a18"></td>
-	        <td><input type="checkbox" name="seatid" value="a19"></td>
-	        <td><input type="checkbox" name="seatid" value="a20"></td>
+	        <td><input type="checkbox" name="seatid" value="A17"></td>
+	        <td><input type="checkbox" name="seatid" value="A18"></td>
+	    </tr>
+	    <tr>
+	        <td><input type="checkbox" name="seatid" value="A19"></td>
+	        <td><input type="checkbox" name="seatid" value="A20"></td>
         </tr>
         </table>    
         <input type="submit" value="예약하기">
         </form>
-        </div>
-        <div class="bullets">
-            <label for="slide1">&nbsp;</label>
-            <label for="slide2">&nbsp;</label>
-            <label for="slide3">&nbsp;</label>
-            <label for="slide4">&nbsp;</label>
-        </div>
-    </div>
+        </div> <!-- image -->
+    </div> <!-- seat -->
 </body>
 </html>
