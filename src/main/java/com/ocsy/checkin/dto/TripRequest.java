@@ -11,7 +11,8 @@ public class TripRequest {
 	private String mid;
 	private String trmemo;
 	private String mname;
-	private String mgener;
+	private String mgender;
 	private String mtel;
 	private Date mbirth;
+	private Date trrdate;
 }

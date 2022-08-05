@@ -23,4 +23,6 @@ public class TripMate_Board {
 	private String tip;	
 	private int startRow;
 	private int endRow;
+	private String searchif;
+	private String tboard;
 }

@@ -147,14 +147,28 @@ SELECT * FROM TAXFREE WHERE PNAME LIKE '%'||'샤'||'%';
 -- 상품번호를 받아와서 장바구니 번호랑 회원 아이디, 총 가격, 수량 저장
 INSERT INTO CART (CARTNUM, PNUM, MID, COST, QTY)
     VALUES(CART_SEQ.NEXTVAL, 2, 'aaa', 3*(SELECT PPRICE FROM TAXFREE WHERE PNUM = 2), 3);
--- 2. deleteCart 장바구니 삭제
+-- 2. deleteCartAll 장바구니 전체 삭제 08/04
 DELETE FROM CART WHERE MID = 'aaa';
+-- 2-1. deleteCart 장바구니 리스트 하나 삭제 08/04
+DELETE FROM CART WHERE CARTNUM = 4;
+SELECT * FROM CART;
+
 -- 3. listCart 장바구니 리스트
 SELECT * FROM CART C, TAXFREE T WHERE C.PNUM = T.PNUM AND MID = 'aaa' ;
 
--- 4. 장바구니 총 수량
+-- 4. 장바구니 총 수량 (페이징 위한)
 SELECT COUNT(*) FROM CART WHERE MID='aaa';
 
+-- 5. 장바구니에 담은 물품 수량 수정하고 싶을때 **** 08/04
+-- updateCart
+SELECT * FROM CART WHERE MID = 'aaa';
+SELECT * FROM TAXFREE;
+-- INSERT INTO CART (CARTNUM, PNUM, MID, COST, QTY)
+--     VALUES(CART_SEQ.NEXTVAL, 2, 'aaa', 3*(SELECT PPRICE FROM TAXFREE WHERE PNUM = 2), 3)
+UPDATE CART SET QTY = 2+(SELECT QTY FROM CART WHERE PNUM = 1 AND MID = 'aaa'),
+                COST = (2+(SELECT QTY FROM CART WHERE PNUM = 1 AND MID = 'aaa')) * (SELECT PPRICE FROM TAXFREE WHERE PNUM = 1)
+            WHERE PNUM = 1 AND MID = 'aaa';
+                
 
 -- SQL / 주문테이블 ORDERS
 -- 1. insertOrderDetail 주문 
