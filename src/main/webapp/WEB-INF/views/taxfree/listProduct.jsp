@@ -10,7 +10,7 @@
   <title>Insert title here</title>
   <link href="${conPath }/css/style.css" rel="stylesheet">
  <style>
- 	table {
+ 	/* table {
  	margin: 0 auto;
  	padding: 0;
  	text-align: center;
@@ -28,7 +28,7 @@
  	.paging {
  	text-align: center;
  	margin-bottom: 70px;
- 	}
+ 	} */
  </style>
  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
  <script>
