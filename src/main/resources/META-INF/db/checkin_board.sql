@@ -42,31 +42,35 @@ INSERT INTO QNA_BOARD(QNUM,QID,QTITLE,QCONTENT,QIP,QSECRET,QPASSWORD,QGROUP,QSTE
 INSERT INTO QNA_BOARD(QNUM,QID,QTITLE,QCONTENT,QIP,QSECRET,QPASSWORD,QGROUP,QSTEP,QINDENT)
     VALUES(QNA_SEQ.NEXTVAL,'aaa','문의제목','문의본문','192.168.10.30',1,333,QNA_SEQ.NEXTVAL,0,0);
 SELECT * FROM QNA_BOARD ORDER BY QGROUP DESC, QSTEP;
-
+-- 공개글
+INSERT INTO QNA_BOARD(QNUM,QID,QTITLE,QCONTENT,QFILE1,QFILE2,QIP,QSECRET,QGROUP,QSTEP,QINDENT)
+    VALUES(QNA_SEQ.NEXTVAL,'ccc','공개글','문의본문4','noimg.jpg4','noimg.jpg4','192.168.10.30',0,QNA_SEQ.NEXTVAL,0,0);
+    commit;
 --1.글목록 listQna
 SELECT * FROM (SELECT ROWNUM RN, A.* 
             FROM (SELECT * FROM QNA_BOARD ORDER BY QGROUP DESC, QSTEP) A)
-        WHERE RN BETWEEN 1 AND 10;
+        WHERE RN BETWEEN 1 AND 50;
        
-        
+      select * from qna_board;  
 --2. 1번글에대한 답변(관리자만 답변가능 qid 관리자 아이디)
 --replyQna
 INSERT INTO QNA_BOARD (QNUM,QID,QSECRET,QPASSWORD, QTITLE, QCONTENT,QGROUP, QSTEP, QINDENT, QIP)
-    VALUES (QNA_SEQ.NEXTVAL, 'admin',1,111,'관리자답변1','관리자답변본문1',1, 1, 1, '192.168.20.31');
+    VALUES (QNA_SEQ.NEXTVAL, 'admin',1,111,'관리자답변','관리자답변본문',11, 1, 1, '192.168.20.31');
     commit;
 -- 더미데이터 (위의 1번글에 대한 두번째 답변글)
 
--- 3. 답변글 추가전 STEP a 수행
--- replyPreStepQna
-UPDATE QNA_BOARD SET QSTEP = QSTEP+1 
-    WHERE QGROUP = 1 AND QSTEP>0;
---1번글에대한 답답변
-INSERT INTO QNA_BOARD (QNUM,QID,QSECRET,QPASSWORD, QTITLE, QCONTENT,QGROUP, QSTEP, QINDENT, QIP)
-    VALUES (QNA_SEQ.NEXTVAL, 'aaa',1,111,'답답글','답답본문',1, 3, 2, '192.168.20.31');
+---- 필요 없음 3. 답변글 추가전 STEP a 수행
+---- replyPreStepQna
+--UPDATE QNA_BOARD SET QSTEP = QSTEP+1 
+--    WHERE QGROUP = 1 AND QSTEP>0;
+----1번글에대한 답답변
+--INSERT INTO QNA_BOARD (QNUM,QID,QSECRET,QPASSWORD, QTITLE, QCONTENT,QGROUP, QSTEP, QINDENT, QIP)
+--    VALUES (QNA_SEQ.NEXTVAL, 'aaa',1,111,'답답글','답답본문',1, 3, 2, '192.168.20.31');
 
 --4.(비밀글)QNUM,QPASSWORD,QSECRET(비밀글여부)로 본인글 상세보기(DTO)
 -- detailQna
 SELECT * FROM QNA_BOARD WHERE QNUM=1 AND QPASSWORD=111 AND QSECRET=1;
+SELECT * FROM QNA_BOARD WHERE QNUM=1;
 --5. 글 개수 
 -- countQna
 SELECT COUNT(*) FROM QNA_BOARD;
@@ -74,6 +78,8 @@ SELECT COUNT(*) FROM QNA_BOARD;
 --insertQna(비밀글)
 INSERT INTO QNA_BOARD(QNUM,QID,QTITLE,QCONTENT,QFILE1,QFILE2,QIP,QSECRET,QPASSWORD,QGROUP,QSTEP,QINDENT)
     VALUES(QNA_SEQ.NEXTVAL,'ccc','문의제목4','문의본문4','noimg.jpg4','noimg.jpg4','192.168.10.30',1,111,QNA_SEQ.NEXTVAL,0,0);
+    commit;
+
 --insertQna(공개글 qsecret 0  , qpassword 없이)
 INSERT INTO QNA_BOARD(QNUM,QID,QTITLE,QCONTENT,QFILE1,QFILE2,QIP,QSECRET,QGROUP,QSTEP,QINDENT)
     VALUES(QNA_SEQ.NEXTVAL,'ccc','공개글','공개글','noimg.jpg4','noimg.jpg4','192.168.10.30',0,QNA_SEQ.NEXTVAL,0,0);
@@ -84,13 +90,14 @@ SELECT * FROM QNA_BOARD;
 UPDATE QNA_BOARD SET QHIT = QHIT +1 WHERE QNUM=1;
 --8.글 수정
 --modifyQna
-UPDATE QNA_BOARD SET QTITLE ='수정제목1',
+UPDATE QNA_BOARD SET QTITLE ='관리자답변',
                      QCONTENT = '수정본문1',
                      QIP    = '192',
                      QFILE1 = 'update.jpg',
                      QFILE2 = 'update.jpg',
                      QPASSWORD = '123'
-                     WHERE QNUM = 1;
+                     WHERE QNUM = 4;
+                    commit;
 --9.글삭제
 --deleteQna
 --원글 지울때 답글 다지우기 
@@ -98,6 +105,30 @@ SELECT * FROM QNA_BOARD;
 DELETE FROM QNA_BOARD WHERE QGROUP = 1 AND (QSTEP>=0 AND QSTEP<(select NVL(MIN(QSTEP),9999) FROM QNA_BOARD WHERE QGROUP=1 AND QSTEP>0 AND QINDENT<=0));
 --qnum으로 글지우기 
 DELETE FROM QNA_BOARD WHERE qnum =8;
+
+--답변글 여부 adminreply
+SELECT QGROUP,COUNT(*)as FROM QNA_BOARD GROUP BY QGROUP HAVING  as > 1;
+SELECT QGROUP,COUNT(*) FROM QNA_BOARD  GROUP BY QGROUP HAVING COUNT(*) > 1;
+SELECT * FROM QNA_BOARD;           
+--SELECT * FROM QNA_BOARD WHERE QGROUP >
+---- 연습
+SELECT COUNT(*) FROM QNA_BOARD where qgroup=1  GROUP BY QGROUP HAVING COUNT(*) > 1;
+--최종 답변글여부 뿌리기 
+SELECT qb.*, nvl((SELECT COUNT(*) FROM QNA_BOARD where qgroup=qb.qgroup  GROUP BY QGROUP HAVING COUNT(*) > 1),0) replyCnt FROM QNA_BOARD qb ORDER BY QGROUP DESC, QSTEP
+;
+--연습
+SELECT *FROM(SELECT ROWNUM RN, qb.* FROM (SELECT QNUM, QID , QTITLE, QCONTENT,QRDATE,QSECRET,QIP,QHIT,QGROUP,QINDENT,QSTEP,
+nvl((SELECT COUNT(*) FROM QNA_BOARD where qgroup=qb.qgroup  GROUP BY QGROUP HAVING COUNT(*) > 1),0) replyCnt FROM QNA_BOARD qb ORDER BY QGROUP DESC, QSTEP)qb)
+WHERE RN BETWEEN 1 AND 10;
+
+--연습
+
+SELECT * FROM (SELECT ROWNUM RN, A.*  
+            FROM (SELECT * FROM QNA_BOARD ORDER BY QGROUP DESC, QSTEP) A)
+        WHERE RN BETWEEN 1 AND 10;
+-- 연습
+SELECT COUNT(*) FROM QNA_BOARD;
+SELECT COUNT(*) FROM QNA_BOARD WHERE QGROUP =1;
 ----------------------------QNA_BOARD-----------------------------------------
 ------------------------------------------------------------------------------
 ------------------------------------------------------------------------------
