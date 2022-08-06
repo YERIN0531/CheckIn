@@ -43,7 +43,6 @@
 	     <c:if test="${qnaDto.qfile2 != null or '' }">
 	       <img src="${conPath }/fileUpload/${qnaDto.qfile2 }" width='200'>
 	    </c:if>
-	   
 	</tr>
 	<tr>
 	  <td colspan="3">
@@ -55,7 +54,6 @@
 	  	<button onclick="location='qna.do?method=qnareplyForm&qnum=${qnaDto.qnum}&pageNum=${param.pageNum}'">답변</button>
 	  	</c:if>
 	  </td>
-	  
 	  <c:if test="${not empty admin }">
 	  	<button onclick="location='qna.do?method=qnareplyForm&qnum=${qnaDto.rnum}&pageNum=${param.pageNum}'">답변</button>
 	  </c:if>

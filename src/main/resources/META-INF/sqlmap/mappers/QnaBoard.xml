@@ -10,12 +10,15 @@
 		<result property="qcontent" column="qcontent"/>
 		<result property="qfile1" column="qfile1"/>
 		<result property="qfile2" column="qfile2"/>
+		<result property="qhit" column="qhit"/>
 		<result property="qip" column="qip"/>
 		<result property="qrdate" column="qrdate"/>
 		<result property="qsecret" column="qsecret"/>
+		<result property="qpassword" column="qpassword"/>
 		<result property="qgroup" column="qgroup"/>
 		<result property="qstep" column="qstep"/>
 		<result property="qindent" column="qindent"/>
+		<result property="replycnt" column="replycnt"/>
 	</resultMap>
 	<!-- 1.글목록 listQna -->
 	<select id="listQna" parameterType="QnaBoard" resultMap="QnaResult">

@@ -83,7 +83,7 @@ public class QnaController {
 	public String insertQna(MultipartHttpServletRequest mRequest, HttpServletRequest request, QnaBoard qna, Model model) {
 		model.addAttribute("insertQna", qnaService.insertQna(mRequest, request, qna));
 		return "forward:qna.do?method=qnaList";
-		
+		//a 했으면   ,string a 추가 , a
 	}
 }
 

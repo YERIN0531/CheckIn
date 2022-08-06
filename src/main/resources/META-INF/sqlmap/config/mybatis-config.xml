@@ -12,6 +12,8 @@
  		<typeAlias type="com.ocsy.checkin.dto.NoticeBoard" alias="NoticeBoard"/>
  		<typeAlias type="com.ocsy.checkin.dto.QnaBoard" alias="QnaBoard"/>
  		
+ 		<typeAlias type="com.ocsy.checkin.dto.Manager" alias="Manager"/>
+ 		
  		<typeAlias type="com.ocsy.checkin.dto.Taxfree" alias="Taxfree"/>
  		<typeAlias type="com.ocsy.checkin.dto.Cart" alias="Cart"/>
  		<typeAlias type="com.ocsy.checkin.dto.Hotel" alias="Hotel"/>
@@ -33,7 +35,7 @@
  		<mapper resource="META-INF/sqlmap/mappers/Cart.xml"/>
  		<mapper resource="META-INF/sqlmap/mappers/Hotel.xml"/>
  		<mapper resource="META-INF/sqlmap/mappers/TripMate.xml"/>
-
+		<mapper resource="META-INF/sqlmap/mappers/Manager.xml"/>
 
     </mappers>
  </configuration>

@@ -15,11 +15,9 @@
       <form action="${conPath }/qna.do?method=secreat" method="post" >
       <input type="hidden" name="qnum" value="${param.qnum }">
       <input type="hidden" name="pageNum" value="${param.pageNum }">
-      
-      <c:if test=""></c:if>
          <table>
-            <caption>비밀글</caption>
-           
+            <caption>비밀글${c }</caption>
+            
             <tr>
                <th>비밀번호</th>
                <td>

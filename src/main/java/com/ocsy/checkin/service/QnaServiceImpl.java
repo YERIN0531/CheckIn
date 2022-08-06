@@ -210,12 +210,13 @@ public class QnaServiceImpl implements QnaService {
 	@Override
 	public QnaBoard detailQna(QnaBoard qna) {
 		qnaDao.hitupQna(qna.getQnum());
+		System.out.println(qna);
 		return qnaDao.detailQna(qna);
 	}
 
 	@Override
 	public QnaBoard detailSecreat(QnaBoard qna) {
-		
+		System.out.println(qna);
 		return qnaDao.detailSecreat(qna);
 	}
 

@@ -2,7 +2,19 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<c:set var="conPath" value="${pageContext.request.contextPath }"/>   
+<c:set var="conPath" value="${pageContext.request.contextPath }"/>
+<c:if test="${not empty admin }">
+	<c:set var="aid" value="${admin.aid }"/>
+	<c:set var="mid" value=""/>
+</c:if> 
+<c:if test="${not empty member }">
+	<c:set var="mid" value="${member.mid }"/>
+	<c:set var="aid" value=""/>
+</c:if>
+<c:if test="${empty member and empty manager }">
+   <c:set var="aid" value=""/>
+   <c:set var="mid" value=""/>
+</c:if>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,11 +24,18 @@
    <script src="http://code.jquery.com/jquery-3.6.0.js"></script>
 	<script>
 	$(document).ready(function(){ // jquery 
+		var aid = '${aid}';
+		var mid = '${mid}';
 			$('tr').click(function(){
 				var rnum = Number($(this).children().eq(0).text());
 				if(!isNaN(rnum)){
-					 alert(rnum); 
-					 location.href = '${conPath }/review.do?method=detailReview&rnum='+rnum+'&pageNum=${paging.currentPage}';
+					if(aid == '' && mid == ''){
+						alert('로그인 후 이용 가능 합니다.');
+					    location.href = '${conPath}/member.do?method=loginForm';
+					}else if(aid != '' || mid != ''){
+						 location.href = '${conPath }/review.do?method=detailReview&rnum='+rnum+'&pageNum=${paging.currentPage}';
+					}
+					 
 			}
 		});
 	});

@@ -117,11 +117,14 @@ DROP TABLE MANAGER;
 CREATE TABLE MANAGER(
     AID VARCHAR2(20) PRIMARY KEY,
     APW VARCHAR2(20) NOT NULL,
-    ANAME VARCHAR2(20) NOT NULL,
-    AEMAIL VARCHAR2(50) NOT NULL
+ 
+•••
+   ANAME VARCHAR2(20) NOT NULL,
+    AEMAIL VARCHAR2(50) NOT NULL,
+    gradfe 
 );
 
-INSERT INTO MANAGER VALUES ('admin','123','총관리자','chlwlsdud69@naver.com');
+INSERT INTO MANAGER VALUES ('1','123','총관리자','chlwlsdud69@naver.com');
 INSERT INTO MANAGER VALUES ('subadmin','123','서브관리자','kok3443@naver.com');
     --1.관리자 등록
     -- joinAdmin
@@ -137,8 +140,12 @@ INSERT INTO MANAGER VALUES ('subadmin','123','서브관리자','kok3443@naver.co
     -- withdrawAdmin
      DELETE FROM MANAGER WHERE AID='DELETE ';
     
-
-SELECT * FROM MANAGER;
+    --5. 관리자 리스트 adminList
+    SELECT * FROM MANAGER;
+    --6. 관리자 메일 
+    SELECT COUNT(*) FROM MANAGER WHERE AEMAIL ='kok3443@naver.com';
+    --7. 관리자 상세보기
+    SELECT * FROM MANAGER WHERE AID ='subadmin';
 --------------------------MANAGER------------------------------------------------
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------

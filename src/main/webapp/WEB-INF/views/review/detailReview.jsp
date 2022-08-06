@@ -56,23 +56,20 @@
    		  <th>글본문</th>
    		  <td colspan="2">${reviewDto.rcontent }</td></tr>
    		  <tr><td colspan="3">
-   		  <c:if test="${not empty admin }"> <!-- 관리자 로그인 시  삭제  -->
+   		  <c:if test="${not empty manager }"> <!-- 관리자 로그인 시  삭제  -->
    		  <button onclick="location='review.do?method=deleteReview&rgroup=${reviewDto.rgroup}&rstep=${reviewDto.rstep}&rindent=${reviewDto.rindent}&pageNum=${param.pageNum}'">삭제</button>
-   			
+   		   <button onclick="location='review.do?method=replyForm&rnum=${reviewDto.rnum}&pageNum=${param.pageNum}'">답변</button>	
    		  </c:if>
    		  <c:if test="${member.mid eq reviewDto.mid }"> <!-- 본인 글 수정 삭제  -->
 				<button onclick="location='review.do?method=reviewmodifyForm&rnum=${reviewDto.rnum}&pageNum=${param.pageNum}'">수정</button>
-				
 				<button onclick="location='review.do?method=deleteReview&rgroup=${reviewDto.rgroup}&rstep=${reviewDto.rstep}&rindent=${reviewDto.rindent}&pageNum=${param.pageNum}'">삭제</button>
+				
 		 </c:if>
 		 <c:if test="${not empty member }"> <!-- 회원 로그인시 답변 가능 -->
 		 	<button onclick="location='review.do?method=replyForm&rnum=${reviewDto.rnum}&pageNum=${param.pageNum}'">답변</button>
 		 </c:if>
 		 <!-- 비회원자는 목록만 나오게  -->
-		 <button onclick="location='review.do?method=reviewmodifyForm&rnum=${reviewDto.rnum}&pageNum=${param.pageNum}'">수정</button>
 		 <button onclick="location='review.do?method=reviewList&pageNum=${param.pageNum}'">목록</button>	
-		 <button onclick="location='review.do?method=deleteReview&rgroup=${reviewDto.rgroup}&rstep=${reviewDto.rstep}&rindent=${reviewDto.rindent}&pageNum=${param.pageNum}'">삭제</button>
-		 	<button onclick="location='review.do?method=replyForm&rnum=${reviewDto.rnum}&pageNum=${param.pageNum}'">답변</button>
   	</table>
    </div>
 </body>
