@@ -51,9 +51,6 @@
 			//var qty = Number($( 'input[type="number"]' ).$(.class).val()); // 첫번째 수만 받아오지ㅇ 왜...
 			// var qty = $( 'input[type="number"] .qty${cart.cartnum }' ).attr( 'value' ); // 첫번째 수만 받아오지ㅇ 왜...
 			// var qty = $('.qty${cart.cartnum }').val(); // undifined
- 			//alert(qty);
- 			//alert(cartnum); // 정상적으로 받아져 옴.
-			location.href='${conPath}/cart.do?method=modify&cartnum='+cartnum+'&qty='+qty;
 			//var cartnum = $(this).attr('id');
 			//var qty = $(this).parent("td").find("input").val();
 			//var qty2 = $("input[type='number']").val(".qty${cart.cartnum }");
@@ -62,6 +59,9 @@
 			//alert(qty);
 			//alert(qty2); */
 			
+ 			alert(cartnum); // 정상적으로 받아져 옴.
+ 			alert(qty);
+			location.href='${conPath}/cart.do?method=modify&cartnum='+cartnum+'&qty='+qty;
 		
 		  });
 		
