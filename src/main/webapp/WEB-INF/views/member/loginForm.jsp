@@ -12,6 +12,17 @@
 	 <link href="https://fonts.googleapis.com/css2?family=Domine:wght@500&family=IBM+Plex+Sans+KR:wght@300;400&family=Libre+Baskerville&family=Nanum+Gothic&family=Satisfy&family=The+Nautigal:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
+	<c:if test="${joinResult eq 1 }">
+		<script>
+			alert('회원가입에 성공하였습니다.');
+		</script>
+	</c:if>
+	<c:if test="${joinResult eq 0 }">
+		<script>
+			alert('회원가입에 실패했습니다.');
+			history.back();
+		</script>
+	</c:if>
 <jsp:include page="../main/header.jsp"/>
   <section>
         <div id="main">
@@ -24,7 +35,7 @@
                         </tr>
                         <tr><td colspan="2" class="secondtd">LOGIN</td></tr>
                         <tr>
-                            <td><input type="text" name="mid" placeholder="아이디" /></td>
+                            <td><input type="text" name="mid" placeholder="아이디"  value="${mid }"/></td>
                         </tr>
                         <tr>
                             <td><input type="password" name="mpw" placeholder="사용자암호" /></td>
@@ -34,7 +45,7 @@
                         </tr>
                         <tr>
                             <td colspan="2" class="thirdtd">
-                                <a href="#">아이디/비번찾기</a> | <a href="#">회원가입</a>
+                                <a href="#">아이디/비번찾기</a> | <a href="${conPath }/member.do?method=joinAgreePage">회원가입</a>
                             </td>
                         </tr>
 

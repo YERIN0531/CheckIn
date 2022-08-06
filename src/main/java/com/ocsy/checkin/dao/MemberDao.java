@@ -13,4 +13,8 @@ public interface MemberDao {
 	public int minusMileage(Member member);
 	
 	public int plusMileage(Member member);
+	
+	public int idConfirm(String mid);
+	
+	public int joinMember(Member member);  // 회원가입
 }

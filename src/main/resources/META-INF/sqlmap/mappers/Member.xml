@@ -31,6 +31,9 @@
   	<select id="getMember" parameterType="String" resultType="Member">
   		SELECT * FROM CUSTOMER WHERE MID= #{mid}
   	</select>
+  	<select id="idConfirm" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM CUSTOMER WHERE MID = #{mid}
+	</select>
   	
   	
   	<update id="minusMileage" parameterType="Member">
@@ -41,6 +44,10 @@
   		UPDATE CUSTOMER SET MMILEAGE = MMILEAGE + ( #{paymoney} *0.03)
                     WHERE MID= #{mid}
   	</update>
+  	<insert id="joinMember" parameterType="Member">
+  		INSERT INTO CUSTOMER VALUES (#{mid}, #{mpw}, #{mname}, #{mename},#{mpassport},
+  			#{mtel},#{mpost},#{maddress},#{mdeaddress},#{mgender},#{mbirth},1,#{memail},SYSDATE,0,0)
+  	</insert>
   	
   </mapper>
   

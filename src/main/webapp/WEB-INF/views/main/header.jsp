@@ -20,8 +20,11 @@
             <div id="right">
                 <ul>
                     <li><a href="#">NOTICE</a></li>
-                    <li><a href="#">JOIN</a></li>
+                    <li><a href="${conPath }/member.do?method=joinAgreePage">JOIN</a></li>
                     <li><a href="${conPath }/member.do?method=loginForm">LOGIN</a></li>
+                    <c:if test="${not empty member }">
+                    	<li><a href="">${member.mname } 님</a></li>
+                    </c:if>
                 </ul>
             </div>
         </div>

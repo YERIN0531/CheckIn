@@ -39,4 +39,6 @@ public interface TripBoardService {
 	
 	public int tripBoardModify(MultipartHttpServletRequest mRequest,TripMate_Board tripBoard);
 	
+	public void agreeMailSend(TripRequest tripRequest);
+	
 }

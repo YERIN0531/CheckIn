@@ -14,4 +14,8 @@ public interface MemberService {
 	
 	public int plusMileage(Member member,HttpSession httpSession);
 	
+	public int idConfirm(String mid);
+	
+	public int joinMember(Member member, HttpSession httpSession);
+	
 }

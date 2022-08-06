@@ -32,7 +32,8 @@ INSERT INTO CUSTOMER VALUES
             ('fff', '123', '동구', 'DONG',NULL,'010-5555-6666','12349','서울 낙성대역','105동 105호','m','19960826',1,'dong@naver.com',SYSDATE,0,0);
 --2. 아이디 중복체크
 --idConfirm
-SELECT * FROM CUSTOMER WHERE MID='aaa';
+SELECT COUNT(*) FROM CUSTOMER WHERE MID = 'aaa';
+commit;
 
 --2. 로그인
 --loginMember

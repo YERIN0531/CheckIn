@@ -16,6 +16,7 @@
 	<button onclick="location='${conPath }/hotel.do?method=insertHotel'">관리자가 숙소등록하기</button>
 	<button onclick="location='${conPath }/hotel.do?method=adminHotelList'">관리자 숙소리스트</button>
 	<button onclick="location='${conPath }/trip.do?method=tripBoardList&pageNum=1'">동행 게시판</button>
-	<button onclick="location='${conPath }/trip.do?method=myTeamList'">나의 동행팀 요청 수락창</button>
+	<button onclick="location='${conPath }/trip.do?method=myTeamList'">마이페이지 나의 여행팀</button>
+	<button onclick="location='${conPath }/trip.do?method=dollarApi'">환율</button>
 </body>
 </html>

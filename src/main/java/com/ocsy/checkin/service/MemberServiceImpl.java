@@ -51,11 +51,22 @@ public class MemberServiceImpl implements MemberService {
 	}
 	@Override
 	public int plusMileage(Member member,HttpSession httpSession) {
-		System.out.println("매개변수로 받은 멤버 : "+member);
 		Member newMember = memberDao.getMember(member.getMid());
-		System.out.println("매개변수로 받은 아이디로 다시 멤버 조회 후 멤버 : "+newMember);
 		httpSession.setAttribute("member", newMember);
 		return memberDao.plusMileage(member);
+	}
+	@Override
+	public int idConfirm(String mid) {
+		return memberDao.idConfirm(mid);
+	}
+	@Override
+	public int joinMember(Member member, HttpSession httpSession) {
+		int result = memberDao.joinMember(member);
+		System.out.println(result == 1 ? "회원가입 성공" : "회원가입 실패");
+		if(result == 1) {
+			httpSession.setAttribute("mid", member.getMid());
+		}
+		return result;
 	}
 	
 

@@ -4,18 +4,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.ocsy.checkin.dto.TripMate_Board;
 import com.ocsy.checkin.dto.TripRequest;
-import com.ocsy.checkin.service.MemberService;
 import com.ocsy.checkin.service.TripBoardService;
 import com.ocsy.checkin.util.Paging;
 
@@ -24,9 +20,6 @@ import com.ocsy.checkin.util.Paging;
 public class TripController {
 	@Autowired
 	private TripBoardService tripService;
-	
-	@Autowired
-	private MemberService memberService;
 	
 	@RequestMapping(params="method=tripBoardList",method= {RequestMethod.GET, RequestMethod.POST})
 	public String tripBoardList(TripMate_Board tripBoard,String pageNum, Model model) {
@@ -92,5 +85,23 @@ public class TripController {
 	public String myTeamApplyList(TripRequest tripRequest, Model model) {
 		model.addAttribute("myteamApplyList",tripService.myTeamApplyList(tripRequest));
 		return "myPage/myTeamApplyList";
+	}
+	
+	@RequestMapping(params="method=agreeTeam",method= {RequestMethod.GET, RequestMethod.POST})
+	public String agreeTeam(TripRequest tripRequest,HttpSession httpSession, Model model) {
+		model.addAttribute("agreeTeamResult",tripService.agreeTeam(tripRequest));
+		tripService.agreeMailSend(tripRequest);
+		return "forward:trip.do?method=myTeamList";
+	}
+	
+	@RequestMapping(params="method=disagreeTeam",method={RequestMethod.GET, RequestMethod.POST})
+	public String disagreeTeam(TripRequest tripRequest, Model model) {
+		model.addAttribute("disagreeTeamResult",tripService.disagreeTeam(tripRequest));
+		return "forward:trip.do?method=myTeamList";
+	}
+	
+	@RequestMapping(params="method=dollarApi",method={RequestMethod.GET, RequestMethod.POST})
+	public String dollarApi() {
+		return "main/dollarApi";
 	}
 }

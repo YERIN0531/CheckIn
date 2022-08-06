@@ -95,7 +95,7 @@
 					</td>
 				</tr>
 				</c:if>
-			</c:forEach>			
+			</c:forEach>
 	</table>
   </body>
 </html>

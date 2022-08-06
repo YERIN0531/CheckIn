@@ -20,6 +20,26 @@
  </script>  
 </head>
   <body>
+  	<c:if test="${agreeTeamResult eq 3 }">  
+		<script>
+			alert('요청 수락이 완료되었습니다.');
+		</script>
+	</c:if>
+	<c:if test="${not empty agreeTeamResult and agreeTeamResult != 3 }">
+		<script>
+			alert('요청 수락에 실패했습니다');
+		</script>
+	</c:if>
+	<c:if test="${disagreeTeamResult eq 1 }">  
+		<script>
+			alert('요청을 거절 처리 완료했습니다.');
+		</script>
+	</c:if>
+	<c:if test="${not empty disagreeTeamResult and disagreeTeamResult eq 0 }">
+		<script>
+			alert('요청 거절 처리에 실패하였습니다.');
+		</script>
+	</c:if>
 	<h1>나의 여행팀 리스트 페이지입니다.</h1>
 	<table>
 		<c:forEach var="teamList" items="${myTeamList }">
@@ -37,5 +57,6 @@
 			</tr>				
 		</c:forEach>
 	</table>
+	<button onclick="location='${conPath }/main.do'">메인으로</button>
   </body>
 </html>
