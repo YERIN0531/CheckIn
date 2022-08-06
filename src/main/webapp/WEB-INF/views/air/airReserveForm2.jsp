@@ -9,8 +9,8 @@
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
 	<link href="${conPath }/css/style.css" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Domine:wght@500&family=IBM+Plex+Sans+KR:wght@300;400&family=Libre+Baskerville&family=Nanum+Gothic&family=Satisfy&family=The+Nautigal:wght@400;700&display=swap" rel="stylesheet">
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<link href="https://fonts.googleapis.com/css2?family=Domine:wght@500&family=IBM+Plex+Sans+KR:wght@300;400&family=Libre+Baskerville&family=Nanum+Gothic&family=Satisfy&family=The+Nautigal:wght@400;700&display=swap" rel="stylesheet">
 	<script>
 		$(document).ready(function(){
 			$("input[type='checkbox']").click(function(){
@@ -34,6 +34,7 @@
 	</style>
 </head>
 <body>
+안녕하
 	<div class="seat">
         <div class="image">
  		<form action="air.do">

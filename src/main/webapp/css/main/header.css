@@ -39,6 +39,7 @@
                             color: #3c5d79;
                             text-decoration: none;
                             font-size: 1.14em;
+                            font-family: 'Domine', serif;
                         }
 
                     header #gnb #logo .p2 {
@@ -53,6 +54,7 @@
                             font-size: 0.9em;
                             font-weight: bold;
                             font-family: 'Libre Baskerville', serif;
+                            font-family: 'Domine', serif;
                         }
 
                 header #gnb #left a {

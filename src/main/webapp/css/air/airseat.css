@@ -1,0 +1,162 @@
+@charset "UTF-8";
+ *{
+ padding:0px;
+ margin:0px;
+ }
+            #reserve {
+                padding-left: 4px;
+                background: url("../../image/air.jpg") no-repeat;
+                width: 100%;
+                height: 150px;
+            }
+        #word {
+            color: white;
+            width: 70%;
+            text-align: center;
+            margin: 0 auto;
+            padding-top: 55px;
+        }
+            #word p {
+                font-size: 2.5em;
+                font-family: 'IBM Plex Sans KR', sans-serif;
+                font-family: 'Satisfy', cursive;
+                font-family: 'The Nautigal', cursive;
+                font-family: 'Domine', serif;
+                color: #d1dde4;
+            }
+ 
+ 
+ 
+ 
+ 
+ 
+ input[type="checkbox"] {display: none;}
+ img{
+ width:40px;
+ height:40px;
+ }
+#formdiv{
+overflow:hidden;
+width:100%;
+margin:0 auto;
+padding-top:2%;
+
+
+}
+#seatprice{
+float:left;
+width:20%;
+margin-left:12%; 
+margin-top:15%; 
+height:350px;      
+}
+#seatprice table{
+	border: 1px solid #3c5d79;
+	text-align: center;
+	width:100%;
+	height:100%;
+}
+/*TOTAL AIRPRICE*/
+#seatprice caption{
+font-family: 'Libre Baskerville', serif;
+	font-family: 'Domine', serif;
+	font-weight:bold;
+	font-size:1.2em;
+	color: #3c5d79;
+	padding-bottom: 10px;
+	                            
+	
+	
+	
+	
+}
+/*총 항공 가격*/
+#seatprice .t2{
+	font-family: 'IBM Plex Sans KR', sans-serif;
+	font-weight:bold;
+	
+	
+}
+/*예약자정보*/
+#seatprice .t4{
+	font-family: 'IBM Plex Sans KR', sans-serif;
+	font-weight:bold;
+}
+#seatprice input{
+	border: 1px solid gray;
+	width:230px;
+	height:30px;
+	border-radius: 8px;
+}
+#seatprice .t3 input{
+	border: 1px solid gray;
+	width:230px;
+	text-align: center;
+	color:gray;
+}
+
+#seatprice input[type="submit"]{
+		width:100px;
+		  background-color: #d1dde4;
+                color:black;
+                color: #3c5d79;
+                font-family: 'IBM Plex Sans KR', sans-serif;
+                font-size: 0.9em;
+                font-weight: bold;
+                 margin: 0 auto;
+                margin-top: 5px;
+                width: 230px;
+                height: 45px;
+                border: none;
+                border-radius: 5px;
+}
+
+
+
+#seatback{
+float:left;
+            width: 30%;
+            height: 900px;
+            object-fit: cover;
+            background: url('../../image/airplane3.png') no-repeat;
+            background-size: 500px;
+            margin: 0 auto;
+            margin-left:5%;
+}
+#seat{
+width:300px;
+margin:100px;   
+margin-top:300px;
+text-align: center;       
+}
+#seatstate{
+float:left;
+width:20%;
+height:150px;
+margin-top:15%;
+}
+#seatstate table{
+	border:1px solid black;
+	text-align: center;
+	margin:0 auto;
+	padding : 30px;
+	margin-left:10px;
+}
+#seatstate img{
+	width:25px;
+	height:25px;
+}
+#seatstate caption{
+	font-family: 'Libre Baskerville', serif;
+	font-family: 'Domine', serif;
+	font-weight:bold;
+	font-size:1.2em;
+	color: #3c5d79;
+	padding-bottom: 10px;
+}
+ .reserve {
+                padding-left: 4px;
+                background: url("../../image/air.jpg") no-repeat;
+                width: 100%;
+                height: 150px;
+            }

@@ -1,9 +1,13 @@
 package com.ocsy.checkin.controller;
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -40,16 +44,18 @@ public class AirController {
 	
 	
 	@RequestMapping(params="method=airReserveInfo", method= {RequestMethod.GET, RequestMethod.POST})
-	public String airReserveInfo(Air air, Model model) {
+	public String airReserveInfo(Air air, Model model, String[] seatid) {
+		System.out.println("예약한 좌성은 "+Arrays.toString(seatid));
+		model.addAttribute("seatid",seatid);
 		model.addAttribute("airDto",air);
 		return "air/airReserveInfo";	
 	}
 	
 	@RequestMapping(params="method=airReserve", method= {RequestMethod.GET, RequestMethod.POST})
-	public String airReserve(Member member, Air air, HttpSession session, Model model) {
+	public String airReserve(Member member, Air air, HttpSession session, Model model, String[] seatid) {
 		memberService.minusMileage(member);
 		memberService.plusMileage(member, session);
-		model.addAttribute("reserveResult", airService.airReserve(air));
+		model.addAttribute("reserveResult", airService.airReserve(air, seatid));
 		return "air/airmain";	
 	}
 	@RequestMapping(params="method=airInsertView", method= {RequestMethod.GET, RequestMethod.POST})
@@ -92,4 +98,31 @@ public class AirController {
 		model.addAttribute("paging", new Paging(airService.totCntAir(), pageNum, 8, 5));
 		return "adminAir/airList";
 	}
+	
+	@RequestMapping(params="method=reservation", method= {RequestMethod.GET, RequestMethod.POST})
+	public String reservation(Model model, Air air) {
+
+		model.addAttribute("airDto",air);
+		model.addAttribute("seats",airService.seatList(air));
+		// 시간 항공기 번호 
+		return "air/airReserve";
+	}
+	
+	
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

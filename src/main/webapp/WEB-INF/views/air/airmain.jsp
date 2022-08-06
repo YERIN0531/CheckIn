@@ -9,8 +9,8 @@
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
 	<link href="${conPath }/css/air/airmain.css" rel="stylesheet">
+	 
   <link href="https://fonts.googleapis.com/css2?family=Domine:wght@500&family=IBM+Plex+Sans+KR:wght@300;400&family=Libre+Baskerville&family=Nanum+Gothic&family=Satisfy&family=The+Nautigal:wght@400;700&display=swap" rel="stylesheet">
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 	
 </head>
 <body>
@@ -34,6 +34,7 @@
             <div id="rsform">
                 <form action="${conPath }/air.do">
                     <input type="hidden" name="method" value="airList">
+                    <input type="hidden" name="mid" value="${member.mid }">
                     <table>
                         <tr>
                             <td>
@@ -46,11 +47,11 @@
                             </td>
                             <td>
                                 <p class="w1">가는날</p>
-                                <input type="date" name="agodate" value="">
+                                <input type="text" name="agodate" id="datepicker">
                             </td>
                             <td>
                                 <p class="w1">오는날</p>
-                                <input type="date" name="acomedate" value="">
+                                <input type="text" name="acomedate" id="datepicker2">
                             </td>
                         </tr>
                         <tr>
@@ -63,7 +64,14 @@
             </div>
         </div>
 
+		
+
         <h2>AIR LIST</h2>
+        <c:if test="${airList.acode }">
+					<tr><td colspan="6">등록된 글이 없습니다</td></tr>
+		</c:if>
+        
+        
         <div id="airlist">
 
             <c:forEach var="air" items="${airList }">
@@ -82,7 +90,7 @@
                             </td>
                             <td rowspan="2" colspan="2" class="w3">
                             ${air.aprice}<br />
-                                <button onclick="location='${conPath }/air.do?method=airReserveForm&acode=${air.acode }&agodate=${param.agodate }&acomedate=${param.acomedate }&aprice=${air.aprice }'">선택</button>
+                                <button onclick="location='${conPath }/air.do?method=reservation&acode=${air.acode }&agodate=${param.agodate }&acomedate=${param.acomedate }&aprice=${air.aprice }&mid=${member.mid }'">선택</button>
                             </td>
                         </tr>
                         <tr>
@@ -103,5 +111,41 @@
     </section>
     <jsp:include page="../main/footer.jsp"/>
 <%-- 	<jsp:include page="../main/footer.jsp"/> --%>
+
 </body>
 </html>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+<script>
+   $(function() {
+	   
+	   $("#datepicker,#datepicker2").datepicker(
+	            {            
+	               dateFormat : 'yy-mm-dd',
+	               changeMonth : true, // 월을 바꿀 수 있는 셀렉트 박스 표시
+	               changeYear:true,
+	               monthNamesShort : [ '1월', '2월', '3월', '4월', '5월', '6월',
+	                                 '7월', '8월', '9월', '10월', '11월', '12월' ],
+	               showMonthAfterYear : true,
+	               yearSuffix : '년', // "2020년 3월"
+	               showOtherMonths : true,
+	               dayNamesMin : [ '일', '월', '화', '수', '목', '금', '토' ],
+	               changeYear : true, // 년을 바꿀 수 있는 셀렉트 박스 표시
+	               minDate : 0, // 현재 날짜로부터 100년 이전까지 표시
+	               maxDate : '10y', // 현재 날짜이전까지만 표시
+	               yearRange : 'c-100:c+100', // 년도 선택 셀렉트 
+	            });
+
+       $('#datepicker').datepicker("option", "maxDate", $("#datepicker2").val());
+       $('#datepicker').datepicker("option", "onClose", function (selectedDate){
+           $("#datepicker2").datepicker( "option", "minDate", selectedDate );
+           });
+       
+       $('#datepicker2').datepicker();
+       $('#datepicker2').datepicker("option", "minDate", $("#datepicker").val());
+       $('#datepicker2').datepicker("option", "onClose", function (selectedDate){
+           $("#datepicker").datepicker( "option", "maxDate", selectedDate );
+          });
+   });  
+</script>

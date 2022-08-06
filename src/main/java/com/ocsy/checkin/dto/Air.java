@@ -23,6 +23,7 @@ public class Air {
 	private String seatid;
 	private Date ardate;
 	private int totalprice;
+	private int checknum;
 	
 	//페이징
 	private int startRow;

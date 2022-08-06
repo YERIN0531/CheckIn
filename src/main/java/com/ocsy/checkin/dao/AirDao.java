@@ -22,4 +22,6 @@ public interface AirDao {
 	public Air detailAir(String acode);
 	
 	public int airDelete(Air air);
+	
+	public List<String> seatList(Air air);
 }
