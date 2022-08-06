@@ -21,7 +21,7 @@ public class CartController {
 	@Autowired
 	private CartService cartService;
 	
-	// 상품 상세보기에서 카트로 상품 추가 - O
+	// 상품 상세보기에서 카트로 상품 추가 (장바구니에 상품이 있을 경우에 update 진행) - O
 	@RequestMapping(params="method=insert", method= {RequestMethod.GET, RequestMethod.POST})
 	public String insertCart(Cart cart, Model model) {
 		model.addAttribute("insertCart", cartService.insertCart(cart));
@@ -38,7 +38,7 @@ public class CartController {
 		return "cart/listCart";
 	}
 	
-	// 장바구니 항목 1개 삭제 - 진행중
+	// 장바구니 항목 1개 삭제 - O
 	@RequestMapping(params="method=delete", method= {RequestMethod.GET, RequestMethod.POST})
 	public String deleteCart(int cartnum, Model model) {
 		model.addAttribute("deleteCart", cartService.deleteCart(cartnum));
@@ -46,7 +46,21 @@ public class CartController {
 		return "forward:cart.do?method=list";
 	}
 	
+	// 장바구니 비우기 - O
+	@RequestMapping(params="method=deleteAll", method= {RequestMethod.GET, RequestMethod.POST})
+	public String deleteAllCart(HttpSession session, Model model) {
+		model.addAttribute("deleteAllCart", cartService.deleteCartAll(session));
+		System.out.println("controller : 장바구니 비우기 성공");
+		return "forward:cart.do?method=list";
+	}
 	
+	// 장바구니 리스트에서 수량 수정 - 진행 중
+	@RequestMapping(params="method=modify", method= {RequestMethod.GET, RequestMethod.POST})
+	public String modifyCart(Cart cart, Model model) {
+		model.addAttribute("modifyResult", cartService.updateCart(cart));
+		System.out.println("controller : 수량 수정 성공");
+		return "forward:cart.do?method=list";
+	}
 	
 	
 }
