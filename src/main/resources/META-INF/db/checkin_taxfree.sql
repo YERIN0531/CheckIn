@@ -146,29 +146,44 @@ SELECT * FROM TAXFREE WHERE PNAME LIKE '%'||'샤'||'%';
 -- 1. insertCart 장바구니 추가
 -- 상품번호를 받아와서 장바구니 번호랑 회원 아이디, 총 가격, 수량 저장
 INSERT INTO CART (CARTNUM, PNUM, MID, COST, QTY)
-    VALUES(CART_SEQ.NEXTVAL, 2, 'aaa', 3*(SELECT PPRICE FROM TAXFREE WHERE PNUM = 2), 3);
+    VALUES(CART_SEQ.NEXTVAL, 2, 'bbb', 3*(SELECT PPRICE FROM TAXFREE WHERE PNUM = 2), 3);
 -- 2. deleteCartAll 장바구니 전체 삭제 08/04
 DELETE FROM CART WHERE MID = 'aaa';
 -- 2-1. deleteCart 장바구니 리스트 하나 삭제 08/04
 DELETE FROM CART WHERE CARTNUM = 4;
 SELECT * FROM CART;
-
+commit;
 -- 3. listCart 장바구니 리스트
-SELECT * FROM CART C, TAXFREE T WHERE C.PNUM = T.PNUM AND MID = 'aaa' ;
+SELECT * FROM CART C, TAXFREE T WHERE C.PNUM = T.PNUM AND MID = 'bbb' ORDER BY CARTNUM DESC;
 
--- 4. 장바구니 총 수량 (페이징 위한)
-SELECT COUNT(*) FROM CART WHERE MID='aaa';
+-- 4. 장바구니에 상품이 있는지 없는지 확인 checkCart 0805    
+SELECT COUNT(*) FROM CART WHERE MID='bbb' AND PNUM = 2;
 
--- 5. 장바구니에 담은 물품 수량 수정하고 싶을때 **** 08/04
+-- 5. 면세품상세보기에서 이미 담긴 상품을 수량을 수정하고 싶을때 **** 08/04
 -- updateCart
-SELECT * FROM CART WHERE MID = 'aaa';
+SELECT * FROM CART WHERE MID = 'bbb';
 SELECT * FROM TAXFREE;
 -- INSERT INTO CART (CARTNUM, PNUM, MID, COST, QTY)
 --     VALUES(CART_SEQ.NEXTVAL, 2, 'aaa', 3*(SELECT PPRICE FROM TAXFREE WHERE PNUM = 2), 3)
 UPDATE CART SET QTY = 2+(SELECT QTY FROM CART WHERE PNUM = 1 AND MID = 'aaa'),
                 COST = (2+(SELECT QTY FROM CART WHERE PNUM = 1 AND MID = 'aaa')) * (SELECT PPRICE FROM TAXFREE WHERE PNUM = 1)
             WHERE PNUM = 1 AND MID = 'aaa';
-                
+
+-- 6. updateInCart / 장바구니 리스트에서 상품의 개수를 수정하고 싶은 경우
+commit;
+UPDATE CART SET QTY = 2,
+                COST = 2 * (SELECT PPRICE FROM TAXFREE WHERE PNUM = (select pnum from cart where cartnum=30))
+            WHERE CARTNUM = 30;
+select * from cart;
+
+UPDATE CART SET QTY = 2,
+                COST = 2 * (SELECT PPRICE FROM TAXFREE WHERE PNUM = (SELECT PNUM FROM CART WHERE CARTNUM = 30))
+            WHERE CARTNUM = 30;
+SELECT * FROM CART;
+---
+SELECT * FROM CART WHERE MID = 'bbb';
+
+COMMIT;
 
 -- SQL / 주문테이블 ORDERS
 -- 1. insertOrderDetail 주문 

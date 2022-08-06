@@ -51,7 +51,8 @@ SELECT * FROM (SELECT ROWNUM RN, A.*
             FROM (SELECT * FROM QNA_BOARD ORDER BY QGROUP DESC, QSTEP) A)
         WHERE RN BETWEEN 1 AND 50;
        
-      select * from qna_board;  
+      select * from qna_board; 
+      commit;
 --2. 1번글에대한 답변(관리자만 답변가능 qid 관리자 아이디)
 --replyQna
 INSERT INTO QNA_BOARD (QNUM,QID,QSECRET,QPASSWORD, QTITLE, QCONTENT,QGROUP, QSTEP, QINDENT, QIP)

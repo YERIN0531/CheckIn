@@ -10,13 +10,16 @@
   <title>Insert title here</title>
   <link href="${conPath }/css/style.css" rel="stylesheet">
  <style>
+ table, td {
+	border: 1px solid red; 
+}
  table {
  	margin: 0 auto;
  	margin-top: 30px;
  	margin-bottom: 70px;
  	text-align: center;
- 	width: 550px;
- 	height: 600px;
+ 	width: 700px;
+ 	height: 800px;
  }
  h1 {
  	text-align: center;
@@ -39,8 +42,29 @@
 		$('.check-all').click(function() {
 			$('.ab').prop('checked', this.checked);
 			$('#show').toggle();
-			// $( 'ul' ).append( '<input type="button" value="장바구니 비우기" onclick="location.href='${conPath}/cart.do?method=deleteAll'">' );
 		});
+
+		$('.modify').click(function(){
+			var qty = $("input[type='number']").parent("td").find(".qty${cart.cartnum }").val();
+ 			cartnum = $(this).attr('id');
+			
+			//var qty = Number($( 'input[type="number"]' ).$(.class).val()); // 첫번째 수만 받아오지ㅇ 왜...
+			// var qty = $( 'input[type="number"] .qty${cart.cartnum }' ).attr( 'value' ); // 첫번째 수만 받아오지ㅇ 왜...
+			// var qty = $('.qty${cart.cartnum }').val(); // undifined
+ 			//alert(qty);
+ 			//alert(cartnum); // 정상적으로 받아져 옴.
+			location.href='${conPath}/cart.do?method=modify&cartnum='+cartnum+'&qty='+qty;
+			//var cartnum = $(this).attr('id');
+			//var qty = $(this).parent("td").find("input").val();
+			//var qty2 = $("input[type='number']").val(".qty${cart.cartnum }");
+			
+			//alert(cartnum); 
+			//alert(qty);
+			//alert(qty2); */
+			
+		
+		  });
+		
 	});
 	</script>  
 </head>
@@ -50,12 +74,30 @@
    	
    	 <c:set var="SUCCESS" value="1"></c:set>
 	 <c:set var="FAIL" value="0"></c:set>
-   	<c:if test="${not empty deleteCart and deleteCart eq SUCCESS}">
+   	<c:if test="${deleteCart eq SUCCESS}">
 		<script>
 			alert('선택하신 상품이 장바구니에서 삭제되었습니다.');
 		</script>
 	</c:if>
+	<c:if test="${not empty deleteAllCart}">
+		<script>
+			alert('장바구니 비우기가 완료되었습니다.');
+		</script>
+	</c:if>
+	<c:if test="${not empty modifyResult}">
+		<script>
+			alert('수량이 정상적으로 변경되었습니다.');
+		</script>
+	</c:if>
+	<!-- 왜 안되지.. -->
+   	<c:if test="${empty member.mid or null }">
+		<script>
+			alert('로그인 정보가 없습니다. 로그인 후 이용 해주세요.');
+			location.href='${conPath}/member.do?method=loginForm';
+		</script>
+	</c:if>
    	
+   <!-- 	modifyResult -->
    	<jsp:include page="../main/header.jsp"/>
    	<%-- ${cartList } --%>
    	<section>
@@ -65,34 +107,40 @@
    				<caption>${member.mname }(${member.mid }) 님의 장바구니 페이지</caption>
    				
    				<tr>
-   					<th>ALL <input type='checkbox' name='cartnum' id ='all' name="all" class="check-all"/></th>
-   					<th>상품이미지</th><th>상품이름</th><th>가격</th><th>수량</th><th>총가격</th><th></th>
+   					<th><label for="all">ALL</label><br><input type='checkbox' name='cartnum' id ='all' name="all" class="check-all"/></th>
+   					<th>상품이미지</th><th>상품이름</th><th>수량</th><th>가격</th><th>총가격</th><th></th>
    				</tr>
    				
    				<c:if test="${empty cartList }">
-   				<tr><td colspan="6">장바구니가 비었습니다.</td></tr>
+   				<tr><td colspan="7">장바구니가 비었습니다.</td></tr>
    				</c:if>
    				
    				<c:forEach items="${cartList }" var="cart">
    				<tr>
-   					<td><input type="checkbox" name="cartnum" value="${cart.cartnum }" class="ab"> ${cart.cartnum }</td>
-   					<td><img src="${conPath }/taxfree/${cart.pimage1}"></td>
+   					<td>${cart.cartnum }<br><input type="checkbox" name="cartnum" value="${cart.cartnum }" class="ab"></td>
+   					<td><a href="${conPath}/taxfree.do?method=detail&pnum=${cart.pnum }"><img src="${conPath }/taxfree/${cart.pimage1}"></a></td>
    					<td>${cart.pname }</td>
-   					<td>${cart.pprice }</td>
-   					<td>${cart.qty }</td>
-   					<td>${cart.cost }</td>
+   					<td><input type="number" value=${cart.qty } name="qty" class="qty${cart.cartnum }"> </td>
+   					<td>USD ${cart.pprice }</td>
    					<td>
-   						<button onclick="location.href='${conPath}/cart.do?method=delete&cartnum=${cart.cartnum}'">삭제</button>
-   						<%-- <button onclick="delete('${cart.cartnum}')">삭제</button> --%>
-   						<!-- 자바 스크립트로 함수를 넣어주고 onclick 로 했을때 삭제 location.href = method delete로 넘어가도록 처리 -->
-   						<!-- method=delete&cartnum=2 -->
+   					<!-- 환율 정보 받아와서 출력할 수 있도록 해주기 : 지금 해놓은 건 임의로 집어넣은 환율 -->
+   						USD ${cart.cost } <br> 
+   						<fmt:formatNumber value="${cart.cost * 1300 }" type="number" var="numberType" />
+    					<fmt:formatNumber type="currency" currencySymbol="￦ " value="${cart.cost * 1300 }"  />
+                    </td>
+   					<td>
+   						<%-- <input type="button" id="modify" onclick="location.href='${conPath}/cart.do?method=modify&cartnum=${cart.cartnum}&qty=${cart.qty }'" value="수정"> --%>
+   						<input type="button" class="modify" id="${cart.cartnum }" value="수정">
+   						<input type="button" onclick="location.href='${conPath}/cart.do?method=delete&cartnum=${cart.cartnum}'" value="삭제">
+   						<%-- form 태그 안에서의 button 태그는 submit의 역할을 하기 때문에 input type=button을 사용 해야한다. --%>
+   						<!--  attr이랑....... 클릭 했을 때 그 값을 받아오도록 하는 제이쿼리 함수  -->
    					</td>
    				</tr>
    				</c:forEach>
    				<tr>
-   					<td colspan="6" class="btn">
+   					<td colspan="7" class="btn">
    						<input type="submit" value="구매하기">
-   						<input type="button" value="면세 홈페이지로 이동" onclick="location.href='${conPath}/taxfree.do?method=list&pageNum=1'">	
+   						<input type="button" value="면세점으로 이동" onclick="location.href='${conPath}/taxfree.do?method=list&pageNum=1'">	
    						<input type="button" value="장바구니 비우기" id="show" onclick="location.href='${conPath}/cart.do?method=deleteAll'">
    					</td>
    				</tr>

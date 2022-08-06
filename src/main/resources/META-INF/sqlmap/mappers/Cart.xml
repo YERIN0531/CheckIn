@@ -24,29 +24,42 @@
       ]]>
   	</insert>
   	
-  	<!-- listCart / mid로 장바구니 담긴 것 출력 -->
+  	<!-- listCart / mid로 장바구니 담긴 것 출력 / O -->
   	<select id="listCart" parameterType="String" resultMap="CartResult">
   	<![CDATA[
-		SELECT * FROM CART C, TAXFREE T WHERE C.PNUM = T.PNUM AND MID = #{mid}
+		SELECT * FROM CART C, TAXFREE T WHERE C.PNUM = T.PNUM AND MID = #{mid} ORDER BY CARTNUM DESC
       ]]>
     </select>
   	
-  	<!-- deleteCart -->
+  	<!-- deleteCart / 카트 번호를 받아서 항목 1개 삭제 / O -->
   	<delete id="deleteCart" parameterType="Cart">
-  	DELETE FROM CART WHERE CARTNUM = #{cartnum}
-  	</delete>
-  	<!-- deleteCartAll -->
-  	<delete id="deleteCartAll" parameterType="Cart">
-  	DELETE FROM CART WHERE MID = #{mid}
+  		DELETE FROM CART WHERE CARTNUM = #{cartnum}
   	</delete>
   	
-  	<!-- updateCart / 장바구니 물건 개수 수정? -->
+  	<!-- deleteCartAll / 전체 삭제 진행 시 mid로 삭제 진행 / O -->
+  	<delete id="deleteCartAll" parameterType="Cart">
+  		DELETE FROM CART WHERE MID = #{mid}
+  	</delete>
+  	
+  	<!-- totCnt / 카트에 담긴 개수 확인 / O -->
+  	<select id="totCntCart" parameterType="Cart" resultType="int">
+  		SELECT COUNT(*) FROM CART WHERE MID= #{mid} AND PNUM = #{pnum}
+  	</select>
+  	
+  	<!-- updateCart / 장바구니 물건 개수 수정 /  O -->
   	<update id = "updateCart" parameterType="Cart">
   	<![CDATA[
   	UPDATE CART SET QTY = #{qty} + (SELECT QTY FROM CART WHERE PNUM = #{pnum} AND MID = #{mid}),
                 COST = (2 + (SELECT QTY FROM CART WHERE PNUM = #{pnum} AND MID = #{mid})) * (SELECT PPRICE FROM TAXFREE WHERE PNUM = #{pnum})
             WHERE PNUM = #{pnum} AND MID = #{mid}
     ]]>
+  	</update>
+  	
+  	<!-- updateInCart / 장바구니 안에서 수정 / 진행 중 -->
+  	<update id="updateInCart" parameterType="Cart">
+        UPDATE CART SET QTY = #{qty},
+                COST = #{qty} * (SELECT PPRICE FROM TAXFREE WHERE PNUM = (select pnum from cart where cartnum=#{cartnum}))
+            WHERE CARTNUM = #{cartnum}
   	</update>
   
   </mapper>
