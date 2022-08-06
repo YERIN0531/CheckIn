@@ -58,8 +58,8 @@
 					<td>${applyList.trmemo }</td>
 					<td>${applyList.trrdate }</td>
 					<td>
-						<button>수락</button>
-						<button>거절</button>
+						<button onclick="location='${conPath }/trip.do?method=agreeTeam&tnum=${applyList.tnum }&mid=${applyList.mid }'">수락하기</button>
+						<button onclick="location='${conPath }/trip.do?method=disagreeTeam&tnum=${applyList.tnum }&mid=${applyList.mid }'">거절하기</button>
 					</td>
 				</tr>
 			</c:forEach>

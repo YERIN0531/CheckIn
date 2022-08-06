@@ -35,7 +35,7 @@
   	<c:if test="${empty member and empty admin }">
   		<script>
   			alert('로그인 후 이용해주세요');
-  			location="${conPath }/member.do?method=loginform";
+  			location="${conPath}/member.do?method=loginForm"; 
   		</script>
   	</c:if>
   	<form action="${conPath }/trip.do?method=applyTeamView" method="post" >

@@ -10,12 +10,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class MainController {
 
-	@RequestMapping(value = "main.do", method = {RequestMethod.GET, RequestMethod.POST })
-	public String home(Locale locale, Model model) {		
-		return "main/main";
-		//return "main/main2";
-
-	}
 	@RequestMapping(value = "intro.do", method= {RequestMethod.GET, RequestMethod.POST})
 	public String intro(Locale locale, Model model) {
 		return "main/intro";

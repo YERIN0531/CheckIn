@@ -148,34 +148,23 @@ public class TripBoardServiceImpl implements TripBoardService {
 		message.setText(content);
 		mailSender.send(message);	
 	}
-	
-	private boolean fileCopy(String serverFile, String backupFile) {
-		boolean isCopy = false;
-		InputStream is = null; 
-		OutputStream os = null;
-		try {
-			File file = new File(serverFile);
-			is = new FileInputStream(file);
-			os = new FileOutputStream(backupFile);
-			byte[] buff = new byte[(int) file.length()];
-			while(true) {
-				int nReadByte = is.read(buff);
-				if(nReadByte == -1) break;
-				os.write(buff, 0, nReadByte);
-			}
-			isCopy = true;
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		} finally {
-			try {
-				if(os!=null) os.close();
-				if(is!=null) is.close();
-			} catch (IOException e) {
-				System.out.println(e.getMessage());
-			}
-		}
-		return isCopy;
+	public void agreeMailSend(TripRequest tripRequest) {
+		String mid = tripRequest.getMid();
+		Member member = memberDao.getMember(mid);
+		String email = member.getMemail();
+		int tnum = tripRequest.getTnum();
+		List<TripTeam> teams = myTeamDetail(tnum);
+		String teamname = teams.get(0).getTeamname();
+		SimpleMailMessage message = new SimpleMailMessage();
+		message.setFrom("tjqud531@gmail.com");
+		message.setTo(email);
+		message.setSubject("[CheckIn] 팀 "+teamname+" 에 가입이 되셨습니다. 마이페이지에서 확인해주세요." );
+		String content = "\""+teamname+"\" 에 가입되셨습니다. 즐거운 여행 되세요.";
+		message.setText(content);
+		mailSender.send(message);	
 	}
+	
+	
 
 	@Override
 	public int tripBoardModify(MultipartHttpServletRequest mRequest, TripMate_Board tripBoard) {
@@ -207,6 +196,34 @@ public class TripBoardServiceImpl implements TripBoardService {
 		int result = tripDao.tripBoardModify(tripBoard);
 		System.out.println(result == 1 ? "수정성공" : "수정실패");
 		return result;
+	}
+	
+	private boolean fileCopy(String serverFile, String backupFile) {
+		boolean isCopy = false;
+		InputStream is = null; 
+		OutputStream os = null;
+		try {
+			File file = new File(serverFile);
+			is = new FileInputStream(file);
+			os = new FileOutputStream(backupFile);
+			byte[] buff = new byte[(int) file.length()];
+			while(true) {
+				int nReadByte = is.read(buff);
+				if(nReadByte == -1) break;
+				os.write(buff, 0, nReadByte);
+			}
+			isCopy = true;
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			try {
+				if(os!=null) os.close();
+				if(is!=null) is.close();
+			} catch (IOException e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		return isCopy;
 	}
 
 	
