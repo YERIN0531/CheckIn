@@ -28,7 +28,7 @@ CREATE TABLE QNA_BOARD(
     NOCACHE
     NOCYCLE;  
 SELECT * FROM QNA_BOARD;
-
+SELECT * FROM manager;
 -- 원글은QID 멤버 ID
 -- 답글은 관리자 ID 
 --사진첨부문의

@@ -32,9 +32,13 @@
    	    	alert('글삭제 성공');
    	    </script>
    	  </c:if>
+  <c:if test="${not empty manager }">
  <button onclick="location='${conPath}/notice.do?method=insertNoticeForm&pageNum=${param.pageNum }'">공지글등록</button>
+  </c:if> 
    <div id = "content">
+ 
    <table>
+      <caption>공지사항</caption>
     <tr>
       <th>글번호</th>
    	  <th>관리자아이디</th>
@@ -75,6 +79,6 @@
 		</c:if>
 	</div>
 	</div>
-	<button onclick="location='${conPath}/main.do'">동준</button>
+	<button onclick="location='${conPath}/main.do'">메인</button>
   </body>
 </html>

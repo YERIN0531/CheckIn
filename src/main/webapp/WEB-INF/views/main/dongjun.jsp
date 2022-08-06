@@ -17,6 +17,11 @@
 <a href="${conPath }/notice.do?method=noticeList&pageNum=1">공지사항!</a>
 <a href="${conPath }/qna.do?method=qnaList&pageNum=1">문의하기</a>
 <!--${conPath }/hotel.do?method=schHotel  -->
+<a href="${conPath }/manager.do?method=mLoginForm">관리자모드</a>
+<a href="${conPath }/manager.do?method=joinForm">관리자등록</a>
+<a href="${conPath }/manager.do?method=managerList">관리자리스트</a>
+
+
 </body>
 
 </html>

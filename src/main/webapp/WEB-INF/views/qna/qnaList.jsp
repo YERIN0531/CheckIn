@@ -47,7 +47,6 @@
 					alert('관리자');
 					location.href = '${conPath }/qna.do?method=detailQna&qnum='+qnum+'&pageNum=${paging.currentPage}';
 				}else if(mid != '' && qsecreat != ''){ //mid 가 널이 아니고 qsecreat 가 널일때
-					alert(qnum); 
 					//alert(mid);
 					 alert('회원');
 					 location.href ='${conPath }/qna.do?method=secreatQna&qnum='+qnum+'&pageNum=${paging.currentPage}';
@@ -55,9 +54,7 @@
 				     alert('로그인후 이용하세요');
 					 location.href = '${conPath}/member.do?method=loginForm';
 				}else if(mid != '' && qsecreat == ''){
-					alert('공개글 간다 이제 !!!');
 					location.href = '${conPath }/qna.do?method=detailQna&qnum='+qnum+'&pageNum=${paging.currentPage}';
-
 				}
 			}//if
 			

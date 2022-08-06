@@ -22,13 +22,10 @@
   <body>
   <div id="content">
    <form action="${conPath }/notice.do?method=insertNotice" method="post" enctype="multipart/form-data">
-   		
+   		<input type="hidden" name="aid" value="${manager.aid }">
    		<table>
    				<caption>공지글 등록</caption>
-   				<tr>
-   					<th>관리자아이디</th>
-   					<td><input type="text" name="aid" ></td>
-   				</tr>
+   				
    				<tr>
    					<th>글제목</th>
    						<td><input type="text" name="ntitle" required="required"></td>
