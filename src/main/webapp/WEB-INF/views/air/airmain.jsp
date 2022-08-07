@@ -68,6 +68,7 @@
 
         <h2>AIR LIST</h2>
         <c:if test="${empty airList }">
+
         <div>
         <table>
 					<tr><td >등록된 글이 없습니다</td></tr>

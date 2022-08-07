@@ -37,7 +37,7 @@
    				
    					<tr><td colspan="2">
 				<input type="submit" value="저장">
-				<input type="button" value="목록" onclick="location='qna.do?method=qnaList&pageNum=${param.pageNum}'">	
+				<input type="button" value="목록" onclick="location='${conPath }/qna.do?method=qnaList&pageNum=${param.pageNum}'">	
    		</table>
    </form>
  </div>

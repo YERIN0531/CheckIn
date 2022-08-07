@@ -20,7 +20,7 @@
 <body>
  	<table>
  	<c:if test="${manager.aid == 'admin' }">
- 	  
+<button onclick="location='manager.do?method=managerDelete&aid=${managerDto.aid}'">삭제</button>
  	</c:if>
  	   <caption>관리자 상세보기 </caption>
  	   <tr>

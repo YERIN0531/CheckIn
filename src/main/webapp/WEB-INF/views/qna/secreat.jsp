@@ -16,7 +16,7 @@
       <input type="hidden" name="qnum" value="${param.qnum }">
       <input type="hidden" name="pageNum" value="${param.pageNum }">
          <table>
-            <caption>비밀글${c }</caption>
+            <caption>비밀글</caption>
             
             <tr>
                <th>비밀번호</th>

@@ -50,7 +50,7 @@
    				</tr>
    					<tr><td colspan="2">
 				<input type="submit" value="등록">
-				<input type="button" value="목록" onclick="location='review.do?method=reviewList&pageNum=${param.pageNum}'">	
+				<input type="button" value="목록" onclick="location='${conPath }/review.do?method=reviewList&pageNum=${param.pageNum}'">	
    		</table>
    </form>
    </div>     

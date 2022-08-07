@@ -37,7 +37,7 @@ public class ManagerController {
 	//4. 관리자 등록
 	@RequestMapping(params = "method=join", method=RequestMethod.POST )
 	public String joinManager(Manager manager , HttpSession httpSession, Model model) {
-		model.addAttribute("aid", managerService.joinManager(manager, httpSession));
+		model.addAttribute("managerInsert", managerService.joinManager(manager, httpSession));
 		return "forward:main.do";
 	}
 	//5. 관리자 등록 view 
@@ -61,6 +61,11 @@ public class ManagerController {
 	public String detail(String aid , Model model) {
 		model.addAttribute("managerDto",managerService.detailManager(aid));
 		return "manager/detailManager";
+	}
+	@RequestMapping(params = "method=managerDelete", method= RequestMethod.GET)
+	public String delete(String aid , Model model) {
+		model.addAttribute("deleteResult", managerService.deleteManager(aid));
+		return "forward:manager.do?method:managerList";
 	}
 }
 

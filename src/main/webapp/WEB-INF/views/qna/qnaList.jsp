@@ -3,8 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="conPath" value="${pageContext.request.contextPath }"/>
-<c:if test="${not empty admin }">
-	<c:set var="aid" value="${admin.aid }"/>
+<c:if test="${not empty manager }">
+	<c:set var="aid" value="${manager.aid }"/>
 	<c:set var="mid" value=""/>
 </c:if> 
 <c:if test="${not empty member }">
@@ -12,7 +12,7 @@
 	<c:set var="aid" value=""/>
 </c:if>
 
-<c:if test="${empty member and empty admin }">
+<c:if test="${empty member and empty manager }">
    <c:set var="aid" value=""/>
 	<c:set var="mid" value=""/>
 </c:if>
@@ -42,19 +42,20 @@
             var qsecreat = $(this).children().eq(3).html().trim();
 			var qnum = Number($(this).children().eq(0).text().trim());
 			if(!isNaN(qnum)){
-				if(aid != ''){ // 관리자 로그인
-					//alert(qnum);
+				if(aid != '' && mid == '' && qsecreat != ''){ // 관리자 로그인
 					alert('관리자');
 					location.href = '${conPath }/qna.do?method=detailQna&qnum='+qnum+'&pageNum=${paging.currentPage}';
 				}else if(mid != '' && qsecreat != ''){ //mid 가 널이 아니고 qsecreat 가 널일때
 					//alert(mid);
 					 alert('회원');
 					 location.href ='${conPath }/qna.do?method=secreatQna&qnum='+qnum+'&pageNum=${paging.currentPage}';
-				}else if(mid == ''){ // 비회원 
+				}else if(mid == '' && aid == ''){ // 비회원 
 				     alert('로그인후 이용하세요');
 					 location.href = '${conPath}/member.do?method=loginForm';
 				}else if(mid != '' && qsecreat == ''){
 					location.href = '${conPath }/qna.do?method=detailQna&qnum='+qnum+'&pageNum=${paging.currentPage}';
+				}else if(aid != '' && qsecreat == ''){
+				  location.href = '${conPath }/qna.do?method=detailQna&qnum='+qnum+'&pageNum=${paging.currentPage}';
 				}
 			}//if
 			
@@ -65,11 +66,15 @@
 </head>
 <body>
 	<c:if test="${not empty member }">
-	   <button onclick="location='${conPath}/qna.do?method=insertQnaForm&pageNum=${paging.currentPage}'">글쓰기</button>
+	   <button onclick="location='${conPath}/qna.do?method=insertQnaForm&pageNum=${paging.currentPage}'">회원글쓰기</button>
 	</c:if>
 	
-	<c:if test="${empty member }">
+	<c:if test="${empty member and empty manager }">
        <button onclick="location='${conPath}/member.do?method=loginForm'">로그인 후 이용하세요 </button>
+    </c:if>
+    
+    <c:if test="${not empty manager }">
+      관리자
     </c:if>
     
     <c:if test="${not empty qndDelete and  qndDelete eq 1}">
@@ -83,7 +88,11 @@
    	    	alert(' 글수정 성공');
    	    </script>
     </c:if>
-    
+     <c:if test="${not empty insertQna and  insertQna eq 1}">
+     <script>
+   	    	alert(' 글쓰기 성공');
+   	    </script>
+    </c:if>
     <div id="content">
     <table>
     	<caption>문의사항 게시판</caption>
