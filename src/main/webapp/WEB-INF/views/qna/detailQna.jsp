@@ -12,6 +12,16 @@
 </head>
 <style>
 </style>
+<script>
+	function deleteCheck(){
+		answer = confirm('하위글까지 모두 삭제됩니다. 정말 삭제하시겠습니까?');
+		if(answer){
+			location="${conPath }/qna.do?method=deleteQna&qgroup=${qnaDto.qgroup}&qstep=${qnaDto.qstep }&qindent=${qnaDto.qindent }&pageNum=${param.pageNum}";
+		}else{
+			alert('취소하셨습니다.');
+		}
+	}
+</script>
 <body>
 	<c:if test="${empty qnaDto }">
 	  <script>
@@ -22,7 +32,7 @@
 <div id="content">
 <table>
 
-	<caption>${qnaDto.qnum }번 글 상세보기</caption>
+	<caption>${qnaDto.qnum }번 글 상세보기 ${qnaDto.qindent }</caption>
 	<tr>
 	   <th>제목</th>
 	   <td>${qnaDto.qtitle }</td>
@@ -46,17 +56,22 @@
 	</tr>
 	<tr>
 	  <td colspan="3">
-    	 <button onclick="location='qna.do?method=qnaModifyForm&qnum=${qnaDto.qnum}&pageNum=${param.pageNum}'">수정</button>
-		 <button onclick="location='qna.do?method=qnaList&pageNum=${param.pageNum}'">목록</button>	
-		 <button onclick="location='qna.do?method=deleteQna&qgroup=${qnaDto.qgroup}&qstep=${qnaDto.qstep }&qindent=${qnaDto.qindent }&pageNum=${param.pageNum}'">삭제</button>
-	  	
-	  	<c:if test="${qnaDto.qindent != 1 }">
-	  	<button onclick="location='qna.do?method=qnareplyForm&qnum=${qnaDto.qnum}&pageNum=${param.pageNum}'">답변</button>
-	  	</c:if>
+	    <c:if test="${not empty member && qnaDto.qindent == 0 }">
+	      <button onclick="location='${conPath }/qna.do?method=qnaModifyForm&qnum=${qnaDto.qnum}&pageNum=${param.pageNum}'">수정</button>
+	      <button onclick="deleteCheck()"> 삭제</button>	
+	    </c:if>
+		 <button onclick="location='${conPath }/qna.do?method=qnaList&pageNum=${param.pageNum}'">목록</button>	
+	  	 
+	  
+	   <c:if test="${not empty manager && qnaDto.qindent == 0}">
+	  	<button onclick="location='${conPath }/qna.do?method=qnareplyForm&qnum=${qnaDto.qnum}&pageNum=${param.pageNum}'">답변</button>
+	   	<button onclick="deleteCheck()"> 삭제</button>	
+	   </c:if>
+	   <c:if test="${not empty manager && qnaDto.qindent ==1 }">
+	    <button onclick="location='${conPath }/qna.do?method=qnaModifyForm&qnum=${qnaDto.qnum}&pageNum=${param.pageNum}'">수정</button>
+	   </c:if>
+	  
 	  </td>
-	  <c:if test="${not empty admin }">
-	  	<button onclick="location='qna.do?method=qnareplyForm&qnum=${qnaDto.rnum}&pageNum=${param.pageNum}'">답변</button>
-	  </c:if>
 	</tr>
 </table>
 </div>

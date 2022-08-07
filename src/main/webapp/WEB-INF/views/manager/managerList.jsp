@@ -21,7 +21,7 @@
 <body>
 
    <table>
-      <caption>${aid }</caption>
+      <caption>관리자 리스트</caption>
       <tr>
          <th>아이디</th>
          <th>직책</th>
@@ -42,10 +42,10 @@
         총관리자
        </c:if>
        <c:if test="${man.aid == 'subadmin' }">
-          딲리
+          비행기 관리자 
        </c:if>
-       <c:if test="${man.aid == 'test' }">
-          따까리  
+       <c:if test="${man.aid == 'kok3536' }">
+          숙소 관리자
         </c:if>
    </c:forEach>
    </c:if>

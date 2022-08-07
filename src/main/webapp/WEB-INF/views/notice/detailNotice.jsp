@@ -17,6 +17,14 @@
     $(document).ready(function(){
        
     });
+    function deleteCheck(){
+    	answer = confirm('정말 삭제하시겠습니까?');
+    	if(answer){
+    		location="${conPath }/notice.do?method=deleteNotice&nnum=${noticeDto.nnum}&pageNum=${param.pageNum}";
+    	}else{
+    		alert('취소하셨습니다.')
+    	}
+    }
  </script>  
  <style>
   img{width: 100px;}
@@ -46,7 +54,8 @@
     	 <td colspan="3">
     	 <c:if test="${not empty manager }">
     	 <button onclick="location='notice.do?method=noticeModifyForm&nnum=${noticeDto.nnum}&pageNum=${param.pageNum}'">수정</button>
-		 <button onclick="location='notice.do?method=deleteNotice&nnum=${noticeDto.nnum}&pageNum=${param.pageNum}'">삭제</button>
+		 <button onclick="deleteCheck()">삭제할텨?</button>
+		 <button onclick="location='${conPath }/notice.do?method=deleteNotice&nnum=${noticeDto.nnum}&pageNum=${param.pageNum}'">삭제</button>
     	 </c:if>
     	 
 		 <button onclick="location='notice.do?method=noticeList&pageNum=${param.pageNum}'">목록</button>	

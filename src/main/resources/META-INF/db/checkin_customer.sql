@@ -142,11 +142,12 @@ INSERT INTO MANAGER VALUES ('subadmin','123','서브관리자','kok3443@naver.co
      DELETE FROM MANAGER WHERE AID='DELETE ';
     
     --5. 관리자 리스트 adminList
-    SELECT * FROM MANAGER;
-    --6. 관리자 메일 
+    SELECT * FROM MANAGER ;
+    --6. 관리자 메일 중복체크
     SELECT COUNT(*) FROM MANAGER WHERE AEMAIL ='kok3443@naver.com';
     --7. 관리자 상세보기
     SELECT * FROM MANAGER WHERE AID ='subadmin';
+    commit;
 --------------------------MANAGER------------------------------------------------
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------

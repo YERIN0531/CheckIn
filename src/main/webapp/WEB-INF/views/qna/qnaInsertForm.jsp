@@ -60,7 +60,7 @@
 				<tr>
 					<td colspan="2"><input type="submit" value="등록"> <input
 						type="button" value="목록"
-						onclick="location='qna.do?method=qnaList&pageNum=${param.pageNum}'">
+						onclick="location='${conPath }/qna.do?method=qnaList&pageNum=${param.pageNum}'">
 					</td>
 				</tr>
 			</table>

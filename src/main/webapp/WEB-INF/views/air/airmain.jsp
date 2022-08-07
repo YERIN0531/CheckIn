@@ -67,8 +67,10 @@
 		
 
         <h2>AIR LIST</h2>
-        <c:if test="${airList.acode }">
+        <c:if test="${empty airList }">
+        <div><table>
 					<tr><td colspan="6">등록된 글이 없습니다</td></tr>
+					</table></div>
 		</c:if>
         
         

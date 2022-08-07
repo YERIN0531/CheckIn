@@ -25,16 +25,15 @@
 	<div id="content">
 		<form action="${conPath }/qna.do?method=replyQna" method="post"enctype="multipart/form-data">
 
-			<%-- <input type="text" name="qid" value= "${qid}"> --%>
-			<input type="text" name="pageNum" value="${param.pageNum }">
-			<input type="text" name="qgroup" value="${qnaDto.qgroup }"> <input
-				type="text" name="qstep" value="${qnaDto.qstep }"> <input
-				type="text" name="qindent" value="${qnaDto.qindent }">
+			<input type="hidden" name="pageNum" value="${param.pageNum }">
+			<input type="hidden" name="qgroup" value="${qnaDto.qgroup }"> 
+			<input type="hidden" name="qstep" value="${qnaDto.qstep }"> 
+			<input type="hidden" name="qindent" value="${qnaDto.qindent }">
 			<table>
-				<caption>${qnaDto}</caption>
+				<caption>문의사항 상세보기</caption>
 				<tr>
-					<th>관리자아이디(수정할것)</th>
-					<td><input type="text" name="qid" required="required"></td>
+					<th>관리자아이디</th>
+					<td><input type="text" name="qid" value= "${aid}" required="required"></td>
 				</tr>
 
 				<tr>
@@ -66,7 +65,7 @@
 				<tr>
 					<td colspan="2"><input type="submit" value="등록"> <input
 						type="button" value="목록"
-						onclick="location='qna.do?method=qnaList&pageNum=${param.pageNum}'">
+						onclick="location='${conPath }/qna.do?method=qnaList&pageNum=${param.pageNum}'">
 					</td>
 				</tr>
 			</table>

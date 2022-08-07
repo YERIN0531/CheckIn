@@ -30,7 +30,7 @@ public class QnaController {
 	//2. 글 비번 확인 view
 	@RequestMapping(params="method=secreatQna", method= {RequestMethod.GET,  RequestMethod.POST})
 	public String secreatQna(int qnum,  Model model, String pageNum) {
-		model.addAttribute("c", qnaService.screatView(qnum));
+		model.addAttribute("screat", qnaService.screatView(qnum));
 		return "qna/secreat";
 	}
      //2. 비번 확인 후 상세보기로 

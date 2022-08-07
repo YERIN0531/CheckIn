@@ -9,7 +9,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class MainController {
-
+	@RequestMapping(value = "main.do", method= {RequestMethod.GET, RequestMethod.POST})
+	   public String main(Locale locale, Model model) {
+	      return "main/main";
+	   }
 	@RequestMapping(value = "intro.do", method= {RequestMethod.GET, RequestMethod.POST})
 	public String intro(Locale locale, Model model) {
 		return "main/intro";
@@ -36,4 +39,5 @@ public class MainController {
 	public String zeolim() {
 		return "main/zeoilm";
 	}
+	
 }

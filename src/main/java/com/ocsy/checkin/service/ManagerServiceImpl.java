@@ -41,11 +41,16 @@ public class ManagerServiceImpl implements ManagerService {
 	}
 	@Override
 	public int joinManager(Manager manager, HttpSession httpSession) {
-		httpSession.setAttribute("aid", manager.getAid());
-		return managerDao.joinManager(manager);
+		int result = managerDao.joinManager(manager);
+		System.out.println(result == 1? "관리자 등록 성공" : "관리자 등록 실패");
+		if(result == 1) {
+			httpSession.setAttribute("aid", manager.getAid());
+		}
+		return result;
 	}
 	@Override
 	public int deleteManager(String aid) {
+		System.out.println(1);
 		return managerDao.deleteManager(aid);
 	}
 	@Override
