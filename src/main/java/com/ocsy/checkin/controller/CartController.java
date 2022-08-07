@@ -62,5 +62,17 @@ public class CartController {
 		return "forward:cart.do?method=list";
 	}
 	
+	// 상품구매하기 
+	@RequestMapping(params="method=buyProduct", method= {RequestMethod.GET, RequestMethod.POST})
+	public String buyProduct(Cart cart, Model model, String mid) {
+//		model.addAttribute("cartOrder", cartService.cartOrder(cart));
+		model.addAttribute("cartOrderDetail", cartService.cartOrderDetail(cart, mid));
+		System.out.println("cartOrder 성공" + cart.getOr_num());
+		System.out.println("cartOrderDetail 성공");
+		model.addAttribute("cartDelete", cartService.cartDelete(cart));
+		System.out.println("cartDelete 성공");
+		return "cart/orderForm";
+		}
+	
 	
 }

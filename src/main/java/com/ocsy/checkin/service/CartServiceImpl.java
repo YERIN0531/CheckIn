@@ -1,5 +1,6 @@
 package com.ocsy.checkin.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -67,5 +68,40 @@ public class CartServiceImpl implements CartService {
 		System.out.println(result == 1 ? "상품 수량 수정 성공" : "상품 수량 수정 실패..");
 		return result;
 	}
+
+	
+	
+	///////////cart 처리
+	
+	
+//	@Override
+//	public int cartOrder(Cart cart) {
+//		ArrayList<String> seatDbList = (ArrayList<String>) airDao.seatList(air);
+//		Cart carts = (Cart)cartDao.cartOrder(cart);
+//		cart.setOr_num(carts.getOr_num());
+//		return 
+//	}
+	
+	@Override
+	public List<String> orderlist(String mid) {
+		ArrayList<String> orderDblist = (ArrayList<String>) cartDao.orderlist(mid);
+		return orderDblist;
+	}
+	
+	
+	@Override
+	public int cartOrderDetail(Cart cart, String mid) {
+		cartDao.cartOrder(cart);
+		System.out.println("cartorder 성공 "+ cart.getOr_num());
+		System.out.println("cartorder 성공 "+ cart.getOr_num());
+		return cartDao.cartOrderDetail(cart);
+	}
+
+	@Override
+	public int cartDelete(Cart cart) {
+		return cartDao.cartDelete(cart);
+	}
+
+
 
 }

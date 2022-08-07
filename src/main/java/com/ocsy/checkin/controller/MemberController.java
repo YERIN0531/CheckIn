@@ -39,7 +39,7 @@ public class MemberController {
 	@RequestMapping(params = "method=login", method = { RequestMethod.GET, RequestMethod.POST })
 	public String loginCheck(String mid, String mpw, HttpSession httpSession, Model model) {
 		model.addAttribute("loginResult", memberService.login(mid, mpw, httpSession));
-		return "forward:main2.do";
+		return "forward:main.do";
 	}
 	
 	

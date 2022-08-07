@@ -101,7 +101,8 @@
    	<jsp:include page="../main/header.jsp"/>
    	<%-- ${cartList } --%>
    	<section>
-   		<form action="" method="post">
+   		<form action="${conPath }/cart.do?method=buyProduct" method="post">
+   			<input type="hidden" name="mid" value="${member.mid }">
    			<table>
    				
    				<caption>${member.mname }(${member.mid }) 님의 장바구니 페이지</caption>
