@@ -63,6 +63,7 @@
    
 </head>
     <body>
+    <jsp:include page="../main/header.jsp"/>
         <div id="joinMessage">
             <form action="${conPath }/member.do?method=joinMemberView" name="form" method="post">
                 <table>
@@ -329,11 +330,7 @@
             </form>
         </div>
 
-
-
-
-
-
+<jsp:include page="../main/footer.jsp"/>
 </body>
 </html>
 

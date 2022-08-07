@@ -1,5 +1,4 @@
 package com.ocsy.checkin.controller;
-import java.util.ArrayList;
 import java.util.Arrays;
 
 import javax.servlet.http.HttpSession;
@@ -7,12 +6,10 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.ocsy.checkin.dto.Air;
-import com.ocsy.checkin.dto.AirRs;
 import com.ocsy.checkin.dto.Member;
 import com.ocsy.checkin.service.AirService;
 import com.ocsy.checkin.service.MemberService;

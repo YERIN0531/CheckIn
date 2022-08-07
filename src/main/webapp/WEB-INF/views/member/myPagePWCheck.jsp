@@ -20,35 +20,20 @@
  </script>  
 </head>
   <body>
-	<form action="${conPath }/hotel.do?method=schHotel" method="post">
+  <jsp:include page="myPage.jsp" />
+	<form action="${conPath }/member.do?method=modifyView" method="post">
+		<input type="hidden" name="mid" value="${member.mid }">
+		<input type="hidden" name="modify" value="${param.modify }">
 		<table>
 			<tr>
-				<td>어디에 숙소를 잡고 싶으신가요?</td>	
-			</tr>
-			<tr>
-				<td colspan="3">
-					<input type="text" name="schcountry">
-				</td>
-			</tr>
-			<tr>
-				<td>체크인</td>
-				<td>체크아웃</td>
-				<td>투숙객 인원수</td>
-			</tr>
-			<tr>
+				<th>비밀번호 확인</th>
 				<td>
-					<input type="date" name="schcheckindate" required="required">
-				</td>
-				<td>
-					<input type="date" name="schcheckoutdate" required="required">
-				</td>
-				<td>
-					<input type="number" name="headcount" required="required">
+					<input type="password" name="mpw" required="required" >
 				</td>
 			</tr>
 			<tr>
-				<td colspan="3">
-					<input type="submit" value="호텔검색 ->">
+				<td colspan="2">
+					<input type="submit" value="확인">
 				</td>
 			</tr>
 		</table>

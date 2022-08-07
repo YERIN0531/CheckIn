@@ -18,4 +18,6 @@ public interface MemberService {
 	
 	public int joinMember(Member member, HttpSession httpSession);
 	
+	public Member getMember(String mid, String mpw);
+	
 }
