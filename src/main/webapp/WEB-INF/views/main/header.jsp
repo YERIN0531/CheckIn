@@ -14,18 +14,25 @@
  <header>
         <div id="gnb">
             <div id="logo">
-                <p class="p1"><a href="#">CHECK IN</a></p>
-                <p class="p2"><a href="#">for your life</a></p>
+                <p class="p1"><a href="${conPath }/main2.do">CHECK IN</a></p>
+                <p class="p2"><a href="${conPath }/main2.do">for your life</a></p>
             </div>
             <div id="right">
+           	 <c:if test="${empty member }">
                 <ul>
                     <li><a href="#">NOTICE</a></li>
                     <li><a href="${conPath }/member.do?method=joinAgreePage">JOIN</a></li>
                     <li><a href="${conPath }/member.do?method=loginForm">LOGIN</a></li>
-                    <c:if test="${not empty member }">
-                    	<li><a href="">${member.mname } 님</a></li>
-                    </c:if>
                 </ul>
+             </c:if>   
+             <c:if test="${not empty member }">
+             	<ul>
+             		<li><a href="#">NOTICE</a></li>
+                    <li><a href="${conPath }/member.do?method=myPage">MYPAGE</a></li>
+                    <li><a href="${conPath }/member.do?method=logout">LOGOUT</a>
+                    <li><a href="#">${member.mname } 님</a></li>
+                </ul>    
+             </c:if>
             </div>
         </div>
     </header>

@@ -100,6 +100,7 @@
  </script>  
 </head>
   <body>
+  <jsp:include page="../main/header.jsp"/>
 	<form action="${conPath }/member.do?method=joinMember" method="post">
             <div id="border">
                 <table>
@@ -246,5 +247,6 @@
                 </table>
             </div>
         </form>
+    <jsp:include page="../main/footer.jsp"/>    
   </body>
 </html>

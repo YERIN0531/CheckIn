@@ -13,4 +13,10 @@ public interface CartService {
 	public int deleteCartAll(HttpSession session); // 장바구니에 담긴 상품 전체 삭제 - mid
 	public int updateCart(Cart cart); // 장바구니 리스트에서 수정 진행
 	
+	
+//	public int cartOrder(Cart cart); // order에 넣기
+	public int cartOrderDetail(Cart cart, String mid);// order_detail에 넣기
+	public int cartDelete(Cart cart);
+	
+	public List<String> orderlist(String mid);
 }

@@ -19,10 +19,10 @@
         <div id="list">
             <div id="lnb">
                 <ul>
-                    <li><a href="#">항공</a></li>
-                    <li><a href="#">호텔</a></li>
+                    <li><a href="${conPath }/air.do?method=airMain">항공</a></li>
+                    <li><a href="${conPath }/hotel.do?method=hotelMain">호텔</a></li>
                     <li><a href="#">면세점</a></li>
-                    <li><a href="#">게시판</a></li>
+                    <li><a href="${conPath}/notice.do?method=boardmain">게시판</a></li>
                 </ul>
             </div>
         </div>
@@ -68,11 +68,22 @@
 
         <h2>AIR LIST</h2>
         <c:if test="${empty airList }">
-        <div><table>
-					<tr><td colspan="6">등록된 글이 없습니다</td></tr>
-					</table></div>
+
+        <div>
+        <table>
+					<tr><td >등록된 글이 없습니다</td></tr>
+		</table>
+		</div>
+
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <c:if test="${empty airList}">
+        <div id="noneairlist">
+					<table>
+					<tr><td>항공 스케쥴을 검색해 주세요</td></tr>
+					</table>
+        </div>
+
 		</c:if>
-        
         
         <div id="airlist">
 

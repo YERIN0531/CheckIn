@@ -1,0 +1,114 @@
+@charset "UTF-8";
+ section {
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        #list {
+            width: 800px;
+            margin-left: 50px;
+        }
+
+        #lnb {
+            overflow: hidden;
+            width: 800px;
+        }
+
+        #list #lnb ul {
+        }
+
+            #list #lnb ul li {
+                background-color: #8fa8b3;
+                float: left;
+                width: 12%;
+                height: 35px;
+                line-height: 35px;
+                text-align: center;
+                list-style: none;
+                border-radius: 5px 5px 0 0;
+                margin-left: 1px;
+            }
+
+                #list #lnb ul li:hover {
+                    background-color: #3e6170;
+                }
+
+                #list #lnb ul li a {
+                    font-family: 'IBM Plex Sans KR', sans-serif;
+                    text-decoration: none;
+                    color: white;
+                    font-size: 0.9em;
+                }
+
+                #list #lnb ul li:last-child {
+                    background-color: #3e6170;
+                }
+
+                    #list #lnb ul li:last-child a {
+                        font-family: 'IBM Plex Sans KR', sans-serif;
+                        color: white;
+                        font-size: 0.9em;
+                    }
+
+
+
+
+
+        #reserve {
+            padding-left: 4px;
+            background: url("/img/img4.png") no-repeat;
+            background: url("/img/img3.jpg") no-repeat; /**/
+            background: url("/img/img1.jpg") no-repeat; /*v*/
+            background: url("/img/back.jfif") no-repeat; /*vv*/
+            background: url("../../image/img3.png") no-repeat; /*vv*/
+            width: 100%;
+            height: 400px;
+        }
+
+        #word {
+            color: white;
+            width: 70%;
+            text-align: center;
+            margin: 0 auto;
+            padding-top: 11%;
+        }
+
+            #word p {
+                font-size: 2.5em;
+                font-family: 'IBM Plex Sans KR', sans-serif;
+                font-family: 'Satisfy', cursive;
+                font-family: 'The Nautigal', cursive;
+                font-family: 'Domine', serif;
+                color: #d1dde4;
+            }
+
+
+
+        #boardlist {
+            margin: 7px auto;
+            width: 80%;
+            border-top: 1px dashed #3c5d79;
+            border-bottom: 1px dashed #3c5d79;
+            height: 40px;
+        }
+
+            #boardlist ul {
+                overflow: hidden;
+                height: 40px;
+            }
+
+                #boardlist ul li {
+                    list-style: none;
+                    float: left;
+                    line-height: 40px;
+                    width: 25%;
+                    text-align: center;
+                }
+
+                    #boardlist ul li a {
+                        font-family: 'IBM Plex Sans KR', sans-serif;
+                        font-family: 'Domine', serif;
+                        text-decoration: none;
+                        color: #3c5d79;
+                        font-size: 0.9em;
+                    }

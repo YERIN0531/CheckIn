@@ -124,6 +124,28 @@
             margin-top: 30px;
             color: #3c5d79;
         }
+        
+        #noneairlist{
+           	border:2px dashed lightgray;
+           	width:80%;;
+            font-family: 'IBM Plex Sans KR', sans-serif;
+            text-align: center;
+            margin:0 auto;
+            height:250px;
+        }
+        #noneairlist table{
+        margin:25px auto;
+        height: 200px;
+       
+        
+        }
+        #noneairlist table td{
+        font-size:1.2em;
+       	color:#3c5d79;
+       	font-weight: bold;
+        }
+        
+        
         #airlist {
             font-family: 'IBM Plex Sans KR', sans-serif;
             margin-top: 20px;

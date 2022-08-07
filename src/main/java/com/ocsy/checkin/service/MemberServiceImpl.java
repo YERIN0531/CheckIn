@@ -45,6 +45,16 @@ public class MemberServiceImpl implements MemberService {
 		}
 		return result;
 	}
+	
+	@Override
+	public Member getMember(String mid, String mpw) {
+		Member member = new Member();
+		member.setMid(mid);
+		member.setMpw(mpw);
+		member = memberDao.loginCheck(member);
+		return member;
+	}
+	
 	@Override
 	public int minusMileage(Member member) {
 		return memberDao.minusMileage(member);
@@ -68,6 +78,7 @@ public class MemberServiceImpl implements MemberService {
 		}
 		return result;
 	}
+	
 	
 
 }

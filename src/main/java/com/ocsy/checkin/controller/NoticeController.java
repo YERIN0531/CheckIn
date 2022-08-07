@@ -17,6 +17,11 @@ public class NoticeController {
 	@Autowired
 	private NoticeService noticeService;
 	
+	
+	@RequestMapping(params="method=boardmain",method= {RequestMethod.GET, RequestMethod.POST})
+	public String boardmain() {
+		return "board/boardmain";
+	}
 	//1. 리뷰 리스트
 	@RequestMapping(params="method=noticeList",method= {RequestMethod.GET, RequestMethod.POST})
 	public String noticeList(String pageNum , Model model) {

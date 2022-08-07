@@ -31,15 +31,15 @@ public class HotelController {
 	@Autowired
 	private JavaMailSender mailSender;
 	
-	@RequestMapping(params="method=hotelSearch",method= {RequestMethod.GET,RequestMethod.POST})
-	public String hotelSearchView() {
-		return "hotel/hotelSearch";
+	@RequestMapping(params="method=hotelMain",method= {RequestMethod.GET,RequestMethod.POST})
+	public String hotelMain() {
+		return "hotel/hotelMain";
 	}
 	@RequestMapping(params = "method=schHotel", method= {RequestMethod.GET, RequestMethod.POST })    // 호텔 목록 조회할때 
 	public String schHotel(Hotel hotel, Model model) {
 		model.addAttribute("hotelList",hotelService.checkHotelReservationList(hotel));
 		model.addAttribute("hotel",hotel);
-		return "hotel/hotelList";
+		return "hotel/hotelMain";
 	}
 	@RequestMapping(params = "method=getHotelDetail", method= {RequestMethod.GET,RequestMethod.POST})   // 호텔 디테일 들어갔을떄
 	public String getHotelDetail(@ModelAttribute("hotelDto") Hotel hotel,Model model) {

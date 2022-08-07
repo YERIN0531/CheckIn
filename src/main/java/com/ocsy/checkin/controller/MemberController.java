@@ -39,14 +39,14 @@ public class MemberController {
 	@RequestMapping(params = "method=login", method = { RequestMethod.GET, RequestMethod.POST })
 	public String loginCheck(String mid, String mpw, HttpSession httpSession, Model model) {
 		model.addAttribute("loginResult", memberService.login(mid, mpw, httpSession));
-		return "forward:main2.do";
+		return "forward:main.do";
 	}
 	
 	
 	@RequestMapping(params="method=logout", method= RequestMethod.GET)
 	public String logout(HttpSession httpSession) {
 		memberService.logout(httpSession);
-		return "redirect:main.do";
+		return "redirect:main2.do";
 	}
 	
 	@RequestMapping(params="method=joinAgreePage",method= {RequestMethod.GET, RequestMethod.POST})
@@ -103,6 +103,20 @@ public class MemberController {
 		}
 		model.addAttribute("joinResult",result);
 		return "member/loginForm";
+	}
+	
+	@RequestMapping(params="method=myPage",method= {RequestMethod.GET, RequestMethod.POST})
+	public String myPage() {
+		return "member/myPage";
+	}
+	@RequestMapping(params="method=modifyPWCheck",method= {RequestMethod.GET, RequestMethod.POST})
+	public String modifyPWCheck(String modify) {
+		return "member/myPagePWCheck";
+	}	
+	@RequestMapping(params="method=modifyView",method= {RequestMethod.GET, RequestMethod.POST})
+	public String modifyView(String modify, Member member, Model model) {
+		model.addAttribute("memberDto",memberService.getMember(member.getMid(),member.getMpw()));
+		return "member/modifyView";
 	}
 	
 

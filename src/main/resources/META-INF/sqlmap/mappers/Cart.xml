@@ -6,13 +6,20 @@
   <mapper namespace="com.ocsy.checkin.dao.CartDao">
   	<resultMap type="Cart" id="CartResult">
   		<result property="cartnum" column="cartnum"/>
-  		<result property="pnum" column="pnum"/>
-  		<result property="mid" column="mid"/>
-  		<result property="cost" column="cost"/>
-  		<result property="qty" column="qty"/>
-  		<result property="pimage1" column="pimage1"/>
-  		<result property="pname" column="pname"/>
-  		<result property="pprice" column="pprice"/>
+        <result property="pnum" column="pnum"/>
+        <result property="mid" column="mid"/>
+        <result property="cost" column="cost"/>
+        <result property="qty" column="qty"/>
+ 
+        <result property="pimage1" column="pimage1"/>
+        <result property="pname" column="pname"/>
+        <result property="pprice" column="pprice"/>
+
+
+        <result property="or_num" column="or_num"/>
+        <result property="ordate" column="ordate"/>
+        <result property="ord_num" column="ord_num"/>
+  		
   	</resultMap>
   	
   	
@@ -61,5 +68,28 @@
                 COST = #{qty} * (SELECT PPRICE FROM TAXFREE WHERE PNUM = (select pnum from cart where cartnum=#{cartnum}))
             WHERE CARTNUM = #{cartnum}
   	</update>
+  	
+  	
+  	
+  	
+  	<!-- 카트에 있는 놈을 order에 넣기  -->
+  	<insert id="cartOrder" parameterType="Cart">
+  	INSERT INTO ORDERS VALUES (ORDER_SEQ.NEXTVAL, #{mid}, SYSDATE)
+  	</insert>
   
+  	<!--  order에 있는 order 리스트 출력  -->
+  	<select id="orderlist" parameterType="String" resultType="String">
+  	 SELECT OR_NUM FROM ORDERS O , CART C WHERE O.MID=C.MID AND O.MID=#{mid}
+  	</select>
+  
+    <!-- orderdetail 에 order 주문번호와 cart 내용 넘기기 -->
+  	<insert id="cartOrderDetail" parameterType="Cart">
+	INSERT INTO ORDER_DETAIL 
+    SELECT ORDERDETAIL_SEQ.NEXTVAL, (SELECT OR_NUM FROM ORDERS WHERE MID=#{mid} AND OR_NUM=#{or_num}), PNUM, COST, QTY FROM CART WHERE MID=#{mid}
+  	</insert>
+  
+   <!-- 카트에 있는 놈 지우기  -->
+     <delete id="cartDelete" parameterType="Cart">
+	DELETE FROM CART WHERE MID=#{mid} AND PNUM = (SELECT PNUM FROM ORDERS WHERE OR_NUM = #{or_num})
+  	</delete>
   </mapper>

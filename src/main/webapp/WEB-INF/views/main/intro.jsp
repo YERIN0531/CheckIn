@@ -26,7 +26,7 @@
     </div>
     <div id="list">
         <ul>
-            <li><a href="#">JOIN</a></li>
+            <li><a href="${conPath }/member.do?method=joinAgreePage">JOIN</a></li>
             <li><a href="${conPath}/member.do?method=loginForm">LOGIN</a></li>
             <li><a href="${conPath }/main2.do">MAIN</a></li>
         </ul>
