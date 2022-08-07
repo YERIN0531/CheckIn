@@ -59,14 +59,14 @@ img {
 </head>
   <body>	
    	<!-- 면세상품 상세보기 페이지 -->
-   	<c:if test="${not empty insertCart }">
-   		<script>
-   			var input = confirm('상품이 장바구니에 담겼습니다.\n장바구니로 이동 하시겠습니까?');
-   			if(input == true) {
-   				location.href = '${conPath}/cart.do?method=list';
-   			}
-   		</script>
-   	</c:if>
+    	<c:if test="${not empty insertCart }"> --%>
+    		<script> 
+    			var input = confirm('상품이 장바구니에 담겼습니다.\n장바구니로 이동 하시겠습니까?');
+    			if(input == true) {
+    				location.href = '${conPath}/cart.do?method=list';
+    			}
+    		</script>
+    	</c:if> 
    	
    	<jsp:include page="../main/header.jsp"/>
    	<table>
@@ -93,7 +93,7 @@ img {
    				<input type="hidden" name="mid" value="${member.mid }">
    				<input type="hidden" name="pnum" value="${taxfreeDto.pnum }">   				
    				<input type="number" name="qty" value="1">
-   				<input type="submit" value="장바구니" id="cart" onclick="idCheck();">
+   				<input type="submit" value="장바구니">
    			</form>
    		</td></tr>
    		<tr>
@@ -101,6 +101,7 @@ img {
    				<button onclick="location='${conPath}/taxfree.do?method=list'">목록</button>	
    				<button onclick="#">바로구매</button>
    				<button onclick="location='${conPath}/cart.do?method=list'">장바구니리스트</button>
+   				
    			</td>
    		</tr>
    		<tr>

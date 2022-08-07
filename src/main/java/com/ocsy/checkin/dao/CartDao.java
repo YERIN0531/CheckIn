@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.ocsy.checkin.dto.Air;
 import com.ocsy.checkin.dto.Cart;
 
 @Mapper
@@ -16,5 +17,12 @@ public interface CartDao {
 	public int totCntCart(Cart cart); // Cart 안에 같은 이름의 상품이 있는지 확인
 	public int updateCart(Cart cart); // 면세품 상세보기에서 수정 진행하는 로직
 	public int updateInCart(Cart cart); // 장바구니 리스트에서 수정 진행하는 로직
+	
+	public int cartOrder(Cart cart); // order에 넣기
+	public int cartOrderDetail(Cart cart);// order_detail에 넣기
+	public int cartDelete(Cart cart);
+	
+	public List<String> orderlist(String mid);
+	
 	
 }

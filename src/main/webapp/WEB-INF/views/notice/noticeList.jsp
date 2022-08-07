@@ -9,6 +9,7 @@
 <meta charset="UTF-8">
   <title>Insert title here</title>
   <link href="${conPath }/css/style.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Domine:wght@500&family=IBM+Plex+Sans+KR:wght@300;400&family=Libre+Baskerville&family=Nanum+Gothic&family=Satisfy&family=The+Nautigal:wght@400;700&display=swap" rel="stylesheet">
  <style>
  
  </style>
@@ -26,6 +27,8 @@
  </script>  
 </head>
   <body>
+  <jsp:include page="../main/header.jsp"/>
+  <jsp:include page="../board/boardmain.jsp"/>
   <c:set var="SUCESS" value="1"></c:set>
    <c:if test="${not empty deleteResult  and deleteResult eq 1 }">
    	    <script>
@@ -35,50 +38,87 @@
   <c:if test="${not empty manager }">
  <button onclick="location='${conPath}/notice.do?method=insertNoticeForm&pageNum=${param.pageNum }'">공지글등록</button>
   </c:if> 
-   <div id = "content">
+    <div id="logos">
+        <p>NOTICE_BOARD</p>
+    </div>
+    <div id="wrap">
+        <div id="writeform">
+
+            <button onclick="location='${conPath}/main.do'" class="write">공지글등록</button>
+            <table>
+                <tr>
+                    <th>글번호</th>
+                    <th>관리자아이디</th>
+                    <th>제목</th>
+                    <th>조회수</th>
+                    <th>작성일</th>
+                </tr>
+                <c:if test="${noticeList.size() == 0 }">
+                    <tr><th colspan="5">등록된 공지사항이 없습니다</th></tr>
+                </c:if>
+                <c:if test="${noticeList.size() != 0 }">
+                    <c:forEach items="${noticeList }" var="notice">
+                        <tr>
+                            <td>
+                                ${notice.nnum }
+                            </td>
+                            <td> ${notice.aid }</td>
+                            <td> ${notice.ntitle }</td>
+                            <td> ${notice.nhit }</td>
+                            <td> ${notice.nrdate }</td>
+                    </c:forEach>
+                </c:if>
+            </table>
+        </div> <!--writeform-->
+    </div><!--wrap-->
+    <button onclick="location='${conPath}/main.do'">메인</button>
+    <jsp:include page="../main/footer.jsp"/>
+<!--   <button>공지글등록</button> -->
+  
+<!--    <div id = "content"> -->
  
-   <table>
-      <caption>공지사항</caption>
-    <tr>
-      <th>글번호</th>
-   	  <th>관리자아이디</th>
-   	  <th>제목</th>
-   	  <th>조회수</th>
-   	  <th>작성일</th>
-   	  </tr>
-	      <c:if test="${noticeList.size() == 0 }">
-	   	    <tr><th colspan="5">등록된 공지사항이 없습니다</th></tr>
-	   	  </c:if>
-   	 <c:if test="${noticeList.size() != 0 }">
-   	   <c:forEach items="${noticeList }" var = "notice">
-   	     <tr>
-   	      	 <td>
-   	      	 ${notice.nnum }
-			 </td>
-			 <td> ${notice.aid }</td>
-			 <td> ${notice.ntitle }</td>
-			 <td> ${notice.nhit }</td>
-			 <td> ${notice.nrdate }</td>
-   	   </c:forEach>
-   	 </c:if>
-   </table>
-   	<div class="paging">
-		<c:if test="${paging.startPage > paging.blockSize }">
-			[ <a href="${conPath }/notice.do?method=noticeList&pageNum=${paging.startPage-1}">이전</a> ]
-		</c:if>
-		<c:forEach var="i" begin="${paging.startPage }" end="${paging.endPage }">
-			<c:if test="${i eq paging.currentPage }">
-				[ <b> ${i } </b> ]
-			</c:if>
-			<c:if test="${i != paging.currentPage }">
-				[ <a href="${conPath }/notice.do?method=noticeList&pageNum=${i}">${i }</a> ]
-			</c:if>
-		</c:forEach>
-		<c:if test="${paging.endPage < paging.pageCnt }">
-			[ <a href="${conPath }/notice.do?method=noticeList&pageNum=${paging.endPage+1}">다음</a> ]
-		</c:if>
-	</div>
-	</div>
-	<button onclick="location='${conPath}/main.do'">메인</button>
+<!--    <table> -->
+<%--       <caption>공지사항</caption> --%>
+<!--     <tr> -->
+<!--       <th>글번호</th> -->
+<!--    	  <th>관리자아이디</th> -->
+<!--    	  <th>제목</th> -->
+<!--    	  <th>조회수</th> -->
+<!--    	  <th>작성일</th> -->
+<!--    	  </tr> -->
+<%-- 	      <c:if test="${noticeList.size() == 0 }"> --%>
+<!-- 	   	    <tr><th colspan="5">등록된 공지사항이 없습니다</th></tr> -->
+<%-- 	   	  </c:if> --%>
+<%--    	 <c:if test="${noticeList.size() != 0 }"> --%>
+<%--    	   <c:forEach items="${noticeList }" var = "notice"> --%>
+<!--    	     <tr> -->
+<!--    	      	 <td> -->
+<%--    	      	 ${notice.nnum } --%>
+<!-- 			 </td> -->
+<%-- 			 <td> ${notice.aid }</td> --%>
+<%-- 			 <td> ${notice.ntitle }</td> --%>
+<%-- 			 <td> ${notice.nhit }</td> --%>
+<%-- 			 <td> ${notice.nrdate }</td> --%>
+<%--    	   </c:forEach> --%>
+<%--    	 </c:if> --%>
+<!--    </table> -->
+<!--    	<div class="paging"> -->
+<%-- 		<c:if test="${paging.startPage > paging.blockSize }"> --%>
+<%-- 			[ <a href="${conPath }/notice.do?method=noticeList&pageNum=${paging.startPage-1}">이전</a> ] --%>
+<%-- 		</c:if> --%>
+<%-- 		<c:forEach var="i" begin="${paging.startPage }" end="${paging.endPage }"> --%>
+<%-- 			<c:if test="${i eq paging.currentPage }"> --%>
+<%-- 				[ <b> ${i } </b> ] --%>
+<%-- 			</c:if> --%>
+<%-- 			<c:if test="${i != paging.currentPage }"> --%>
+<%-- 				[ <a href="${conPath }/notice.do?method=noticeList&pageNum=${i}">${i }</a> ] --%>
+<%-- 			</c:if> --%>
+<%-- 		</c:forEach> --%>
+<%-- 		<c:if test="${paging.endPage < paging.pageCnt }"> --%>
+<%-- 			[ <a href="${conPath }/notice.do?method=noticeList&pageNum=${paging.endPage+1}">다음</a> ] --%>
+<%-- 		</c:if> --%>
+<!-- 	</div> -->
+<!-- 	</div> -->
+<%-- 	<button onclick="location='${conPath}/main.do'">메인</button> --%>
   </body>
 </html>
