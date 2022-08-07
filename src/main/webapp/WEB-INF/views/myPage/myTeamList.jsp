@@ -40,6 +40,7 @@
 			alert('요청 거절 처리에 실패하였습니다.');
 		</script>
 	</c:if>
+	<jsp:include page="../member/myPage.jsp" />
 	<h1>나의 여행팀 리스트 페이지입니다.</h1>
 	<table>
 		<c:forEach var="teamList" items="${myTeamList }">
@@ -58,5 +59,6 @@
 		</c:forEach>
 	</table>
 	<button onclick="location='${conPath }/main.do'">메인으로</button>
+	
   </body>
 </html>

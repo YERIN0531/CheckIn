@@ -19,8 +19,8 @@
         <div id="list">
             <div id="lnb">
                 <ul>
-                    <li><a href="#">항공</a></li>
-                    <li><a href="#">호텔</a></li>
+                    <li><a href="${conPath }/air.do?method=airMain">항공</a></li>
+                    <li><a href="${conPath }/hotel.do?method=hotelMain">호텔</a></li>
                     <li><a href="#">면세점</a></li>
                     <li><a href="#">게시판</a></li>
                 </ul>
@@ -67,8 +67,12 @@
 		
 
         <h2>AIR LIST</h2>
-        <c:if test="${airList.acode }">
-					<tr><td colspan="6">등록된 글이 없습니다</td></tr>
+        <c:if test="${empty airList }">
+        <div>
+        <table>
+					<tr><td >등록된 글이 없습니다</td></tr>
+		</table>
+		</div>
 		</c:if>
         
         

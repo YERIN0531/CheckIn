@@ -20,6 +20,7 @@
  </script>  
 </head>
   <body>
+  <jsp:include page="../member/myPage.jsp" />
 	<h1>특정 여행팀 상세보기 페이지입니다. 예린씨 css화이팅 입니다</h1>
 	<table>
 		<tr>

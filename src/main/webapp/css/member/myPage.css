@@ -1,0 +1,33 @@
+@charset "UTF-8";
+
+* {
+   list-style: none;
+   text-decoration: none;
+   margin: 0;
+   padding: 0;
+   color: black;
+}
+
+#navigation {
+   width: 300px;
+   height: 550px;
+   font-size: 1.5em;
+   padding-top: 20px;
+   padding-left: 20px;
+   box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+   float: left;
+   margin: 150px 0 50px 20px;
+}
+
+#navigation .menu {
+   font-weight: bold;
+}
+
+#navigation .menu .submenu {
+   margin-left: 40px;
+}
+
+#navigation .menu .submenu li {
+   margin: 5px 0;
+   font-weight: normal;
+}

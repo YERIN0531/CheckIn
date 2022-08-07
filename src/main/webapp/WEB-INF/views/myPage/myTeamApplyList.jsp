@@ -20,6 +20,7 @@
  </script>  
 </head>
   <body>
+  <jsp:include page="../member/myPage.jsp" />
 	<h1>우리팀에 들어오고싶다고 신청한 사람들의 목록이 뜨는 페이지입니다. 예린씨</h1>
 	<c:if test="${myteamApplyList.size() eq 0 }">
 		<script>
