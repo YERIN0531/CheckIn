@@ -1,5 +1,7 @@
 package com.ocsy.checkin.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,7 +50,7 @@ public class CartController {
 	
 	// 장바구니 비우기 - O
 	@RequestMapping(params="method=deleteAll", method= {RequestMethod.GET, RequestMethod.POST})
-	public String deleteAllCart(HttpSession session, Model model) {
+	public String deleteAllCart(HttpSession session, Model model) {	
 		model.addAttribute("deleteAllCart", cartService.deleteCartAll(session));
 		System.out.println("controller : 장바구니 비우기 성공");
 		return "forward:cart.do?method=list";
@@ -62,17 +64,27 @@ public class CartController {
 		return "forward:cart.do?method=list";
 	}
 	
-	// 상품구매하기 
+	// 상품구매하기 - 진행중 / 주문내역 넘기는 작업
 	@RequestMapping(params="method=buyProduct", method= {RequestMethod.GET, RequestMethod.POST})
-	public String buyProduct(Cart cart, Model model, String mid) {
-//		model.addAttribute("cartOrder", cartService.cartOrder(cart));
-		model.addAttribute("cartOrderDetail", cartService.cartOrderDetail(cart, mid));
-		System.out.println("cartOrder 성공" + cart.getOr_num());
-		System.out.println("cartOrderDetail 성공");
-		model.addAttribute("cartDelete", cartService.cartDelete(cart));
-		System.out.println("cartDelete 성공");
+	public String buyProduct(Cart cart, Model model, String mid, int[] cartnum) {
+		//model.addAttribute("cartOrder", cartService.cartOrder(cart));
+		List<String> cartOrderDetail =  cartService.insertCartOrder(cart, mid); // cart 안들어갇도 되고 mid는 세션으로 받아오면 된다.
+		// cartnum을 받아서 배열로 돌려야 할지
+		System.out.println(cartOrderDetail);	 // or_num 리스트 리턴	
+		model.addAttribute("cartOrderDetail", cartOrderDetail);  
+		
+		System.out.println("cartOrder 성공" + cart.getOr_num()); // 뷰단에서 가져와서 0으로 출력이된다. 데이터베이스에서 확인해야함
+		
+		model.addAttribute("cartOderDetailList", cartService.orderlist(mid));  // 주문번호 등록, 주문번호 리턴
+		
+		model.addAttribute("cartOderDetailInsert", cartService.insertOrderDetail(cart));  // order_detail에 insert
+		System.out.println("cartOrderDetail 데이터 넣기 성공");
+
+		// model.addAttribute("cartDelete", cartService.cartDelete(cart)); // 주문정보로 넘어온 PRODUCT를 삭제
+		// System.out.println("cartDelete 성공");
 		return "cart/orderForm";
 		}
+
 	
 	
 }

@@ -68,7 +68,16 @@
 
         <h2>AIR LIST</h2>
 <<<<<<< HEAD
+<<<<<<< HEAD
+        <div>
+        <table>
+					<tr><td >등록된 글이 없습니다</td></tr>
+		</table>
+		</div>
+
+=======
        
+>>>>>>> 3134e8a5d20f8802604e9fd7adc0b0ab71dc27c9
 =======
 >>>>>>> 2e83c1de4ad284bc8c2b99b743a5eb4e2cba1164
         &nbsp;&nbsp;&nbsp;&nbsp;

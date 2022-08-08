@@ -53,6 +53,9 @@
 	<delete id="deleteProduct" parameterType="Taxfree">
 		DELETE FROM TAXFREE WHERE PNUM = #{pnum}
 	</delete>
+	
+	<!--   -->
+	
   	
   	
   </mapper>

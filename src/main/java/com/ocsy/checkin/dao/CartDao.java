@@ -18,11 +18,12 @@ public interface CartDao {
 	public int updateCart(Cart cart); // 면세품 상세보기에서 수정 진행하는 로직
 	public int updateInCart(Cart cart); // 장바구니 리스트에서 수정 진행하는 로직
 	
-	public int cartOrder(Cart cart); // order에 넣기
-	public int cartOrderDetail(Cart cart);// order_detail에 넣기
-	public int cartDelete(Cart cart);
+	// ORDERS-ORDER_DETAIL 진행
+	public int cartOrder(Cart cart); // order에 insert
+	public List<String> orderlist(String mid); // or_num 정상출력 되는지 확인 select
+	public int cartOrderDetail(Cart cart);// order_detail에 insert
+	public int cartDelete(Cart cart); // 장바구니 비워주기
 	
-	public List<String> orderlist(String mid);
 	
 	
 }
