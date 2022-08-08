@@ -23,6 +23,12 @@
           history.back();
        </script> 
     </c:if>  
+    
+    <c:if test="${not empty memberModifyResult and memberModifyResult eq 1 }"> 
+       <script> 
+          alert('회원 정보 수정 성공!');
+       </script> 
+    </c:if>  
    <c:if test="${empty member }">
 	<button onclick="location='${conPath}/member.do?method=loginForm'">로그인</button>
 	</c:if>

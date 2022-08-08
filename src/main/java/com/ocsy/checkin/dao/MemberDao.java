@@ -17,4 +17,6 @@ public interface MemberDao {
 	public int idConfirm(String mid);
 	
 	public int joinMember(Member member);  // 회원가입
+	
+	public int modifyMember(Member member);
 }

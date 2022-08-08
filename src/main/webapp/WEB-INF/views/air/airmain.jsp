@@ -67,6 +67,10 @@
 		
 
         <h2>AIR LIST</h2>
+<<<<<<< HEAD
+       
+=======
+>>>>>>> 2e83c1de4ad284bc8c2b99b743a5eb4e2cba1164
         &nbsp;&nbsp;&nbsp;&nbsp;
         <c:if test="${empty airList}">
         <div id="noneairlist">

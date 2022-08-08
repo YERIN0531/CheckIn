@@ -46,9 +46,28 @@
   	</update>
   	<insert id="joinMember" parameterType="Member">
   		INSERT INTO CUSTOMER VALUES (#{mid}, #{mpw}, #{mname}, #{mename},#{mpassport},
-  			#{mtel},#{mpost},#{maddress},#{mdeaddress},#{mgender},#{mbirth},1,#{memail},SYSDATE,0,0)
+  			#{mtel},#{mpost},#{maddress},#{mdeaddress},#{mgender},#{mbirth},1,#{c},SYSDATE,0,0)
   	</insert>
   	
+  	<update id="modifyMember" parameterType="Member">
+UPDATE CUSTOMER SET 
+				<if test="modify=='all'">
+					MNAME=#{mname},
+                    MENAME=#{mename},
+                    MPASSPORT=#{mpassport},
+                    MTEL=#{mtel},
+                    MPOST=#{mpost},
+                    MADDRESS=#{maddress},
+                    MDEADDRESS=#{mdeaddress},
+                    MGENDER=#{mgender},
+                    MBIRTH=#{mbirth}, 
+                    MEMAIL=#{memail}
+                 </if>
+                 <if test="modify=='pw'">
+                   MPW=#{mpw}
+                 </if>
+            WHERE MID=#{mid}  	
+  	</update>
   </mapper>
   
   
