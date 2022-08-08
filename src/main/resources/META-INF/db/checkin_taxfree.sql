@@ -101,12 +101,12 @@ DROP SEQUENCE ORDERDETAIL_SEQ;
 CREATE SEQUENCE ORDERDETAIL_SEQ MAXVALUE 9999999999 NOCYCLE NOCACHE;
 CREATE TABLE ORDER_DETAIL(
     ORD_NUM    NUMBER(10) PRIMARY KEY,                   -- 주문 완료 번호
-    OR_NUM     NUMBER(10) NOT NULL REFERENCES ORDERS,    -- 주문 번호
+    OR_NUM     NUMBER(10) NOT NULL REFERENCES ORDERS,    -- 주문 번호  
     PNUM       NUMBER(10) NOT NULL REFERENCES TAXFREE,   -- 상품 번호
     COST       NUMBER(10) NOT NULL,                      -- 총 상품 가격
     QTY        NUMBER(10) NOT NULL                       -- 수량
 );
-
+COMMIT;
 -- DUMMY
 -- 주문1
 INSERT INTO ORDER_DETAIL (ORD_NUM, OR_NUM, PNUM, COST, QTY)
@@ -163,7 +163,7 @@ DELETE FROM CART WHERE CARTNUM = 4;
 SELECT * FROM CART;
 commit;
 -- 3. listCart 장바구니 리스트
-SELECT * FROM CART C, TAXFREE T WHERE C.PNUM = T.PNUM AND MID = 'bbb' ORDER BY CARTNUM DESC;
+SELECT * FROM CART C, TAXFREE T WHERE C.PNUM = T.PNUM AND MID = 'aaa' ORDER BY CARTNUM DESC;
 
 -- 4. 장바구니에 상품이 있는지 없는지 확인 checkCart 0805    
 SELECT COUNT(*) FROM CART WHERE MID='bbb' AND PNUM = 2;
@@ -209,16 +209,27 @@ INSERT INTO ORDER_DETAIL (ORD_NUM, OR_NUM, PNUM, COST, QTY)
     VALUES(ORDERDETAIL_SEQ.NEXTVAL, 2207280001, 1, 3*(SELECT PPRICE FROM TAXFREE WHERE PNUM = 1), 3);
 SELECT * FROM CART WHERE MID='aaa'; -- 내역이 들어가 있는지 확인하고
 select * from order_detail;
+SELECT * FROM CART WHERE MID='aaa';
 -- 4. orderdetail 결제정보
 insert into order_Detail
     select orderdetail_seq.nextval,  TO_CHAR(SYSDATE, 'YYMMDD') || TRIM(TO_CHAR(ORDER_SEQ.currVAL, '0000')), pnum, cost, qty from cart where mid='aaa' ;
+insert into order_Detail
+    select orderdetail_seq.nextval, ORDER_SEQ.CURRVAL, pnum, cost, qty from cart where mid='aaa' ;
 -- deleteCart 장바구니에 담겨진 물품 삭제
 delete cart where mid='aaa';
 
+
+
+
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 SELECT * FROM TAXFREE;
 SELECT * FROM CART;
 SELECT * FROM ORDERS;
 SELECT * FROM ORDER_DETAIL;
+
+-- ORDER : OR_NUM 생성 완료 ORDERDETAIL 생성 안됨 DELETE 생성 안됨
+COMMIT;
 -- 1. 물건을 카트에 담는다
 INSERT INTO CART (CARTNUM, PNUM, MID, COST, QTY)
     VALUES(CART_SEQ.NEXTVAL, 1, 'aaa', 1*(SELECT PPRICE FROM TAXFREE WHERE PNUM = 1), 1);
@@ -234,41 +245,68 @@ SELECT * FROM CART WHERE MID='aaa';
 
 -- 2. 카트에 있는 물건을 ORDER에 담는다
 SELECT * FROM ORDERS;
-INSERT INTO ORDERS VALUES (ORDER_SEQ.NEXTVAL, 
-            'aaa', TO_DATE('2022-07-25', 'YYYY-MM-DD'));
+INSERT INTO ORDERS VALUES (ORDER_SEQ.NEXTVAL, 'aaa', SYSDATE);
 
 -- 3. ORDER에 있는 주문번호와 카트에 있는 정보를 ORDER-DETAIL에 담는다
 INSERT INTO ORDER_DETAIL 
+<<<<<<< HEAD
+    SELECT ORDERDETAIL_SEQ.NEXTVAL, 2, PNUM, COST, QTY FROM CART WHERE MID = 'aaa';
+=======
     SELECT ORDERDETAIL_SEQ.NEXTVAL, (SELECT OR_NUM FROM ORDERS WHERE MID='aaa' AND OR_NUM=3), PNUM, COST, QTY FROM CART WHERE MID='aaa';
     SELECT OR_NUM FROM ORDERS WHERE MID='aaa' AND OR_NUM=3;
     SELECT * FROM ORDERS;
+>>>>>>> 2e83c1de4ad284bc8c2b99b743a5eb4e2cba1164
     
- SELECT * FROM ORDER_DETAIL;   
-    
- SELECT * FROM CART;
- SELECT * FROM CART WHERE MID='aaa';
--- 4. 카트를 지워준다 
-delete cart where mid='aaa' a ;
+SELECT * FROM TAXFREE;
+SELECT * FROM ORDER_DETAIL;       
 SELECT * FROM CART;
-SELECT * FROM ORDER_DETAIL;
- DELETE FROM CART C, ORDER_DETAIL O WHERE MID='aaa' AND O.OR_NUM=1;
- DELETE FROM CART 
- 
- SELECT * FROM CART WHERE MID='aaa' AND;
+SELECT * FROM CART WHERE MID='aaa';
+-- 4. (listOrderDetail)INSERT 된 PRODUCT들을 뿌려준다. CART TAXFREE ORDERDETAIL / 진행중
+SELECT * FROM ORDER_DETAIL OD, TAXFREE T WHERE OD.PNUM = T.PNUM; -- JOIN 확인
+SELECT OR_NUM, ORD_NUM, PNAME, PPRICE, QTY, COST FROM ORDER_DETAIL OD, TAXFREE T WHERE OD.PNUM = T.PNUM ORDER BY ORD_NUM; -- 최종 확인
+
+
+SELECT OR_NUM, ORD_NUM, PNAME, PPRICE, QTY, COST, (SELECT ORDATE FROM ORDERS WHERE OR_NUM = 2) FROM ORDER_DETAIL OD, TAXFREE T WHERE OD.PNUM = T.PNUM ORDER BY ORD_NUM;
+
+
+-- 5. TAXFREE 테이블의 상품 재고 수정 진행
+update c
+
  SELECT * FROM ORDERS WHERE MID='aaa';
+<<<<<<< HEAD
+ SELECT * FROM ORDER_DETAIL WHERE OR_NUM = 2;
+ SELECT * FROM ORDER_DETAIL;
+select pnum, qty from cart c where mid='aaa'; --pnum, qty update for문 안되면
+
+-- 6. 카트 안의 상품들을 지워준다.
+delete cart where mid='aaa';
+SELECT * FROM CART;
+SELECT * FROM ORDERS;
+SELECT * FROM ORDER_DETAIL;
+
+
+ DELETE FROM CART WHERE MID='aaa';
+-- ORDER_DETAIL에서 주문 내역 상품들 출력해주기
+SELECT * FROM ORDER_DETAIL;
+SELECT * FROM CART C, TAXFREE T WHERE C.PNUM = T.PNUM AND MID = 'aaa' ORDER BY CARTNUM DESC; -- 장바구니에서 내가 담은 상품 상세정보 출력해주는 것
+-- ORNUM으로 정보를 출력해야 하는 것 아닌지..!
+SELECT * FROM CART C, TAXFREE T WHERE C.PNUM = T.PNUM AND MID = 'aaa' ORDER BY CARTNUM DESC;
+
+---------- product랑 order_detail join해서 상품 출력하고 , orders order_Detail
+SELECT * FROM CART WHERE MID='aaa' ORDER BY CARTNUM DESC;
+SELECT * FROM ORDERS;
+SELECT * FROM ORDER_DETAIL;
+commit;
+SELECT * FROM TAXFREE;
+=======
  SELECT OR_NUM FROM ORDERS O , CART C WHERE O.MID=C.MID AND O.MID='aaa';
  AND mid='aaa';
  
  
  SELECT * FROM ORDER_DETAIL;
  
+>>>>>>> 2e83c1de4ad284bc8c2b99b743a5eb4e2cba1164
 
 
 
 
-
-
-
-
-
-commit;

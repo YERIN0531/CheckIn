@@ -73,7 +73,7 @@ img {
    		<caption>${taxfreeDto.pname }</caption>
    		
    		<tr>
-   		<td rowspan="8" class="image">
+   		<td rowspan="7" class="image">
 	   			<c:if test="${taxfreeDto.pimage1 eq null or '' }">
 	   			<img src="${conPath }/taxfree/noimg.jpg" alt="noimg.jpg" width="250" height="300">
 	   			</c:if>
@@ -81,38 +81,50 @@ img {
 	   			<img src="${conPath }/taxfree/${taxfreeDto.pimage1 }" alt="${taxfreeDto.pimage1 }" width="250" height="300">
 	   			</c:if>
    		</td></tr>
-   		<tr><td>상품번호</td><td>${taxfreeDto.pnum }</td></tr>
-   		<tr><td>판매가</td><td>USD ${taxfreeDto.pprice }</td></tr>
-   		<tr><td>재고수량</td><td>${taxfreeDto.pstock }</td></tr>
-   		<tr><td>상품위치</td><td>${taxfreeDto.ploc }</td></tr>
-
-   		<tr><td>수량</td>
+   		<tr><td>NO.</td><td>${taxfreeDto.pnum }</td></tr>
+   		<tr><td>PRICE</td><td>USD ${taxfreeDto.pprice }</td></tr>
+   		<tr><td>STOCK</td><td>${taxfreeDto.pstock }</td></tr>
+   		<tr><td>LOC</td><td>${taxfreeDto.ploc }</td></tr>
+   		<tr><td>QTY</td>
    		<td>
+   			<!-- 장바구니에 상품 추가 -->
    			<form action="${conPath }/cart.do">
    			<input type="hidden" name="method" value="insert">
    				<input type="hidden" name="mid" value="${member.mid }">
-   				<input type="hidden" name="pnum" value="${taxfreeDto.pnum }">   				
+   				<input type="hidden" name="pnum" value="${taxfreeDto.pnum }">   					
+   				
    				<input type="number" name="qty" value="1">
-   				<input type="submit" value="장바구니">
+   				<c:if test="${not empty member and empty manager }">
+   					<input type="submit" value="ADD">
+   				</c:if>
+   				<c:if test="${empty member }">
+   					로그인 후 장바구니 이용 가능합니다.
+   				</c:if>
    			</form>
    		</td></tr>
    		<tr>
-   			<td colspan="2" class="btn"> 사용자모드
-   				<button onclick="location='${conPath}/taxfree.do?method=list'">목록</button>	
-   				<button onclick="#">바로구매</button>
-   				<button onclick="location='${conPath}/cart.do?method=list'">장바구니리스트</button>
-   				
+   		<c:if test="${not empty member and empty admin }">
+   			<td colspan="2" class="btn"> MEMBER
+   				<button onclick="location='${conPath}/taxfree.do?method=list&mid=${member.mid }&pageNum=${param.pageNum }'">LIST</button>	
+   				<button onclick="#">BUY NOW</button>
+   				<button onclick="location='${conPath}/cart.do?method=list&mid=${member.mid }'">CART</button>
    			</td>
+   		</c:if>
+		<c:if test="${not empty manager and empty member }">
+   			<td colspan="2" class="btn"> ADMIN
+   				<button onclick="location='${conPath}/taxfree.do?method=updateForm&&aid=${manager.aid }&pnum=${taxfreeDto.pnum }&pageNum=${param.pageNum }'">MODIFY</button>	
+   				<button onclick="location='${conPath}/taxfree.do?method=delete&pnum=${taxfreeDto.pnum }&pageNum=${param.pageNum }'">DELETE</button>	
+   				<button onclick="location='${conPath}/taxfree.do?method=list'">LIST</button>	
+   			</td>
+   		</c:if>
+   		<c:if test="${empty manager and empty member }"> 
+   			<td colspan="2" class="btn"> GUEST
+   				<button onclick="location='${conPath}/taxfree.do?method=list	'">LIST</button>	
+   			</td>
+   		</c:if>
    		</tr>
    		<tr>
-   			<td colspan="2" class="btn"> 관리자모드
-   				<button onclick="location='${conPath}/taxfree.do?method=list'">목록</button>	
-   				<button onclick="location='${conPath}/taxfree.do?method=updateForm&pnum=${taxfreeDto.pnum }&pageNum=${param.pageNum }'">제품정보수정</button>	
-   				<button onclick="location='${conPath}/taxfree.do?method=delete&pnum=${taxfreeDto.pnum }&pageNum=${param.pageNum }'">제품 삭제</button>	
-   			</td>
-   		</tr>
-   		<tr>
-   			<td colspan="3" class="btn">상세 이미지</td>
+   			<td colspan="3" class="btn">DETAILS</td>
    		</tr>
    		<tr>
    			<td colspan="3" class="image">

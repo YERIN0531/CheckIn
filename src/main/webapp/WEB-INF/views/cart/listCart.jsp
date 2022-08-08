@@ -61,7 +61,7 @@
 			
  			alert(cartnum); // 정상적으로 받아져 옴.
  			alert(qty);
-			location.href='${conPath}/cart.do?method=modify&cartnum='+cartnum+'&qty='+qty;
+			location.href='${conPath}/cart.do?method=modify&cartnum='+cartnum+'&qty='+qty+'&mid='+${member.mid};
 		
 		  });
 		
@@ -90,7 +90,7 @@
 		</script>
 	</c:if>
 	<!-- 왜 안되지.. -->
-   	<c:if test="${empty member.mid or null }">
+   	<c:if test="${empty member }">
 		<script>
 			alert('로그인 정보가 없습니다. 로그인 후 이용 해주세요.');
 			location.href='${conPath}/member.do?method=loginForm';
@@ -102,6 +102,8 @@
    	<%-- ${cartList } --%>
    	<section>
    		<form action="${conPath }/cart.do?method=buyProduct" method="post">
+   			<input type="hidden" name="mid" value="${member.mid }">
+   			<input type="hidden" name="mid" value="${member.mid }">
    			<input type="hidden" name="mid" value="${member.mid }">
    			<table>
    				
@@ -119,7 +121,7 @@
    				<c:forEach items="${cartList }" var="cart">
    				<tr>
    					<td>${cart.cartnum }<br><input type="checkbox" name="cartnum" value="${cart.cartnum }" class="ab"></td>
-   					<td><a href="${conPath}/taxfree.do?method=detail&pnum=${cart.pnum }"><img src="${conPath }/taxfree/${cart.pimage1}"></a></td>
+   					<td><a href="${conPath}/taxfree.do?method=detail&pnum=${cart.pnum }&mid=${member.mid }"><img src="${conPath }/taxfree/${cart.pimage1}"></a></td>
    					<td>${cart.pname }</td>
    					<td><input type="number" value=${cart.qty } name="qty" class="qty${cart.cartnum }"> </td>
    					<td>USD ${cart.pprice }</td>
@@ -141,7 +143,7 @@
    				<tr>
    					<td colspan="7" class="btn">
    						<input type="submit" value="구매하기">
-   						<input type="button" value="면세점으로 이동" onclick="location.href='${conPath}/taxfree.do?method=list&pageNum=1'">	
+   						<input type="button" value="면세점으로 이동" onclick="location.href='${conPath}/taxfree.do?method=list&pageNum=1&mid=${member.mid }'">	
    						<input type="button" value="장바구니 비우기" id="show" onclick="location.href='${conPath}/cart.do?method=deleteAll'">
    					</td>
    				</tr>

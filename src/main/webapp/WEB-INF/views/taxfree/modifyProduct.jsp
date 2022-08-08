@@ -49,10 +49,11 @@
 	<section>
 		<form action="${conPath }/taxfree.do?method=update" method="post" enctype="multipart/form-data">
 			<!-- <input type="hidden" name="method" value="insert"> -->
+			<input type="hidden" name="aid" value="${manager.aid }">
 			<table>
 			<caption>${taxfreeDto.pnum }번 상품 수정</caption>
 				<tr><th>제품번호</th>
-					<td><input type="text" name="pnum" readonly="readonly" value="${taxfreeDto.pnum }"></td>
+					<td>${taxfreeDto.pnum }</td>
 				</tr>
 				<tr><th>제품명</th>
 					<td><input type="text" name="pname" required="required" value="${taxfreeDto.pname }"></td>
@@ -77,9 +78,8 @@
 				</tr>
 				<tr><td colspan="2" class="btn">
 					<input type="submit" value="수정하기">
-					<button onclick="location='${conPath}/taxfree.do?method=list'">목록으로</button>
-					<button onclick="history.back();">이전으로</button>
-					<button onclick="location='main.do'">메인페이지로</button>
+					<button onclick="location='${conPath}/taxfree.do?method=list?aid=${manager.aid }&pageNum=${params.currnetPage }'">목록으로</button>
+					<button onclick="location='${conPath}/main2.do'">메인페이지로</button>
 				</td></tr>
 			</table>
 		</form>
