@@ -47,25 +47,26 @@ SELECT * FROM CUSTOMER WHERE MID ='aaa';
 -- 마일리지 (수정) 
 UPDATE CUSTOMER SET MMILEAGE=100000 WHERE MID='aaa';
 SELECT * FROM CUSTOMER WHERE MID='aaa';
+
+
 COMMIT;
 -- 106850
 --modifyMember
-UPDATE CUSTOMER SET MPW='111',
-                    MNAME='서치코',
+UPDATE CUSTOMER SET MNAME='서팀장',
+                    MENAME='tjqud',
                     MPASSPORT='111-111-11',
                     MTEL='010-2312-1234',
                     MPOST=3456,
                     MADDRESS='독도',
                     MDEADDRESS='1011동',
                     MGENDER='m',
-                    MBIRTH='19990808',
-                    MWITHD=1,
-                    MEMAIL='ABC@NAVER.COM',
-                    MRDATE = SYSDATE,
-                    MTOTAL=0,
-                    MMILEAGE=0
+                    MBIRTH='19990808', 
+                    MEMAIL='ABC@NAVER.COM'
             WHERE MID ='aaa';
-                    
+update customer set mpw ='111'
+                    where mid ='aaa';
+commit;
+
 --5.회원탈퇴 탈퇴여부 UPDATE (1 , 0)
 --withdrawMember
 UPDATE CUSTOMER SET mwithd = 0 WHERE MID ='eee';

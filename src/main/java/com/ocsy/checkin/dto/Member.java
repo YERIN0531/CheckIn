@@ -27,6 +27,7 @@ public class Member {
 	private int mtotal;
 	private int mmileage;
 	private int paymoney;  // 결제금액
+	private String modify; 
 
 	
 }
