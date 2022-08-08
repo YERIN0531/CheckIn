@@ -10,9 +10,7 @@
   <title>Insert title here</title>
   <link href="${conPath }/css/hotel/hotelmain.css" rel="stylesheet">
    <link href="https://fonts.googleapis.com/css2?family=Domine:wght@500&family=IBM+Plex+Sans+KR:wght@300;400&family=Libre+Baskerville&family=Nanum+Gothic&family=Satisfy&family=The+Nautigal:wght@400;700&display=swap" rel="stylesheet">
- <style>
  
- </style>
  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 	$(document).ready(function(){
@@ -63,7 +61,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td colspan="3">
+				<td colspan="4">
 					<input type="submit" value="호텔검색">
 				</td>
 			</tr>
@@ -79,25 +77,33 @@
 					<tr><td>호텔 스케쥴을 검색해 주세요</td></tr>
 					</table>
         </div>
-
 		</c:if>
-	
-	
-	
-	
-	<div id="airList">	
+		
+		
+	<div id="hotelList">	
 		<c:if test="${hotelList.size() != 0 }">
 			<c:forEach var="hotel" items="${hotelList }">
-				<div class="airticket">
+				<div class="hotelticket">
 				<table>
-					<tr class="hotelListTr">
-						<td id="hidden">${hotel.hotelid }</td>
-						<td>호텔 이름 : ${hotel.hotelname }</td>
-						<td>호텔 국가 : ${hotel.hotelcountry }</td>
-						<td>호텔 주소 : ${hotel.hoteladdress }</td>
-						<td>이미지 태그 써써 호텔 사진 뿌리십쇼 : ${hotel.hotelimage }</td>				
+					<tr class="hotelListTr"> <!-- 1행 -->
+<%-- 						<td rowspan="5">${hotel.hotelimage }호텔사진</td> --%>
+						<td rowspan="5"><img src="${conPath }/hotelImg/room.png"></td>
+						<th class="td-1">${hotel.hotelname }</th>
 					</tr>
-				</table>	
+					<tr><!-- 2행 -->
+						<td class="td-2"><img src="${conPath }/hotelImg/globe.png" class="globe">&nbsp;&nbsp;&nbsp;${hotel.hotelcountry }</td>
+					</tr>
+					<tr><!-- 3행 -->
+						<td class="td-3"><img src="${conPath }/hotelImg/placeholder.png" class="place">&nbsp;&nbsp;&nbsp;${hotel.hoteladdress }</td>
+					</tr>
+					<tr class="trheight"><!-- 4행 -->
+<%-- 						<td class="td-4"><fmt:formatNumber value="${hotel.standardprice }" pattern="#,### ￦" /></td> --%>
+						<td class="td-4">상세페이지에서 가격을 확인하세요</td>
+					</tr>
+					<tr><!-- 5행 -->
+						<td class="td-5"><button onclick="location='${conPath }/hotel.do?method=getHotelDetail&hotelid=${hotel.hotelid.substring(0,3) }&schcheckindate=${param.schcheckindate }&schcheckoutdate=${param.schcheckoutdate }&headcount=${param.headcount }'" class="detail">상세보기</button></td>
+					</tr>
+				</table>
 				</div>
 			</c:forEach>
 		</c:if>		
