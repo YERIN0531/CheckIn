@@ -20,6 +20,16 @@
  </script>  
 </head>
   <body>
+  <c:if test="${deleteResult eq 1 }">
+  	<script>
+  		alert('추방완료');
+  	</script>
+  </c:if>
+   <c:if test="${deleteResult eq 0 }">
+  	<script>
+  		alert('추방실패');
+  	</script>
+  </c:if>
   <jsp:include page="../member/myPage.jsp" />
 	<h1>특정 여행팀 상세보기 페이지입니다. 예린씨 css화이팅 입니다</h1>
 	<table>
@@ -94,9 +104,15 @@
 					<td>
 						${myTeam.ttrdate }
 					</td>
+					<c:if test="${member.mid eq teamLeader }">
+						<td>
+							<button onclick="location='${conPath }/trip.do?method=deleteMemberTeam&tnum=${myTeam.tnum }&mid=${myTeam.mid }&teamname=${myTeam.teamname }'">추방하기</button>
+						</td>
+					</c:if>
 				</tr>
 				</c:if>
 			</c:forEach>
+			
 	</table>
   </body>
 </html>
