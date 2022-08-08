@@ -73,7 +73,7 @@
   	
   	
   	<!-- 카트에 담긴 상품 order에 넣기  -->
-  	<insert id="cartOrder" parameterType="String">
+  	<insert id="cartOrder" parameterType="Cart">
   	INSERT INTO ORDERS VALUES (ORDER_SEQ.NEXTVAL, #{mid}, SYSDATE)
   	</insert>
   
@@ -95,14 +95,7 @@
 	DELETE FROM CART WHERE MID=#{mid} AND PNUM = (SELECT PNUM FROM ORDERS WHERE OR_NUM = #{or_num})
   	</delete>
   	
-  	
-<<<<<<< HEAD
-=======
   
-  	
-  	
-  	
->>>>>>> de1dd12d2627aa43b4ba9028f282138a70f1485c
   	
   	
   </mapper>

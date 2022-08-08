@@ -20,10 +20,6 @@
   <script src="${conPath }/js/address.js"></script> 
  <!--  다음 주소 api -->
  <script>
-<<<<<<< HEAD
- 	$(document).ready(function(){
- 		$('input[name="mpw"]').keyup(function(){  // 비밀번호 패턴 keyup 
-=======
     $(document).ready(function(){
     	var email_key = '';
        $("#emailCheck").click(function(){   // 이메일 메일발송 클릭
@@ -44,8 +40,8 @@
 	 			});
 			}
 		});
+       
        $('input[name="mpw"]').keyup(function(){  // 비밀번호 패턴 keyup 
->>>>>>> de1dd12d2627aa43b4ba9028f282138a70f1485c
 			var patternPw = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,16}$/;
 			var mpw = $('input[name="mpw"]').val().trim();
 			if(patternPw.test(mpw)){
@@ -56,11 +52,10 @@
 				$('#patternCheckResult').css('color','red');  
 			}			
 		}); 
-<<<<<<< HEAD
- 		$('input[name="mpwChk"]').keyup(function() {   // 비밀번호 확인 key up
-=======
+
+       
+
 		$('input[name="mpwChk"]').keyup(function() {   // 비밀번호 확인 key up
->>>>>>> de1dd12d2627aa43b4ba9028f282138a70f1485c
 			var mpw = $('input[name="mpw"]').val();
 			var mpwChk = $('input[name="mpwChk"]').val();
 			if (mpw == mpwChk) {
@@ -70,15 +65,10 @@
 				$('#pwChkResult').html('No');
 				$('#pwChkResult').css('color','red');
 			} 
-<<<<<<< HEAD
-		}); 
- 		$('form').submit(function(){
- 			var patternCheckResult = $('#patternCheckResult').text().trim();
- 			var pwChkResult = $('#pwChkResult').text().trim();
- 			
-			if(patternCheckResult != '안전'){
-=======
-		}); 	
+		});
+		
+		
+ 	 	
 		$('form').submit(function(){
  			var idConfirmResult = $('#idConfirmResult').text().trim();
  			var patternCheckResult = $('#patternCheckResult').text().trim();
@@ -92,51 +82,21 @@
  				$('input[name="mid"]').focus();
  				return false;
  			} else if(patternCheckResult != '안전'){
->>>>>>> de1dd12d2627aa43b4ba9028f282138a70f1485c
 				alert('비밀번호 형식을 지켜주세요');
 				return false;
  			} else if(pwChkResult != 'OK'){
  				alert('두 비밀번호가 다릅니다.');
  				$('#pwChkResult').focus();
  				return false;
-<<<<<<< HEAD
- 			} 
-=======
  			} else if(inputEmailKey != email_key){
  				alert('메일 인증번호가 일치하지 않습니다.');
  				return false;
  			}
->>>>>>> de1dd12d2627aa43b4ba9028f282138a70f1485c
  		});
  	});
  </script>  
 </head>
   <body>
-<<<<<<< HEAD
-	<jsp:include page="myPage.jsp" />
-	<form action="${conPath }/member.do?method=modifyMember" method="post">
-		<table>
-		<c:if test="${param.modify eq 'all' }">
-			<caption>정보수정</caption>
-			<tr>
-				<td>
-					
-				</td>
-			</tr>
-		</c:if>
-		<c:if test="${param.modify eq 'pw' }">
-			<caption>비밀번호 변경</caption>
-			<tr>
-				<td>현재비밀번호</td>
-			</tr>
-			<tr>
-				<td>
-					<input type="password" name="oldMpw" required="required">
-				</td>
-			</tr>
-			
-			 <tr>
-=======
  <c:if test="${memberDto.mpw != member.mpw}">
    <script>
      alert('비밀번호가 틀렸다 서팀장');
@@ -269,16 +229,11 @@
        
          
           <tr>
->>>>>>> de1dd12d2627aa43b4ba9028f282138a70f1485c
                   <td>새로운 비밀번호<b>*</b></td>
              </tr>
              <tr>
                    <td>
-<<<<<<< HEAD
-                      <input type="password" name="mpw" required="required" placeholder="8~16자 영문자,숫자,특수문자 를 사용하세요">
-=======
                       <input type="password" name="mpw"  required="required" placeholder="8~16자 영문자,숫자,특수문자 를 사용하세요">
->>>>>>> de1dd12d2627aa43b4ba9028f282138a70f1485c
                       <div id="patternCheckResult"> &nbsp; </div>
                   </td>
              </tr>
@@ -292,7 +247,6 @@
                             <div id="pwChkResult"> &nbsp; </div>
                         </td>
                     </tr>
-<<<<<<< HEAD
 			<tr>
 				<td colspan="2">
 					<input type="submit" value="수정">
@@ -301,15 +255,6 @@
 		</c:if>
 		</table>
 	</form>
-=======
-         <tr>
-            <td colspan="2">
-               <input type="submit" value="수정">
-            </td>
-         </tr>
-      </c:if>
-      </table>
-   </form>
->>>>>>> de1dd12d2627aa43b4ba9028f282138a70f1485c
+
   </body>
 </html>
