@@ -30,7 +30,7 @@
 	<c:if test="${not empty insertHotelResult and insertHotelResult != 3 }">
 		<script>
 			alert('호텔 등록에 실패했습니다.');
-			
+			location="${conPath }/hotel.do?method=failInsertHotelMail";			
 		</script>
 	</c:if>
 	<c:if test="${deleteHotelResult eq 3 }">

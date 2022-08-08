@@ -44,6 +44,12 @@
   		UPDATE CUSTOMER SET MMILEAGE = MMILEAGE + ( #{paymoney} *0.03)
                     WHERE MID= #{mid}
   	</update>
+  	
+  	<update id="updateMtotal" parameterType="Member">
+		UPDATE CUSTOMER SET MTOTAL = MTOTAL + #{paymoney}
+								WHERE MID = #{mid}
+	</update>
+	
   	<insert id="joinMember" parameterType="Member">
   		INSERT INTO CUSTOMER VALUES (#{mid}, #{mpw}, #{mname}, #{mename},#{mpassport},
   			#{mtel},#{mpost},#{maddress},#{mdeaddress},#{mgender},#{mbirth},1,#{c},SYSDATE,0,0)

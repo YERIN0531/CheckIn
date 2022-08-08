@@ -49,7 +49,13 @@
          
             #reserve {
                 padding-left: 4px;
-                background: url("../../image/air.jpg") no-repeat;
+                background: url("../../image/hotel.png") no-repeat; /*x*/
+                background: url("../../image/hotel2.jpg") no-repeat; /*x*/
+                background: url("../../image/slide11.jpg") no-repeat; /*ㅇ*/
+                background: url("../../image/hotel3.png") no-repeat; /*ㅇ*/
+                background: url("../../image/hotel.jpg") no-repeat; /*ㅇ*/
+                background: url("../../image/hotel4.png") no-repeat; /*ㅇ*/
+                background-size:100%;
                 width: 100%;
                 height: 400px;
             }
@@ -95,7 +101,7 @@
             #rsform table input[type=submit] {
                 margin: 0 auto;
                 margin-top: 50px;
-                width: 230px;
+                width: 200px;
                 height: 45px;
                 border: none;
                 border-radius: 5px;
@@ -105,13 +111,11 @@
                 background-color: #2a8593;
                 background-color: #108395;
                 background-color: #3c7f9c;
-                background-color: #50798a;
-                background-color: #214d5f;
-                background-color: #4f6f7c;
-                background-color: #214d5f;
+                background-color: #50798a; 
+                background-color: #4f6f7c; /*ㅇ*/
+                background-color: #214d5f; 
                 background-color: white;
                 background-color: #d1dde4;
-                color:black;
                 color: #3c5d79;
                 font-family: 'IBM Plex Sans KR', sans-serif;
                 font-size: 0.9em;
@@ -146,37 +150,37 @@
         }
         
         
-        #airlist {
+        #hotelList {
             font-family: 'IBM Plex Sans KR', sans-serif;
             margin-top: 20px;
             text-align: center;
         }
-                #airlist .airticket{
-                width:50%;
+                #hotelList .hotelticket{
+                width:80%;
                 margin: 0 auto;
-                height:160px;
                 margin-bottom:20px;
                 }
-                #airlist .airticket table{
+                #hotelList .hotelticket table{
                 border:1px solid lightgray;
                 box-shadow:3px 3px 3px 3px gray;
                 border-radius:5px;
                 margin:0 auto;
                 height:100%;
+                width:70%;
                 padding:20px;
                 }
-                    #airlist .airticket table .w2{
+                    #hotelList .hotelticket table .w2{
                         font-size:0.9em;
                     }
-                    #airlist .airticket table .w3 {
+                    #hotelList .hotelticket table .w3 {
                         font-size: 0.9em;
                         width:150px;
                         border-left:1px dashed black;
                     }
-                    #airlist .airticket table td{
+                    #hotelList .hotelticket table td{
                     width:200px;
                     }
-                    #airlist .airticket table button {
+                    #hotelList .hotelticket table button {
                         margin-top: 15px;
                         font-family: 'IBM Plex Sans KR', sans-serif;
                         height: 30px;
@@ -188,3 +192,41 @@
                         border-radius: 5px;
                     }
                     
+                    img{
+                    width:500px;
+                    height:400x;
+                    }
+       
+       #hotelList table .td-1{
+       height:45px;
+       text-align: left;
+       font-size:1.2em;
+       font-weight: bold;
+        color: #3c5d79;
+        
+       }
+        #hotelList table .td-2{
+       text-align: left;
+       font-size:0.9em;
+       font-weight: bold;
+        color: black;
+        
+       }
+       
+        #hotelList table .td-3{
+        text-align: left;
+       font-size:0.5em;
+       font-weight: bold;
+        color: black;
+        }
+        
+       
+       .place{
+       width:15px;
+       height:15px;
+       }
+       .globe{
+       width:12px;
+       height:12px;
+       }
+       

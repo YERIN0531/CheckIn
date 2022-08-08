@@ -11,7 +11,12 @@
 	<link href="${conPath }/css/air/airmain.css" rel="stylesheet">
 	 
   <link href="https://fonts.googleapis.com/css2?family=Domine:wght@500&family=IBM+Plex+Sans+KR:wght@300;400&family=Libre+Baskerville&family=Nanum+Gothic&family=Satisfy&family=The+Nautigal:wght@400;700&display=swap" rel="stylesheet">
-	
+	<style>
+	img{
+	width:30px;
+	height:30px;
+	}
+	</style>
 </head>
 <body>
 <jsp:include page="../main/header.jsp"/>
@@ -67,20 +72,7 @@
 		
 
         <h2>AIR LIST</h2>
-<<<<<<< HEAD
-<<<<<<< HEAD
-        <div>
-        <table>
-					<tr><td >등록된 글이 없습니다</td></tr>
-		</table>
-		</div>
 
-=======
-       
->>>>>>> 3134e8a5d20f8802604e9fd7adc0b0ab71dc27c9
-=======
->>>>>>> 2e83c1de4ad284bc8c2b99b743a5eb4e2cba1164
-        &nbsp;&nbsp;&nbsp;&nbsp;
         <c:if test="${empty airList}">
         <div id="noneairlist">
 					<table>
@@ -95,9 +87,17 @@
             <c:forEach var="air" items="${airList }">
                 <div class="airticket">
                     <table>
+                    
                         <tr>
+                        <td rowspan="2" >${air.acode }</td>
                             <td>
-                                ${air.acode }
+                               <c:if test="${air.acode.substring(0,2)  eq 'KO' }" >
+                               	<img src="${conPath }/image/air.jpg" alt="사진2">
+                               
+                               </c:if>
+                               <c:if test="${air.acode.substring(0,2) eq 'JE' }">
+                               	<img src="${conPath }/image/air.jpg" alt="사진1">
+                               </c:if>
                             </td>
                             <td>
                                 ${air.agotime}
@@ -112,7 +112,15 @@
                             </td>
                         </tr>
                         <tr>
-                            <td> ${air.acode}</td>
+                            <td>
+                            	<c:if test="${air.acode.substring(0,2)  eq 'KO' }" >
+                               		<img src="${conPath }/image/air.jpg" alt="사진2">
+                               		
+                               </c:if>
+                               <c:if test="${air.acode.substring(0,2) eq 'JE' }">
+                               		<img src="${conPath }/image/air.jpg" alt="사진1">
+                               </c:if>
+                            </td>
                             <td>
                                 ${air.acome_departtime }
                             </td>

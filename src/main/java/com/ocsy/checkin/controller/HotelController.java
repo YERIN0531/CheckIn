@@ -66,6 +66,7 @@ public class HotelController {
 	public String insertHotelReservation(Hotel_rs hotel_rs,Member member,HttpSession session, Model model) {
 		memberService.minusMileage(member);
 		memberService.plusMileage(member,session);
+		memberService.updateMtotal(member);
 		model.addAttribute("insertHotelReservation",hotelService.insertHotelReservation(hotel_rs));
 		return "main/reserveResult";
 	}
@@ -131,5 +132,11 @@ public class HotelController {
 		hotelService.deleteHidZZim(hotelid);
 		model.addAttribute("deleteHotelResult",hotelService.deleteHotel(hotelid));
 		return "forward:hotel.do?method=adminHotelList";
+	}
+	
+	@RequestMapping(params="method=myHotelReservationList",method= {RequestMethod.GET, RequestMethod.POST})
+	public String myHotelReservationList(String mid,Model model) {
+		model.addAttribute("myHotelList",hotelService.myHotelReservationList(mid));
+		return "myPage/myHotelList";
 	}
 }

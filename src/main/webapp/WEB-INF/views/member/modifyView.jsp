@@ -103,6 +103,12 @@
      history.back();
    </script>
  </c:if>
+ <c:if test="${param.modify eq 'mileage' }">
+ 	<script>
+ 		location="${conPath }/member.do?method=selectMileage&mmileage=${memberDto.mmileage }&mtotal=${memberDto.mtotal }";
+ 	</script>
+ </c:if>
+ 	<jsp:include page="../main/header.jsp" />
    <jsp:include page="myPage.jsp" />
    <form action="${conPath }/member.do?method=modifyMember" method="post">
      <input type="hidden" name="modify" value="${param.modify }">
@@ -255,6 +261,6 @@
 		</c:if>
 		</table>
 	</form>
-
+<jsp:include page="../main/footer.jsp" />
   </body>
 </html>

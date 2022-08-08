@@ -39,6 +39,15 @@
 				var checknum = $("input:checkbox[name='seatid']:checked").length;
 				$('input[name="checknum"]').val(checknum);
 			});
+			
+			$('form').submit(function(){
+				var checknum = $("input:checkbox[name='seatid']:checked").length;
+				if(checknum <= 0 ){
+					alert('좌석을 선택해주세요');
+					return false;
+				}
+			});
+			
 		});
 	</script> 
 </head>

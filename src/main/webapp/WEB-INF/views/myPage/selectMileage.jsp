@@ -20,24 +20,9 @@
  </script>  
 </head>
   <body>
-  
-  <jsp:include page="myPage.jsp" />
-	<form action="${conPath }/member.do?method=modifyView" method="post">
-		<input type="text" name="mid" value="${member.mid }">
-		<input type="text" name="modify" value="${param.modify }">
-		<table>
-			<tr>
-				<th>비밀번호 확인</th>
-				<td>
-					<input type="password" name="mpw" required="required" >
-				</td>
-			</tr>
-			<tr>
-				<td colspan="2">
-					<input type="submit" value="확인">
-				</td>
-			</tr>
-		</table>
-	</form>
+  <jsp:include page="../member/myPage.jsp" />
+  	<div>회원 아이디 : ${mileageResult.mid }</div>
+	<div>내 총 구매금액 : ${mileageResult.mtotal }</div>
+	<div>내 마일리지 : ${mileageResult.mmileage }</div>
   </body>
 </html>

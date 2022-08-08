@@ -156,5 +156,11 @@ public class MemberController {
 		model.addAttribute("memberModifResult",result);
 		return "main/main";
 	}
+	
+	@RequestMapping(params="method=selectMileage",method= {RequestMethod.GET , RequestMethod.POST})
+	public String selectMileage(Member member,Model model) {
+		model.addAttribute("mileageResult",member);
+		return "myPage/selectMileage";
+	}
 
 }

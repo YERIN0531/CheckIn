@@ -63,7 +63,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td colspan="3">
+				<td colspan="3">					
 					<input type="submit" value="호텔검색">
 				</td>
 			</tr>
@@ -95,7 +95,8 @@
 						<td>호텔 이름 : ${hotel.hotelname }</td>
 						<td>호텔 국가 : ${hotel.hotelcountry }</td>
 						<td>호텔 주소 : ${hotel.hoteladdress }</td>
-						<td>이미지 태그 써써 호텔 사진 뿌리십쇼 : ${hotel.hotelimage }</td>				
+						<td>이미지 태그 써써 호텔 사진 뿌리십쇼 : ${hotel.hotelimage }</td>		
+						<td><fmt:formatNumber value="${hotel.roomprice }" pattern="#,###" /></td>		
 					</tr>
 				</table>	
 				</div>
