@@ -8,7 +8,8 @@
 <head>
 <meta charset="UTF-8">
   <title>Insert title here</title>
-  <link href="${conPath }/css/air/airmain.css" rel="stylesheet">
+  <link href="${conPath }/css/hotel/hotelmain.css" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css2?family=Domine:wght@500&family=IBM+Plex+Sans+KR:wght@300;400&family=Libre+Baskerville&family=Nanum+Gothic&family=Satisfy&family=The+Nautigal:wght@400;700&display=swap" rel="stylesheet">
  <style>
  
  </style>
@@ -31,7 +32,7 @@
 	                   <li><a href="${conPath }/air.do?method=airMain">항공</a></li>
 	                   <li><a href="${conPath }/hotel.do?method=hotelMain">호텔</a></li>
 	                   <li><a href="#">면세점</a></li>
-	                   <li><a href="#">게시판</a></li>
+	                   <li><a href="${conPath}/notice.do?method=boardmain">게시판</a></li>
 	              </ul>
 	         </div>
 	   </div>
@@ -44,32 +45,26 @@
 	<form action="${conPath }/hotel.do?method=schHotel" method="post">
 		<table>
 			<tr>
-				<td>어디에 숙소를 잡고 싶으신가요?</td>	
-			</tr>
-			<tr>
-				<td colspan="3">
-					<input type="text" name="schcountry" value="${hotel.schcountry }">
-				</td>
-			</tr>
-			<tr>
-				<td>체크인</td>
-				<td>체크아웃</td>
-				<td>투숙객 인원수</td>
-			</tr>
-			<tr>
 				<td>
+					<p class="w1">국가</p>
+					<input type="text" name="schcountry" value="${hotel.schcountry }" placeholder="목적지를 입력하세요">
+				</td>
+				<td  class="td-2">
+					<p class="w1">체크인</p>
 					<input type="text" name="schcheckindate" required="required" value="${hotel.schcheckindate }" id="datepicker">
 				</td>
-				<td>
+				<td class="td-3">
+				<p class="w1">체크아웃</p>
 					<input type="text" name="schcheckoutdate" required="required" value="${hotel.schcheckoutdate }" id="datepicker2">
 				</td>
-				<td>
+				<td class="td-4">
+					<p class="w1">투숙객</p>
 					<input type="number" name="headcount" required="required" value="${hotel.headcount }">
 				</td>
 			</tr>
 			<tr>
 				<td colspan="3">
-					<input type="submit" value="호텔검색 ->">
+					<input type="submit" value="호텔검색">
 				</td>
 			</tr>
 		</table>
@@ -78,6 +73,18 @@
         </div>	
         
 	<h2>HOTEL LIST</h2>
+	 <c:if test="${empty hotelList}">
+        <div id="noneairlist">
+					<table>
+					<tr><td>호텔 스케쥴을 검색해 주세요</td></tr>
+					</table>
+        </div>
+
+		</c:if>
+	
+	
+	
+	
 	<div id="airList">	
 		<c:if test="${hotelList.size() != 0 }">
 			<c:forEach var="hotel" items="${hotelList }">

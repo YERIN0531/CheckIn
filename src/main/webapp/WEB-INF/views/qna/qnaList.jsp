@@ -21,18 +21,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
- <link href="${conPath }/css/style.css" rel="stylesheet">
- <style>
-  #content {
-  	
-  }
-  td { width :200px; border: 1px solid black;  }
-  th { margin-left :20px border: 1px solid black; }
-  td:nth-child(3){
-  	width : 300px;
-  }
- 
- </style>
+ <link href="${conPath }/css/board/notice.css" rel="stylesheet">
+
    <script src="http://code.jquery.com/jquery-3.6.0.js"></script>
 	<script>
 	$(document).ready(function(){ // jquery 
@@ -65,13 +55,8 @@
 	</script>
 </head>
 <body>
-	<c:if test="${not empty member }">
-	   <button onclick="location='${conPath}/qna.do?method=insertQnaForm&pageNum=${paging.currentPage}'">회원글쓰기</button>
-	</c:if>
+<jsp:include page="../board/boardmain.jsp"/>
 	
-	<c:if test="${empty member and empty manager }">
-       <button onclick="location='${conPath}/member.do?method=loginForm'">로그인 후 이용하세요 </button>
-    </c:if>
     
     <c:if test="${not empty manager }">
       관리자
@@ -93,18 +78,36 @@
    	    	alert(' 글쓰기 성공');
    	    </script>
     </c:if>
-    <div id="content">
+   
+    
+    <div id="logos">
+        <p>QNA_BOARD</p>
+    </div>
+    <div id="wrap">
+    	<div id="writeform">
+	    	<table>
+				<tr><td>
+					<c:if test="${not empty member }">
+						<a href="${conPath}/qna.do?method=insertQnaForm&pageNum=${paging.currentPage}">글쓰기</a>
+					</c:if>	
+					<c:if test="${empty member }">
+						<a href="${conPath}/member.do?method=loginForm">글쓰기는 사용자 로그인 후에 이용 가능합니다</a>
+					</c:if>	
+				</td></tr>
+			</table>
+    	</div>
+    <div id="listform">
     <table>
     	<caption>문의사항 게시판</caption>
     	<tr>
-    	  <th>글번호</th>
-    	  <th>아이디</th>
-    	  <th>제목</th>
-    	  <th>비밀글여부</th>
-    	  <th>답변여부</th>
-    	  <th>작성일</th>
-    	  <th>조회수</th>
-    	  <th>ip</th>
+    	  <th class="qth-1">글번호</th>
+    	  <th class="qth-2">아이디</th>
+    	  <th class="qth-3">제목</th>
+    	  <th class="qth-4">-</th>
+    	  <th class="qth-5">답변여부</th>
+    	  <th class="qth-6">작성일</th>
+    	  <th class="qth-7">조회수</th>
+    	 
     	</tr>
     <c:if test="${qnaList.size() == 0 }">
     	<tr><th colspan="7">등록된 글이 없습니다</th></tr>
@@ -115,7 +118,7 @@
          
           <td>${qna.qnum }</td>
     	 <td>${qna.qid }</td>
-    	 <td class="left">
+    	 <td class="td-1">
     	    <c:forEach var="i" begin="1" end="${qna.qindent }">
     	      <c:if test="${i == qna.qindent }">
     	      	└ 관리자
@@ -156,16 +159,13 @@
 		<td>
 			${qna.qhit }
 		</td>
-		<td>
-			${qna.qip }
-		</td>
+		
 		
 	</tr>
     </c:forEach>
-    
     </c:if>
     </table>
-    
+    </div><!-- listform -->
     <div class="paging">
 		<c:if test="${paging.startPage > paging.blockSize }">
 			[ <a href="${conPath }/qna.do?method=qnaList&pageNum=${paging.startPage-1}">이전</a> ]
@@ -181,8 +181,8 @@
 		<c:if test="${paging.endPage < paging.pageCnt }">
 			[ <a href="${conPath }/qna.do?method=qnaList&pageNum=${paging.endPage+1}">다음</a> ]
 		</c:if>
-	</div>
-	</div>
-	<button onclick="location='${conPath}/main.do'">동준</button>
+	</div><!-- paging -->
+	</div><!--  wrap -->
+	<jsp:include page="../main/footer.jsp"/>
 </body>
 </html>

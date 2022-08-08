@@ -1,0 +1,303 @@
+@charset "UTF-8";
+ #reserve {
+            padding-left: 4px;
+            background: url("/img/img4.png") no-repeat;
+            background: url("/img/img3.jpg") no-repeat; /**/
+            background: url("/img/img1.jpg") no-repeat; /*v*/
+            background: url("/img/back.jfif") no-repeat; /*vv*/
+            background: url("/img/img3.png") no-repeat; /*vv*/
+            width: 100%;
+            height: 400px;
+        }
+
+        #word {
+            color: white;
+            width: 70%;
+            text-align: center;
+            margin: 0 auto;
+            padding-top: 11%;
+        }
+
+            #word p {
+                font-size: 2.5em;
+                font-family: 'IBM Plex Sans KR', sans-serif;
+                font-family: 'Satisfy', cursive;
+                font-family: 'The Nautigal', cursive;
+                font-family: 'Domine', serif;
+                color: #d1dde4;
+            }
+
+
+
+        #boardlist {
+            margin: 7px auto;
+            width: 80%;
+            border-top: 1px dashed #3c5d79;
+            border-bottom: 1px dashed #3c5d79;
+            height: 40px;
+        }
+
+            #boardlist ul {
+                overflow: hidden;
+                height: 40px;
+            }
+
+                #boardlist ul li {
+                    list-style: none;
+                    float: left;
+                    line-height: 40px;
+                    width: 25%;
+                    text-align: center;
+                }
+
+                    #boardlist ul li a {
+                        font-family: 'IBM Plex Sans KR', sans-serif;
+                        font-family: 'Domine', serif;
+                        text-decoration: none;
+                        color: #3c5d79;
+                        font-size: 0.9em;
+                    }
+
+
+
+        
+
+        #logos {
+            width: 500px;
+            margin: 20px auto;
+            margin-top: 50px;
+        }
+
+            #logos p {
+                font-family: 'Domine', serif;
+                color: #3c5d79;
+                font-size: 1.7em;
+                font-weight: bold;
+                width: 300px;
+                margin: 0 auto;
+                text-align: center;
+            }
+
+        #wrap {
+            width: 1000px;
+            margin: 30px auto;
+        }
+        #register{
+        font-family: 'IBM Plex Sans KR', sans-serif;
+        text-align:right;
+        padding-right:10px;
+        padding-bottom: 10px;
+        
+        }
+            #register a {
+                list-style: none;
+                text-decoration: none;
+                color: gray;
+                font-family: 'IBM Plex Sans KR', sans-serif;
+                font-size:0.8em;
+            }
+        #writeform {
+            width: 100%;
+            margin: 15px auto;
+            font-family: 'IBM Plex Sans KR', sans-serif;
+        }
+		#writeform table{
+		width:100%;
+		border-spacing: 0px;
+		}
+		#writeform table th{
+		text-align: left;
+		border:1px solid lightgray;
+		padding:8px;
+		font-size:0.9em;
+		color: #3c5d79;
+		}
+		#writeform table tr{
+		}
+		#writeform table td{
+		border:1px solid lightgray;
+		padding-top:5px;
+		padding-bottom:5px;
+		text-align: center;
+		
+		
+}
+            #writeform table tr td a {
+                text-decoration: none;
+                color: #757169;
+                text-align: center;
+            }
+            
+            
+            
+    #listform{
+	font-family: 'IBM Plex Sans KR', sans-serif;
+	margin:0 auto;
+	text-align: left;
+}
+#listform table{
+	width:1000px;
+}
+#listform table tr{
+
+}
+ 
+#listform table tr th{
+	background-color:#757169;
+	background-color:#497A9B;
+	background-color:#52758C; /*d*/
+	background-color:#687F8F; /*d*/
+	background-color:#93AAB9; /*d*/
+	background-color:#687F8F; /*d*/
+	
+	color : white;
+	height:30px;
+	font-size:0.9em;
+	text-align: center;
+}
+#listform table tr td{
+	height:40px;
+	font-size:0.9em;
+	border-bottom: 1px dotted #757169;
+	text-align: center;
+}
+
+.th-1 {
+    width: 13%;
+  }
+.th-2{
+	width:13%;
+}
+.th-3{
+	width:50%;
+}
+.th-4{
+	width:12%;
+}
+.th-5{
+	width:12%;
+}
+.th-7{
+	width:40%;
+}
+
+.qth-1{
+	width:8%;
+}
+.qth-2{
+	width:8%;
+}
+.qth-3{
+	width:35%;
+}
+.qth-4{
+	width:5%;
+}
+.qth-5{
+	width:6%;
+}
+.qth-6{
+	width:8%;
+}
+.qth-7{
+	width:8%;
+}
+#listform table tr .td-1{
+	text-align: left;
+	padding-left:2%;
+}
+#listform tablr tr .left{
+	text-align: left;
+	padding-left:2%;
+}
+.paging{
+	width:20%;
+	text-align: center;
+	margin:0 auto;
+	font-size:0.8em;
+}
+
+/* 진영이 css 먹이기 **/
+
+
+#searching{
+	border: 1px dashed #3c5d79;
+	text-align: center;
+	font-family: 'IBM Plex Sans KR', sans-serif;
+	
+}
+#searching #sapn1{
+	padding-top: 100px;
+	margin:10px 0;
+}
+#searching #span1 #searchOption{
+	width:15%;
+	height:30px;
+	color : gray;
+	text-align: center;
+}
+
+.search{
+	padding: 10px 0;
+	font-size:1.1em;
+	font-weight: bold;
+	color: #757169;
+}
+
+#submitbutton{
+	margin:10px;
+}
+#submitbutton input[type="submit"]{
+	width:100px;
+	height:30px;
+	background-color: #687F8F;
+	border:none;
+	color:white;
+	border-radius: 5px;
+	font-family: 'IBM Plex Sans KR', sans-serif;
+}
+.gender{
+	margin: 10px 0;
+}
+.gender{
+	font-family: 'IBM Plex Sans KR', sans-serif;
+	margin: 12px 0;
+	font-size:0.9em;
+}
+
+.gender table{
+	text-align: left;
+	width:25%;
+	margin:0 auto;
+ 	}
+.gender table td{
+	padding:0px;
+}
+
+
+.tripStyle{
+	font-family: 'IBM Plex Sans KR', sans-serif;
+	margin: 12px 0;
+	font-size:0.9em;
+}
+
+.tripStyle table{
+	text-align: left;
+	width:30%;
+	margin:0 auto;
+	padding:6px;
+ 	}
+.tripStyle table td{
+	padding:4px;
+}
+
+.tboard{
+	margin:10px 0;
+}
+.tboard input[type="text"]{
+	width:30%;
+	height:28px;
+	text-align: center;
+	border-radius: 3px;
+	border:1px solid gray;
+}

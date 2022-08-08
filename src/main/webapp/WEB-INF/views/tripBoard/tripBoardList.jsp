@@ -8,10 +8,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="${conPath }/css/style.css" rel="stylesheet">
-<style>
-</style>
+<link href="${conPath }/css/board/notice.css" rel="stylesheet">
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <script>
 	
 $(document).ready(function(){
@@ -58,7 +58,7 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-	
+	<jsp:include page="../board/boardmain.jsp"/>
 	<c:if test="${param.writeBoardResult eq 2}">
 		<script>
 			alert('여행 구인글 등록에 성공했습니다.');
@@ -86,14 +86,20 @@ $(document).ready(function(){
 			history.back();
 		</script>
 	</c:if>
-	<div>
-		<a href="${conPath }/trip.do?method=tripWriteBoardView">여행 구인글 쓰기</a>
-	</div>
-	<div>
+	
+	<div id="logos">
+        <p>TRIPMATE</p>
+    </div>
+	
+	<div id="wrap">
+	
+	
+	<div id="searching">
 		<form action="${conPath }/trip.do?method=tripBoardList" method="post" >
 				<input type="hidden" name="pageNum" value="1">
-				<span>
-						검색조건 : <select name="searchif" id="searchOption">
+				<h6 class="search">검색조건</h6> 
+				<div id="span1">
+						<select name="searchif" id="searchOption">
 									<option value=""></option>
 									<option value="tripStyle" <c:if test="${param.searchif eq 'tripStyle' }">
 																			selected="selected"
@@ -108,60 +114,86 @@ $(document).ready(function(){
 																</c:if>>글 제목 + 작성자
 									</option>
 								</select>
-				</span>
-				<span style="display:none;" class="gender schItem">				
-						모집 성별 :   <input type="radio" name="tgender" value="MG" <c:if test="${param.tgender eq 'MG' }">
+				</div>
+				<div style="display:none;" class="gender schItem">	
+						<table>
+						<tr>
+						<th>모집 성별</th> <td><input type="radio" name="tgender" value="MG" <c:if test="${param.tgender eq 'MG' }">
 																					checked="checked"
-																				  </c:if>>혼성
-									<input type="radio" name="tgender" value="M" <c:if test="${param.tgender eq 'M' }">
+																				  </c:if>>혼성</td>
+																				  
+									<td><input type="radio" name="tgender" value="M" <c:if test="${param.tgender eq 'M' }">
 																					checked="checked"
-																				  </c:if>>남성
-									<input type="radio" name="tgender" value="F" <c:if test="${param.tgender eq 'F' }">
-																					checked="checked"
-																				  </c:if>>여성
-				</span>
-				<span style="display:none;" class="tripStyle schItem">								
-						여행 스타일 : <input type="radio" name="tstyle" value="TRIPBUSY" <c:if test="${param.tstyle eq 'TRIPBUSY' }">
+																				  </c:if>>남성</td>
+								<td><input type="radio" name="tgender" value="F" <c:if test="${param.tgender eq 'F' }">
+																			  </c:if>>여성</td>
+						</table>
+				</div>
+				
+				
+				<div style="display:none;" class="tripStyle schItem">	
+				<table>
+				<tr>
+					<th>여행 스타일</th>
+					<td><input type="radio" name="tstyle" value="TRIPBUSY" <c:if test="${param.tstyle eq 'TRIPBUSY' }">
 																							checked="checked"
-																						</c:if>>바쁜 일정
-									<input type="radio" name="tstyle" value="TRIPSTAY" <c:if test="${param.tstyle eq 'TRIPSTAY' }">
+																						</c:if>>바쁜 일정</td>
+					<td><input type="radio" name="tstyle" value="TRIPSTAY" <c:if test="${param.tstyle eq 'TRIPSTAY' }">
 																							checked="checked"
-																						</c:if>>호캉스 
-									||
-						숙소 스타일 : <input type="radio" name="thotelstyle" value="CHEAP" <c:if test="${param.thotelstyle eq 'CHEAP' }">
+																						</c:if>>호캉스</td>
+				</tr>																		
+				<tr>
+					<th>숙소 스타일</th> 
+					<td><input type="radio" name="thotelstyle" value="CHEAP" <c:if test="${param.thotelstyle eq 'CHEAP' }">
 																							checked="checked"
-																						</c:if>>가성비
-									<input type="radio" name="thotelstyle" value="EXPENSIVE" <c:if test="${param.thotelstyle eq 'EXPENSIVE' }">
+																						</c:if>>가성비</td>
+					<td><input type="radio" name="thotelstyle" value="EXPENSIVE" <c:if test="${param.thotelstyle eq 'EXPENSIVE' }">
 																							checked="checked"
-																						</c:if>>호화로운
-									||
-						노는 스타일 : <input type="radio" name="tplaystyle" value="QUIET" <c:if test="${param.tplaystyle eq 'QUIET' }">
+																						</c:if>>호화로운</td>
+				</tr>
+				<tr>	
+					<th>노는 스타일</th> 
+					<td><input type="radio" name="tplaystyle" value="QUIET" <c:if test="${param.tplaystyle eq 'QUIET' }">
 																							checked="checked"
-																						</c:if>>휴양
-									<input type="radio" name="tplaystyle" value="ACTIVITY" <c:if test="${param.tplaystyle eq 'ACTIVITY' }">
+																						</c:if>>휴양</td>
+					<td><input type="radio" name="tplaystyle" value="ACTIVITY" <c:if test="${param.tplaystyle eq 'ACTIVITY' }">
 																							checked="checked"
-																						   </c:if>>액티비티
-				</span>	
-				<span style="display:none;" class="tboard schItem">
-					   <input type="text" name="tboard" value="${param.tboard }">
-				</span>
+																						   </c:if>>액티비티</td>
+					</tr>
+					</table>
+					</div>
+				<div style="display:none;" class="tboard schItem">
+					   <input type="text" name="tboard" value="${param.tboard }" placeholder="검색어를 입력하세요">
+				</div>
+				<div id="submitbutton">
 						<input type="submit" value="검색">
+						</div>
 		</form>
 	</div>
-	<div>
+	<div id="writeform">
+	<table>
+		<tr><td>
+		<c:if test="${not empty member }">
+		<a href="${conPath }/trip.do?method=tripWriteBoardView">글쓰기</a>
+		</c:if>	
+		<c:if test="${empty member }">
+		<a href="${conPath}/member.do?method=loginForm">글쓰기는 사용자 로그인 후에 이용 가능합니다</a>
+		</c:if>	
+		</td></tr>
+		</table>
+		</div><!-- writeform -->
+	<div id="listform">
 		<table id="bList">
-			<caption>Trip Mate 게시판</caption>			
 			<tr>
 				<th>글 번호</th>
 				<th>글 제목</th>
 				<th>모집성별</th>
 				<th>현재인원</th>
 				<th>모집인원<th>
-				<th>조회수</th>
 			</tr>
 			<c:if test="${tripList.size() eq 0 }">
 				<tr>
-					<td colspan="6">검색조건에 해당하는 게시글이 없습니다.</td>
+					<th colspan="6">검색조건에 해당하는 게시글이 없습니다.</th>
 				</tr>
 			</c:if>
 			<c:if test="${tripList.size() != 0 }">
@@ -176,16 +208,16 @@ $(document).ready(function(){
 						<c:if test="${trip.tgender eq 'MG' }">
 							혼성
 						</c:if>
+
 					</td>
 					<td>${trip.tnowmembercount }</td>
 					<td>${trip.tmaxmembercount }</td>
-					<td>${trip.thit }</td>
 				</tr>
 			</c:forEach>
 			</c:if>
 		</table>
-		<button onclick="location='${conPath }/main.do'">메인으로</button>
-	</div>	
+	</div>	<!-- listform -->
+	
 	<div class="paging">
 		<c:if test="${paging.startPage > paging.blockSize }">
 			[ <a href="${conPath }/trip.do?method=tripBoardList&pageNum=${paging.startPage-1}">이전</a> ]
@@ -201,7 +233,8 @@ $(document).ready(function(){
 		<c:if test="${paging.endPage < paging.pageCnt }">
 			[ <a href="${conPath }/trip.do?method=tripBoardList&pageNum=${paging.endPage+1}">다음</a> ]
 		</c:if>
-	</div>
-	
+	</div><!-- paging -->
+	</div><!-- wrap -->
+		<jsp:include page="../main/footer.jsp"/>
 </body>
 </html>

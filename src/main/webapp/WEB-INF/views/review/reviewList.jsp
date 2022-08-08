@@ -20,7 +20,7 @@
 <head>
    <meta charset="UTF-8">
    <title>Insert title here</title>
-   <link href="${conPath }/css/style.css" rel="stylesheet">
+   <link href="${conPath }/css/board/notice.css" rel="stylesheet">
    <script src="http://code.jquery.com/jquery-3.6.0.js"></script>
 	<script>
 	$(document).ready(function(){ // jquery 
@@ -42,6 +42,7 @@
 	</script>
 </head>
 <body>
+	<jsp:include page="../board/boardmain.jsp"/>
 	<c:if test="${not empty reviewDelete  and reviewDelete eq 1 }">
    	    <script>
    	    	alert(' 글삭제 성공');
@@ -60,21 +61,38 @@
    	</c:if>
    	
    	   		 
-	<c:if test="${not empty member }">
-			<button onclick="location='${conPath}/review.do?method=insertReviewForm&pageNum=${pageNum }'">글쓰기</button>
-	</c:if>
-	<c:if test="${empty member }">
-		  <button onclick="location='${conPath}/member.do?method=loginForm'">로그인</button>
-	</c:if>
-	<div id="content">
+<%-- 	<c:if test="${not empty member }"> --%>
+<%-- 			<button onclick="location='${conPath}/review.do?method=insertReviewForm&pageNum=${pageNum }'">글쓰기</button> --%>
+<%-- 	</c:if> --%>
+<%-- 	<c:if test="${empty member }"> --%>
+<%-- 		  <button onclick="location='${conPath}/member.do?method=loginForm'">로그인</button> --%>
+<%-- 	</c:if> --%>
+	
+	 <div id="logos">
+        <p>REVIEW_BOARD</p>
+    </div>
+	<div id="wrap">
+	<div id="writeform">
 	<table>
+		<tr><td>
+		<c:if test="${not empty member }">
+		<a href="${conPath}/review.do?method=insertReviewForm&pageNum=${pageNum }">글쓰기</a>
+		</c:if>	
+		<c:if test="${empty member }">
+		<a href="${conPath}/member.do?method=loginForm">글쓰기는 사용자 로그인 후에 이용 가능합니다</a>
+		</c:if>	
+		</td></tr>
+		</table>
+		</div><!-- writeform -->
+	<div id="listform">
+		<table>
 			<tr>
-			<th>글번호</th>
-			<th>아이디</th>
-			<th>글제목</th>
-			<th>작성일</th>
-			<th>조회수</th>
-			<th>ip</th>
+			<th class="th-1">글번호</th>
+			<th class="th-2">아이디</th>
+			<th class="th-7">글제목</th>
+			<th class="th-4">작성일</th>
+			<th class="th-5">조회수</th>
+			<th class="th-6">ip</th>
 			</tr>
 			<c:if test="${reviewList.size() == 0 }">
 				<tr><th colspan="7">등록된 글이 없습니다</th></tr>
@@ -84,7 +102,7 @@
 	     <tr>
 	    	 <td>${review.rnum } </td>
 	    	<td> ${review.mid }</td>
-	    	<td class="left">
+	    	<td class="td-1">
 	    		<c:forEach var="i" begin="1" end="${review.rindent }">
 	    			<c:if test="${i == review.rindent }">
 	    					└
@@ -106,6 +124,8 @@
 	    </c:forEach>
 	    </c:if>
 	</table>
+	</div><!-- listform -->
+	
 	<div class="paging">
 		<c:if test="${paging.startPage > paging.blockSize }">
 			[ <a href="${conPath }/review.do?method=reviewList&pageNum=${paging.startPage-1}">이전</a> ]
@@ -122,7 +142,7 @@
 			[ <a href="${conPath }/review.do?method=reviewList&pageNum=${paging.endPage+1}">다음</a> ]
 		</c:if>
 	</div>
-	</div>
-	<button onclick="location='${conPath}/main.do'">동준</button>
+	</div><!-- wrap -->
+	<jsp:include page="../main/footer.jsp"/>
 </body>
 </html>
