@@ -73,7 +73,7 @@
                     }
 
                         header #gnb #right ul li {
-                            padding-right: 50px;
+                            padding-right: 25px;
                             float: right;
                             list-style: none;
                             line-height: 50px;
@@ -83,8 +83,9 @@
                                 text-decoration: none;
                                 color: black;
                                 color: #3c5d79;
-                                font-weight: bold;
+                                font-weight:bold;
                                 font-size: 1.0em;
+                                font-family: 'IBM Plex Sans KR', sans-serif;
                             }
                             
                             
