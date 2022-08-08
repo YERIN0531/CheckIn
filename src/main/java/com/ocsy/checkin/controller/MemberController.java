@@ -82,7 +82,29 @@ public class MemberController {
 		model.addAttribute("checkNum",checkNum);
 		return "member/mailResult";
 	}
-	
+	@RequestMapping(params="method=modifyMailSend",method= {RequestMethod.GET, RequestMethod.POST})
+	public String modfiyMailSend2(String email,Model model) {
+		int mailSenderOk = 0;
+		int checkNum = 0;
+		try {
+			Random random = new Random();
+			checkNum = random.nextInt(888888)+111111;
+			SimpleMailMessage message = new SimpleMailMessage();
+			message.setFrom("tjqud531@gmail.com");
+			message.setTo(email);
+			message.setSubject("[CheckIn] CheckIn 메일 인증 메일입니다.");
+			String content = "안녕하세요! CheckIn 정보수정 메일 인증번호 입니다. 인증번호 : "+ checkNum
+								+ "화면에 보이는 인증번호를 입력해주세요.";
+			message.setText(content);
+			mailSender.send(message);
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+			mailSenderOk = -1;
+		}
+		model.addAttribute("mailSenderOk",mailSenderOk);
+		model.addAttribute("modifycheckNum",checkNum);
+		return "member/modifyMail";
+	}
 	@RequestMapping(params="method=idConfirm",method={RequestMethod.GET, RequestMethod.POST})
 	public String idConfirm(String mid, Model model) {
 		model.addAttribute("idConfirmResult",memberService.idConfirm(mid));
@@ -111,6 +133,7 @@ public class MemberController {
 	}
 	@RequestMapping(params="method=modifyPWCheck",method= {RequestMethod.GET, RequestMethod.POST})
 	public String modifyPWCheck(String modify) {
+		System.out.println(modify);
 		return "member/myPagePWCheck";
 	}	
 	@RequestMapping(params="method=modifyView",method= {RequestMethod.GET, RequestMethod.POST})
@@ -118,6 +141,20 @@ public class MemberController {
 		model.addAttribute("memberDto",memberService.getMember(member.getMid(),member.getMpw()));
 		return "member/modifyView";
 	}
-	
+	@RequestMapping(params="method=modifyMember", method= {RequestMethod.GET , RequestMethod.POST})
+	public String modifyMember(Member member, HttpSession httpSession ,Model model ) {
+		int result = memberService.modifyMember(member, httpSession);
+		if(result ==1 ) {
+			SimpleMailMessage message = new SimpleMailMessage();
+			message.setFrom("tjqud531@gmail.com");
+			message.setTo(member.getMemail());
+			message.setSubject("[CheckIn] CheckIn 정보수정");
+			String content = "정보수정 축하한다. 이놈아!";
+			message.setText(content);
+			mailSender.send(message);
+		}
+		model.addAttribute("memberModifResult",result);
+		return "main/main";
+	}
 
 }
