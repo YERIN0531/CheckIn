@@ -28,14 +28,14 @@
             <ul class="submenu">
                <li><a href="${conPath }/member.do?method=modifyPWCheck&modify=all">개인정보 변경</a></li>  
                <li><a href="${conPath }/member.do?method=modifyPWCheck&modify=pw">비밀번호 변경</a></li>
-               <li><a href="${conPath }/member.do?method=selectMileage">마일리지 조회</a></li>
+               <li><a href="${conPath }/member.do?method=modifyPWCheck&modify=mileage">마일리지 조회</a></li>
             </ul>
          </li>
          <li>
             <a href="#">조회</a>
             <ul class="submenu">
                <li><a href="#">항공권 조회</a></li>
-               <li><a href="#">호텔예약 조회</a></li>
+               <li><a href="${conPath }/hotel.do?method=myHotelReservationList&mid=${member.mid }">호텔예약 조회</a></li>
                <li><a href="#">주문목록 조회</a></li>
             </ul>
          </li>

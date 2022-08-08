@@ -24,6 +24,9 @@
   		<result property="checkin" column="checkin"/>
   		<result property="checkout" column="checkout"/>
   		<result property="headcount" column="headcount"/>
+  		<result property="hotelname" column="hotelname"/>
+  		<result property="roomprice" column="roomprice"/>
+  		<result property="hotelimage" column="hotelimage" />
   	</resultMap>
   	<resultMap type="Hotel_ZZim" id="Hotel_ZZimResult">
   		<result property="hzzim" column="hzzim"/>
@@ -69,7 +72,7 @@
   	</update>
   	<select id="checkHotelReservationList" parameterType="Hotel" resultMap="HotelResult">
   		<![CDATA[    	 
-       	 SELECT DISTINCT SUBSTR(HOTELID,1,3) HOTELID, HOTELNAME ,HOTELCOUNTRY, HOTELADDRESS,HOTELIMAGE FROM HOTEL 
+       	 SELECT DISTINCT SUBSTR(HOTELID,1,3) HOTELID, HOTELNAME ,HOTELCOUNTRY, HOTELADDRESS,HOTELIMAGE, FROM HOTEL 
   		  WHERE (HOTELNAME, ROOMTYPE) NOT IN 
 			(SELECT HOTELNAME, ROOMTYPE FROM HOTEL_RS R, HOTEL H WHERE ((#{schcheckindate} >= CHECKIN AND #{schcheckindate} < CHECKOUT)
     			OR (#{schcheckoutdate} >= CHECKIN AND #{schcheckoutdate} < CHECKOUT ))
@@ -87,7 +90,9 @@
   	<!--   -->
   	<!--  숙소 예약 관련 -->
   	<select id="myHotelReservationList" parameterType="String" resultMap="Hotel_rsResult">
-  		SELECT * FROM HOTEL_RS WHERE MID = #{mid}
+  		SELECT HR.*, HOTELNAME, ROOMPRICE, HOTELIMAGE FROM HOTEL_RS HR, HOTEL H 
+   		 WHERE HR.HOTELID = H.HOTELID
+       		AND MID = #{mid}
   	</select>
   	<delete id="canselHotel" parameterType="int">
   		DELETE FROM HOTEL_RS WHERE HRS_NUM = #{hrs_num}

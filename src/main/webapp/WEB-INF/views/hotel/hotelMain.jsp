@@ -85,6 +85,7 @@
 			<c:forEach var="hotel" items="${hotelList }">
 				<div class="hotelticket">
 				<table>
+
 					<tr class="hotelListTr"> <!-- 1행 -->
 <%-- 						<td rowspan="5">${hotel.hotelimage }호텔사진</td> --%>
 						<td rowspan="5"><img src="${conPath }/hotelImg/room.png"></td>
@@ -102,6 +103,7 @@
 					</tr>
 					<tr><!-- 5행 -->
 						<td class="td-5"><button onclick="location='${conPath }/hotel.do?method=getHotelDetail&hotelid=${hotel.hotelid.substring(0,3) }&schcheckindate=${param.schcheckindate }&schcheckoutdate=${param.schcheckoutdate }&headcount=${param.headcount }'" class="detail">상세보기</button></td>
+
 					</tr>
 				</table>
 				</div>

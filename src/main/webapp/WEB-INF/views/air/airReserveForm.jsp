@@ -18,6 +18,7 @@
 	 			var totalprice = Number('${airDto.aprice}')*checknum;
 	 			$('input[name="totalprice"]').val(totalprice);
 			});
+			
  		 			
 		});
 	</script>

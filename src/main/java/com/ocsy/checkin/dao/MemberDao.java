@@ -19,4 +19,6 @@ public interface MemberDao {
 	public int joinMember(Member member);  // 회원가입
 	
 	public int modifyMember(Member member);
+	
+	public int updateMtotal(Member member);
 }
