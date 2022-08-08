@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.ocsy.checkin.dto.TripMate_Board;
 import com.ocsy.checkin.dto.TripRequest;
+import com.ocsy.checkin.dto.TripTeam;
 import com.ocsy.checkin.service.TripBoardService;
 import com.ocsy.checkin.util.Paging;
 
@@ -78,6 +79,7 @@ public class TripController {
 	@RequestMapping(params="method=myTeamDetail",method={RequestMethod.GET, RequestMethod.POST})
 	public String myTeamDetail(int tnum, Model model) {
 		model.addAttribute("myTeamDetail",tripService.myTeamDetail(tnum));
+		model.addAttribute("teamLeader",tripService.teamLeaderSelect(tnum));
 		return "myPage/myTeamDetail";
 	}
 	
@@ -103,5 +105,12 @@ public class TripController {
 	@RequestMapping(params="method=dollarApi",method={RequestMethod.GET, RequestMethod.POST})
 	public String dollarApi() {
 		return "main/dollarApi";
+	}
+	
+	@RequestMapping(params="method=deleteMemberTeam",method = {RequestMethod.GET, RequestMethod.POST})
+	public String deleteMemberTeam(TripTeam tripTeam, Model model) {
+		model.addAttribute("deleteResult",tripService.deleteMemberTeam(tripTeam));
+		tripService.deleteMemberTeamMailSend(tripTeam);
+		return "forward:trip.do?method=myTeamDetail";
 	}
 }

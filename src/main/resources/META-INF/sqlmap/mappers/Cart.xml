@@ -81,7 +81,7 @@
   	<select id="orderlist" parameterType="String" resultType="String">
   	 SELECT OR_NUM FROM ORDERS O , CART C WHERE O.MID=C.MID AND O.MID=#{mid}
   	</select>
-  
+ 
     <!-- orderdetail 에 order 주문번호와 cart 내용 넘기기 -->
   	<insert id="cartOrderDetail" parameterType="String">
   	<![CDATA[
@@ -96,10 +96,13 @@
   	</delete>
   	
   	
+<<<<<<< HEAD
+=======
   
   	
   	
   	
+>>>>>>> de1dd12d2627aa43b4ba9028f282138a70f1485c
   	
   	
   </mapper>

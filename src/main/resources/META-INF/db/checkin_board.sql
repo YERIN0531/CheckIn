@@ -332,7 +332,8 @@ SELECT TR.*, MNAME,MGENDER,MTEL,MBIRTH FROM TRIPREQUEST TR, CUSTOMER M
         AND TNUM IN (SELECT TNUM FROM TRIPMATE_BOARD WHERE MID='aaa')
             AND TNUM = 1
                 ORDER BY TRRDATE;
-    commit;       
+    commit;   
+    
 -- 여행팀장이 수락했을경우
 INSERT INTO TRIPTEAM VALUES (TR_SEQ.NEXTVAL,4,'aaa',1,SYSDATE);
 DELETE FROM TRIPREQUEST WHERE TNUM=2 AND MID='aaa';
@@ -341,6 +342,12 @@ UPDATE TRIPMATE_BOARD SET TNOWMEMBERCOUNT = TNOWMEMBERCOUNT +1 WHERE TNUM=2;
 -- 여행팀장이 거절했을경우
 DELETE FROM TRIPREQUEST WHERE TNUM=1 AND MID='bbb';
 select * from triprequest;
+commit;
+select * from tripteam where tnum=1;
+commit;
+-- 여행팀 추방
+DELETE FROM TRIPTEAM WHERE TNUM=1 AND mid='bbb';
+select * from customer;
 commit;
 
 --1.글목록 (최신글 위로)

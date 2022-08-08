@@ -42,4 +42,8 @@ public interface TripBoardDao {
 	public int disagreeTeam(TripRequest tripRequest);
 	
 	public int tripBoardModify(TripMate_Board tripBoard);
+	
+	public int deleteMemberTeam(TripTeam tripTeam);
+	
+	
 }

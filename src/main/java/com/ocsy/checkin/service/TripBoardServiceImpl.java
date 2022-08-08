@@ -226,6 +226,25 @@ public class TripBoardServiceImpl implements TripBoardService {
 		return isCopy;
 	}
 
+	@Override
+	public int deleteMemberTeam(TripTeam tripTeam) {
+		return tripDao.deleteMemberTeam(tripTeam);
+	}
+
+	@Override
+	public void deleteMemberTeamMailSend(TripTeam tripTeam) {
+		String mid = tripTeam.getMid();
+		Member member = memberDao.getMember(mid);
+		String email = member.getMemail();
+		SimpleMailMessage message = new SimpleMailMessage();
+		message.setFrom("tjqud531@gmail.com");
+		message.setTo(email);
+		message.setSubject("[CheckIn] " + tripTeam.getTeamname()+" 에서 추방되었습니다.");
+		String content = member.getMname()+"님 " + tripTeam.getTeamname() + " 에서 추방되셨습니다.";
+		message.setText(content);
+		mailSender.send(message);
+	}
+
 	
 
 

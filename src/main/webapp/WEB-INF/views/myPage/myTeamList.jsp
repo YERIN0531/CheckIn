@@ -20,6 +20,12 @@
  </script>  
 </head>
   <body>
+  <c:if test="${empty member  }">
+  	<script>
+  		alert('로그인 후 이용하세요');
+  		location='${conPath }/member.do?method=loginform';
+  	</script>
+  </c:if>
   	<c:if test="${agreeTeamResult eq 3 }">  
 		<script>
 			alert('요청 수락이 완료되었습니다.');
