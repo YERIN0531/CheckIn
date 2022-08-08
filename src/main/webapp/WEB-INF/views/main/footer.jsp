@@ -24,7 +24,7 @@
         <footer>
                 <div class="office_address">
                     <ul>
-                        <li>info@weddingrin.com|<a href="#">관리자모드</a></li>
+                        <li>info@weddingrin.com|<a href="${conPath }/manager.do?method=mLoginForm">관리자모드</a></li>
                         <li>(주)체크인|대표그룹 OCSY|사업자번호 010-6666-0012|서울특별시 구로구 오류동</li>
                         <li>
                             ⓒCHECKINFROMOXCY 2022 ALL RIGHTS RESERVED

@@ -83,24 +83,36 @@ public class CartServiceImpl implements CartService {
 //	}
 	
 	@Override
-	public List<String> orderlist(String mid) {
+	public List<String> orderlist(String mid) {  // select 
 		ArrayList<String> orderDblist = (ArrayList<String>) cartDao.orderlist(mid);
+		System.out.println(orderDblist);
 		return orderDblist;
 	}
 	
 	
 	@Override
-	public int cartOrderDetail(Cart cart, String mid) {
+	public List<String> insertCartOrder(Cart cart, String mid) {   // insert 
 		cartDao.cartOrder(cart);
 		System.out.println("cartorder 성공 "+ cart.getOr_num());
-		System.out.println("cartorder 성공 "+ cart.getOr_num());
-		return cartDao.cartOrderDetail(cart);
+		  // or_num 리스트 리턴
+		return   cartDao.orderlist(cart.getMid());// order_detail에 insert
 	}
 
 	@Override
-	public int cartDelete(Cart cart) {
+	public int cartDelete(Cart cart) { // 장바구니에 담긴 카트들 삭제
 		return cartDao.cartDelete(cart);
 	}
+	
+	// // order_detail 테이블에 insert
+	public int insertOrderDetail(Cart cart) { // 오더 디테일 테이블에 넣기 
+		return cartDao.cartOrderDetail(cart);
+	}
+	
+	/*
+	 * 
+	 * @Override public int cartOrderDetail(Cart cart) { return
+	 * cartDao.cartOrderDetail(cart); }
+	 */
 
 
 

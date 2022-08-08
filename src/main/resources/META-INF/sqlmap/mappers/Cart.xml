@@ -72,24 +72,34 @@
   	
   	
   	
-  	<!-- 카트에 있는 놈을 order에 넣기  -->
-  	<insert id="cartOrder" parameterType="Cart">
+  	<!-- 카트에 담긴 상품 order에 넣기  -->
+  	<insert id="cartOrder" parameterType="String">
   	INSERT INTO ORDERS VALUES (ORDER_SEQ.NEXTVAL, #{mid}, SYSDATE)
   	</insert>
   
-  	<!--  order에 있는 order 리스트 출력  -->
+  	<!--  X order에 있는 order 리스트 출력  -->
   	<select id="orderlist" parameterType="String" resultType="String">
   	 SELECT OR_NUM FROM ORDERS O , CART C WHERE O.MID=C.MID AND O.MID=#{mid}
   	</select>
   
     <!-- orderdetail 에 order 주문번호와 cart 내용 넘기기 -->
-  	<insert id="cartOrderDetail" parameterType="Cart">
+  	<insert id="cartOrderDetail" parameterType="String">
+  	<![CDATA[
 	INSERT INTO ORDER_DETAIL 
-    SELECT ORDERDETAIL_SEQ.NEXTVAL, (SELECT OR_NUM FROM ORDERS WHERE MID=#{mid} AND OR_NUM=#{or_num}), PNUM, COST, QTY FROM CART WHERE MID=#{mid}
+    SELECT ORDERDETAIL_SEQ.NEXTVAL, (SELECT OR_NUM FROM ORDERS WHERE MID=#{mid} AND OR_NUM=(select max(or_num) from oders)), PNUM, COST, QTY FROM CART WHERE MID=#{mid}
+  	]]>
   	</insert>
   
-   <!-- 카트에 있는 놈 지우기  -->
+   <!-- 주문 완료 후 장바구니에 있는 상품 지우기  -->
      <delete id="cartDelete" parameterType="Cart">
 	DELETE FROM CART WHERE MID=#{mid} AND PNUM = (SELECT PNUM FROM ORDERS WHERE OR_NUM = #{or_num})
   	</delete>
+  	
+  	
+  
+  	
+  	
+  	
+  	
+  	
   </mapper>
