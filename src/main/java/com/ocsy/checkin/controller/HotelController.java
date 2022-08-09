@@ -37,6 +37,7 @@ public class HotelController {
 	}
 	@RequestMapping(params = "method=schHotel", method= {RequestMethod.GET, RequestMethod.POST })    // 호텔 목록 조회할때 
 	public String schHotel(Hotel hotel, Model model) {
+		System.out.println(hotel);
 		model.addAttribute("hotelList",hotelService.checkHotelReservationList(hotel));
 		model.addAttribute("hotel",hotel);
 		return "hotel/hotelMain";

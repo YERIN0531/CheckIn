@@ -14,10 +14,6 @@
  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 	$(document).ready(function(){
-		$('.hotelListTr').click(function(){
-			var hotelid = $(this).children().eq(0).text();
-				location.href='${conPath }/hotel.do?method=getHotelDetail&hotelid='+hotelid+'&schcheckindate=${hotel.schcheckindate }&schcheckoutdate=${hotel.schcheckoutdate }&headcount=${hotel.headcount }';
-		});
 	});
 </script> 
 </head>
@@ -87,8 +83,7 @@
 				<table>
 
 					<tr class="hotelListTr"> <!-- 1행 -->
-<%-- 						<td rowspan="5">${hotel.hotelimage }호텔사진</td> --%>
-						<td rowspan="5"><img src="${conPath }/hotelImg/room.png"></td>
+						<td rowspan="5"><img src="${conPath }/hotelImg/${hotel.hotelimage }"></td>
 						<th class="td-1">${hotel.hotelname }</th>
 					</tr>
 					<tr><!-- 2행 -->
@@ -98,7 +93,6 @@
 						<td class="td-3"><img src="${conPath }/hotelImg/placeholder.png" class="place">&nbsp;&nbsp;&nbsp;${hotel.hoteladdress }</td>
 					</tr>
 					<tr class="trheight"><!-- 4행 -->
-<%-- 						<td class="td-4"><fmt:formatNumber value="${hotel.standardprice }" pattern="#,### ￦" /></td> --%>
 						<td class="td-4">상세페이지에서 가격을 확인하세요</td>
 					</tr>
 					<tr><!-- 5행 -->
