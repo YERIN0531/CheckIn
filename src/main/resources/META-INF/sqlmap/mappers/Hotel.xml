@@ -16,6 +16,7 @@
   		<result property="hzzim" column="hzzim"/>
   		<result property="startRow" column="startRow"/>
 		<result property="endRow" column="endRow" />
+					
   	</resultMap>
   	<resultMap type="Hotel_rs" id="Hotel_rsResult">
   		<result property="hrs_num" column="hrs_num"/>
@@ -72,7 +73,7 @@
   	</update>
   	<select id="checkHotelReservationList" parameterType="Hotel" resultMap="HotelResult">
   		<![CDATA[    	 
-       	 SELECT DISTINCT SUBSTR(HOTELID,1,3) HOTELID, HOTELNAME ,HOTELCOUNTRY, HOTELADDRESS,HOTELIMAGE, FROM HOTEL 
+       	 SELECT DISTINCT SUBSTR(HOTELID,1,3) HOTELID, HOTELNAME ,HOTELCOUNTRY, HOTELADDRESS,HOTELIMAGE FROM HOTEL 
   		  WHERE (HOTELNAME, ROOMTYPE) NOT IN 
 			(SELECT HOTELNAME, ROOMTYPE FROM HOTEL_RS R, HOTEL H WHERE ((#{schcheckindate} >= CHECKIN AND #{schcheckindate} < CHECKOUT)
     			OR (#{schcheckoutdate} >= CHECKIN AND #{schcheckoutdate} < CHECKOUT ))
@@ -100,6 +101,7 @@
   	<insert id="insertHotelReservation" parameterType="Hotel_rs">
   		INSERT INTO HOTEL_RS VALUES (HRS_SEQ.NEXTVAL,#{hotelid},#{mid},#{checkin},#{checkout},#{headcount})
   	</insert>
+  	
   	<select id="checkHotelReservation" parameterType="Hotel" resultMap="HotelResult">
   	<![CDATA[         
         SELECT * FROM HOTEL 
@@ -110,6 +112,7 @@
       		  AND R.HOTELID = H.HOTELID AND R.HOTELID LIKE #{hotelid} || '%')
     ]]>	
   	</select> 	
+  	
   	<!--  -->
   	<!--  호텔 찜 관련 -->
   		<insert id="insertHZZim" parameterType="Hotel_ZZim">
