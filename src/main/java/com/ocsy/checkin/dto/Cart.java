@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Cart {
 	private int cartnum; // 장바구니번호
-	   private String pnum; // 상품번호(fk)
+	   private int pnum; // 상품번호(fk)
 	   private String mid; // 회원 아이디(fk)
 	   private int cost; // 총 가격
 	   private int qty; // 수량
@@ -20,7 +20,7 @@ public class Cart {
 	   private String pname; // 상품이름
 	   private String pimage1; // 상품이미지
 	   private int pprice;  // 상품 하나의 정가
-	   
+	   private int pstock; // 재고
 	   
 
 	   //orders table
@@ -29,5 +29,5 @@ public class Cart {
 	   
 	   //order detail
 	   private int ord_num;
-	
+	   
 }
