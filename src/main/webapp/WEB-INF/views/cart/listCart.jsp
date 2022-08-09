@@ -45,24 +45,13 @@
 		});
 
 		$('.modify').click(function(){
-			var qty = $("input[type='number']").parent("td").find(".qty${cart.cartnum }").val();
- 			cartnum = $(this).attr('id');
-			
-			//var qty = Number($( 'input[type="number"]' ).$(.class).val()); // 첫번째 수만 받아오지ㅇ 왜...
-			// var qty = $( 'input[type="number"] .qty${cart.cartnum }' ).attr( 'value' ); // 첫번째 수만 받아오지ㅇ 왜...
-			// var qty = $('.qty${cart.cartnum }').val(); // undifined
-			//var cartnum = $(this).attr('id');
-			//var qty = $(this).parent("td").find("input").val();
-			//var qty2 = $("input[type='number']").val(".qty${cart.cartnum }");
-			
-			//alert(cartnum); 
-			//alert(qty);
-			//alert(qty2); */
+ 			var cartnum = $(this).attr('id');
+			var qty = $('.qty'+cartnum).val();
 			
  			alert(cartnum); // 정상적으로 받아져 옴.
  			alert(qty);
 			location.href='${conPath}/cart.do?method=modify&cartnum='+cartnum+'&qty='+qty+'&mid='+${member.mid};
-		
+			location.reload();
 		  });
 		
 	});
@@ -101,9 +90,7 @@
    	<jsp:include page="../main/header.jsp"/>
    	<%-- ${cartList } --%>
    	<section>
-   		<form action="${conPath }/cart.do?method=buyProduct" method="post">
-   			<input type="hidden" name="mid" value="${member.mid }">
-   			<input type="hidden" name="mid" value="${member.mid }">
+   		<form action="${conPath }/cart.do?method=buyInfo" method="post">
    			<input type="hidden" name="mid" value="${member.mid }">
    			<table>
    				
@@ -132,11 +119,9 @@
     					<fmt:formatNumber type="currency" currencySymbol="￦ " value="${cart.cost * 1300 }"  />
                     </td>
    					<td>
-   						<%-- <input type="button" id="modify" onclick="location.href='${conPath}/cart.do?method=modify&cartnum=${cart.cartnum}&qty=${cart.qty }'" value="수정"> --%>
    						<input type="button" class="modify" id="${cart.cartnum }" value="수정">
    						<input type="button" onclick="location.href='${conPath}/cart.do?method=delete&cartnum=${cart.cartnum}'" value="삭제">
    						<%-- form 태그 안에서의 button 태그는 submit의 역할을 하기 때문에 input type=button을 사용 해야한다. --%>
-   						<!--  attr이랑....... 클릭 했을 때 그 값을 받아오도록 하는 제이쿼리 함수  -->
    					</td>
    				</tr>
    				</c:forEach>

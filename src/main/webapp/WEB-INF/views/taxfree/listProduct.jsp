@@ -10,7 +10,7 @@
   <title>Insert title here</title>
   <link href="${conPath }/css/style.css" rel="stylesheet">
  <style>
- 	/*table {
+ 	table {
  	margin: 0 auto;
  	padding: 0;
  	text-align: center;
@@ -28,7 +28,7 @@
  	.paging {
  	text-align: center;
  	margin-bottom: 70px;
- 	}*/
+ 	}
  </style>
  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
  <script>
@@ -71,7 +71,18 @@
 	
    	<table>
    	<caption>DUTY FREE</caption>
-   	
+   	<tr>
+   			<td colspan="3">
+   			<c:if test="${not empty manager }">
+   				<button onclick="location='${conPath }/taxfree.do?method=insertForm&aid=${manager.aid }'">INSERT</button>
+   				<button onclick="location='${conPath }/main2.do?aid=${manager.aid }'">MAIN</button>
+   			</c:if>
+   			<c:if test="${not empty member }">
+   				<button onclick="location='${conPath}/cart.do?method=list&mid=${member.mid }'">CART</button>
+   				<button onclick="location='${conPath }/main2.do?mid=${member.mid }'">MAIN</button>
+   			</c:if>
+   			</td>
+   		</tr>
    		<tr>
    		<c:set var="i" value="0"/>
    		<c:forEach items="${productList }" var="pDto">
@@ -92,18 +103,7 @@
    				<c:set var="i" value="${i+1 }"/>
    		</c:forEach>
    		</tr>
-   		<tr>
-   			<td colspan="3">
-   			<c:if test="${not empty manager }">
-   				<button onclick="location='${conPath }/taxfree.do?method=insertForm&aid=${manager.aid }'">INSERT</button>
-   				<button onclick="location='${conPath }/main2.do?aid=${manager.aid }'">MAIN</button>
-   			</c:if>
-   			<c:if test="${not empty member }">
-   				<button onclick="location='${conPath}/cart.do?method=list&mid=${member.mid }'">CART</button>
-   				<button onclick="location='${conPath }/main2.do?mid=${member.mid }'">MAIN</button>
-   			</c:if>
-   			</td>
-   		</tr>
+   		
    	</table>
 	
 	<!-- 페이징 처리 -->   	

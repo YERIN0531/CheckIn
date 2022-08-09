@@ -63,7 +63,10 @@ img {
     		<script> 
     			var input = confirm('상품이 장바구니에 담겼습니다.\n장바구니로 이동 하시겠습니까?');
     			if(input == true) {
-    				location.href = '${conPath}/cart.do?method=list';
+    				location.href = '${conPath}/cart.do?method=list&pageNum=${param.pageNum}';
+    			} else {
+    				
+    				
     			}
     		</script>
     	</c:if> 
@@ -105,9 +108,9 @@ img {
    		<tr>
    		<c:if test="${not empty member and empty admin }">
    			<td colspan="2" class="btn"> MEMBER
-   				<button onclick="location='${conPath}/taxfree.do?method=list&mid=${member.mid }&pageNum=${param.pageNum }'">LIST</button>	
+   				<button onclick="location='${conPath}/taxfree.do?method=list&mid=${member.mid }&pageNum=1'">LIST</button>	
    				<button onclick="#">BUY NOW</button>
-   				<button onclick="location='${conPath}/cart.do?method=list&mid=${member.mid }'">CART</button>
+   				<button onclick="location='${conPath}/cart.do?method=list&mid=${member.mid }&pageNum=${param.pageNum }'">CART</button>
    			</td>
    		</c:if>
 		<c:if test="${not empty manager and empty member }">
@@ -119,7 +122,7 @@ img {
    		</c:if>
    		<c:if test="${empty manager and empty member }"> 
    			<td colspan="2" class="btn"> GUEST
-   				<button onclick="location='${conPath}/taxfree.do?method=list	'">LIST</button>	
+   				<button onclick="location='${conPath}/taxfree.do?method=list'">LIST</button>	
    			</td>
    		</c:if>
    		</tr>
