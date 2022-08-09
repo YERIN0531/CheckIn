@@ -1,17 +1,17 @@
 package com.ocsy.checkin.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.ocsy.checkin.dto.Cart;
-import com.ocsy.checkin.dto.Hotel_rs;
-import com.ocsy.checkin.dto.Member;
 import com.ocsy.checkin.service.CartService;
 
 @Controller
@@ -31,8 +31,7 @@ public class CartController {
 	
 	// 장바구니 리스트 출력 - O
 	@RequestMapping(params="method=list", method= {RequestMethod.GET, RequestMethod.POST})
-	public String listCart(HttpSession session, Model model) {
-		System.out.println("controller : before to start Service");
+	public String listCart(HttpSession session, String mid, Model model) {
 		model.addAttribute("cartList", cartService.listCart(session));
 		System.out.println("controller : finish and go to listCart.jsp");
 		return "cart/listCart";
@@ -48,13 +47,13 @@ public class CartController {
 	
 	// 장바구니 비우기 - O
 	@RequestMapping(params="method=deleteAll", method= {RequestMethod.GET, RequestMethod.POST})
-	public String deleteAllCart(HttpSession session, Model model) {
+	public String deleteAllCart(HttpSession session, Model model) {	
 		model.addAttribute("deleteAllCart", cartService.deleteCartAll(session));
 		System.out.println("controller : 장바구니 비우기 성공");
 		return "forward:cart.do?method=list";
 	}
 	
-	// 장바구니 리스트에서 수량 수정 - 진행 중
+	// 장바구니 리스트에서 수량 수정 - O
 	@RequestMapping(params="method=modify", method= {RequestMethod.GET, RequestMethod.POST})
 	public String modifyCart(Cart cart, Model model) {
 		model.addAttribute("modifyResult", cartService.updateCart(cart));
@@ -62,17 +61,28 @@ public class CartController {
 		return "forward:cart.do?method=list";
 	}
 	
-	// 상품구매하기 
+	// 결제정보 출력 JSP - O
+	@RequestMapping(params="method=buyInfo",method= {RequestMethod.GET, RequestMethod.POST})
+	public String buyInfo(HttpSession session, Model model) {
+		model.addAttribute("cartList", cartService.listCart(session));
+		return "cart/buyInfo";
+	}
+	
+	// 상품구매하기 - O
 	@RequestMapping(params="method=buyProduct", method= {RequestMethod.GET, RequestMethod.POST})
-	public String buyProduct(Cart cart, Model model, String mid) {
-//		model.addAttribute("cartOrder", cartService.cartOrder(cart));
-		model.addAttribute("cartOrderDetail", cartService.cartOrderDetail(cart, mid));
-		System.out.println("cartOrder 성공" + cart.getOr_num());
-		System.out.println("cartOrderDetail 성공");
-		model.addAttribute("cartDelete", cartService.cartDelete(cart));
-		System.out.println("cartDelete 성공");
+	public String buyProduct(HttpSession session, Model model) {
+		cartService.insertCartOrder(session); // orders insert
+		System.out.println("controller : insertOrders"); // or_num 리스트 리턴	
+		cartService.insertOrderDetail(session); // 주문번호 등록, 주문번호 리턴		
+		System.out.println("controller : insertOrderDetail 성공");
+		List<Cart> cart = cartService.myOrderDetail(session);
+		model.addAttribute("myOrderDetailList", cart); // 주문상세내역 출력
+		System.out.println("controller : 내 주문정보 출력하기");
+		// 재고 수정
+		cartService.updateStock(cart);
+		cartService.cartDelete(session);// 장바구니 비우기
 		return "cart/orderForm";
-		}
+	}
 	
 	
 }

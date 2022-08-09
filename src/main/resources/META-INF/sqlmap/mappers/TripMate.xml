@@ -161,6 +161,11 @@
                                              WHERE TNUM = #{tnum}
 	</update>
 	
+	<delete id="deleteMemberTeam" parameterType="TripTeam">
+		DELETE FROM TRIPTEAM WHERE TNUM=#{tnum} AND mid=#{mid}
+	</delete>
+	
+	
 	
 	
 	

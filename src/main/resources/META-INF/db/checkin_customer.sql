@@ -105,7 +105,8 @@ INSERT INTO CUSTOMER_GRADE VALUES ('골드',5000001,20000000);
 INSERT INTO CUSTOMER_GRADE VALUES ('플래티넘',20000001,50000000);
 INSERT INTO CUSTOMER_GRADE VALUES ('VIP', 50000001,9999999999);
 
-
+SELECT GRADE_NAME FROM CUSTOMER C, CUSTOMER_GRADE
+    WHERE MTOTAL BETWEEN LOWTOTAL AND HIGHTOTAL;
 --------------------------CUSTOMER_GRADE-----------------------------------------
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------

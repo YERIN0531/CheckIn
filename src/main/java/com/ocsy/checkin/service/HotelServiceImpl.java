@@ -151,7 +151,7 @@ public class HotelServiceImpl implements HotelService {
 	}
 
 	@Override
-	public List<Hotel> checkHotelReservationList(Hotel hotel) {
+	public List<Hotel> checkHotelReservationList(Hotel hotel) { 
 		return hotelDao.checkHotelReservationList(hotel);
 	}
 

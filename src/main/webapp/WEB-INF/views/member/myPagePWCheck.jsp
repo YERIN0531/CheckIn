@@ -20,6 +20,7 @@
  </script>  
 </head>
   <body>
+  
   <jsp:include page="myPage.jsp" />
 	<form action="${conPath }/member.do?method=modifyView" method="post">
 		<input type="hidden" name="mid" value="${member.mid }">

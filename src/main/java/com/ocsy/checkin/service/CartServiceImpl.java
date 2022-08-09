@@ -1,6 +1,5 @@
 package com.ocsy.checkin.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -71,37 +70,75 @@ public class CartServiceImpl implements CartService {
 
 	
 	
-	///////////cart 처리
-	
-	
-//	@Override
-//	public int cartOrder(Cart cart) {
-//		ArrayList<String> seatDbList = (ArrayList<String>) airDao.seatList(air);
-//		Cart carts = (Cart)cartDao.cartOrder(cart);
-//		cart.setOr_num(carts.getOr_num());
-//		return 
-//	}
-	
+	/////////// 장바구니 주문 처리 ///////////
+	// orders 테이블에 insert
 	@Override
-	public List<String> orderlist(String mid) {
-		ArrayList<String> orderDblist = (ArrayList<String>) cartDao.orderlist(mid);
-		return orderDblist;
+	public int insertCartOrder(HttpSession session) { 
+		Member member = (Member)session.getAttribute("member");
+		String mid = null;
+		if(member!=null) {
+			mid = member.getMid();
+		}
+		System.out.println("listCart Service mid : " + mid);
+		int result = cartDao.insertOrder(mid);
+		System.out.println("service (insertOder) 결과 : " + result);
+		return result; // orders insert
+	}
+
+	// order_detail 테이블에 insert
+	public int insertOrderDetail(HttpSession session) { 
+		Member member = (Member)session.getAttribute("member");
+		String mid = null;
+		if(member!=null) {
+			mid = member.getMid();
+		}
+		System.out.println("service (insertOderDetail) 결과 : " + mid);
+		int result = cartDao.insertOrderDetail(mid);
+		System.out.println(result);
+		return result;
 	}
 	
-	
+	// 주문 내역 출력 - 진행중
 	@Override
-	public int cartOrderDetail(Cart cart, String mid) {
-		cartDao.cartOrder(cart);
-		System.out.println("cartorder 성공 "+ cart.getOr_num());
-		System.out.println("cartorder 성공 "+ cart.getOr_num());
-		return cartDao.cartOrderDetail(cart);
+	public List<Cart> myOrderDetail(HttpSession session) {
+		Member member = (Member)session.getAttribute("member");
+		String mid = null;
+		if(member!=null) {
+			mid = member.getMid();
+		}
+		System.out.println("listCart Service mid : " + mid);
+		return cartDao.myOrderDetail(mid);
+	}
+	
+	// 장바구니 비워주기
+	@Override
+	public int cartDelete(HttpSession session) { // 장바구니에 담긴 카트들 삭제
+		Member member = (Member)session.getAttribute("member");
+		String mid = null;
+		if(member!=null) {
+			mid = member.getMid();
+		}
+		int result = cartDao.cartDelete(mid);
+		System.out.println(result >= 1 ? "장바구니 비우기 성공" : "장바구니 비우기 실패");
+		return result;
 	}
 
 	@Override
-	public int cartDelete(Cart cart) {
-		return cartDao.cartDelete(cart);
+	public int updateStock(List<Cart> cart) {
+		int result = 0;
+		int i = 1;
+		for(Cart c : cart) {
+			System.out.println(c);
+			result += cartDao.updateStock(c);
+			System.out.println(i + " 번쨰 수량 업데이트 성공");
+			i++;
+		}
+		return result;
 	}
 
+	
+	
+	
 
 
 }

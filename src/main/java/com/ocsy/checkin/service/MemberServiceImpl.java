@@ -65,6 +65,12 @@ public class MemberServiceImpl implements MemberService {
 		httpSession.setAttribute("member", newMember);
 		return memberDao.plusMileage(member);
 	}
+	
+	@Override
+	public int updateMtotal(Member member) {
+		return memberDao.updateMtotal(member);
+	}
+	
 	@Override
 	public int idConfirm(String mid) {
 		return memberDao.idConfirm(mid);
@@ -89,5 +95,6 @@ public class MemberServiceImpl implements MemberService {
 		}
 		
 	}
+	
 
 

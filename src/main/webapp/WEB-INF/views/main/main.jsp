@@ -29,6 +29,7 @@
           alert('회원 정보 수정 성공!');
        </script> 
     </c:if>  
+    
    <c:if test="${empty member }">
 	<button onclick="location='${conPath}/member.do?method=loginForm'">로그인</button>
 	</c:if>
@@ -40,7 +41,6 @@
 		<button onclick="location='${conPath}/manager.do?method=logout'">관리자로그아웃</button>
 		<h2>${manager.aname } 로 로그인함</h2>
 	</c:if>
-		
 	<button onclick="location='${conPath}/dongjun.do'">동준</button>
 	<button onclick="location='${conPath}/jinyoung.do'">진영</button>
 	<button onclick="location='${conPath}/yerin.do'">예린</button>

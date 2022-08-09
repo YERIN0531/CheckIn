@@ -45,24 +45,13 @@
 		});
 
 		$('.modify').click(function(){
-			var qty = $("input[type='number']").parent("td").find(".qty${cart.cartnum }").val();
- 			cartnum = $(this).attr('id');
-			
-			//var qty = Number($( 'input[type="number"]' ).$(.class).val()); // 첫번째 수만 받아오지ㅇ 왜...
-			// var qty = $( 'input[type="number"] .qty${cart.cartnum }' ).attr( 'value' ); // 첫번째 수만 받아오지ㅇ 왜...
-			// var qty = $('.qty${cart.cartnum }').val(); // undifined
-			//var cartnum = $(this).attr('id');
-			//var qty = $(this).parent("td").find("input").val();
-			//var qty2 = $("input[type='number']").val(".qty${cart.cartnum }");
-			
-			//alert(cartnum); 
-			//alert(qty);
-			//alert(qty2); */
+ 			var cartnum = $(this).attr('id');
+			var qty = $('.qty'+cartnum).val();
 			
  			alert(cartnum); // 정상적으로 받아져 옴.
  			alert(qty);
-			location.href='${conPath}/cart.do?method=modify&cartnum='+cartnum+'&qty='+qty;
-		
+			location.href='${conPath}/cart.do?method=modify&cartnum='+cartnum+'&qty='+qty+'&mid='+${member.mid};
+			location.reload();
 		  });
 		
 	});
@@ -90,7 +79,7 @@
 		</script>
 	</c:if>
 	<!-- 왜 안되지.. -->
-   	<c:if test="${empty member.mid or null }">
+   	<c:if test="${empty member }">
 		<script>
 			alert('로그인 정보가 없습니다. 로그인 후 이용 해주세요.');
 			location.href='${conPath}/member.do?method=loginForm';
@@ -101,7 +90,7 @@
    	<jsp:include page="../main/header.jsp"/>
    	<%-- ${cartList } --%>
    	<section>
-   		<form action="${conPath }/cart.do?method=buyProduct" method="post">
+   		<form action="${conPath }/cart.do?method=buyInfo" method="post">
    			<input type="hidden" name="mid" value="${member.mid }">
    			<table>
    				
@@ -119,7 +108,7 @@
    				<c:forEach items="${cartList }" var="cart">
    				<tr>
    					<td>${cart.cartnum }<br><input type="checkbox" name="cartnum" value="${cart.cartnum }" class="ab"></td>
-   					<td><a href="${conPath}/taxfree.do?method=detail&pnum=${cart.pnum }"><img src="${conPath }/taxfree/${cart.pimage1}"></a></td>
+   					<td><a href="${conPath}/taxfree.do?method=detail&pnum=${cart.pnum }&mid=${member.mid }"><img src="${conPath }/taxfree/${cart.pimage1}"></a></td>
    					<td>${cart.pname }</td>
    					<td><input type="number" value=${cart.qty } name="qty" class="qty${cart.cartnum }"> </td>
    					<td>USD ${cart.pprice }</td>
@@ -130,18 +119,16 @@
     					<fmt:formatNumber type="currency" currencySymbol="￦ " value="${cart.cost * 1300 }"  />
                     </td>
    					<td>
-   						<%-- <input type="button" id="modify" onclick="location.href='${conPath}/cart.do?method=modify&cartnum=${cart.cartnum}&qty=${cart.qty }'" value="수정"> --%>
    						<input type="button" class="modify" id="${cart.cartnum }" value="수정">
    						<input type="button" onclick="location.href='${conPath}/cart.do?method=delete&cartnum=${cart.cartnum}'" value="삭제">
    						<%-- form 태그 안에서의 button 태그는 submit의 역할을 하기 때문에 input type=button을 사용 해야한다. --%>
-   						<!--  attr이랑....... 클릭 했을 때 그 값을 받아오도록 하는 제이쿼리 함수  -->
    					</td>
    				</tr>
    				</c:forEach>
    				<tr>
    					<td colspan="7" class="btn">
    						<input type="submit" value="구매하기">
-   						<input type="button" value="면세점으로 이동" onclick="location.href='${conPath}/taxfree.do?method=list&pageNum=1'">	
+   						<input type="button" value="면세점으로 이동" onclick="location.href='${conPath}/taxfree.do?method=list&pageNum=1&mid=${member.mid }'">	
    						<input type="button" value="장바구니 비우기" id="show" onclick="location.href='${conPath}/cart.do?method=deleteAll'">
    					</td>
    				</tr>

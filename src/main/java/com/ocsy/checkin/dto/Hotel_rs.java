@@ -12,5 +12,8 @@ public class Hotel_rs {
 	private Date checkin;  // 예약완료 체크인 날짜 
 	private Date checkout;  // 예약 완료 체크아웃 날짜
 	private int headcount;  // 예약 인원수
+	private String hotelname;
+	private int roomprice;
+	private String hotelimage;
 	
 }

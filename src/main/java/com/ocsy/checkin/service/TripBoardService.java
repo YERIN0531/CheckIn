@@ -41,4 +41,7 @@ public interface TripBoardService {
 	
 	public void agreeMailSend(TripRequest tripRequest);
 	
+	public int deleteMemberTeam(TripTeam tripTeam);
+	
+	public void deleteMemberTeamMailSend(TripTeam tripTeam);
 }

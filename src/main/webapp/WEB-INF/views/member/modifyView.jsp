@@ -41,6 +41,7 @@
 	 			});
 			}
 		});
+       
        $('input[name="mpw"]').keyup(function(){  // 비밀번호 패턴 keyup 
 			var patternPw = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,16}$/;
 			var mpw = $('input[name="mpw"]').val().trim();
@@ -52,8 +53,7 @@
 				$('#patternCheckResult').css('color','red');  
 			}			
 		}); 
-       
-       
+
 		$('input[name="mpwChk"]').keyup(function() {   // 비밀번호 확인 key up
 			var mpw = $('input[name="mpw"]').val();
 			var mpwChk = $('input[name="mpwChk"]').val();
@@ -64,7 +64,10 @@
 				$('#pwChkResult').html('No');
 				$('#pwChkResult').css('color','red');
 			} 
-		}); 	
+		});
+		
+		
+ 	 	
 		$('form').submit(function(){
  			var patternCheckResult = $('#patternCheckResult').text().trim();
  			var pwChkResult = $('#pwChkResult').text().trim();
@@ -95,6 +98,12 @@
      history.back();
    </script>
  </c:if>
+ <c:if test="${param.modify eq 'mileage' }">
+ 	<script>
+ 		location="${conPath }/member.do?method=selectMileage&mmileage=${memberDto.mmileage }&mtotal=${memberDto.mtotal }";
+ 	</script>
+ </c:if>
+ 	<jsp:include page="../main/header.jsp" />
    <jsp:include page="myPage.jsp" />
    <form action="${conPath }/member.do?method=modifyMember" method="post">
      <input type="hidden" name="modify" value="${param.modify }">
@@ -240,13 +249,14 @@
                             <div id="pwChkResult"> &nbsp; </div>
                         </td>
                     </tr>
-         <tr>
-            <td colspan="2">
-               <input type="submit" value="수정">
-            </td>
-         </tr>
-      </c:if>
-      </table>
-   </form>
+			<tr>
+				<td colspan="2">
+					<input type="submit" value="수정">
+				</td>
+			</tr>
+		</c:if>
+		</table>
+	</form>
+<jsp:include page="../main/footer.jsp" />
   </body>
 </html>

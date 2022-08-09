@@ -14,12 +14,11 @@
         <result property="pimage1" column="pimage1"/>
         <result property="pname" column="pname"/>
         <result property="pprice" column="pprice"/>
-
+        <result property="pstock" column="pstock"/>
 
         <result property="or_num" column="or_num"/>
         <result property="ordate" column="ordate"/>
         <result property="ord_num" column="ord_num"/>
-  		
   	</resultMap>
   	
   	
@@ -72,24 +71,36 @@
   	
   	
   	
-  	<!-- 카트에 있는 놈을 order에 넣기  -->
-  	<insert id="cartOrder" parameterType="Cart">
+  	<!-- 카트에 담긴 상품 order에 넣기 / O -->
+  	<insert id="insertOrder" parameterType="String">
   	INSERT INTO ORDERS VALUES (ORDER_SEQ.NEXTVAL, #{mid}, SYSDATE)
   	</insert>
-  
-  	<!--  order에 있는 order 리스트 출력  -->
-  	<select id="orderlist" parameterType="String" resultType="String">
-  	 SELECT OR_NUM FROM ORDERS O , CART C WHERE O.MID=C.MID AND O.MID=#{mid}
-  	</select>
-  
-    <!-- orderdetail 에 order 주문번호와 cart 내용 넘기기 -->
-  	<insert id="cartOrderDetail" parameterType="Cart">
+ 
+    <!-- orderdetail 에 order 주문번호와 cart 내용 넘기기 / O -->
+  	<insert id="insertOrderDetail" parameterType="String">
+  	<![CDATA[
 	INSERT INTO ORDER_DETAIL 
-    SELECT ORDERDETAIL_SEQ.NEXTVAL, (SELECT OR_NUM FROM ORDERS WHERE MID=#{mid} AND OR_NUM=#{or_num}), PNUM, COST, QTY FROM CART WHERE MID=#{mid}
+    SELECT ORDERDETAIL_SEQ.NEXTVAL, (SELECT MAX(OR_NUM) FROM ORDERS), PNUM, COST, QTY FROM CART WHERE MID=#{mid}
+  	]]>
   	</insert>
   
-   <!-- 카트에 있는 놈 지우기  -->
+  	 <!-- orderDetail에 담긴 상품들 출력하기 / 진행 중 -->
+  	<select id="myOrderDetail" parameterType="Cart" resultMap="CartResult">
+  	SELECT T.PNUM, OD.OR_NUM, ORDATE, PIMAGE1, PNAME, OD.QTY, PPRICE, OD.COST 
+    FROM TAXFREE T, CART C, ORDER_DETAIL OD, ORDERS O
+        WHERE T.PNUM = C.PNUM AND C.PNUM = OD.PNUM AND OD.OR_NUM = O.OR_NUM
+            AND C.MID = #{mid} ORDER BY ORDATE DESC, OR_NUM ASC
+  	</select>
+  
+   <!-- 주문 완료 후 장바구니에 있는 상품 지우기 / 아직 진행 안함  -->
      <delete id="cartDelete" parameterType="Cart">
-	DELETE FROM CART WHERE MID=#{mid} AND PNUM = (SELECT PNUM FROM ORDERS WHERE OR_NUM = #{or_num})
+	DELETE CART WHERE MID = #{mid}
   	</delete>
+
+	<!--  -->  	
+  	<update id="updateStock" parameterType="Cart">
+  	UPDATE TAXFREE SET PSTOCK = (PSTOCK- #{qty}) WHERE PNUM = #{pnum}
+  	</update>
+ 	
+  	
   </mapper>

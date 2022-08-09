@@ -14,11 +14,17 @@ public interface MemberService {
 	
 	public int plusMileage(Member member,HttpSession httpSession);
 	
+	public int updateMtotal(Member member);
+	
 	public int idConfirm(String mid);
 	
 	public int joinMember(Member member, HttpSession httpSession);
 	
 	public Member getMember(String mid, String mpw);
 	
-	public int modifyMember(Member member,  HttpSession httpSession); 
+
+	public int modifyMember(Member member,  HttpSession httpSession);
+	
+	
+
 }

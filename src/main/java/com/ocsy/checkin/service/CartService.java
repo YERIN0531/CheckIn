@@ -14,9 +14,12 @@ public interface CartService {
 	public int updateCart(Cart cart); // 장바구니 리스트에서 수정 진행
 	
 	
-//	public int cartOrder(Cart cart); // order에 넣기
-	public int cartOrderDetail(Cart cart, String mid);// order_detail에 넣기
-	public int cartDelete(Cart cart);
+	public int insertCartOrder(HttpSession session);// order_detail에 넣기
+	public int insertOrderDetail(HttpSession session); // order_detail에 담아주기 
+	public List<Cart> myOrderDetail(HttpSession session); // 주문한 order detail 출력  
 	
-	public List<String> orderlist(String mid);
+	
+	public int cartDelete(HttpSession session); // 주문완료 후 장바구니 비워주기
+	public int updateStock(List<Cart> cart);
+
 }

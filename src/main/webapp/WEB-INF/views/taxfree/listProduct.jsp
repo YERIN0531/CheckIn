@@ -52,17 +52,17 @@
   </c:if>
 	<c:if test="${not empty modifyResult and modifyResult eq SUCCESS }">
 		<script>
-			alert('상품정보수정 성공');
+			alert('상품수정 성공');
 		</script>
 	</c:if>
 	<c:if test="${not empty modifyResult and modifyResult eq FAIL }">
   	<script>
-  		alert('상품정보수정 실패');
+  		alert('상품수정 실패');
   	</script>
   </c:if>
 	<c:if test="${not empty deleteResult}">
 		<script>
-			alert('삭제성공');
+			alert('상품삭제 성공');
 		</script>
 	</c:if>
 		
@@ -71,14 +71,25 @@
 	
    	<table>
    	<caption>DUTY FREE</caption>
-   	
+   	<tr>
+   			<td colspan="3">
+   			<c:if test="${not empty manager }">
+   				<button onclick="location='${conPath }/taxfree.do?method=insertForm&aid=${manager.aid }'">INSERT</button>
+   				<button onclick="location='${conPath }/main2.do?aid=${manager.aid }'">MAIN</button>
+   			</c:if>
+   			<c:if test="${not empty member }">
+   				<button onclick="location='${conPath}/cart.do?method=list&mid=${member.mid }'">CART</button>
+   				<button onclick="location='${conPath }/main2.do?mid=${member.mid }'">MAIN</button>
+   			</c:if>
+   			</td>
+   		</tr>
    		<tr>
    		<c:set var="i" value="0"/>
    		<c:forEach items="${productList }" var="pDto">
-   				<td onclick="location.href='${conPath}/taxfree.do?method=detail&pnum=${pDto.pnum }&pageNum=${paging.currentPage}'">
+   				<td onclick="location.href='${conPath}/taxfree.do?method=detail&mid=${member.mid }&pnum=${pDto.pnum }&pageNum=${paging.currentPage}'">
    				${pDto.pnum } <br>
    				<c:if test="${pDto.pimage1 eq null or '' }">
-	   			<img src="${conPath }/taxfree/noimg.jpg" alt="noimg.jpg" width="300" height="300">
+	   			<img src="${conPath }/taxfree/noimg.jpg" alt="noimg.jpg" width="250" height="300">
 	   			</c:if>
 	   			<c:if test="${pDto.pimage1 != null or '' }">
 	   			<img src="${conPath }/taxfree/${pDto.pimage1 }" alt="${pDto.pimage1 }" width="300" height="300">
@@ -92,12 +103,7 @@
    				<c:set var="i" value="${i+1 }"/>
    		</c:forEach>
    		</tr>
-   		<tr>
-   			<td colspan="3">
-   				<button onclick="location='${conPath}/taxfree.do?method=insertForm'">면세점상품등록</button>
-   				<button onclick="location='main.do'">메인페이지로</button>
-   			</td>
-   		</tr>
+   		
    	</table>
 	
 	<!-- 페이징 처리 -->   	
