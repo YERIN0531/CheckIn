@@ -11,6 +11,7 @@
 <meta charset="UTF-8">
   <title>Insert title here</title>
   <link href="${conPath }/css/style.css" rel="stylesheet">
+  
  <style>
  
  </style>
@@ -53,8 +54,6 @@
 			}			
 		}); 
 
-       
-
 		$('input[name="mpwChk"]').keyup(function() {   // 비밀번호 확인 key up
 			var mpw = $('input[name="mpw"]').val();
 			var mpwChk = $('input[name="mpwChk"]').val();
@@ -70,20 +69,16 @@
 		
  	 	
 		$('form').submit(function(){
- 			var idConfirmResult = $('#idConfirmResult').text().trim();
  			var patternCheckResult = $('#patternCheckResult').text().trim();
  			var pwChkResult = $('#pwChkResult').text().trim();
  			var inputEmailKey = $('input[name="emailCheckPW"]').val().trim();
  			if(!isNaN(inputEmailKey)){
  				inputEmailKey = Number(inputEmailKey);
  			}
- 			if(idConfirmResult != '사용가능한 ID입니다.'){
- 				alert('중복체크 후 사용가능한 id로 가입해주세요.');
- 				$('input[name="mid"]').focus();
+ 			else if(patternCheckResult != '안전'){
+ 				alert('비밀번호 형식을 지켜주세요');
  				return false;
- 			} else if(patternCheckResult != '안전'){
-				alert('비밀번호 형식을 지켜주세요');
-				return false;
+ 			
  			} else if(pwChkResult != 'OK'){
  				alert('두 비밀번호가 다릅니다.');
  				$('#pwChkResult').focus();
@@ -113,9 +108,10 @@
    <form action="${conPath }/member.do?method=modifyMember" method="post">
      <input type="hidden" name="modify" value="${param.modify }">
      <input type="hidden" name="mid" value="${memberDto.mid }">
+     <input type="hidden" name="memail" value="${memberDto.memail }">
       <table>
       <c:if test="${param.modify eq 'all' }">
-         <caption>${memberDto } / ${member }</caption>
+         <caption>회원 정보 수정</caption>
         <tr><td class="join"><div>&nbsp;</div>SIGN UP</td></tr>                   
 					<tr><td></td></tr>
                    

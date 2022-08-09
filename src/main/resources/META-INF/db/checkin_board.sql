@@ -5,7 +5,7 @@
 DROP TABLE QNA_BOARD;
 DROP SEQUENCE QNA_SEQ;
 
-
+select * from customer;
     
 CREATE TABLE QNA_BOARD(
   QNUM        NUMBER(6) PRIMARY KEY ,
@@ -23,6 +23,7 @@ CREATE TABLE QNA_BOARD(
   QSTEP       NUMBER(10) NOT NULL,
   QINDENT     NUMBER(10) NOT NULL
 );
+commit;
  CREATE SEQUENCE QNA_SEQ
     MAXVALUE 999999
     NOCACHE
@@ -95,9 +96,8 @@ UPDATE QNA_BOARD SET QTITLE ='관리자답변',
                      QCONTENT = '수정본문1',
                      QIP    = '192',
                      QFILE1 = 'update.jpg',
-                     QFILE2 = 'update.jpg',
-                     QPASSWORD = '123'
-                     WHERE QNUM = 4;
+                     QFILE2 = 'update.jpg'
+                     WHERE QNUM = 22;
                     commit;
 --9.글삭제
 --deleteQna

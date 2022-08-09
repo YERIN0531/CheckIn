@@ -23,8 +23,8 @@
   
   <jsp:include page="myPage.jsp" />
 	<form action="${conPath }/member.do?method=modifyView" method="post">
-		<input type="text" name="mid" value="${member.mid }">
-		<input type="text" name="modify" value="${param.modify }">
+		<input type="hidden" name="mid" value="${member.mid }">
+		<input type="hidden" name="modify" value="${param.modify }">
 		<table>
 			<tr>
 				<th>비밀번호 확인</th>

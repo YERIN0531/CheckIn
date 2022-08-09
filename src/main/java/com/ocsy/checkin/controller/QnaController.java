@@ -75,10 +75,12 @@ public class QnaController {
 		model.addAttribute("replyQna", qnaService.replyQna(mRequest, request, qna));
 		return "forward:qna.do?method=qnaList&pageNum"+pageNum;
 	}
+	// 글쓰기 view
 	@RequestMapping(params="method=insertQnaForm", method = {RequestMethod.GET, RequestMethod.POST})
 	public String insertQnaForm() {
 		return "qna/qnaInsertForm";
 	}
+	// 글쓰기 db 저장
 	@RequestMapping(params="method=insertQna", method = RequestMethod.POST)
 	public String insertQna(MultipartHttpServletRequest mRequest, HttpServletRequest request, QnaBoard qna, Model model) {
 		model.addAttribute("insertQna", qnaService.insertQna(mRequest, request, qna));

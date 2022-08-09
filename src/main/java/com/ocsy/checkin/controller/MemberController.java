@@ -144,17 +144,12 @@ public class MemberController {
 	@RequestMapping(params="method=modifyMember", method= {RequestMethod.GET , RequestMethod.POST})
 	public String modifyMember(Member member, HttpSession httpSession ,Model model ) {
 		int result = memberService.modifyMember(member, httpSession);
-		if(result ==1 ) {
-			SimpleMailMessage message = new SimpleMailMessage();
-			message.setFrom("tjqud531@gmail.com");
-			message.setTo(member.getMemail());
-			message.setSubject("[CheckIn] CheckIn 정보수정");
-			String content = "정보수정 축하한다. 이놈아!";
-			message.setText(content);
-			mailSender.send(message);
-		}
-		model.addAttribute("memberModifResult",result);
-		return "main/main";
+		  if(result ==1 ) { SimpleMailMessage message = new SimpleMailMessage();
+		  message.setFrom("tjqud531@gmail.com"); message.setTo(member.getMemail());
+		  message.setSubject("[CheckIn] CheckIn 정보수정"); 
+		  String content ="정보수정 축하한다. 이놈아!"; message.setText(content); mailSender.send(message); }
+		  model.addAttribute("memberModifResult",result);
+		return "member/loginForm";
 	}
 	
 	@RequestMapping(params="method=selectMileage",method= {RequestMethod.GET , RequestMethod.POST})
