@@ -56,19 +56,22 @@
 	</tr>
 	<tr>
 	  <td colspan="3">
-	    <c:if test="${not empty member && qnaDto.qindent == 0 }">
+	    <c:if test="${not empty member && member.mid eq qnaDto.qid }"> <!-- 회원로그인 && 수정 삭제  -->
 	      <button onclick="location='${conPath }/qna.do?method=qnaModifyForm&qnum=${qnaDto.qnum}&pageNum=${param.pageNum}'">수정</button>
 	      <button onclick="deleteCheck()"> 삭제</button>	
 	    </c:if>
+		 
 		 <button onclick="location='${conPath }/qna.do?method=qnaList&pageNum=${param.pageNum}'">목록</button>	
 	  	 
 	  
-	   <c:if test="${not empty manager && qnaDto.qindent == 0}">
+	   <c:if test="${not empty manager && qnaDto.qindent == 0}"> <!-- 관리자 로그인 && 원글 답변 삭제 가능 -->
 	  	<button onclick="location='${conPath }/qna.do?method=qnareplyForm&qnum=${qnaDto.qnum}&pageNum=${param.pageNum}'">답변</button>
 	   	<button onclick="deleteCheck()"> 삭제</button>	
 	   </c:if>
-	   <c:if test="${not empty manager && qnaDto.qindent ==1 }">
+	   
+	   <c:if test="${not empty manager && qnaDto.qindent ==1 }"> <!-- 관리자 로그인  &&  답변글 수정 삭제  -->
 	    <button onclick="location='${conPath }/qna.do?method=qnaModifyForm&qnum=${qnaDto.qnum}&pageNum=${param.pageNum}'">수정</button>
+		<button onclick="deleteCheck()"> 삭제</button>   
 	   </c:if>
 	  
 	  </td>

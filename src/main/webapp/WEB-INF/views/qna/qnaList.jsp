@@ -25,26 +25,30 @@
 
    <script src="http://code.jquery.com/jquery-3.6.0.js"></script>
 	<script>
-	$(document).ready(function(){ // jquery 
+	$(document).ready(function(){ // jquery  // 31 이 잠금 이미지    , 28이 공개글 이미지 
+		//<img src ="${conPath }/image/secret.jpg" alt="비밀글여부" width="20">비밀글
+		//<img src ="${conPath }/image/qna.png" alt="비밀글여부" width="20">공개글
 		var aid = '${aid}';
 		var mid = '${mid}';
 		$('tr').click(function(){
             var qsecreat = $(this).children().eq(3).html().trim();
+            //qsecreat2 = qsecreat.indexOf(".",?)
+            qsecreat2 = qsecreat.lastIndexOf(".png");
 			var qnum = Number($(this).children().eq(0).text().trim());
 			if(!isNaN(qnum)){
-				if(aid != '' && mid == '' && qsecreat != ''){ // 관리자 로그인
+				if(aid != '' && mid == '' && qsecreat2 == -1){ // 관리자 , 비밀글  비번 창 없이 바로 상세보기 
 					alert('관리자');
 					location.href = '${conPath }/qna.do?method=detailQna&qnum='+qnum+'&pageNum=${paging.currentPage}';
-				}else if(mid != '' && qsecreat != ''){ //mid 가 널이 아니고 qsecreat 가 널일때
+				}else if(mid != '' && qsecreat2 == -1){  // 회원 , 비밀글 , 비번 view 로 
 					//alert(mid);
 					 alert('회원');
 					 location.href ='${conPath }/qna.do?method=secreatQna&qnum='+qnum+'&pageNum=${paging.currentPage}';
-				}else if(mid == '' && aid == ''){ // 비회원 
+				}else if(mid == '' && aid == ''){ // 비회원  , 로그인창
 				     alert('로그인후 이용하세요');
 					 location.href = '${conPath}/member.do?method=loginForm';
-				}else if(mid != '' && qsecreat == ''){
+				}else if(mid != '' && qsecreat2 == '28'){ // 회원 , 공개글 바로 상세보기
 					location.href = '${conPath }/qna.do?method=detailQna&qnum='+qnum+'&pageNum=${paging.currentPage}';
-				}else if(aid != '' && qsecreat == ''){
+				}else if(aid != '' && qsecreat2 == '28'){ // 관리자 , 공개글 바로 상세보기
 				  location.href = '${conPath }/qna.do?method=detailQna&qnum='+qnum+'&pageNum=${paging.currentPage}';
 				}
 			}//if
@@ -90,7 +94,7 @@
 					<c:if test="${not empty member }">
 						<a href="${conPath}/qna.do?method=insertQnaForm&pageNum=${paging.currentPage}">글쓰기</a>
 					</c:if>	
-					<c:if test="${empty member }">
+					<c:if test="${empty member and empty manager}">
 						<a href="${conPath}/member.do?method=loginForm">글쓰기는 사용자 로그인 후에 이용 가능합니다</a>
 					</c:if>	
 				</td></tr>
@@ -138,6 +142,9 @@
 		<td>
 		<c:if test="${qna.qsecret eq 1}">
               <img src ="${conPath }/image/secret.jpg" alt="비밀글여부" width="20">
+        </c:if>
+        <c:if test="${qna.qsecret eq 0}">
+              <img src ="${conPath }/image/qna.png" alt="비밀글여부" width="20">
         </c:if>
         
 		</td>

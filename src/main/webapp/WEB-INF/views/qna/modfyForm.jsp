@@ -16,8 +16,8 @@
    		<input type="hidden" name="pageNum" value="${param.pageNum}">
    		<input type="hidden" name="qnum" value="${param.qnum}">
    		<input type="text" name="qid" value="${qnaDto.qid}">
-   		<input type="text" name="qsecret" value="${qnaDto.qsecret }">
-   		<input type="text" name="qpassword" value="${qnaDto.qpassword}">
+   		<input type="hidden" name="qsecret" value="${qnaDto.qsecret }">
+   		<input type="hidden" name="qpassword" value="${qnaDto.qpassword}">
    		<table>
    				<caption>${param.qnum }번 글 수정/${qnaDto}</caption>
    				<tr>

@@ -80,7 +80,7 @@ public class QnaServiceImpl implements QnaService {
 
 		qna.setQfile1(qimg[0]); //
 		qna.setQfile2(qimg[1]); //
-		System.out.println("정보" + qna);
+		System.out.println("원글쓰기" + qna);
 		
 		return qnaDao.insertQna(qna); // DB insert
 	}
@@ -119,7 +119,7 @@ public class QnaServiceImpl implements QnaService {
 
 		qna.setQfile1(qimg[0]); //
 		qna.setQfile2(qimg[1]); //
-		System.out.println("정보" + qna);
+		System.out.println("답글" + qna);
 		return qnaDao.replyQna(qna); // DB insert
 	}
 
@@ -157,7 +157,7 @@ public class QnaServiceImpl implements QnaService {
 
 		qna.setQfile1(qimg[0]); //
 		qna.setQfile2(qimg[1]); //
-		System.out.println("정보" + qna);
+		System.out.println("수정" + qna);
 		return qnaDao.modifyQna(qna); //
 	}
 
@@ -210,13 +210,13 @@ public class QnaServiceImpl implements QnaService {
 	@Override
 	public QnaBoard detailQna(QnaBoard qna) {
 		qnaDao.hitupQna(qna.getQnum());
-		System.out.println(qna);
+		System.out.println("왜이래"+qna);
 		return qnaDao.detailQna(qna);
 	}
 
 	@Override
 	public QnaBoard detailSecreat(QnaBoard qna) {
-		System.out.println(qna);
+		System.out.println("비번글 상세보기 " +qna);
 		return qnaDao.detailSecreat(qna);
 	}
 

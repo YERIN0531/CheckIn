@@ -20,6 +20,5 @@ public interface MemberService {
 	
 	public Member getMember(String mid, String mpw);
 	
-	public int modifyMember(Member member,  HttpSession httpSession);
-	
+	public int modifyMember(Member member,  HttpSession httpSession); 
 }

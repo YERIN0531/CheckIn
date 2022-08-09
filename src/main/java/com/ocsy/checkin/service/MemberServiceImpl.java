@@ -80,19 +80,14 @@ public class MemberServiceImpl implements MemberService {
 	}
 	@Override
 	public int modifyMember(Member member, HttpSession httpSession) {
-		/* member.setMpw(member.getMpw()); */
 		int result = memberDao.modifyMember(member);
-		System.out.println(result);
-		System.out.println(result == 1 ? "회원 수정 성공" : "회원 수정 실패"  );
-		httpSession.invalidate();
-//		if(result == 1) {
-//			System.out.println(1);
-//			httpSession.setAttribute("mid",member.getMid());
-//			System.out.println(2);
-//			httpSession.setAttribute("mpw", member.getMpw());
-//			System.out.println(3);
-//		}
+		System.out.println(result == 1 ? "회원 수정 성공" : " 회원 수정 실패");
+		if(result == 1 ) {
+			httpSession.setAttribute("member", member);
+		}
 		return result;
+		}
+		
 	}
 
-}
+

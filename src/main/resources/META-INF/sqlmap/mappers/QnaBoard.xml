@@ -89,13 +89,27 @@
 	</insert>
 	<!-- 7. 글수정 modifyQna-->
 	<update id="modifyQna" parameterType="QnaBoard" >
+	<if test="qpassword != null and qpassword != ''">
 	UPDATE QNA_BOARD SET QTITLE =#{qtitle},
                      QCONTENT =#{qcontent},
                      QIP    =#{qip},
                      <if test="qfile1 != null and qfile1 != ''">QFILE1 =#{qfile1},</if>
                      <if test="qfile2 != null and qfile2 != ''">QFILE2 =#{qfile2},</if>
-                     QPASSWORD =#{qpassword}
-                     WHERE QNUM =#{qnum}
+                      QSECRET = #{qsecret},
+                      QPASSWORD =#{qpassword}
+                      WHERE QNUM =#{qnum}
+    </if>
+    <if test="qpassword == null or qpassword == ''">
+    UPDATE QNA_BOARD SET QTITLE =#{qtitle},
+                     QCONTENT =#{qcontent},
+                     QIP    =#{qip},
+                     <if test="qfile1 != null and qfile1 != ''">QFILE1 =#{qfile1},</if>
+                     <if test="qfile2 != null and qfile2 != ''">QFILE2 =#{qfile2},</if>
+                      QSECRET = #{qsecret}
+                      WHERE QNUM =#{qnum}
+    </if>
+                    
+                     
 	</update>
 	<!-- 8. 원글 삭제 하면 답글도 삭제  deleteQna -->
 	<delete id="deleteQna" parameterType="QnaBoard">
