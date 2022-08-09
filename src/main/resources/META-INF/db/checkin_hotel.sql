@@ -154,7 +154,7 @@ INSERT INTO HOTEL VALUES ('TMH-SW','태국','밀레니엄 힐튼 방콕','태국
 
 SELECT DISTINCT HOTELNAME FROM HOTEL;
 --------------------------------------------------------------------
-
+commit;
 
 INSERT INTO HOTEL_ZZIM VALUES (HZZIM_SEQ.NEXTVAL,'aaa','TBS-SW',SYSDATE);
 INSERT INTO HOTEL_ZZIM VALUES (HZZIM_SEQ.NEXTVAL,'bbb','BDD-SW',SYSDATE);

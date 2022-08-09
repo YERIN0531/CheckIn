@@ -83,6 +83,9 @@
 				<table>
 
 					<tr class="hotelListTr"> <!-- 1행 -->
+
+<%-- 						<td rowspan="5">${hotel.hotelimage }호텔사진</td> --%>
+
 						<td rowspan="5"><img src="${conPath }/hotelImg/${hotel.hotelimage }"></td>
 						<th class="td-1">${hotel.hotelname }</th>
 					</tr>
