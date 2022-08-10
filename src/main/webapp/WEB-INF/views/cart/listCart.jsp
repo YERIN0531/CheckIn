@@ -48,10 +48,10 @@
  			var cartnum = $(this).attr('id');
 			var qty = $('.qty'+cartnum).val();
 			
- 			alert(cartnum); // 정상적으로 받아져 옴.
- 			alert(qty);
-			location.href='${conPath}/cart.do?method=modify&cartnum='+cartnum+'&qty='+qty+'&mid='+${member.mid};
-			location.reload();
+ 			//alert(cartnum); // 정상적으로 받아져 옴.
+ 			//alert(qty);
+			location.href='${conPath}/cart.do?method=modify&cartnum='+cartnum+'&qty='+qty;
+			//location.reload();
 		  });
 		
 	});
@@ -93,9 +93,7 @@
    		<form action="${conPath }/cart.do?method=buyInfo" method="post">
    			<input type="hidden" name="mid" value="${member.mid }">
    			<table>
-   				
    				<caption>${member.mname }(${member.mid }) 님의 장바구니 페이지</caption>
-   				
    				<tr>
    					<th><label for="all">ALL</label><br><input type='checkbox' name='cartnum' id ='all' name="all" class="check-all"/></th>
    					<th>상품이미지</th><th>상품이름</th><th>수량</th><th>가격</th><th>총가격</th><th></th>
@@ -128,7 +126,7 @@
    				<tr>
    					<td colspan="7" class="btn">
    						<input type="submit" value="구매하기">
-   						<input type="button" value="면세점으로 이동" onclick="location.href='${conPath}/taxfree.do?method=list&pageNum=1&mid=${member.mid }'">	
+   						<input type="button" value="면세점으로 이동" onclick="location.href='${conPath}/taxfree.do?method=category&pageNum=1&mid=${member.mid }'">	
    						<input type="button" value="장바구니 비우기" id="show" onclick="location.href='${conPath}/cart.do?method=deleteAll'">
    					</td>
    				</tr>

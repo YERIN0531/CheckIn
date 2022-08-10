@@ -33,10 +33,15 @@
    	<table>
    		<caption>order_detail</caption>
    		<tr>
+   			<td colspan="7">
+   				<button onclick="location='${conPath}/taxfree.do?method=category&pageNum=1'">면세점으로</button>
+   			</td>
+   		</tr>
+   		<tr>
    			<!-- <th>주문번호</th><th>주문날짜</th> --><th>상품이름</th><th>대표이미지</th><th>수량</th><th>상품가격</th><th>최종금액</th>
    		</tr>
 		
-		<c:forEach items="${myOrderDetailList }" var="order">
+		<c:forEach items="${orderDetailList }" var="order">
    		<tr>
    			<td colspan="7" class="order">주문번호 : ${order.or_num } / 주문날짜 : ${order.ordate }</td>
    		</tr>

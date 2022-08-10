@@ -48,6 +48,15 @@
 				<tr><th>제품명</th>
 					<td><input type="text" name="pname" required="required"></td>
 				</tr>
+				<tr><th>상품분류</th>
+					<td>
+						<select name="pcategory">
+							<option>BEAUTY</option>
+							<option>ACCESSORY</option>
+							<option>FOOD</option>
+						</select>
+					</td>
+				</tr>
 				<tr><th>가격(USD)</th>
 					<td><input type="number" name="pprice" required="required"></td>
 				</tr>
@@ -70,7 +79,7 @@
 					<input type="submit" value="등록하기">
 					<input type="reset" value="초기화">
 					<button onclick="history.back();">이전으로</button>
-					<button onclick="location='main.do'">메인페이지로</button>
+					<button onclick="location='main2.do'">메인페이지로</button>
 				</td></tr>
 			</table>
 		</form>

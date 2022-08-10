@@ -18,7 +18,7 @@
  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
  <script>
     $(document).ready(function(){
-       
+      
     });
  </script>  
 </head>
@@ -133,7 +133,7 @@
   		<tr>
   			<td colspan="4">
   				<input type="button" value="뒤로가기" onclick="history.back();">
-  				<input type="submit" value="결제하기">
+  				<input type="submit" value="결제하기" onclick="alert('주문이 성공되었습니다.');">
   			</td>
   		</tr>
   	</table> 

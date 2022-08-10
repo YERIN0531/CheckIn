@@ -78,7 +78,7 @@
 				</tr>
 				<tr><td colspan="2" class="btn">
 					<input type="submit" value="수정하기">
-					<button onclick="location='${conPath}/taxfree.do?method=list?aid=${manager.aid }&pageNum=${params.currnetPage }'">목록으로</button>
+					<button onclick="location='${conPath}/taxfree.do?method=category?aid=${manager.aid }&pageNum=${params.currnetPage }'">목록으로</button>
 					<button onclick="location='${conPath}/main2.do'">메인페이지로</button>
 				</td></tr>
 			</table>

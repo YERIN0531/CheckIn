@@ -29,5 +29,6 @@ public class Cart {
 	   
 	   //order detail
 	   private int ord_num;
-	   
+
+	   private String pcategory;
 }

@@ -13,25 +13,15 @@
   		<result property="pimage3" column="pimage3"/>
   		<result property="pstock" column="pstock"/>
   		<result property="ploc" column="ploc"/>
+  		<result property="pcategory" column="pcategory"/>
   	</resultMap>
   	
   	<!-- insertProduct -->
   	<insert id="insertProduct" parameterType="Taxfree">
-  		INSERT INTO TAXFREE (PNUM, PNAME, PPRICE, PIMAGE1, PIMAGE2, PIMAGE3, PSTOCK, PLOC)
-    		VALUES(PRODUCT_SEQ.NEXTVAL, #{pname}, #{pprice}, #{pimage1}, #{pimage2}, #{pimage3}, #{pstock}, #{ploc})
+  		INSERT INTO TAXFREE (PNUM, PNAME, PPRICE, PIMAGE1, PIMAGE2, PIMAGE3, PSTOCK, PLOC, PCATEGORY)
+    		VALUES(PRODUCT_SEQ.NEXTVAL, #{pname}, #{pprice}, #{pimage1}, #{pimage2}, #{pimage3}, #{pstock}, #{ploc}, #{pcategory})
   	</insert>
   	
-  	<!-- countProduct 페이징 처리 -->
-  	<select id="countProduct" resultType="int">
-		SELECT COUNT(*) FROM TAXFREE  	
-  	</select>
-  	
-  	<!-- listProduct -->
-  	<select id="listProduct" resultMap="TaxfreeResult">
-		SELECT * FROM (SELECT ROWNUM RN, A.* FROM (SELECT * FROM TAXFREE ORDER BY PNUM DESC)A) 
-			WHERE RN BETWEEN #{startrow} AND #{endrow}
-	</select>
-	
   	<!-- detailProduct -->
   	<select id="detailProduct" resultMap="TaxfreeResult">
 		SELECT * FROM TAXFREE WHERE PNUM = #{pnum}
@@ -45,7 +35,8 @@
                    <if test="pimage2 != null and pimage2 !=''">PIMAGE2 = #{pimage2},</if> 
                    <if test="pimage3 != null and pimage3 !=''">PIMAGE3 = #{pimage3},</if> 
                    PSTOCK = #{pstock},
-                   PLOC   = #{ploc}
+                   PLOC   = #{ploc},
+                   PCATEGORY = #{pcategory}
                 WHERE PNUM = #{pnum}
 	</update>
 	
@@ -54,8 +45,28 @@
 		DELETE FROM TAXFREE WHERE PNUM = #{pnum}
 	</delete>
 	
-	<!--   -->
+	<!-- 리스트 출력 : 카테고리 별로 / 카테고리 값이 없을 경우 전체 출력 -->
+	<select id="categoryListProduct" parameterType="Taxfree" resultMap="TaxfreeResult">
+		<if test="pcategory != null and pcategory != ''">
+		SELECT * FROM (SELECT ROWNUM RN, A.* 
+			FROM (SELECT * FROM TAXFREE WHERE PCATEGORY = #{pcategory} ORDER BY PNUM)A) 
+			WHERE RN BETWEEN #{startrow} AND #{endrow}
+		</if>
+		<if test="pcategory == null or pcategory == ''">
+		SELECT * FROM (SELECT ROWNUM RN, A.* FROM (SELECT * FROM TAXFREE ORDER BY PNUM DESC)A) 
+			WHERE RN BETWEEN #{startrow} AND #{endrow}
+		</if>
+	</select>
 	
+	<!-- countProduct 페이징 처리 / 카테고리가 있는 경우, 없는 경우 -->
+  	<select id="categoryCountProduct" resultType="int">
+  		<if test="pcategory != null and pcategory != ''">
+		SELECT COUNT(*) FROM TAXFREE WHERE PCATEGORY = #{pcategory}
+  		</if>
+		<if test="pcategory == null or pcategory == ''">
+		SELECT COUNT(*) FROM TAXFREE
+		</if>
+  	</select>
   	
   	
   </mapper>
