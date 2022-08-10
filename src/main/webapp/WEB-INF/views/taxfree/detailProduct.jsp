@@ -93,8 +93,8 @@ img {
    			<!-- 장바구니에 상품 추가 -->
    			<form action="${conPath }/cart.do">
    			<input type="hidden" name="method" value="insert">
-   				<input type="hidden" name="mid" value="${member.mid }">
-   				<input type="hidden" name="pnum" value="${taxfreeDto.pnum }">   					
+   			<input type="hidden" name="mid" value="${member.mid }">
+   			<input type="hidden" name="pnum" value="${taxfreeDto.pnum }">   					
    				
    				<input type="number" name="qty" value="1">
    				<c:if test="${not empty member and empty manager }">
@@ -108,21 +108,20 @@ img {
    		<tr>
    		<c:if test="${not empty member and empty admin }">
    			<td colspan="2" class="btn"> MEMBER
-   				<button onclick="location='${conPath}/taxfree.do?method=list&mid=${member.mid }&pageNum=1'">LIST</button>	
-   				<button onclick="#">BUY NOW</button>
+   				<button onclick="location='${conPath}/taxfree.do?method=category&mid=${member.mid }&pageNum=1'">LIST</button>	
    				<button onclick="location='${conPath}/cart.do?method=list&mid=${member.mid }&pageNum=${param.pageNum }'">CART</button>
    			</td>
    		</c:if>
 		<c:if test="${not empty manager and empty member }">
    			<td colspan="2" class="btn"> ADMIN
-   				<button onclick="location='${conPath}/taxfree.do?method=updateForm&&aid=${manager.aid }&pnum=${taxfreeDto.pnum }&pageNum=${param.pageNum }'">MODIFY</button>	
+   				<button onclick="location='${conPath}/taxfree.do?method=updateForm&aid=${manager.aid }&pnum=${taxfreeDto.pnum }&pageNum=${param.pageNum }'">MODIFY</button>	
    				<button onclick="location='${conPath}/taxfree.do?method=delete&pnum=${taxfreeDto.pnum }&pageNum=${param.pageNum }'">DELETE</button>	
-   				<button onclick="location='${conPath}/taxfree.do?method=list'">LIST</button>	
+   				<button onclick="location='${conPath}/taxfree.do?method=category'">LIST</button>	
    			</td>
    		</c:if>
    		<c:if test="${empty manager and empty member }"> 
    			<td colspan="2" class="btn"> GUEST
-   				<button onclick="location='${conPath}/taxfree.do?method=list'">LIST</button>	
+   				<button onclick="location='${conPath}/taxfree.do?method=category&pageNum=${param.pageNum }'">LIST</button>	
    			</td>
    		</c:if>
    		</tr>

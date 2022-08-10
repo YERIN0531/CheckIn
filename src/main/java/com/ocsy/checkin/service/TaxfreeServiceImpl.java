@@ -97,9 +97,8 @@ public class TaxfreeServiceImpl implements TaxfreeService {
 		return taxfreeDao.insertProduct(taxfree); // DB insert
 	}
 	
-	// 파일 리스트 출력
-	
-	@Override
+	// 파일 리스트 출력 - 나중에 지울 예정
+	/*@Override
 	public List<Taxfree> listProduct(String pageNum, Taxfree taxfree) {
 		Paging paging = new Paging(taxfreeDao.countProduct(taxfree), pageNum, 9, 5);
 		taxfree.setStartrow(paging.getStartRow());
@@ -112,7 +111,7 @@ public class TaxfreeServiceImpl implements TaxfreeService {
 	@Override
 	public int countProduct(Taxfree taxfree) {
 		return taxfreeDao.countProduct(taxfree);
-	}
+	}*/
 	
 	// 면세품 상세보기
 	@Override
@@ -170,6 +169,23 @@ public class TaxfreeServiceImpl implements TaxfreeService {
 		int result = taxfreeDao.deleteProduct(taxfree);
 		System.out.println("면세품삭제(deleteProduct) : " + ((result == 1) ? "삭제성공" : "삭제실패"));
 		return taxfreeDao.deleteProduct(taxfree);
+	}
+
+	// 카테고리 별로 리스트 출력
+	@Override
+	public List<Taxfree> categoryListProduct(String pageNum, Taxfree taxfree) {
+		System.out.println("paging 전");
+		Paging paging = new Paging(taxfreeDao.categoryCountProduct(taxfree), pageNum, 9, 5);
+		System.out.println("paging 후");
+		taxfree.setStartrow(paging.getStartRow());
+		taxfree.setEndrow(paging.getEndRow());
+		System.out.println("카테고리 별 리스트 출력 (bookList): " + taxfree);
+		return taxfreeDao.categoryListProduct(taxfree);
+	}
+
+	@Override
+	public int categoryCountProduct(Taxfree taxfree) {
+		return taxfreeDao.categoryCountProduct(taxfree);
 	}
 
 

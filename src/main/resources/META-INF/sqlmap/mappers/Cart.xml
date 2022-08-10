@@ -19,14 +19,16 @@
         <result property="or_num" column="or_num"/>
         <result property="ordate" column="ordate"/>
         <result property="ord_num" column="ord_num"/>
+        
+        <result property="pcategory" column="pcategory"/>
   	</resultMap>
   	
   	
   	<!-- insertCart / 장바구니 상품 입력 -->
   	<insert id="insertCart" parameterType="Cart">
   	<![CDATA[
-         INSERT INTO CART (CARTNUM, PNUM, MID, COST, QTY)
-    VALUES(CART_SEQ.NEXTVAL, #{pnum}, #{mid}, #{qty}*(SELECT PPRICE FROM TAXFREE WHERE PNUM = #{pnum}), #{qty})
+      INSERT INTO CART (CARTNUM, PNUM, MID, COST, QTY)
+     		VALUES(CART_SEQ.NEXTVAL, #{pnum}, #{mid}, #{qty}*(SELECT PPRICE FROM TAXFREE WHERE PNUM = #{pnum}), #{qty})
       ]]>
   	</insert>
   	
@@ -56,16 +58,18 @@
   	<update id = "updateCart" parameterType="Cart">
   	<![CDATA[
   	UPDATE CART SET QTY = #{qty} + (SELECT QTY FROM CART WHERE PNUM = #{pnum} AND MID = #{mid}),
-                COST = (2 + (SELECT QTY FROM CART WHERE PNUM = #{pnum} AND MID = #{mid})) * (SELECT PPRICE FROM TAXFREE WHERE PNUM = #{pnum})
+                COST = (#{qty} + (SELECT QTY FROM CART WHERE PNUM = #{pnum} AND MID = #{mid})) * (SELECT PPRICE FROM TAXFREE WHERE PNUM = #{pnum})
             WHERE PNUM = #{pnum} AND MID = #{mid}
     ]]>
   	</update>
   	
   	<!-- updateInCart / 장바구니 안에서 수정 / 진행 중 -->
   	<update id="updateInCart" parameterType="Cart">
+    <![CDATA[
         UPDATE CART SET QTY = #{qty},
                 COST = #{qty} * (SELECT PPRICE FROM TAXFREE WHERE PNUM = (select pnum from cart where cartnum=#{cartnum}))
             WHERE CARTNUM = #{cartnum}
+  	]]>
   	</update>
   	
   	
@@ -84,22 +88,26 @@
   	]]>
   	</insert>
   
-  	 <!-- orderDetail에 담긴 상품들 출력하기 / 진행 중 -->
+  	 <!-- orderDetail에 담긴 상품들 출력하기 / O -->
   	<select id="myOrderDetail" parameterType="Cart" resultMap="CartResult">
-  	SELECT T.PNUM, OD.OR_NUM, ORDATE, PIMAGE1, PNAME, OD.QTY, PPRICE, OD.COST 
-    FROM TAXFREE T, CART C, ORDER_DETAIL OD, ORDERS O
-        WHERE T.PNUM = C.PNUM AND C.PNUM = OD.PNUM AND OD.OR_NUM = O.OR_NUM
-            AND C.MID = #{mid} ORDER BY ORDATE DESC, OR_NUM ASC
+  	SELECT OD.OR_NUM, ORDATE, PIMAGE1, PNAME, OD.QTY, PPRICE, OD.COST 
+    FROM ORDER_DETAIL OD, ORDERS O, TAXFREE T  
+        WHERE OD.OR_NUM = O.OR_NUM AND T.PNUM = OD.PNUM AND O.MID = #{mid}
+        	ORDER BY ORDATE DESC, OR_NUM ASC
   	</select>
   
-   <!-- 주문 완료 후 장바구니에 있는 상품 지우기 / 아직 진행 안함  -->
+   <!-- 주문 완료 후 장바구니에 있는 상품 지우기 / O  -->
      <delete id="cartDelete" parameterType="Cart">
 	DELETE CART WHERE MID = #{mid}
   	</delete>
 
-	<!--  -->  	
+	<!-- 방금 주문을 받은 상품들의 재고수정 / O  -->  	
   	<update id="updateStock" parameterType="Cart">
-  	UPDATE TAXFREE SET PSTOCK = (PSTOCK- #{qty}) WHERE PNUM = #{pnum}
+  	<!-- UPDATE TAXFREE SET PSTOCK = (PSTOCK- ) WHERE PNUM = #{pnum} -->
+  	<!-- UPDATE TAXFREE SET PSTOCK = (PSTOCK - #{qty}) WHERE OR_NUM = (SELECT MAX(OR_NUM) FROM ORDER_DETAIL) AND PNUM = #{pnum} -->
+  	<!-- UPDATE TAXFREE SET PSTOCK = (PSTOCK - #{qty}) 
+  				WHERE PNUM = (SELECT PNUM FROM ORDER_DETAIL WHERE (OR_NUM = (SELECT MAX(OR_NUM) FROM ORDER_DETAIL) AND PNUM = #{pnum})) -->
+  	UPDATE TAXFREE SET PSTOCK = PSTOCK - (SELECT QTY FROM CART WHERE PNUM = #{pnum}) WHERE PNUM = #{pnum}
   	</update>
  	
   	

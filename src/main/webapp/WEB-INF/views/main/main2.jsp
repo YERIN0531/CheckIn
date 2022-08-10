@@ -81,7 +81,7 @@
 				</tr>
 				<tr>
 					<td id="five"></td>
-					<td id="six"><a href="${conPath}/taxfree.do?method=list">DUTYFREE<br>RESERVATION
+					<td id="six"><a href="${conPath}/taxfree.do?method=category&pcategory=">DUTYFREE<br>RESERVATION
 					</a>
 						<div>&nbsp;</div>
 						<p>

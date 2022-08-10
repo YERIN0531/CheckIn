@@ -16,6 +16,8 @@ public class Taxfree {
 	private String pimage3; // 상품 상세 이미지2
 	private String pstock;  // 상품 재고
 	private String ploc;    // 상품 위치
+
+	private String pcategory;    // 추가 : 카테고리 별로 페이징
 	
 	
 	// 페이징 처리
