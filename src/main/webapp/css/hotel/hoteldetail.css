@@ -1,0 +1,234 @@
+@charset "UTF-8";
+*{
+ padding:0px;
+ margin:0px;
+ }
+ #list {
+            width: 800px;
+            margin-left:50px;
+        }
+        #lnb{
+        overflow:hidden;
+        width:800px;
+        }
+        #list #lnb ul {
+        }
+            #list #lnb ul li {
+                background-color: #8fa8b3;
+                float: left;
+                width: 12%;
+                height: 35px;
+                line-height: 35px;
+                text-align: center;
+                list-style: none;
+                border-radius: 5px 5px 0 0;
+                margin-left:1px;
+            }
+                #list #lnb ul li:hover {
+                    background-color: #3e6170;
+                }
+
+                #list #lnb ul li a {
+                    font-family: 'IBM Plex Sans KR', sans-serif;
+                    text-decoration: none;
+                    color: white;
+                    font-size: 0.9em;
+                }
+	
+            #list #lnb ul li:nth-child(2) {
+                background-color: #3e6170;
+            }
+                #list #lnb ul li:nth-child(2) a {
+                    font-family: 'IBM Plex Sans KR', sans-serif;
+                    color: white;
+                    font-size:0.9em;
+                    
+                }
+ 
+            #reserve {
+                padding-left: 4px;
+                background: url("../../image/air.jpg") no-repeat;
+                background: url("../../image/hotel4.png") no-repeat; /*ㅇ*/
+                width: 100%;
+                height: 350px;
+            }
+        #word {
+            color: white;
+            width: 70%;
+            text-align: center;
+            margin: 0 auto;
+            padding-top: 140px;
+        }
+            #word p {
+                font-size: 2.5em;
+                font-family: 'IBM Plex Sans KR', sans-serif;
+                font-family: 'Satisfy', cursive;
+                font-family: 'The Nautigal', cursive;
+                font-family: 'Domine', serif;
+                color: #d1dde4;
+            }
+             h2 {
+            text-align: center;
+            font-family: 'Domine', serif;
+            margin-top: 30px;
+            color: #3c5d79;
+        }
+
+
+        
+#hotelname{
+	font-family: 'IBM Plex Sans KR', sans-serif;
+	width:40%;
+	margin: 15px auto;
+}
+#hotelname .p1{
+	font-size:1.3em;
+	padding : 10px;
+	padding-left:20px;
+	font-weight: bold;
+}
+#hotelname .p2{
+	font-size:0.8em;
+	padding :0 10px 10px 10px;
+	color:gray;
+	padding-left:10px;	
+}
+   
+#hotelname .placehold{
+	width:11px;
+    height:11px;
+    padding-right:5px;
+}
+
+#hotelname img{
+	width:100%;
+	height:400px;
+}
+
+/* 일정변경하기 */
+ 
+#hotelchange{
+	font-family: 'IBM Plex Sans KR', sans-serif;
+	border : 2px solid #3a4a54;
+	width: 60%;
+	margin: 0 auto;
+	margin-bottom: 15px;
+	height: 175px;
+}
+#hotelchange table{
+	margin : 0 auto;
+	width: 40%;
+	text-align: center;
+}
+#hotelchange table caption{
+	padding:15px;
+	font-size:1.1em;
+	font-family: 'Domine', serif;
+	font-weight: bold;
+	color : #3a4a54;
+}
+#hotelchange table th{
+	padding-right:10px;
+	font-size:0.8em;
+	text-align: left;
+	padding-bottom: 3px;
+}
+#hotelchange table td{
+	padding-right:10px;
+	font-size:0.8em;
+}
+#hotelchange table input{
+	width:300px;
+	height:30px;
+	boder:1px solid lightgray;
+	color:gray;
+}
+
+#hotelchange #submitbutton{
+	width:7%;
+	margin: 10px auto;
+	
+}
+input[type="submit"]{
+	font-family: 'IBM Plex Sans KR', sans-serif;
+	text-align: center;
+	margin: 0 auto;
+	border:none;
+	width:100px;
+	height:30px;
+	color : white;
+	background-color : #3a4a54;
+	border-radius: 3px;
+}
+
+ 
+#roomstate{
+	margin : 10px auto;
+	width:60%;
+	font-family: 'IBM Plex Sans KR', sans-serif;
+} 
+#roomstate img{
+	width:270px;
+	height:200px;
+} 
+
+#standard{
+	border : 1px solid lightgray;
+	margin:20px 0;
+	box-shadow:3px 3px 3px 3px gray;
+    border-radius:5px;
+}
+#standard img.user{
+	width:10px;
+	height:10px;
+}
+#standard img.bed2{
+	width:16px;
+	height:15px;
+}
+
+#standard .t-1{
+	padding:10px;
+	font-weight: bold;
+	color:#3a4a54;
+}
+
+
+
+
+#deluxe{
+	border : 1px solid lightgray;
+	margin:20px 0;
+	box-shadow:3px 3px 3px 3px gray;
+    border-radius:5px;
+}
+#deluxe img.user{
+	width:10px;
+	height:10px;
+}
+#deluxe img.bed2{
+	width:16px;
+	height:15px;
+}
+#deluxe img.bed1{
+	width:15px;
+	height:15px;
+}
+#sweet{
+	border : 1px solid lightgray;
+	margin:20px 0;
+	box-shadow:3px 3px 3px 3px gray;
+    border-radius:5px;
+}
+#sweet img.user{
+	width:10px;
+	height:10px;
+}
+#sweet img.bed2{
+	width:16px;
+	height:15px;
+}
+ 
+ 
+ 
+ 

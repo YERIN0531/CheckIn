@@ -99,7 +99,7 @@
 						<td class="td-4">상세페이지에서 가격을 확인하세요</td>
 					</tr>
 					<tr><!-- 5행 -->
-						<td class="td-5"><button onclick="location='${conPath }/hotel.do?method=getHotelDetail&hotelid=${hotel.hotelid.substring(0,3) }&schcheckindate=${param.schcheckindate }&schcheckoutdate=${param.schcheckoutdate }&headcount=${param.headcount }'" class="detail">상세보기</button></td>
+						<td class="td-5"><button onclick="location='${conPath }/hotel.do?method=getHotelDetail&hotelid=${hotel.hotelid.substring(0,3) }&hoteladdress=${hotel.hoteladdress }&schcheckindate=${param.schcheckindate }&schcheckoutdate=${param.schcheckoutdate }&headcount=${param.headcount }&hotelimage=${hotel.hotelimage }'" class="detail">상세보기</button></td>
 
 					</tr>
 				</table>
