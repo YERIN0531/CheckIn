@@ -127,9 +127,7 @@
     	      <c:if test="${i == qna.qindent }">
     	      	└ 관리자
     	      </c:if>
-    	      <c:if test="${i != qna.qindent }">
-	    			&nbsp; &nbsp; &nbsp; 
-	    	  </c:if>
+    	      
             </c:forEach>
          <c:if test="${qna.qsecret eq 0 }">
            ${qna.qtitle }
@@ -141,10 +139,10 @@
 		</td>
 		<td>
 		<c:if test="${qna.qsecret eq 1}">
-              <img src ="${conPath }/image/secret.jpg" alt="비밀글여부" width="20">
+              <img src ="${conPath }/image/secret.jpg"  width="20">
         </c:if>
         <c:if test="${qna.qsecret eq 0}">
-              <img src ="${conPath }/image/qna.png" alt="비밀글여부" width="20">
+              <img src ="${conPath }/image/qna.png" width="20">
         </c:if>
         
 		</td>
