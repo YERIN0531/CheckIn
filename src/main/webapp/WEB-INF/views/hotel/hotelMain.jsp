@@ -74,18 +74,12 @@
 					</table>
         </div>
 		</c:if>
-		
-		
 	<div id="hotelList">	
 		<c:if test="${hotelList.size() != 0 }">
 			<c:forEach var="hotel" items="${hotelList }">
 				<div class="hotelticket">
 				<table>
-
 					<tr class="hotelListTr"> <!-- 1행 -->
-
-<%-- 						<td rowspan="5">${hotel.hotelimage }호텔사진</td> --%>
-
 						<td rowspan="5"><img src="${conPath }/hotelImg/${hotel.hotelimage }"></td>
 						<th class="td-1">${hotel.hotelname }</th>
 					</tr>
