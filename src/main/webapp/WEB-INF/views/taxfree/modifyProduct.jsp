@@ -10,28 +10,6 @@
   <title>Insert title here</title>
   <link href="${conPath }/css/style.css" rel="stylesheet">
  <style>
- 	table, tr, td {
- 		border: 1px solid red;
- 		margin: 0 auto;
- 		text-align: left;
- 		padding-left: 10px;
- 		box-sizing: border-box;
- 	}
- 	table {
- 		margin-top: 30px;
-		margin-bottom : 70px;
-		width: 550px;
-		height: 600px;
- 	}
- 	caption {
- 		font-size: 2em;
- 	}
- 	th{
- 		width: 150px;
- 	}
- 	.btn {
- 		text-align: center;
- 	}
  </style>
  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
  <script>
@@ -58,6 +36,15 @@
 				<tr><th>제품명</th>
 					<td><input type="text" name="pname" required="required" value="${taxfreeDto.pname }"></td>
 				</tr>
+				<tr><th>상품분류</th>
+					<td>
+					<select name="pcategory">
+   							<option <c:if test="${taxfreeDto.pcategory eq 'BEAUTY' }"> selected="selected"</c:if>>BEAUTY</option>
+   							<option <c:if test="${taxfreeDto.pcategory eq 'ACCESSORY' }"> selected="selected"</c:if>>ACCESSORY</option>
+		   					<option <c:if test="${taxfreeDto.pcategory eq 'FOOD' }"> selected="selected"</c:if>>FOOD</option>
+   					</select>
+   					</td>
+				</tr>
 				<tr><th>가격(USD)</th>
 					<td><input type="number" name="pprice" required="required" min="0" value="${taxfreeDto.pprice }"></td>
 				</tr>
@@ -77,9 +64,9 @@
 					<td><input type="text" name="ploc" required="required" value="${taxfreeDto.ploc }"></td>
 				</tr>
 				<tr><td colspan="2" class="btn">
-					<input type="submit" value="수정하기">
-					<button onclick="location='${conPath}/taxfree.do?method=category?aid=${manager.aid }&pageNum=${params.currnetPage }'">목록으로</button>
-					<button onclick="location='${conPath}/main2.do'">메인페이지로</button>
+					<input type="submit" value="MODIFY">
+					<input type="button" onclick="location='${conPath}/taxfree.do?method=category?aid=${manager.aid }&pageNum=${params.currnetPage }'" value="LIST">
+					<input type="button" onclick="location='${conPath}/main2.do'" value="MAIN">
 				</td></tr>
 			</table>
 		</form>

@@ -10,10 +10,6 @@
   <title>Insert title here</title>
   <link href="${conPath }/css/style.css" rel="stylesheet">
  <style>
- 	table {
- 		border: 1px solid red;
- 		margin: 0 auto;
- 	}
  </style>
  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
  <script>

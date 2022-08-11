@@ -36,7 +36,7 @@
             <ul class="submenu">
                <li><a href="#">항공권 조회</a></li>
                <li><a href="${conPath }/hotel.do?method=myHotelReservationList&mid=${member.mid }">호텔예약 조회</a></li>
-               <li><a href="#">주문목록 조회</a></li>
+               <li><a href="${conPath }/cart.do?method=orderDetailList">주문목록</a></li>
             </ul>
          </li>
          <li>

@@ -70,7 +70,7 @@
 						</p></td>
 				</tr>
 				<tr>
-					<td id="three"><a href="#">HOTEL<br>RESERVATION
+					<td id="three"><a href="${conPath }/hotel.do?method=hotelMain">HOTEL<br>RESERVATION
 					</a>
 						<div>&nbsp;</div>
 						<p>

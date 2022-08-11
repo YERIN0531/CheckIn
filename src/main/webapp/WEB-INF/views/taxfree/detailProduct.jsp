@@ -10,50 +10,23 @@
   <title>Insert title here</title>
   <link href="${conPath }/css/style.css" rel="stylesheet">
  <style>
- table{
- 	margin: 0 auto;
- 	border: 1px solid red;
- 	text-align: left;
- 	padding-left: 10px;
- 	box-sizing: border-box;
- 	margin-top: 30px;
-	margin-bottom : 70px;
- }
- caption {
- 	font-size: 2em;
- 	font-weight: bold;
- }
- tr, td {
- 	border: 1px solid red;
- }
- .btn {
- 	text-align: center;
- }
- .image {
- text-align: center;
- }
-img {
- 	text-align: center;
- 	margin: 0 auto;
- 	width: 250px;
- 	height : 300px;
- 
- }
- h3, h4, p {
- 	padding-left: 10px;
- 	box-sizing: border-box;
- }
- li {
- 	list-style: none;
- 	padding-left: 10px;
+ /* 꼭 추가해야 하는 css */
+ b {
+ 	color: red;
  }
  </style>
  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
  <script>
- /* 버튼을 클릭하면 로그인 유무 확인 후 로그인 창으로 이동하도록 하는 로직 추가해야 함*/
     $(document).ready(function(){
-       var AddCart = document.querySelector('#btn');
-       cart.onclick(){};
+    	$('.add').click(function(){
+    		var qty = $('.qty').val();
+ 			//alert('상품 현재 재고 : ' + ${taxfreeDto.pstock });
+			//alert('담으려는 상품 갯수 : ' + qty);
+			if(qty >= ${taxfreeDto.pstock } ) {
+				alert('재고가 부족합니다.');
+				return false;
+			}
+		  });
     });
  </script>  
 </head>
@@ -64,9 +37,6 @@ img {
     			var input = confirm('상품이 장바구니에 담겼습니다.\n장바구니로 이동 하시겠습니까?');
     			if(input == true) {
     				location.href = '${conPath}/cart.do?method=list&pageNum=${param.pageNum}';
-    			} else {
-    				
-    				
     			}
     		</script>
     	</c:if> 
@@ -78,15 +48,23 @@ img {
    		<tr>
    		<td rowspan="7" class="image">
 	   			<c:if test="${taxfreeDto.pimage1 eq null or '' }">
-	   			<img src="${conPath }/taxfree/noimg.jpg" alt="noimg.jpg" width="250" height="300">
+	   			<img src="${conPath }/taxfree/noimg.jpg" alt="noimg.jpg" width="300" height="300">
 	   			</c:if>
 	   			<c:if test="${taxfreeDto.pimage1 != null or '' }">
-	   			<img src="${conPath }/taxfree/${taxfreeDto.pimage1 }" alt="${taxfreeDto.pimage1 }" width="250" height="300">
+	   			<img src="${conPath }/taxfree/${taxfreeDto.pimage1 }" alt="${taxfreeDto.pimage1 }" width="300" height="300">
 	   			</c:if>
    		</td></tr>
-   		<tr><td>NO.</td><td>${taxfreeDto.pnum }</td></tr>
+   		<tr><td>REF</td><td>${taxfreeDto.pnum }</td></tr>
    		<tr><td>PRICE</td><td>USD ${taxfreeDto.pprice }</td></tr>
-   		<tr><td>STOCK</td><td>${taxfreeDto.pstock }</td></tr>
+   		<tr>
+   			<td>STOCK</td>
+   			<c:if test="${taxfreeDto.pstock eq 0 }">
+   				<td><b>품절</b></td>
+   			</c:if>
+   			<c:if test="${taxfreeDto.pstock != 0 }">
+	   			<td>${taxfreeDto.pstock }</td>
+   			</c:if>
+   		</tr>
    		<tr><td>LOC</td><td>${taxfreeDto.ploc }</td></tr>
    		<tr><td>QTY</td>
    		<td>
@@ -96,9 +74,12 @@ img {
    			<input type="hidden" name="mid" value="${member.mid }">
    			<input type="hidden" name="pnum" value="${taxfreeDto.pnum }">   					
    				
-   				<input type="number" name="qty" value="1">
    				<c:if test="${not empty member and empty manager }">
-   					<input type="submit" value="ADD">
+   				<%-- <c:if test="${taxfreeDto.pstock eq 0 }"> </c:if> --%>
+   				<c:if test="${taxfreeDto.pstock != 0 }">
+	   				<input type="number" name="qty" value="1" class="qty">
+   					<input type="submit" value="ADD" class="add">
+   				</c:if>
    				</c:if>
    				<c:if test="${empty member }">
    					로그인 후 장바구니 이용 가능합니다.
@@ -109,7 +90,7 @@ img {
    		<c:if test="${not empty member and empty admin }">
    			<td colspan="2" class="btn"> MEMBER
    				<button onclick="location='${conPath}/taxfree.do?method=category&mid=${member.mid }&pageNum=1'">LIST</button>	
-   				<button onclick="location='${conPath}/cart.do?method=list&mid=${member.mid }&pageNum=${param.pageNum }'">CART</button>
+   				<button onclick="location='${conPath}/cart.do?method=list&mid=${member.mid }&pageNum=${param.pageNum }'">MY CART</button>
    			</td>
    		</c:if>
 		<c:if test="${not empty manager and empty member }">
@@ -125,29 +106,33 @@ img {
    			</td>
    		</c:if>
    		</tr>
+   		
+   		
    		<tr>
    			<td colspan="3" class="btn">DETAILS</td>
    		</tr>
    		<tr>
    			<td colspan="3" class="image">
    			<c:if test="${taxfreeDto.pimage2 eq null or '' }">
-   			<img src="${conPath }/taxfree/noimg.jpg" width="250" height="300">
+   			<img src="${conPath }/taxfree/noimg.jpg" width="300" height="300">
    			</c:if>
    			<c:if test="${taxfreeDto.pimage2 != null or '' }">
-   			<img src="${conPath }/taxfree/${taxfreeDto.pimage2 }" alt="${pDto.pimage2 }" width="250" height="300">
+   			<img src="${conPath }/taxfree/${taxfreeDto.pimage2 }" alt="${pDto.pimage2 }" width="300" height="300">
    			</c:if>
    			</td>
    		</tr>
    		<tr>
    			<td colspan="3" class="image">
    			<c:if test="${taxfreeDto.pimage3 eq null or '' }">
-   			<img src="${conPath }/taxfree/noimg.jpg" width="250" height="300" >
+   			<img src="${conPath }/taxfree/noimg.jpg" width="300" height="300" >
    			</c:if>
    			<c:if test="${taxfreeDto.pimage3 != null or '' }">
-   			<img src="${conPath }/taxfree/${taxfreeDto.pimage3 }" alt="${pDto.pimage3 }" width="250" height="300">
+   			<img src="${conPath }/taxfree/${taxfreeDto.pimage3 }" alt="${pDto.pimage3 }" width="300" height="300">
    			</c:if>
    			</td>
    		</tr>
+   		
+   		
    		<tr>
    			<td colspan="3">
    				<h3>면세점 이용안내</h3>

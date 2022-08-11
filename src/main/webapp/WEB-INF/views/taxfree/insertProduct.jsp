@@ -11,20 +11,6 @@
 	<title>Insert title here</title>
 	<link href="conPath/css/style.css" rel="stylesheet">
 	<style>
-	table {
-		border: 1px solid red;
-		text-align: center;
-		margin: 0 auto;
-		margin-top: 30px;
-		width: 400px;
-		height: 500px;
-		}
-	td{
-		border: 1px solid blue;
-	}
-	input[type="file"] {
-		margin-left: 30px;
-	}
 	</style>
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	<script>
