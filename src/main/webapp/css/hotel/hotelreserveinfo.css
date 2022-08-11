@@ -1,0 +1,326 @@
+@charset "UTF-8";
+*{
+ padding:0px;
+ margin:0px;
+ }
+ #list {
+            width: 800px;
+            margin-left:50px;
+        }
+        #lnb{
+        overflow:hidden;
+        width:800px;
+        }
+        #list #lnb ul {
+        }
+            #list #lnb ul li {
+                background-color: #8fa8b3;
+                float: left;
+                width: 12%;
+                height: 35px;
+                line-height: 35px;
+                text-align: center;
+                list-style: none;
+                border-radius: 5px 5px 0 0;
+                margin-left:1px;
+            }
+                #list #lnb ul li:hover {
+                    background-color: #3e6170;
+                }
+
+                #list #lnb ul li a {
+                    font-family: 'IBM Plex Sans KR', sans-serif;
+                    text-decoration: none;
+                    color: white;
+                    font-size: 0.9em;
+                }
+	
+            #list #lnb ul li:nth-child(2) {
+                background-color: #3e6170;
+            }
+                #list #lnb ul li:nth-child(2) a {
+                    font-family: 'IBM Plex Sans KR', sans-serif;
+                    color: white;
+                    font-size:0.9em;
+                    
+                }
+ 
+/*             .hotelword { */
+/*             	border: 1px solid red; */
+/*                 padding-left: 4px; */
+/*                 background: url("../image/hotel4.png") no-repeat; */
+/*                 width: 100%; */
+/*                 height: 350px; */
+/*             } */
+        #word {
+            color: white;
+            width: 70%;
+            text-align: center;
+            margin: 0 auto;
+            padding-top: 140px;
+        }
+            #word p {
+                font-size: 2.5em;
+                font-family: 'IBM Plex Sans KR', sans-serif;
+                font-family: 'Satisfy', cursive;
+                font-family: 'The Nautigal', cursive;
+                font-family: 'Domine', serif;
+                color: #d1dde4;
+            }
+            
+            
+            
+            
+#reserveCheck{
+	/*전체 다 감싼아이 */
+
+	width:60%;
+	margin:30px auto;
+}
+#reservetitle{
+	/*RESERVE CHECK */
+	margin-bottom: 30px;
+	height:45px;
+	color:white;
+	background-color:#1d333f;
+	background-color: #2c4451;
+	font-family: 'IBM Plex Sans KR', sans-serif;
+	font-family: 'Domine', serif;
+	line-height: 45px;
+	text-align: center;
+	font-size:1.1em;
+}
+
+
+
+
+#reservehotel{
+	/*호텔이름 및 checkin 시간 */
+	border: 2px dashed #2c4451;
+	margin-bottom: 30px;
+	height:60px;
+	color:black;
+	/*background-color: #3c5d79;
+	background-color:#1d333f;
+	background-color: #2c4451; */
+	font-family: 'IBM Plex Sans KR', sans-serif;
+}
+#reservehotel table{
+	width:100%;
+}
+#reservehotel .td-1{
+	padding-left:10px;
+	font-size: 1.2em;
+	font-weight: bold;
+	color: #2c4451; 
+	text-align: center;
+	
+}
+#reservehotel .td-2{
+	padding-left:10px;
+	font-weight: bold;
+	color: #2c4451;
+	text-align: center;
+	
+	
+}
+
+
+#mainInfo{
+	/*메인 전체 감싼아이*/
+	overflow: hidden;
+}
+
+#hotelInfo{
+	/*횐쪽, 호텔정보 */
+	border:1px solid lightgray;
+	
+	width:50%;
+	float:left;
+}
+
+#hotelInfo table{
+	width:100%;
+	font-family: 'IBM Plex Sans KR', sans-serif;
+}
+
+#hotelInfo .td-3{
+	text-align: center;
+	background-color: #2c4451;
+	color: white;
+	font-size:1.0em;
+	height:30px;
+}
+
+#hotelInfo .td-4 img{
+	width:100%;
+	height:300px;
+}
+
+#hotelInfo .td-5{
+	padding-left:10px;
+	font-weight: bold;
+	font-size:1.1em;
+}
+#hotelInfo .td-6{
+	padding-left:10px;
+	font-size:0.9em;
+	color : gray;
+	padding-bottom:8px;
+}
+
+#hotelInfo .td-7{
+	padding-left:10px;
+	font-weight: bold;
+	padding-top:8px;
+	font-size:1.0em;
+}
+#hotelInfo .td-8{
+	padding-left:10px;
+	font-size:0.9em;
+}
+#hotelInfo .td-9{
+	padding :  10px;
+	font-size:0.9em;
+	color:gray;
+}
+#hotelInfo .td-9 ul{}
+#hotelInfo .td-9 ul li{
+	list-style: none;
+}
+
+#hotelInfo .td-10{
+	padding-left:10px;
+	font-weight:bold;
+}
+#hotelInfo .td-11{
+	padding-left: 10px;
+	font-size:0.9em;
+}
+#hotelInfo .td-12{
+	padding-left:10px;
+	font-weight: bold;
+}
+#hotelInfo .td-13{
+	padding-left:10px;
+	font-size:0.9em;
+}
+#hotelInfo .td-14{
+	text-align: center;
+}
+#hotelInfo .td-14 img{
+	width:100%;
+	height:300px;
+	
+}
+
+
+#rightInfo{
+	/*고객정보 */
+	border:1px solid lightgray;
+	width:48%;
+	float:right;
+	
+}    
+#rightInfo table{
+	width:100%;
+	font-family: 'IBM Plex Sans KR', sans-serif;
+}
+        
+#rightInfo .td-15{
+	text-align: center;
+	background-color: #2c4451;
+	color: white;
+	font-size:1.0em;
+	height:30px;
+}
+#rightInfo .td-23{
+	font-weight:bold;
+	font-size:1.1em;
+	text-align: center;
+	padding-top:5px;
+
+}
+
+#rightInfo .td-16{
+	text-align: center;
+	font-weight: bold;
+	padding-bottom: 5px;
+}
+#rightInfo .td-17{
+	text-align: center;
+	background-color: #2c4451;
+	color: white;
+	font-size:1.0em;
+	height:30px;
+}
+#rightInfo .td-18{
+	padding-top:5px;
+	padding-left : 10px;
+	font-weight: bold;	
+}
+#rightInfo .td-19{
+	padding-left:10px;
+	font-size:0.9em;
+}
+
+#rightInfo .td-24{
+	padding-left : 10px;
+	font-weight: bold;	
+}
+
+#rightInfo .td-20{
+	padding-left:10px;
+	font-size:0.9em;
+	
+}
+#rightInfo .td-25{
+	padding-left : 10px;
+	font-weight: bold;	
+}
+#rightInfo .td-21{
+	padding-left:10px;
+	font-size:0.9em;
+	padding-bottom:10px;
+}
+#rightInfo .td-22{
+	text-align: center;
+	font-size:1.0em;
+	padding:10px;
+	font-weight: bold;
+}
+
+#rightInfo .td-23{
+	text-align: center;
+	padding-bottom: 10px;
+}
+#rightInfo table input[type=submit]{
+	border:none;
+	background-color:#3a4a54;
+	color:white;
+	height:30px;
+	border-radius: 3px;
+	width:100px;
+	
+}
+#rightInfo table input[type=button]{
+	border:none;
+	background-color:#3a4a54;
+	color:white;
+	height:30px;
+	border-radius: 3px;
+	width:100px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

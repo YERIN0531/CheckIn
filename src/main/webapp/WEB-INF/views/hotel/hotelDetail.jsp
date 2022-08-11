@@ -131,13 +131,13 @@
 							<td class="t-2">요금에 포함된 인원 &nbsp;<img src="${conPath }/hotelImg/user.png" class="user">X${hotelDto.headcount }</td>
 						</tr>
 						<tr>
-							<td class="t-3">더블침대1개<img src="${conPath }/hotelImg/bed2.png" class="bed2"></td>
+							<td class="t-3">더블침대 1개 &nbsp;<img src="${conPath }/hotelImg/bed2.png" class="bed2"></td>
 						</tr>
 						<tr>
-							<td class="t-4">1박요금</td>
+							<td class="t-4"><b>1박</b> 요금 :</td>
 						</tr>
 						<tr>
-							<td class="t-5"><fmt:formatNumber value="${hotel.roomprice }" pattern="#,### 원" /></td>
+							<td class="t-5"><fmt:formatNumber value="${hotel.roomprice }" pattern="￦ #,###" /></td>
 						</tr>
 						<tr>
 							<td class="t-6">세금 및 기타 요금 포함</td>
@@ -173,22 +173,22 @@
 					<c:if test="${hotel.roomtype eq '디럭스' }">
 						<tr>
 							<td rowspan="7"><img src="${conPath }/hotelImg/${hotel.roomimage }"></td>
-							<td>디럭스</td>
+							<td class="t-1">디럭스</td>
 						</tr>	
 						<tr>
-							<td>요금에 포함된 인원 &nbsp;<img src="${conPath }/hotelImg/user.png" class="user">X${hotelDto.headcount }</td>
+							<td class="t-2">요금에 포함된 인원 &nbsp;<img src="${conPath }/hotelImg/user.png" class="user">X${hotelDto.headcount }</td>
 						</tr>
 						<tr>
-							<td>싱글침대 1개<img src="${conPath }/hotelImg/bed.png" class="bed1">&nbsp;더블침대 1개<img src="${conPath }/hotelImg/bed2.png" class="bed2"></td>
+							<td class="t-3">싱글침대 1개<img src="${conPath }/hotelImg/bed.png" class="bed1">&nbsp;더블침대 1개<img src="${conPath }/hotelImg/bed2.png" class="bed2"></td>
 						</tr>
 						<tr>
-							<td>1박요금</td>
+							<td class="t-4">1박요금</td>
 						</tr>
 						<tr>
-							<td><fmt:formatNumber value="${hotel.roomprice }" pattern="#,### 원" /></td>		
+							<td class="t-5"><fmt:formatNumber value="${hotel.roomprice }" pattern="￦ #,### " /></td>		
 						</tr>
 						<tr>
-							<td>세금 및 기타 요금 포함</td>
+							<td class="t-6">세금 및 기타 요금 포함</td>
 						</tr>
 						<tr>	
 							<td>
@@ -227,13 +227,13 @@
 							<td class="t-2">요금에 포함된 인원 &nbsp;<img src="${conPath }/hotelImg/user.png" class="user">X${hotelDto.headcount }</td>
 						</tr>	
 						<tr>
-							<td class="t-3">더블침대2개<img src="${conPath }/hotelImg/bed2.png" class="bed2"><img src="${conPath }/hotelImg/bed2.png" class="bed2"></td>
+							<td class="t-3">더블침대 2개&nbsp;<img src="${conPath }/hotelImg/bed2.png" class="bed2"><img src="${conPath }/hotelImg/bed2.png" class="bed2"></td>
 						</tr>
 						<tr>
 							<td class="t-4">1박요금</td>
 						</tr>
 						<tr>
-							<td class="t-5">방 가격 : <fmt:formatNumber value="${hotel.roomprice }" pattern="#,### 원" /></td>	
+							<td class="t-5"><fmt:formatNumber value="${hotel.roomprice }" pattern="￦ #,### " /></td>	
 						</tr>
 						<tr>
 							<td class="t-6">세금 및 기타 요금 포함</td>
@@ -264,7 +264,6 @@
 			
 		</c:if>
 		
-			<button onclick="history.back()">뒤로가기</button>
 		
 	</div><!-- roomstate -->
 		<jsp:include page="../main/footer.jsp"/>

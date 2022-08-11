@@ -164,12 +164,13 @@ input[type="submit"]{
  
 #roomstate{
 	margin : 10px auto;
-	width:60%;
+	margin-bottom:100px;
+	width:50%;
 	font-family: 'IBM Plex Sans KR', sans-serif;
 } 
 #roomstate img{
-	width:270px;
-	height:200px;
+	width:400px;
+	height:220px;
 } 
 
 #standard{
@@ -178,6 +179,10 @@ input[type="submit"]{
 	box-shadow:3px 3px 3px 3px gray;
     border-radius:5px;
 }
+#standard table{
+	width:60%;
+
+	}
 #standard img.user{
 	width:10px;
 	height:10px;
@@ -188,12 +193,53 @@ input[type="submit"]{
 }
 
 #standard .t-1{
-	padding:10px;
+	padding : 10px 0px 0px 10px;
 	font-weight: bold;
 	color:#3a4a54;
 }
-
-
+#standard .t-2{
+	padding-left :10px;
+	font-size:0.9em;
+	font-weight:bold;
+	color:#3a4a54;
+}
+#standard .t-3{
+	padding-left :10px;
+	font-size:0.9em;
+	color:#3a4a54;
+}
+#standard .t-4{
+	padding-left :10px;
+	font-size:0.9em;
+	color:#3a4a54;
+}
+#standard .t-5{
+	padding:5px;
+	padding-left:10px;
+	padding-bottom:0px;
+	font-weight:bold;
+	font-size:1.2em;
+	color:green;
+	color:#467558;
+}
+#standard .t-6{
+	padding-left :15px;
+	font-size:0.7em;
+	color:#3a4a54;
+	color: gray;
+}
+#standard button{
+	width:130px;
+	font-family: 'IBM Plex Sans KR', sans-serif;
+	border: none;
+	background-color : #3a4a54;
+	 
+	padding:10px;
+	margin-left: 230%;
+	margin-bottom: 5px;
+	color:white;
+	border-radius: 3px;
+}
 
 
 #deluxe{
@@ -202,6 +248,10 @@ input[type="submit"]{
 	box-shadow:3px 3px 3px 3px gray;
     border-radius:5px;
 }
+#deluxe table{
+	width:65%;
+
+	}
 #deluxe img.user{
 	width:10px;
 	height:10px;
@@ -214,6 +264,62 @@ input[type="submit"]{
 	width:15px;
 	height:15px;
 }
+#deluxe .t-1{
+	padding : 10px 0px 0px 10px;
+	font-weight: bold;
+	color:#3a4a54;
+}
+#deluxe .t-2{
+	padding-left :10px;
+	font-size:0.9em;
+	font-weight:bold;
+	color:#3a4a54;
+}
+#deluxe .t-3{
+	padding-left :10px;
+	font-size:0.9em;
+	color:#3a4a54;
+}
+#deluxe .t-4{
+	padding-left :10px;
+	font-size:0.9em;
+	color:#3a4a54;
+}
+#deluxe .t-5{
+	padding:5px;
+	padding-left:10px;
+	padding-bottom:0px;
+	font-weight:bold;
+	font-size:1.2em;
+	color:green;
+	color:#467558;
+}
+#deluxe .t-6{
+	padding-left :15px;
+	font-size:0.7em;
+	color:#3a4a54;
+	color: gray;
+}
+#deluxe button{
+		width:130px;
+	font-family: 'IBM Plex Sans KR', sans-serif;
+	border: none;
+	background-color : #3a4a54;
+	 
+	padding:10px;
+	margin-left: 180%;
+	margin-bottom: 5px;
+	color:white;
+	border-radius: 3px;
+}
+
+
+
+
+
+
+
+
 #sweet{
 	border : 1px solid lightgray;
 	margin:20px 0;
@@ -227,6 +333,71 @@ input[type="submit"]{
 #sweet img.bed2{
 	width:16px;
 	height:15px;
+}
+
+#sweet table{
+	width:60%;
+
+	}
+#sweet img.user{
+	width:10px;
+	height:10px;
+}
+#sweet img.bed2{
+	width:16px;
+	height:15px;
+}
+#sweet img.bed1{
+	width:15px;
+	height:15px;
+}
+#sweet .t-1{
+	padding : 10px 0px 0px 10px;
+	font-weight: bold;
+	color:#3a4a54;
+}
+#sweet .t-2{
+	padding-left :10px;
+	font-size:0.9em;
+	font-weight:bold;
+	color:#3a4a54;
+}
+#sweet .t-3{
+	padding-left :10px;
+	font-size:0.9em;
+	color:#3a4a54;
+}
+#sweet .t-4{
+	padding-left :10px;
+	font-size:0.9em;
+	color:#3a4a54;
+}
+#sweet .t-5{
+	padding:5px;
+	padding-left:10px;
+	padding-bottom:0px;
+	font-weight:bold;
+	font-size:1.2em;
+	color:green;
+	color:#467558;
+}
+#sweet .t-6{
+	padding-left :15px;
+	font-size:0.7em;
+	color:#3a4a54;
+	color: gray;
+}
+#sweet button{
+		width:130px;
+	font-family: 'IBM Plex Sans KR', sans-serif;
+	border: none;
+	background-color : #3a4a54;
+	 
+	padding:10px;
+	margin-left: 233%;
+	margin-bottom: 5px;
+	color:white;
+	border-radius: 3px;
 }
  
  

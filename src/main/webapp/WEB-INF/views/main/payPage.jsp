@@ -8,9 +8,15 @@
 <head>
 <meta charset="UTF-8">
   <title>Insert title here</title>
-  <link href="${conPath }/css/style.css" rel="stylesheet">
- <style>
- 
+  <link href="${conPath }/css/hotel/hotelpay.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Domine:wght@500&family=IBM+Plex+Sans+KR:wght@300;400&family=Libre+Baskerville&family=Nanum+Gothic&family=Satisfy&family=The+Nautigal:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+.hotelword {
+                padding-left: 4px;
+                background: url("${conPath }/image/hotel4.png") no-repeat;
+                width: 100%;
+                height: 350px;
+            }
  </style>
  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
  <script>
@@ -31,6 +37,23 @@
  </script>  
 </head>
   <body>
+  <jsp:include page="../main/header.jsp"/>
+     <div id="list">
+	         <div id="lnb">
+	              <ul>
+	                   <li><a href="${conPath }/air.do?method=airMain">항공</a></li>
+	                   <li><a href="${conPath }/hotel.do?method=hotelMain">호텔</a></li>
+	                   <li><a href="#">면세점</a></li>
+	                   <li><a href="${conPath}/notice.do?method=boardmain">게시판</a></li>
+	              </ul>
+	         </div>
+	   </div>
+	   
+  	<div class="hotelword">
+            <div id="word">
+                <p>HOTEL RESERVATION</p>
+            </div>
+	</div>
   		<form action="${conPath }/hotel.do?method=insertHotelReservation" method="post" >
   			<input type="hidden" name="mid" value="${member.mid }">
   			<input type="hidden" name="hotelid" value="${hotel_rs.hotelid }">
@@ -48,5 +71,6 @@
 		<input type="submit" value="결제하기">
 		<input type="button" value="뒤로가기" onclick="history.back()">
 		</form>
+	<jsp:include page="../main/footer.jsp"/>	
   </body>
 </html>
