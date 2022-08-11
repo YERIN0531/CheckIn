@@ -10,24 +10,9 @@
   <title>Insert title here</title>
   <link href="${conPath }/css/style.css" rel="stylesheet">
  <style>
- 	table {
- 	margin: 0 auto;
- 	padding: 0;
- 	text-align: center;
- 	}
- 	tr, td {
- 	border: 1px solid red;
- 	}
- 	div{
- 	margin-top: 20px;
- 	}
- 	caption{
- 	font-size: 2em;
- 	padding: 10px;
- 	}
- 	.paging {
- 	text-align: center;
- 	margin-bottom: 70px;
+ 	/* 지우면 안되는 CSS */
+ 	b {
+ 	color: red;
  	}
  </style>
  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -70,20 +55,20 @@
 	<jsp:include page="../main/header.jsp"/>
 	
    	<table>
-   	<caption>DUTY FREE</caption>
+   	<caption>DUTY-FREE</caption>
    			<c:if test="${not empty manager }">
    			<tr>
    				<td colspan="3">
    				<button onclick="location='${conPath }/taxfree.do?method=insertForm&aid=${manager.aid }'">INSERT</button>
-   				<button onclick="location='${conPath }/main2.do?aid=${manager.aid }'">MAIN</button>
+   				<button onclick="location='${conPath }/main2.do?'">MAIN</button>
 				</td>   			
    			</tr>
    			</c:if>
    			<c:if test="${not empty member }">
    			<tr>
    				<td colspan="3">
-   				<button onclick="location='${conPath}/cart.do?method=list&mid=${member.mid }'">CART</button>
    				<button onclick="location='${conPath }/main2.do?mid=${member.mid }'">MAIN</button>
+   				<button onclick="location='${conPath}/cart.do?method=list&mid=${member.mid }'">MY CART</button>
    				<button onclick="location='${conPath }/cart.do?method=orderDetailList'">ORDER DETAILS</button>
    				</td>
    			</tr>
@@ -116,9 +101,6 @@
    		<c:set var="i" value="0"/>
    		<c:forEach items="${productCategory }" var="pDto">
    		<td onclick="location.href='${conPath}/taxfree.do?method=detail&mid=${member.mid }&pnum=${pDto.pnum }&pageNum=${paging.currentPage}'">
-   				<%-- ${pDto.pname }<br> --%>
-   				<%-- USD ${pDto.pprice } <br> --%>
-   				<!--  ${pDto.pnum } --> 
    				<c:if test="${pDto.pimage1 eq null or '' }">
 	   			<img src="${conPath }/taxfree/noimg.jpg" alt="noimg.jpg" width="250" height="300">
 	   			</c:if>
@@ -126,8 +108,14 @@
 	   			<img src="${conPath }/taxfree/${pDto.pimage1 }" alt="${pDto.pimage1 }" width="300" height="300">
 	   			</c:if>
 	   			<br>
-	   			${pDto.pname }<br>
-	   			USD ${pDto.pprice }
+	   			${pDto.pname }
+	   			<br>
+	   			<c:if test="${ pDto.pstock eq 0}">
+	   				<del>USD ${pDto.pprice }</del>&nbsp;&nbsp;<b>품절</b>
+	   			</c:if>
+	   			<c:if test="${ pDto.pstock != 0}">
+	   				USD ${pDto.pprice }
+	   			</c:if>
    		</td>
    				<c:if test="${i % 3 == 2 }">
 					<tr>   				
