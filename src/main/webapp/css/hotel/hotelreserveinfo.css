@@ -290,10 +290,53 @@
 	font-weight: bold;
 }
 
+
+#rightInfo .td-27{
+	padding-top:5px;
+	font-weight: bold;	
+	text-align: center;
+}
+
+#rightInfo .td-28{
+	font-size:1.0em;
+	padding-bottom:10px;
+	text-align: center;
+	font-weight: bold;
+}
+
+
+#rightInfo .td-29{
+	text-align: center;
+	font-weight: bold;	
+}
+
 #rightInfo .td-23{
 	text-align: center;
 	padding-bottom: 10px;
 }
+
+#rightInfo .td-26{
+	padding-bottom: 10px;
+	text-align: center;	
+}
+
+#rightInfo .td-26 input{
+	width:150px;
+	border:1px solid gray;
+	border:1px solid #3a4a54;
+	height:30px;
+	border-radius: 3px;
+	font-size:1.0em;
+	
+
+}
+#rightInfo .td-26 input[type="number"]{
+	text-align: cetner;
+	padding-left:100px;
+}
+
+
+
 #rightInfo table input[type=submit]{
 	border:none;
 	background-color:#3a4a54;

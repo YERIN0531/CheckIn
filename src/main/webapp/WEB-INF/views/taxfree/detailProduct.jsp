@@ -8,8 +8,16 @@
 <head>
 <meta charset="UTF-8">
   <title>Insert title here</title>
-  <link href="${conPath }/css/style.css" rel="stylesheet">
+  <link href="${conPath }/css/taxfree/detailproduct.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Domine:wght@500&family=IBM+Plex+Sans+KR:wght@300;400&family=Libre+Baskerville&family=Nanum+Gothic&family=Satisfy&family=The+Nautigal:wght@400;700&display=swap" rel="stylesheet">
  <style>
+    #reserve {
+            padding-left: 4px;
+            background: url("${conPath}/image/tax1.png") no-repeat;
+            background-size:100%;
+            width: 100%;
+            height: 400px;
+        }
  /* 꼭 추가해야 하는 css */
  b {
  	color: red;
@@ -40,99 +48,114 @@
     			}
     		</script>
     	</c:if> 
-   	
    	<jsp:include page="../main/header.jsp"/>
-   	<table>
-   		<caption>${taxfreeDto.pname }</caption>
-   		
-   		<tr>
-   		<td rowspan="7" class="image">
-	   			<c:if test="${taxfreeDto.pimage1 eq null or '' }">
-	   			<img src="${conPath }/taxfree/noimage.png" alt="noimg.jpg" width="300" height="300">
-	   			</c:if>
-	   			<c:if test="${taxfreeDto.pimage1 != null or '' }">
-	   			<img src="${conPath }/taxfree/${taxfreeDto.pimage1 }" alt="${taxfreeDto.pimage1 }" width="300" height="300">
-	   			</c:if>
-   		</td></tr>
-   		<tr><td>REF</td><td>${taxfreeDto.pnum }</td></tr>
-   		<tr><td>PRICE</td><td>USD ${taxfreeDto.pprice }</td></tr>
-   		<tr>
-   			<td>STOCK</td>
-   			<c:if test="${taxfreeDto.pstock eq 0 }">
-   				<td><b>품절</b></td>
-   			</c:if>
-   			<c:if test="${taxfreeDto.pstock != 0 }">
-	   			<td>${taxfreeDto.pstock }</td>
-   			</c:if>
-   		</tr>
-   		<tr><td>LOC</td><td>${taxfreeDto.ploc }</td></tr>
-   		<tr><td>QTY</td>
-   		<td>
-   			<!-- 장바구니에 상품 추가 -->
-   			<form action="${conPath }/cart.do">
-   			<input type="hidden" name="method" value="insert">
-   			<input type="hidden" name="mid" value="${member.mid }">
-   			<input type="hidden" name="pnum" value="${taxfreeDto.pnum }">   					
-   				
-   				<c:if test="${not empty member and empty manager }">
-   				<%-- <c:if test="${taxfreeDto.pstock eq 0 }"> </c:if> --%>
-   				<c:if test="${taxfreeDto.pstock != 0 }">
-	   				<input type="number" name="qty" value="1" class="qty">
-   					<input type="submit" value="ADD" class="add">
-   				</c:if>
-   				</c:if>
-   				<c:if test="${empty member }">
-   					로그인 후 장바구니 이용 가능합니다.
-   				</c:if>
-   			</form>
-   		</td></tr>
-   		<tr>
-   		<c:if test="${not empty member and empty admin }">
-   			<td colspan="2" class="btn"> MEMBER
-   				<button onclick="location='${conPath}/taxfree.do?method=category&mid=${member.mid }&pageNum=1'">LIST</button>	
-   				<button onclick="location='${conPath}/cart.do?method=list&mid=${member.mid }&pageNum=${param.pageNum }'">MY CART</button>
-   			</td>
-   		</c:if>
-		<c:if test="${not empty manager and empty member }">
-   			<td colspan="2" class="btn"> ADMIN
-   				<button onclick="location='${conPath}/taxfree.do?method=updateForm&aid=${manager.aid }&pnum=${taxfreeDto.pnum }&pageNum=${param.pageNum }'">MODIFY</button>	
-   				<button onclick="location='${conPath}/taxfree.do?method=delete&pnum=${taxfreeDto.pnum }&pageNum=${param.pageNum }'">DELETE</button>	
-   				<button onclick="location='${conPath}/taxfree.do?method=category'">LIST</button>	
-   			</td>
-   		</c:if>
-   		<c:if test="${empty manager and empty member }"> 
-   			<td colspan="2" class="btn"> GUEST
-   				<button onclick="location='${conPath}/taxfree.do?method=category&pageNum=${param.pageNum }'">LIST</button>	
-   			</td>
-   		</c:if>
-   		</tr>
-   		
-   		
-   		<tr>
-   			<td colspan="3" class="btn">DETAILS</td>
-   		</tr>
-   		<tr>
-   			<td colspan="3" class="image">
-   			<c:if test="${taxfreeDto.pimage2 eq null or '' }">
-   			<img src="${conPath }/taxfree/noimage.png" width="300" height="300">
-   			</c:if>
-   			<c:if test="${taxfreeDto.pimage2 != null or '' }">
-   			<img src="${conPath }/taxfree/${taxfreeDto.pimage2 }" alt="${pDto.pimage2 }" width="300" height="300">
-   			</c:if>
-   			</td>
-   		</tr>
-   		<tr>
-   			<td colspan="3" class="image">
-   			<c:if test="${taxfreeDto.pimage3 eq null or '' }">
-   			<img src="${conPath }/taxfree/noimage.png" width="300" height="300" >
-   			</c:if>
-   			<c:if test="${taxfreeDto.pimage3 != null or '' }">
-   			<img src="${conPath }/taxfree/${taxfreeDto.pimage3 }" alt="${pDto.pimage3 }" width="300" height="300">
-   			</c:if>
-   			</td>
-   		</tr>
-   		
-   		
+
+   	
+   		 <div id="list">
+            <div id="lnb">
+                <ul>
+	                   <li><a href="${conPath }/air.do?method=airMain">항공</a></li>
+	                   <li><a href="${conPath }/hotel.do?method=hotelMain">호텔</a></li>
+	                   <li><a href="${conPath}/taxfree.do?method=category">면세점</a></li>
+	                   <li><a href="${conPath}/notice.do?method=boardmain">게시판</a></li>
+	              </ul>
+            </div><!-- lnb -->
+        </div><!-- list -->
+	
+        <div id="reserve">
+            <div id="word">
+                <p>DUTY FREE</p>
+            </div><!-- word -->
+
+        </div><!-- reserve -->
+        <div id="logos">
+        <p>PRODUCT DETAIL</p>
+    </div>
+   	
+   	
+   	
+   	<div id="wrap">
+   		<div id="productdetail">
+		   	<div class="slider">
+					<div class="image">
+						<input type="radio" name="slide" id="slide1" checked>
+						<input type="radio" name="slide" id="slide2"> 
+						<input type="radio" name="slide" id="slide3">
+						<ul id="imgholder" class="imgs">
+							<li><img src="${conPath }/taxfree/${taxfreeDto.pimage1 }"></li>
+							<li><img src="${conPath }/taxfree/${taxfreeDto.pimage2 }"></li>
+							<li><img src="${conPath }/taxfree/${taxfreeDto.pimage3 }"></li>
+						</ul>
+					</div>
+					<div class="bullets">
+						<label for="slide1">&nbsp;</label> <label for="slide2">&nbsp;</label>
+						<label for="slide3">&nbsp;</label>
+					</div>
+			</div><!-- slider -->
+   	
+ 			<div id="productinfo">  	
+			   	<table>
+			   		<tr><td colspan="2" class="td-1">${taxfreeDto.pname }</td></tr>
+			   		<tr><th>REF</th><td>${taxfreeDto.pnum }</td></tr>
+			   		<tr><th>PRICE</th><td>USD ${taxfreeDto.pprice }</td></tr>
+			   		<tr>
+			   			<th>STOCK</th>
+			   			<c:if test="${taxfreeDto.pstock eq 0 }">
+			   				<td><b>품절</b></td>
+			   			</c:if>
+			   			<c:if test="${taxfreeDto.pstock != 0 }">
+				   			<td>${taxfreeDto.pstock }</td>
+			   			</c:if>
+			   		</tr>
+			   		<tr><th>LOC</th><td>${taxfreeDto.ploc }</td></tr>
+			   		<tr><th>QTY</th>
+			   		<td>
+			   			<!-- 장바구니에 상품 추가 -->
+			   			<form action="${conPath }/cart.do">
+			   			<input type="hidden" name="method" value="insert">
+			   			<input type="hidden" name="mid" value="${member.mid }">
+			   			<input type="hidden" name="pnum" value="${taxfreeDto.pnum }">   					
+			   				
+			   				<c:if test="${not empty member and empty manager }">
+			   				<%-- <c:if test="${taxfreeDto.pstock eq 0 }"> </c:if> --%>
+			   				<c:if test="${taxfreeDto.pstock != 0 }">
+				   				<input type="number" name="qty" value="1" class="qty">
+			   					<input type="submit" value="ADD" class="add">
+			   				</c:if>
+			   				</c:if>
+			   				<c:if test="${empty member }">
+			   					<b>로그인 후 장바구니 이용 가능합니다.</b>
+			   				</c:if>
+			   			</form>
+			   		</td></tr>
+			   		<tr>
+			   		<c:if test="${not empty member and empty admin }">
+			   			<td colspan="2" class="btn">
+			   				<button onclick="location='${conPath}/taxfree.do?method=category&mid=${member.mid }&pageNum=1'">LIST</button>	
+			   				<button onclick="location='${conPath}/cart.do?method=list&mid=${member.mid }&pageNum=${param.pageNum }'">MY CART</button>
+			   			</td>
+			   		</c:if>
+					<c:if test="${not empty manager and empty member }">
+			   			<td colspan="2" class="btn">
+			   				<button onclick="location='${conPath}/taxfree.do?method=updateForm&aid=${manager.aid }&pnum=${taxfreeDto.pnum }&pageNum=${param.pageNum }'">MODIFY</button>	
+			   				<button onclick="location='${conPath}/taxfree.do?method=delete&pnum=${taxfreeDto.pnum }&pageNum=${param.pageNum }'">DELETE</button>	
+			   				<button onclick="location='${conPath}/taxfree.do?method=category'">LIST</button>	
+			   			</td>
+			   		</c:if>
+			   		<c:if test="${empty manager and empty member }"> 
+			   			<td colspan="2" class="btn">
+			   				<button onclick="location='${conPath}/taxfree.do?method=category&pageNum=${param.pageNum }'">LIST</button>	
+			   			</td>
+			   		</c:if>
+			   		</tr>
+			   		
+			   		</table>
+		   		</div><!-- productinfo -->
+		</div> <!-- productdetail -->
+		
+		<div id="taxfreeinfo">
+   		<table>
+
    		<tr>
    			<td colspan="3">
    				<h3>면세점 이용안내</h3>
@@ -182,6 +205,8 @@
    			</td>
    		</tr>
    	</table>
+   	</div> <!-- taxfreeinfo -->
+   	</div> <!--  wrap -->
    		<jsp:include page="../main/footer.jsp"/>
   </body>
 </html>

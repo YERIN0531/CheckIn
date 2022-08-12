@@ -1,0 +1,103 @@
+@charset "UTF-8";
+*{
+ padding:0px;
+ margin:0px;
+ }
+ #list {
+            width: 800px;
+            margin-left:50px;
+        }
+        #lnb{
+        overflow:hidden;
+        width:800px;
+        }
+        #list #lnb ul {
+        }
+            #list #lnb ul li {
+                background-color: #8fa8b3;
+                float: left;
+                width: 12%;
+                height: 35px;
+                line-height: 35px;
+                text-align: center;
+                list-style: none;
+                border-radius: 5px 5px 0 0;
+                margin-left:1px;
+            }
+                #list #lnb ul li:hover {
+                    background-color: #3e6170;
+                }
+
+                #list #lnb ul li a {
+                    font-family: 'IBM Plex Sans KR', sans-serif;
+                    text-decoration: none;
+                    color: white;
+                    font-size: 0.9em;
+                }
+	
+            #list #lnb ul li:nth-child(2) {
+                background-color: #3e6170;
+            }
+                #list #lnb ul li:nth-child(2) a {
+                    font-family: 'IBM Plex Sans KR', sans-serif;
+                    color: white;
+                    font-size:0.9em;
+                    
+                }
+ 
+            #reserve {
+                padding-left: 4px;
+                background: url("../../image/air.jpg") no-repeat;
+                background: url("../../image/hotel4.png") no-repeat; /*ㅇ*/
+                width: 100%;
+                height: 350px;
+            }
+        #word {
+            color: white;
+            width: 70%;
+            text-align: center;
+            margin: 0 auto;
+            padding-top: 140px;
+        }
+            #word p {
+                font-size: 2.5em;
+                font-family: 'IBM Plex Sans KR', sans-serif;
+                font-family: 'Satisfy', cursive;
+                font-family: 'The Nautigal', cursive;
+                font-family: 'Domine', serif;
+                color: #d1dde4;
+            }
+            
+#reserveResult{
+	font-family: 'IBM Plex Sans KR', sans-serif;
+	border:1px solid lightgray;
+	width:40%;
+	margin:30px auto;
+	height:300px;
+	box-shadow:2px 2px 2px 2px gray;
+}
+#reservetable{
+	margin-top:10%;
+	text-align: center;
+}            
+            
+#reservetable .p1{
+	font-size:1.5em;
+	font-weight: bold;
+}
+#reservetable .p2{
+	font-size:1.2em;
+	font-weight: bold;
+	padding-top:4px;
+}            
+#reservetable button{
+	margin-top:30px;
+	border:none;
+	background-color:#3a4a54;
+	color:white;
+	height:30px;
+	border-radius: 3px;
+	width:100px;
+	box-shadow:1px 2px 1px 1px gray;
+}   
+            
