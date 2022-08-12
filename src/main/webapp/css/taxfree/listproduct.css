@@ -1,0 +1,173 @@
+@charset "UTF-8";
+
+        #list {
+            width: 800px;
+            margin-left: 50px;
+        }
+
+        #lnb {
+            overflow: hidden;
+            width: 800px;
+        }
+
+        #list #lnb ul {
+        }
+
+            #list #lnb ul li {
+                background-color: #8fa8b3;
+                float: left;
+                width: 12%;
+                height: 35px;
+                line-height: 35px;
+                text-align: center;
+                list-style: none;
+                border-radius: 5px 5px 0 0;
+                margin-left: 1px;
+            }
+
+                #list #lnb ul li:hover {
+                    background-color: #3e6170;
+                }
+
+                #list #lnb ul li a {
+                    font-family: 'IBM Plex Sans KR', sans-serif;
+                    text-decoration: none;
+                    color: white;
+                    font-size: 0.9em;
+                }
+
+                #list #lnb ul li:nth-child(3) {
+                    background-color: #3e6170;
+                }
+
+                    #list #lnb ul li:nth-child(3) a {
+                        font-family: 'IBM Plex Sans KR', sans-serif;
+                        color: white;
+                        font-size: 0.9em;
+                    }
+
+
+        #word {
+            color: white;
+            width: 70%;
+            text-align: center;
+            margin: 0 auto;
+            padding-top: 10%;
+        }
+
+            #word p {
+                font-size: 2.5em;
+                font-family: 'IBM Plex Sans KR', sans-serif;
+                font-family: 'Satisfy', cursive;
+                font-family: 'The Nautigal', cursive;
+                font-family: 'Domine', serif;
+                color: #d1dde4;
+            }
+   #logos {
+            width: 500px;
+            margin: 20px auto;
+            margin-top: 50px;
+        }
+
+            #logos p {
+                font-family: 'Domine', serif;
+                color: #3a4a54;
+                font-size: 1.7em;
+                font-weight: bold;
+                width: 300px;
+                margin: 0 auto;
+                text-align: center;
+            }     
+            
+            
+#wrap{
+	margin:40px;
+	margin-bottom:100px;
+}
+#search{
+	
+	font-family: 'IBM Plex Sans KR', sans-serif;
+	width:90%;
+	margin:0 auto;
+	margin-bottom:40px;
+	text-align: center;
+}
+#search table{
+	border : 1px dashed #3a4a54;
+	margin: 0 auto;
+	width:50%;
+	height:150px;
+	padding:20px;
+	
+}
+#search table .mycart{
+	width:120px;
+	border:none;
+	background-color:#3a4a54;
+	color:white;
+	height:30px;
+	border-radius: 3px;
+}
+#search table .orderdetail{
+	width:120px;
+	border:none;
+	background-color:#3a4a54;
+	color:white;
+	height:30px;
+	border-radius: 3px;
+	
+}
+#search select{
+	border:2px solid #3a4a54;
+	width:150px;
+	height:30px;
+}
+
+#search .submitbutton{
+	
+	border:2px solid #3a4a54;
+	width:110px;
+	height:30px;
+	border-radius: 3px;
+	font-weight: bold;
+	
+}
+
+
+#listproduct{
+	font-family: 'IBM Plex Sans KR', sans-serif;
+	width:90%;
+	margin:0 auto;
+}
+#listproduct table{
+	margin:0 auto;
+	width:65%;
+}
+#listproduct table td{
+	text-align: center;
+}
+#listproduct .p1{
+	font-size:0.9em;
+	font-weight: bold;
+	text-align:left;
+	padding-left:20px;
+}
+#listproduct .p3{
+	text-align: left;
+	padding-left:20px;
+}
+#listproduct .p4{
+	text-align:left;
+	padding-left:20px;
+	padding-bottom: 15px;
+	font-size: 1.2em;
+	font-weight: bold;
+}
+
+
+
+
+#paging{
+	padding-top:10px;
+	text-align: center;
+}               

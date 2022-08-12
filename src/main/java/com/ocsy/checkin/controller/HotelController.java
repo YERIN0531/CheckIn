@@ -61,6 +61,7 @@ public class HotelController {
 		model.addAttribute("roomtype",roomtype);
 		model.addAttribute("hotelname",hotelname);
 		model.addAttribute("roomimage",roomimage);
+		model.addAttribute("hotel_rs", hotel_rs);
 		return "main/payPage";
 	}
 	

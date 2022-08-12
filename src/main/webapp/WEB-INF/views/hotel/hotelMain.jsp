@@ -51,7 +51,7 @@
 	              <ul>
 	                   <li><a href="${conPath }/air.do?method=airMain">항공</a></li>
 	                   <li><a href="${conPath }/hotel.do?method=hotelMain">호텔</a></li>
-	                   <li><a href="#">면세점</a></li>
+	                   <li><a href="${conPath}/taxfree.do?method=category">면세점</a></li>
 	                   <li><a href="${conPath}/notice.do?method=boardmain">게시판</a></li>
 	              </ul>
 	         </div>

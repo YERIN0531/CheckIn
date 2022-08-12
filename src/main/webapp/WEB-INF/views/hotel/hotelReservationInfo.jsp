@@ -19,8 +19,32 @@
             }
  </style>
  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
- <script>
+  <script>
  	$(document).ready(function(){
+//  		var roomprice = Number('${payprice }');
+//  		var mmileage = Number($('input[name=mmileage]').val());
+//  		$('.result').val(roomprice - mmileage); 		
+//  		$('input[name="mmileage"]').keyup(function(){
+//  			var roomprice = Number('${payprice }');
+//  			var mmileage = Number($('input[name=mmileage]').val());
+//  			if(mmileage > Number('${member.mmileage }') ){
+//  				mmileage = Number('${member.mmileage}');
+//  				$('input[name="mmileage"]').val(Number('${member.mmileage }'));
+//  			}
+//  			$('.result').val(roomprice - mmileage);
+//  		});
+ 		var roomprice = Number('${param.roomprice }');
+ 		var mmileage = Number($('input[name=mmileage]').val());
+ 		$('.result').val(roomprice - mmileage); 		
+ 		$('input[name="mmileage"]').keyup(function(){
+ 			var roomprice = Number('${param.roomprice }');
+ 			var mmileage = Number($('input[name=mmileage]').val());
+ 			if(mmileage > Number('${member.mmileage }') ){
+ 				mmileage = Number('${member.mmileage}');
+ 				$('input[name="mmileage"]').val(Number('${member.mmileage }'));
+ 			}
+ 			$('.result').val(roomprice - mmileage);
+ 		});
  		
  	});
  </script>  
@@ -55,9 +79,13 @@
 	<div id="reserveCheck">
 		<div id="reservetitle"><p>RESERVE CHECK</p></div>
 		
-			<form action="${conPath }/hotel.do?method=payPage" method="post">
+<%-- 			<form action="${conPath }/hotel.do?method=payPage" method="post"> --%>
+			<form action="${conPath }/hotel.do?method=insertHotelReservation" method="post" >
 				<input type="hidden" name="mid" value="${member.mid }">	
 				<input type="hidden" name="hotelid" value="${reservationInfo.hotelid }">
+				<input type="hidden" name="checkin" value="${reservationInfo.schcheckindate }">
+  				<input type="hidden" name="checkout" value="${reservationInfo.schcheckoutdate }">
+  				<input type="hidden" name="headcount" value="${reservationInfo.headcount }">
 			<div id="reservehotel">
 				<table>
 					<tr>
@@ -184,6 +212,29 @@
 									 ${member.mtel }
 								</td>
 							</tr>
+							<!-- 수정된 부분 -->
+							<tr>
+								<td class="td-17"><p>PAYMENT</p></td>
+							</tr>
+							<tr>
+								<td class="td-27">호텔가격</td>
+							</tr>
+							<tr>
+								<td class="td-28"><fmt:formatNumber value="${param.roomprice }" pattern="￦ #,###"/></td>
+							</tr>
+							<tr>
+								<td class="td-29">사용가능 마일리지</td>
+							</tr>
+							<tr>
+								<td class="td-26"><input type="number" name="mmileage" value="${member.mmileage }" ></td>
+							</tr>
+							<tr>
+								<td class="td-29">최종결제가격</td>
+							</tr>
+							<tr>
+								<td class="td-26"><input type="number" name="paymoney" value=""  class="result" readonly="readonly" ></td>
+							</tr>
+							
 							<tr><td><hr></td></tr>
 							<tr>
 								<td class="td-22">

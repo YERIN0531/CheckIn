@@ -84,7 +84,7 @@ public class TaxfreeServiceImpl implements TaxfreeService {
 				System.out.println("파일 첨부 안 하면 noimg로");
 				// 파일 첨부 안 하면 bimg[idx] = ""
 				// bimg[idx] = "";
-				pimg[idx] = "noimg.jpg";
+				pimg[idx] = "noimage.png";
 			}//if
 			idx++;
 		}//while

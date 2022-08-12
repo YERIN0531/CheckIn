@@ -35,6 +35,7 @@ CREATE TABLE HOTEL_RS(
     CHECKOUT DATE NOT NULL,   -- 예약 완료 체크아웃 날짜
     HEADCOUNT NUMBER(10) NOT NULL  -- 예약 인원수
 );
+select * from hotel_rs;
 CREATE TABLE HOTEL_ZZIM(
     HZZIM NUMBER(10) PRIMARY KEY,  -- 찜번호
     MID REFERENCES CUSTOMER(MID) NOT NULL,  -- 찜한 사람의 아이디
