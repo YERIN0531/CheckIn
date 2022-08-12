@@ -42,14 +42,20 @@ public interface HotelDao {
 	
 	/*     ↑↑↑↑↑ 내 예약목록 조회, 취소, 호텔 예약, 예약가능여부 조회  ↑↑↑↑↑   */
 	
-	public int insertHZZim(Hotel_ZZim hzzim);  // 찜 추가
+	public int insertHZZim1(Hotel hotel);  // 찜 추가
 	
-	public int checkZZim(Hotel_ZZim hzzim);  // 특정 회원의 특정 호텔의 방 찜 여부 조회 1이면 찜한상태 0 이면 안한상태
+	public int insertHZZim2(Hotel hotel);  
+	
+	public int insertHZZim3(Hotel hotel);  
+	
+	public int checkZZim(Hotel hotel);  // 특정 회원의 특정 호텔의 방 찜 여부 조회 3이면 찜한상태 0 이면 안한상태
 	
 	public List<Hotel> myHZZimList(String mid);  // 나의 찜목록 리스트
 	
-	public int cancelHZZim(Hotel_ZZim hzzim);  // 찜 취소
+	public int cancelHZZim(Hotel hotel);  // 찜 취소
 	
+	
+	/********************************/
 	public List<Hotel> adminHotelList(Hotel hotel);  // 관리자가 호텔 리스트 조회 
 	
 	public int totAllHotel();

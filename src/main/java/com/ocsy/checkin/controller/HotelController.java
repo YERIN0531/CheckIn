@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.ocsy.checkin.dto.Hotel;
+import com.ocsy.checkin.dto.Hotel_ZZim;
 import com.ocsy.checkin.dto.Hotel_rs;
 import com.ocsy.checkin.dto.Member;
 import com.ocsy.checkin.service.HotelService;
@@ -37,7 +38,7 @@ public class HotelController {
 	}
 	@RequestMapping(params = "method=schHotel", method= {RequestMethod.GET, RequestMethod.POST })    // 호텔 목록 조회할때 
 	public String schHotel(Hotel hotel, Model model) {
-		System.out.println(hotel);
+		hotel.setHotelid(null);
 		model.addAttribute("hotelList",hotelService.checkHotelReservationList(hotel));
 		model.addAttribute("hotel",hotel);
 		return "hotel/hotelMain";
@@ -140,5 +141,17 @@ public class HotelController {
 	public String myHotelReservationList(String mid,Model model) {
 		model.addAttribute("myHotelList",hotelService.myHotelReservationList(mid));
 		return "myPage/myHotelList";
+	}
+	
+	@RequestMapping(params="method=insertHZZim",method= {RequestMethod.GET, RequestMethod.POST})
+	public String insertHZZim(Hotel hotel,Model model) {
+		model.addAttribute("insertHZZimResult",hotelService.insertHZZim(hotel));
+		return "forward:hotel.do?method=schHotel";
+	}
+	
+	@RequestMapping(params="method=cancelHZZim",method= {RequestMethod.GET, RequestMethod.POST})
+	public String cancelHZZim(Hotel hotel, Model model) {
+		model.addAttribute("cancelHZZimResult",hotelService.cancelHZZim(hotel));
+		return "forward:hotel.do?method=schHotel";
 	}
 }

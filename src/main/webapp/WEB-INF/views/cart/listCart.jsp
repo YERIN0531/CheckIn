@@ -26,6 +26,19 @@
  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
  <script>
  	$(document).ready(function() {
+ 		$.ajax({
+ 			type : "GET",
+ 			url : "http://spartacodingclub.shop/sparta_api/rate",
+ 			data : {},
+ 			success : function (response){
+ 				let now_rate = Number(response['rate']);
+ 				$('#now-rate').text(now_rate);
+ 				var price = $('.price');
+ 				$(price).each(function(idx, item){
+ 					$(item).html('<b>'+Math.ceil(Number($(item).text()) * now_rate)+ '</b>');
+ 				});
+ 			}
+ 		})
  		
 
 		$('.modify').click(function(){
@@ -34,15 +47,15 @@
 			location.href='${conPath}/cart.do?method=modify&cartnum='+cartnum+'&qty='+qty;
 			//location.reload();
 		  });
+		
 	});
 	</script>  
 </head>
   <body>
    	<!-- 넘어온 장바구니 내역 출력 -->
    	<!--  대표이미지, 상품이름, 가격, 수량, 총가격 -->
-   	
-   	 <c:set var="SUCCESS" value="1"></c:set>
-	 <c:set var="FAIL" value="0"></c:set>
+   	 <c:set var="SUCCESS" value="1" />
+	 <c:set var="FAIL" value="0" />
    	<c:if test="${deleteCart eq SUCCESS}">
 		<script>
 			alert('선택하신 상품이 장바구니에서 삭제되었습니다.');
@@ -115,8 +128,10 @@
    					<td class="td-5">
    					<!-- 환율 정보 받아와서 출력할 수 있도록 해주기 : 지금 해놓은 건 임의로 집어넣은 환율 -->
    						＄${cart.cost } <br> 
-   						<fmt:formatNumber value="${cart.cost * 1300 }" type="number" var="numberType" />
-    					<b><fmt:formatNumber type="currency" currencySymbol="￦ " value="${cart.cost * 1300 }"  /></b>
+   						<span class="price">${cart.cost}</span>
+   						<%-- <fmt:formatNumber value="${cart.cost}" type="number" var="numberType" />
+    					<fmt:formatNumber type="currency" currencySymbol="￦ " value="${cart.cost * 1300 }"  /> --%>
+
                     </td>
    					<td class="td-6">
    						<input type="button" class="modify" id="${cart.cartnum }" value="MODIFY"><br><br>

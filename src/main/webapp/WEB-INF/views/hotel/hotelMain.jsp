@@ -10,14 +10,40 @@
   <title>Insert title here</title>
   <link href="${conPath }/css/hotel/hotelmain.css" rel="stylesheet">
    <link href="https://fonts.googleapis.com/css2?family=Domine:wght@500&family=IBM+Plex+Sans+KR:wght@300;400&family=Libre+Baskerville&family=Nanum+Gothic&family=Satisfy&family=The+Nautigal:wght@400;700&display=swap" rel="stylesheet">
- 
+ <style>
+ 	.hzzim {
+ 		width:15px;
+ 		height:15px;
+ 	}
+ </style>
  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 	$(document).ready(function(){
+		
 	});
 </script> 
 </head>
   <body>
+  <c:if test="${insertHZZimResult eq 3 }">
+  	<script>
+  		alert('찜목록 추가 성공');
+  	</script>
+  </c:if>
+  <c:if test="${not empty insertHZZimResult and insertHZZimResult != 3 }">
+  	<script>
+  		alert('찜목록 추가 실패');
+  	</script>
+  </c:if>
+  <c:if test="${cancelHZZimResult eq 3 }">
+  	<script>
+  		alert('찜 취소 성공');
+  	</script>
+  </c:if>
+  <c:if test="${not empty cancelHZZimResult and cancelHZZimResult != 3 }">
+  	<script>
+  		alert('찜 취소 실패');
+  	</script>
+  </c:if>
   <jsp:include page="../main/header.jsp"/>
   <section>
 	   <div id="list">
@@ -37,6 +63,7 @@
             </div>
             <div id="rsform">
 	<form action="${conPath }/hotel.do?method=schHotel" method="post">
+		<input type="hidden" name="mid" value="${member.mid }">
 		<table>
 			<tr>
 				<td>
@@ -81,7 +108,14 @@
 				<table>
 					<tr class="hotelListTr"> <!-- 1행 -->
 						<td rowspan="5"><img src="${conPath }/hotelImg/${hotel.hotelimage }"></td>
-						<th class="td-1">${hotel.hotelname }</th>
+						<th class="td-1">${hotel.hotelname }
+							<c:if test="${hotel.checkZZim eq 0 }">
+								<img src="${conPath }/image/blankheart.png" class="hzzim" onclick="location='${conPath }/hotel.do?method=insertHZZim&hotelid=${hotel.hotelid }&mid=${member.mid }&schcheckindate=${param.schcheckindate }&schcheckoutdate=${param.schcheckoutdate }&headcount=${param.headcount }&schcountry=${param.schcountry }'">	
+							</c:if>
+							<c:if test="${hotel.checkZZim eq 3 }">
+								<img src="${conPath }/image/fullheart.png" class="hzzim" onclick="location='${conPath }/hotel.do?method=cancelHZZim&hotelid=${hotel.hotelid }&mid=${member.mid }&schcheckindate=${param.schcheckindate }&schcheckoutdate=${param.schcheckoutdate }&headcount=${param.headcount }&schcountry=${param.schcountry }'">
+							</c:if>
+						</th>
 					</tr>
 					<tr><!-- 2행 -->
 						<td class="td-2"><img src="${conPath }/hotelImg/globe.png" class="globe">&nbsp;&nbsp;&nbsp;${hotel.hotelcountry }</td>
@@ -93,7 +127,7 @@
 						<td class="td-4">상세페이지에서 가격을 확인하세요</td>
 					</tr>
 					<tr><!-- 5행 -->
-						<td class="td-5"><button onclick="location='${conPath }/hotel.do?method=getHotelDetail&hotelid=${hotel.hotelid.substring(0,3) }&hoteladdress=${hotel.hoteladdress }&schcheckindate=${param.schcheckindate }&schcheckoutdate=${param.schcheckoutdate }&headcount=${param.headcount }&hotelimage=${hotel.hotelimage }'" class="detail">상세보기</button></td>
+						<td class="td-5"><button onclick="location='${conPath }/hotel.do?method=getHotelDetail&hotelid=${hotel.hotelid }&hoteladdress=${hotel.hoteladdress }&schcheckindate=${param.schcheckindate }&schcheckoutdate=${param.schcheckoutdate }&headcount=${param.headcount }&hotelimage=${hotel.hotelimage }'" class="detail">상세보기</button></td>
 
 					</tr>
 				</table>

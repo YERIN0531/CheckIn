@@ -35,17 +35,16 @@
    	    	alert('글삭제 성공');
    	    </script>
    	  </c:if>
-  <c:if test="${not empty manager }">
- <button onclick="location='${conPath}/notice.do?method=insertNoticeForm&pageNum=${param.pageNum }'">공지글등록</button>
-  </c:if> 
+  
    <div id="logos">
         <p>NOTICE_BOARD</p>
     </div>
     <div id="wrap">
-    
+     <c:if test="${not empty manager }">
             <div id="register">
                 <p><a href="${conPath}/notice.do?method=insertNoticeForm&pageNum=${param.pageNum }">공지글등록</a></p>
              </div>
+       </c:if> 
         <div id="listform">
 
                 <table>

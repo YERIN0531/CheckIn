@@ -49,6 +49,7 @@
     		</script>
     	</c:if> 
    	<jsp:include page="../main/header.jsp"/>
+
    	
    		 <div id="list">
             <div id="lnb">
@@ -154,6 +155,7 @@
 		
 		<div id="taxfreeinfo">
    		<table>
+
    		<tr>
    			<td colspan="3">
    				<h3>면세점 이용안내</h3>

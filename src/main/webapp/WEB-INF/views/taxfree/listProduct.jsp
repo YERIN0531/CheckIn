@@ -72,6 +72,7 @@
             </div><!-- lnb -->
         </div><!-- list -->
 	
+
         <div id="reserve">
             <div id="word">
                 <p>DUTY FREE</p>
@@ -82,6 +83,7 @@
  	<div id="logos">
         <p>PRODUCT LIST</p>
     </div>
+
 	
 	
 	<div id="wrap">

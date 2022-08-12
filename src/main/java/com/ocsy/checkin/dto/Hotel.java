@@ -27,5 +27,8 @@ public class Hotel {
 	private int headcount;
 	private int startRow;
 	private int endRow;
+	private String mid;
+	private int checkZZim;
+	
 	
 }
