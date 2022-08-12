@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.ocsy.checkin.dto.Hotel;
-import com.ocsy.checkin.dto.Hotel_ZZim;
 import com.ocsy.checkin.dto.Hotel_rs;
 
 public interface HotelService {
@@ -31,13 +30,11 @@ public interface HotelService {
 	
 	public List<Hotel_rs> checkHotelReservation(Hotel hotel);  // 특정 호텔 선택해서 들어왔을때 날짜변경해서 다시 조회할경우 
 	
-	public int insertHZZim(Hotel_ZZim hzzim); // 호텔 찜 추가
-	
-	public int checkZZim(Hotel_ZZim hzzim); // 찜 여부 조회
+	public int insertHZZim(Hotel hotel); // 호텔 찜 추가
 	
 	public List<Hotel> myHZZimList(String mid);  // 나의 호텔 찜목록 리스트 
 	
-	public int cancelHZZim(Hotel_ZZim hzzim);  // 찜취소
+	public int cancelHZZim(Hotel hotel);  // 찜취소
 	
 	public List<Hotel> adminHotelList(String pageNum,Hotel hotel);  // 관리자전용 호텔 리스트 출력
 	

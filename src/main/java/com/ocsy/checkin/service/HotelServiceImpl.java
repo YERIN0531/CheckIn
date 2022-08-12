@@ -152,7 +152,12 @@ public class HotelServiceImpl implements HotelService {
 
 	@Override
 	public List<Hotel> checkHotelReservationList(Hotel hotel) { 
-		return hotelDao.checkHotelReservationList(hotel);
+		List<Hotel> hotels = hotelDao.checkHotelReservationList(hotel);
+		for(int i = 0; i < hotels.size(); i++) {
+			hotels.get(i).setMid(hotel.getMid());
+			hotels.get(i).setCheckZZim(hotelDao.checkZZim(hotels.get(i)));
+		}
+		return hotels;
 	}
 
 	@Override
@@ -184,17 +189,15 @@ public class HotelServiceImpl implements HotelService {
 	}
 
 	@Override
-	public int insertHZZim(Hotel_ZZim hzzim) {
-		int result = hotelDao.insertHZZim(hzzim);
-		if(result == 1) {
+	public int insertHZZim(Hotel hotel) {
+		int result = 0;
+		result += hotelDao.insertHZZim1(hotel);
+		result += hotelDao.insertHZZim2(hotel);
+		result += hotelDao.insertHZZim3(hotel);
+		if(result == 3) {
 			System.out.println("호텔 찜 성공");
 		}
 		return result;
-	}
-
-	@Override
-	public int checkZZim(Hotel_ZZim hzzim) {
-		return hotelDao.checkZZim(hzzim);
 	}
 
 	@Override
@@ -203,8 +206,8 @@ public class HotelServiceImpl implements HotelService {
 	}
 
 	@Override
-	public int cancelHZZim(Hotel_ZZim hzzim) {
-		return hotelDao.cancelHZZim(hzzim);
+	public int cancelHZZim(Hotel hotel) {
+		return hotelDao.cancelHZZim(hotel);
 	}
 	
 	

@@ -115,17 +115,26 @@
   	
   	<!--  -->
   	<!--  호텔 찜 관련 -->
-  		<insert id="insertHZZim" parameterType="Hotel_ZZim">
-  			INSERT INTO HOTEL_ZZIM VALUES (HZZIM_SEQ.NEXTVAL, #{mid}, #{hotelid},SYSDATE )
+  		<insert id="insertHZZim1" parameterType="Hotel">
+  			INSERT INTO HOTEL_ZZIM VALUES (HZZIM_SEQ.NEXTVAL, #{mid}, #{hotelid} || '-SD', SYSDATE)
   		</insert>
-  		<select id="checkZZim" parameterType="Hotel_ZZim" resultType="int">
-  			SELECT COUNT(*) FROM HOTEL_ZZIM WHERE MID= #{mid} AND HOTELID = #{hotelid}
+  		<insert id="insertHZZim2" parameterType="Hotel">
+  			INSERT INTO HOTEL_ZZIM VALUES (HZZIM_SEQ.NEXTVAL, #{mid}, #{hotelid} || '-DL', SYSDATE)
+  		</insert>
+  		<insert id="insertHZZim3" parameterType="Hotel">
+  			INSERT INTO HOTEL_ZZIM VALUES (HZZIM_SEQ.NEXTVAL, #{mid}, #{hotelid} || '-SW', SYSDATE)
+  		</insert>
+  		
+  		
+  		<select id="checkZZim" parameterType="Hotel" resultType="int">
+  			SELECT COUNT(*) FROM HOTEL_ZZIM WHERE MID= #{mid} AND HOTELID LIKE #{hotelid}|| '%'
   		</select>
+  		
   		<select id="myHZZimList" parameterType="String" resultMap="HotelResult">
   			SELECT HZZIM, H.HOTELID,HOTELCOUNTRY, HOTELNAME,ROOMTYPE FROM HOTEL_ZZIM HZ, HOTEL H WHERE HZ.HOTELID = H.HOTELID AND MID= #{mid}
   		</select>
-  		<delete id="cancelHZZim" parameterType="Hotel_ZZim">
-  			DELETE FROM HOTEL_ZZIM WHERE MID= #{mid} AND HZZIM = #{hzzim}
+  		<delete id="cancelHZZim" parameterType="Hotel">
+  			DELETE FROM HOTEL_ZZIM WHERE MID= #{mid} AND HOTELID LIKE #{hotelid} || '%'
   		</delete>
   	<!--  -->
   </mapper>  
