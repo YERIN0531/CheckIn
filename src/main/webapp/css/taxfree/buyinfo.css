@@ -1,0 +1,233 @@
+@charset "UTF-8";
+*{
+	padding : 0 px;
+	margin : 0px;
+    font-family: 'IBM Plex Sans KR', sans-serif;
+}
+
+section{
+	width:70%;
+	margin: 60px auto;
+	
+}
+#Customer h4{
+	font-size:1.2em;
+}
+#Customer p{
+	font-size:0.9em;
+}
+
+section #Customerinfo{
+	border:1px solid lightgray;
+	margin-bottom: 20px;
+	margin-top: 20px;
+	height:100px;
+	padding-top:30px;
+	box-shadow:1px 1px 1px 1px lightgray;
+	padding:30px;
+}
+section #Customerinfo table{
+	border: 1px solid red;
+	margin-top:0;
+}
+section #Customerinfo p{
+	font-weight: bold;
+	padding-bottom:10px;
+}
+section #Customerinfo input{
+	margin-right:15px;
+}
+section #Customerinfo input[name="cname"]{
+	width:25%;
+	height:35px;
+	border: 1px solid lightgray;
+	border-radius: 5px;
+}
+section #Customerinfo input[name="cemail"]{
+	width:30%;
+	height:35px;
+	border: 1px solid lightgray;
+	border-radius: 5px;
+}
+section #Customerinfo input[name="cphone"]{
+	width:30%;
+	height:35px;
+	border: 1px solid lightgray;
+	border-radius: 5px;
+}
+
+/*********************************************/
+
+section #Passengerinfo{
+	margin-bottom: 20px;
+	height:130px;
+	padding-top:15px;
+	box-shadow:1px 1px 1px 1px lightgray;
+	padding:30px;
+	border:1px solid lightgray;
+	
+}
+section #Passengerinfo p{
+	font-weight: bold;
+	padding-bottom:10px;
+}
+section #Passengerinfo input{
+	margin-right:15px;
+}
+section #Passengerinfo input[name="cename"]{
+	width:25%;
+	height:35px;
+	border: 1px solid lightgray;
+	border-radius: 5px;
+}
+section #Passengerinfo input[name="cbirth"]{
+	width:10%;
+	height:35px;
+	border: 1px solid lightgray;
+	border-radius: 5px;
+}
+section #Passengerinfo select{
+	width:10%;
+	height:35px;
+	border: 1px solid lightgray;
+	border-radius: 5px;
+}
+section #Passengerinfo input[name="cpassport"]{
+	width:37%;
+	height:35px;
+	border: 1px solid lightgray;
+	border-radius: 5px;
+}
+section #Passengerinfo input[name="gender"]{
+}
+
+
+/*********************************************/
+section #Payinfo{
+	margin-bottom: 20px;
+	height:250px;
+	padding-top:15px;
+	box-shadow:1px 1px 1px 1px lightgray;
+	padding:30px;
+	border:1px solid lightgray;
+}
+
+section #Payinfo p{
+	font-weight: bold;
+	padding-bottom:10px;
+}
+section #Payinfo input{
+	margin-right:10px;
+}
+section #Payinfo table{
+}
+section #Payinfo table td{
+	padding:5px;
+}
+
+section #Payinfo table #cardselect{
+	width:150px;
+	height:30px;
+	border: 1px solid lightgray;
+	border-radius:5px;
+	color:gray;
+}
+
+section #Payinfo table input[name="card1"]{
+	width:15%;
+	height:30px;
+	border: 1px solid lightgray;
+	border-radius: 5px;
+}
+section #Payinfo table input[name="card2"]{
+	width:15%;
+	height:30px;
+	border: 1px solid lightgray;
+	border-radius: 5px;
+}
+section #Payinfo table input[name="card3"]{
+	width:15%;
+	height:30px;
+	border: 1px solid lightgray;
+	border-radius: 5px;
+}
+section #Payinfo table input[name="cardname"]{
+	width:30%;
+	height:30px;
+	border: 1px solid lightgray;
+	border-radius: 5px;
+	text-align: center;
+}
+section #Payinfo table input[name="cardbirth"]{
+	width:30%;
+	height:30px;
+	border: 1px solid lightgray;
+	border-radius: 5px;
+	text-align: center;
+	color:gray;
+	
+}
+section #Payinfo table input[name="cardmonth"]{
+	width:30%;
+	height:30px;
+	border: 1px solid lightgray;
+	border-radius: 5px;
+}
+section #Payinfo table input[name="cardyear"]{
+	width:30%;
+	height:30px;
+	border: 1px solid lightgray;
+	border-radius: 5px;
+}
+
+/*********************************************/
+
+section #mileage{
+	margin-bottom: 20px;
+	height:150px;
+	padding-top:15px;
+	box-shadow:1px 1px 1px 1px lightgray;
+	padding:30px;
+	border:1px solid lightgray;
+}
+section #mileage .title{
+	font-weight: bold;
+	padding-bottom:10px;
+}
+section #mileage input{
+	margin-right:10px;
+}
+section #mileage table{
+	width:30%;
+}
+
+section #mileage table td{
+		padding:5px;
+	
+}
+section #mileage table input[name="mmileage"]{
+	width:80%;
+	height:30px;
+	border: 1px solid lightgray;
+	border-radius: 5px;
+}
+section #mileage table input[name="paymoney"]{
+	width:80%;
+	height:30px;
+	border: 1px solid lightgray;
+	border-radius: 5px;
+}
+#submitbutton{
+	width:30%;
+	margin:0 auto;
+	text-align: center;
+	margin-top:50px;
+}
+#submitbutton input[type="submit"]{
+	height:40px;
+	width:50%;
+	border-radius: 5px;
+	background-color: #d1dde4;
+	color:white;
+	border:none;
+}

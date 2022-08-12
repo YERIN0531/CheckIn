@@ -8,7 +8,8 @@
 <head>
 <meta charset="UTF-8">
   <title>Insert title here</title>
-  <link href="${conPath }/css/style.css" rel="stylesheet">
+  <link href="${conPath }/css/taxfree/buyinfo.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Domine:wght@500&family=IBM+Plex+Sans+KR:wght@300;400&family=Libre+Baskerville&family=Nanum+Gothic&family=Satisfy&family=The+Nautigal:wght@400;700&display=swap" rel="stylesheet">
  <style>
  </style>
  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -20,15 +21,17 @@
 </head>
 
  <body>
- 	
  	<jsp:include page="../main/header.jsp"/>
- 	
+<section>	
  	<form action="${conPath }/cart.do?method=buyProduct" method="post">
-  	<table>
-  		<caption><b>결제정보</b></caption>
-  		<tr>
-  			<td colspan="4"><b>여권정보</b></td>
-  		</tr>
+  	
+  	<div id=Customer>
+	  	<h4>예약 및 결제 정보 입력</h4>
+	 	<p>입력한 정보로 예약 및 결제가 진행됩니다</p>
+  	</div>
+  	<div id="Customerinfo">
+		<p>여권정보</p>  		
+  		<table>
   		<tr>
   			<td>여권정보</td><td>${member.mname } / ${member.mgender }</td>
   			<td>생년월일</td><td>${member.mbirth }</td>
@@ -41,15 +44,18 @@
 	  		<td>여권이름(영문)</td><td>${member.mename }</td>
 	  		<td>주소</td><td>${member.maddress }</td>
   		</tr>
-  		
+
   		<tr>
   			<td colspan="4">
   			출국자 여권번호가 일치하지 않거나, 구 여권번호 혹은 잘못 입력하신 여권번호로 주문하시면 상품 수령이 불가능합니다. <br>
 			영문이름은 여권에 기입된 영문이름과 동일해야 상품 수령이 가능합니다.
   			</td>
   		</tr>
-  		
+  		</table>
+	</div>
 	
+	
+	<table>
   		<tr>  		
 	  		<td colspan="4"><b>출국정보</b></td>
   		</tr>
@@ -134,7 +140,7 @@
   		</tr>
   	</table> 
   	</form>
-  	
+  	</section> 
   	<jsp:include page="../main/footer.jsp"/>
   	
   </body>
