@@ -102,7 +102,7 @@
    		<c:forEach items="${productCategory }" var="pDto">
    		<td onclick="location.href='${conPath}/taxfree.do?method=detail&mid=${member.mid }&pnum=${pDto.pnum }&pageNum=${paging.currentPage}'">
    				<c:if test="${pDto.pimage1 eq null or '' }">
-	   			<img src="${conPath }/taxfree/noimg.jpg" alt="noimg.jpg" width="250" height="300">
+	   			<img src="${conPath }/taxfree/noimage.png" alt="noimage.png" width="250" height="300">
 	   			</c:if>
 	   			<c:if test="${pDto.pimage1 != null or '' }">
 	   			<img src="${conPath }/taxfree/${pDto.pimage1 }" alt="${pDto.pimage1 }" width="300" height="300">

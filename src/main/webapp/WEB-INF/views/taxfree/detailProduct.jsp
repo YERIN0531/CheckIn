@@ -48,7 +48,7 @@
    		<tr>
    		<td rowspan="7" class="image">
 	   			<c:if test="${taxfreeDto.pimage1 eq null or '' }">
-	   			<img src="${conPath }/taxfree/noimg.jpg" alt="noimg.jpg" width="300" height="300">
+	   			<img src="${conPath }/taxfree/noimage.png" alt="noimg.jpg" width="300" height="300">
 	   			</c:if>
 	   			<c:if test="${taxfreeDto.pimage1 != null or '' }">
 	   			<img src="${conPath }/taxfree/${taxfreeDto.pimage1 }" alt="${taxfreeDto.pimage1 }" width="300" height="300">
@@ -114,7 +114,7 @@
    		<tr>
    			<td colspan="3" class="image">
    			<c:if test="${taxfreeDto.pimage2 eq null or '' }">
-   			<img src="${conPath }/taxfree/noimg.jpg" width="300" height="300">
+   			<img src="${conPath }/taxfree/noimage.png" width="300" height="300">
    			</c:if>
    			<c:if test="${taxfreeDto.pimage2 != null or '' }">
    			<img src="${conPath }/taxfree/${taxfreeDto.pimage2 }" alt="${pDto.pimage2 }" width="300" height="300">
@@ -124,7 +124,7 @@
    		<tr>
    			<td colspan="3" class="image">
    			<c:if test="${taxfreeDto.pimage3 eq null or '' }">
-   			<img src="${conPath }/taxfree/noimg.jpg" width="300" height="300" >
+   			<img src="${conPath }/taxfree/noimage.png" width="300" height="300" >
    			</c:if>
    			<c:if test="${taxfreeDto.pimage3 != null or '' }">
    			<img src="${conPath }/taxfree/${taxfreeDto.pimage3 }" alt="${pDto.pimage3 }" width="300" height="300">
