@@ -144,7 +144,7 @@
 						</tr>
 						<tr>
 							<td>
-								<button onclick="location='${conPath }/hotel.do?method=insertHotelReservationView&hotelid=${hotel.hotelid }&schcheckindate=${hotelDto.schcheckindate }&schcheckoutdate=${hotelDto.schcheckoutdate }&headcount=${hotelDto.headcount }'">예약하기</button>				
+								<button onclick="location='${conPath }/hotel.do?method=insertHotelReservationView&hotelid=${hotel.hotelid }&schcheckindate=${hotelDto.schcheckindate }&schcheckoutdate=${hotelDto.schcheckoutdate }&headcount=${hotelDto.headcount }&roomprice=${hotel.roomprice }'">예약하기</button>				
 							</td>					
 						</tr>
 					</c:if>
@@ -193,7 +193,7 @@
 						<tr>	
 							<td>
 							
-								<button onclick="location='${conPath }/hotel.do?method=insertHotelReservationView&hotelid=${hotel.hotelid }&schcheckindate=${hotelDto.schcheckindate }&schcheckoutdate=${hotelDto.schcheckoutdate }&headcount=${hotelDto.headcount }'">예약하기</button>			
+								<button onclick="location='${conPath }/hotel.do?method=insertHotelReservationView&hotelid=${hotel.hotelid }&schcheckindate=${hotelDto.schcheckindate }&schcheckoutdate=${hotelDto.schcheckoutdate }&headcount=${hotelDto.headcount }&roomprice=${hotel.roomprice }'">예약하기</button>			
 							</td>			
 						</tr>
 					</c:if>
@@ -240,7 +240,7 @@
 						</tr>
 						<tr>	
 							<td>
-								<button onclick="location='${conPath }/hotel.do?method=insertHotelReservationView&hotelid=${hotel.hotelid }&schcheckindate=${hotelDto.schcheckindate }&schcheckoutdate=${hotelDto.schcheckoutdate }&headcount=${hotelDto.headcount }'">예약하기</button>				
+								<button onclick="location='${conPath }/hotel.do?method=insertHotelReservationView&hotelid=${hotel.hotelid }&schcheckindate=${hotelDto.schcheckindate }&schcheckoutdate=${hotelDto.schcheckoutdate }&headcount=${hotelDto.headcount }&roomprice=${hotel.roomprice }'">예약하기</button>				
 							</td>				
 						</tr>
 					</c:if>
