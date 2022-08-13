@@ -10,7 +10,6 @@
   <title>Insert title here</title>
   <link href="${conPath }/css/style.css" rel="stylesheet">
  <style>
- 
  </style>
  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
  <script>
@@ -32,13 +31,15 @@
    				</tr>
    				<tr>
    					<th>글본문</th>
-   						<td><input type="text" name="ncontent" required="required"></td>
+   						<td>
+   						<textarea name="ncontent" rows="3" cols="32" required="required"></textarea>
+   						</td>
    				</tr>
    				<tr>
    					<th>사진등록</th><td><input type="file" name="tempnimage1" ></td>
    			     </tr>
    			    
-   					<tr><td colspan="2">
+   					<tr><td colspan="2" class="btn">
 				<input type="submit" value="등록">
 				<button onclick="location='${conPath }/notice.do?method=noticeList&pageNum=${param.pageNum}'">목록</button>
 		</table>
