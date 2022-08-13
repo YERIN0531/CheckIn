@@ -225,4 +225,9 @@ SELECT OD.OR_NUM, ORDATE, PIMAGE1, PNAME, OD.QTY, PPRICE, OD.COST
 --------------------------------------------------------------------------------
 COMMIT;
 
+SELECT * FROM TAXFREE;
+SELECT * FROM CART;
+SELECT * FROM ORDERS;
+SELECT * FROM ORDER_DETAIL;
+
 

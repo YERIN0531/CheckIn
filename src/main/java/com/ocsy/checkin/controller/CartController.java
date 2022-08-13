@@ -79,12 +79,12 @@ public class CartController {
 		List<Cart> cart = cartService.listCart(session); // 카트 받아오기
 		cartService.updateStock(cart); // 재고 수정해주기
 		cartService.cartDelete(session);// 장바구니 비우기
-		// System.out.println("controller : 내 주문정보 출력하기");
+		System.out.println("controller : 내 주문정보 출력하기");
 
 		return "forward:cart.do?method=orderDetailList"; // 넘겨주기
 	}
 	
-	// 리스트 출력하기는 따로 빼보자
+	// 주문 디테일 리스트 출력하기는 따로 분리
 	@RequestMapping(params="method=orderDetailList", method={RequestMethod.GET, RequestMethod.POST})
 	public String orderDetailList(HttpSession session, Model model) {
 		model.addAttribute("orderDetailList", cartService.myOrderDetail(session));
