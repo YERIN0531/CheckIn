@@ -1,0 +1,111 @@
+@charset "UTF-8";
+*{
+	margin:0;
+	paddin:0;
+		 font-family: 'IBM Plex Sans KR', sans-serif;
+}
+   #logos {
+            width: 500px;
+            margin: 20px auto;
+            margin-top: 50px;
+        }
+
+            #logos p {
+                font-family: 'Domine', serif;
+                color: #3a4a54;
+                font-size: 1.7em;
+                font-weight: bold;
+                width: 300px;
+                margin: 0 auto;
+                text-align: center;
+            }
+#content{
+	margin:50px;
+} 
+
+
+
+
+    /* 사이즈 조정 */
+    table {
+       margin: 0 auto;
+       box-sizing: border-box;
+       width: 850px;
+       height: 500px;
+       border-radius: 3px;
+       border-spacing: 0px;
+       border:1px solid #2c4451;
+       
+    }
+    caption {
+       height: 40px;
+       line-height: 40px;
+       background-color:#2c4451;
+       color:white;
+    }
+    th, td {
+       width: 50px;
+       border: 1px solid #2c4451;
+       		border: 1px solid lightgray;
+       
+    }
+    
+    th{
+    	font-size:0.9em;
+    	color:#2c4451;
+    	height:30px;
+    }
+   
+    input[type="text"] {
+       margin-left: 6px;
+       padding: 8px;
+       box-sizing:border-box;
+       width: 97%;
+       height:100%;
+       border:none;
+    }
+   textarea {
+   	  margin:0;
+   	  padding:0;
+      width: 90%;
+      height:400px;
+      font-size: 1.2em;
+   }
+    input[type="file"] {
+       margin-left: 6px;
+       box-sizing: border-box;
+    }
+   
+    /* td : button 들어가는 부분 */
+    .btn {
+       text-align: center;
+       height:30px;
+    }
+input[type="radio"]{
+	padding-left:10px;
+	margin-left:10px;
+}    
+.td-6 input[type="number"]{
+	height:25px;
+	border:1px solid lightgray;
+	padding-left:10px;
+	margin-left:10px;
+}    
+input[type="submit"]{
+	height:30px;
+	width:90px;
+	border-radius: 5px;
+	background-color: #3a4a54;
+	color:white;
+	border:none;
+	text-align: center;
+}
+input[type="button"]{
+	height:30px;
+	width:90px;
+	border-radius: 5px;
+	background-color: #3a4a54;
+	color:white;
+	border:none;
+	text-align: center;
+}           

@@ -21,18 +21,31 @@ section #Customerinfo{
 	border:1px solid lightgray;
 	margin-bottom: 20px;
 	margin-top: 20px;
-	height:100px;
+	height:150px;
 	padding-top:30px;
 	box-shadow:1px 1px 1px 1px lightgray;
 	padding:30px;
 }
 section #Customerinfo table{
-	border: 1px solid red;
+	width:70%;
 	margin-top:0;
+}
+section #Customerinfo table th{
+	text-align: left;
+	font-size:0.9em;
+	padding-left:10px;
+}
+section #Customerinfo table .passportinfo{
+	font-size:0.8em;
+	color: gray;
+	text-align: left;
+	padding-left: 10px;
+	padding-top:15px;
+	padding-bottom: 15px;
 }
 section #Customerinfo p{
 	font-weight: bold;
-	padding-bottom:10px;
+	padding-bottom:5px;
 }
 section #Customerinfo input{
 	margin-right:15px;
@@ -67,6 +80,38 @@ section #Passengerinfo{
 	border:1px solid lightgray;
 	
 }
+section #Passengerinfo table{
+	width:70%;
+	padding:10px;
+}
+section #Passengerinfo table th{
+	text-align: left;
+	font-size:0.9em;
+	padding-left:10px;
+}
+section #Passengerinfo table td{
+	padding:10px;
+	}
+section #Passengerinfo table select{
+	border:1px solid lightgray;
+	width:100px;
+	color:gray;
+}
+section #Passengerinfo table input[type="date"]{
+	border:1px solid lightgray;
+	width:130px;
+	color:gray;
+}
+
+section #Passengerinfo table input[type="text"]{
+	border:1px solid lightgray;
+	width:130px;
+	color:gray;
+	height:30px;
+	border-radius: 3px;
+}
+
+
 section #Passengerinfo p{
 	font-weight: bold;
 	padding-bottom:10px;
@@ -74,31 +119,12 @@ section #Passengerinfo p{
 section #Passengerinfo input{
 	margin-right:15px;
 }
-section #Passengerinfo input[name="cename"]{
-	width:25%;
-	height:35px;
-	border: 1px solid lightgray;
-	border-radius: 5px;
-}
-section #Passengerinfo input[name="cbirth"]{
-	width:10%;
-	height:35px;
-	border: 1px solid lightgray;
-	border-radius: 5px;
-}
+
 section #Passengerinfo select{
 	width:10%;
 	height:35px;
 	border: 1px solid lightgray;
 	border-radius: 5px;
-}
-section #Passengerinfo input[name="cpassport"]{
-	width:37%;
-	height:35px;
-	border: 1px solid lightgray;
-	border-radius: 5px;
-}
-section #Passengerinfo input[name="gender"]{
 }
 
 
@@ -180,54 +206,57 @@ section #Payinfo table input[name="cardyear"]{
 	border-radius: 5px;
 }
 
-/*********************************************/
 
-section #mileage{
+section #Productinfo{
 	margin-bottom: 20px;
-	height:150px;
+	height:280px;
 	padding-top:15px;
 	box-shadow:1px 1px 1px 1px lightgray;
-	padding:30px;
+	padding:20px;
 	border:1px solid lightgray;
 }
-section #mileage .title{
+section #Productinfo p{
 	font-weight: bold;
 	padding-bottom:10px;
+	padding-left:10px;
 }
-section #mileage input{
-	margin-right:10px;
+section #Productinfo table{
+	width:80%;
+
 }
-section #mileage table{
-	width:30%;
+section #Productinfo table td{
+	text-align: center;
+}
+section #Productinfo table th{
+	font-size:0.9em;
+	height:10px;
+	padding:10px;
 }
 
-section #mileage table td{
-		padding:5px;
-	
-}
-section #mileage table input[name="mmileage"]{
-	width:80%;
-	height:30px;
-	border: 1px solid lightgray;
-	border-radius: 5px;
-}
-section #mileage table input[name="paymoney"]{
-	width:80%;
-	height:30px;
-	border: 1px solid lightgray;
-	border-radius: 5px;
-}
+
+
+/*********************************************/
+
+
 #submitbutton{
-	width:30%;
+	width:50%;
 	margin:0 auto;
 	text-align: center;
 	margin-top:50px;
 }
 #submitbutton input[type="submit"]{
 	height:40px;
-	width:50%;
+	width:100px;
 	border-radius: 5px;
-	background-color: #d1dde4;
+	background-color: #3a4a54;
+	color:white;
+	border:none;
+}
+#submitbutton input[type="button"]{
+	height:40px;
+	width:100px;
+	border-radius: 5px;
+	background-color: #3a4a54;
 	color:white;
 	border:none;
 }

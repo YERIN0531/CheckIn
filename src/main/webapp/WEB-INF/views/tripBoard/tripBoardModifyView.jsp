@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
   <title>Insert title here</title>
-  <link href="${conPath }/css/style.css" rel="stylesheet">
+  <link href="${conPath }/css/board/tripwrite.css" rel="stylesheet">
  <style>
  
  </style>
@@ -20,29 +20,33 @@
  </script>  
 </head>
   <body>
-	<h1>여행메이트 구인 글 작성 페이지입니다.</h1>
+  <jsp:include page="../board/boardmain.jsp"/>
+		 <div id="logos">
+        <p>MAKING TRIPMATE</p>
+    </div>
+    <div id="content">
 	<form action="${conPath }/trip.do?method=tripBoardModify" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="tnum" value="${boardDto.tnum }">
 		<table>
+			<caption>MODIFY</caption>
 			<tr>
-				<td>
-					글제목 : <input type="text" name="ttitle" value="${boardDto.ttitle }">
+			<th>글제목</th>
+				<td> <input type="text" name="ttitle" value="${boardDto.ttitle }">
 				</td>
 			</tr>
 			<tr>
-				<td>
-					팀 이름 : <input type="text" name="teamname" value="${boardDto.teamname }">
+			<th>팀이름</th>
+				<td><input type="text" name="teamname" value="${boardDto.teamname }">
 				</td>
 			</tr>
 			<tr>
-				<td>
-					인원수 : <input type="number" name="tmaxmembercount" value="${boardDto.tmaxmembercount }">
+			<th>인원수</th>
+				<td><input type="number" name="tmaxmembercount" value="${boardDto.tmaxmembercount }">
 				</td>
 			</tr>
 			<tr>
+			<th>원하는동행성별</th>
 				<td>
-					같이가고싶은 성별 (작성자 성별 : <c:if test="${member.mgender eq 'F' }">여성</c:if>
-											  <c:if test="${member.mgender eq 'M' }">남성</c:if>)
 								<c:if test="${boardDto.tgender eq 'F' or boardDto.tgender eq 'M'}">
 									<input type="radio" name="tgender" value="${member.mgender }" checked="checked">동성
 									<input type="radio" name="tgender" value="MG">혼성
@@ -54,8 +58,8 @@
 				</td>
 			</tr>
 			<tr>
-				<td>
-					여행 스타일 : <c:if test="${boardDto.tstyle eq 'TRIPBUSY' }">
+			<th>여행스타일</th>
+				<td><c:if test="${boardDto.tstyle eq 'TRIPBUSY' }">
 									<input type="radio" name="tstyle" value="TRIPBUSY" checked="checked">바쁜 일정
 									<input type="radio" name="tstyle" value="TRIPSTAY">호캉스
 								</c:if>
@@ -66,8 +70,8 @@
 				</td>
 			</tr>
 			<tr>
-				<td>
-					숙소 스타일 : 	<c:if test="${boardDto.thotelstyle eq 'CHEAP' }">
+			<th>숙소스타일</th>
+				<td><c:if test="${boardDto.thotelstyle eq 'CHEAP' }">
 									<input type="radio" name="thotelstyle" value="CHEAP" checked="checked">가성비
 									<input type="radio" name="thotelstyle" value="EXPENSIVE">호화로운
 								</c:if>	
@@ -78,8 +82,8 @@
 				</td>
 			</tr>
 			<tr>
-				<td>
-					노는 스타일 : <c:if test="${boardDto.tplaystyle eq 'QUIET' }">
+			<th>노는스타일</th>
+				<td><c:if test="${boardDto.tplaystyle eq 'QUIET' }">
 									<input type="radio" name="tplaystyle" value="QUIET" checked="checked" >휴양
 									<input type="radio" name="tplaystyle" value="ACTIVITY">액티비티
 								</c:if>
@@ -90,22 +94,25 @@
 				</td>
 			</tr>
 			<tr>
-				<td>
-					하고싶은말 : <input type="text" name="tcontent" value="${boardDto.tcontent }">
+			<th>하고싶은말</th>
+				<td><input type="text" name="tcontent" value="${boardDto.tcontent }">
 				</td>
 			</tr>
 			<tr>
-				<td>
-					파일 : <input type="file" name="temptimage">
+			<th>파일</th>
+				<td><input type="file" name="temptimage">
 				</td>
 			</tr>
 			<tr>
-				<td>
+				<td colspan="2" class="btn">
 					<input type="submit" value="글 수정">
 					<input type="button" value="뒤로가기" onclick="history.back()">
 				</td>
 			</tr>
 		</table>
 	</form>
+</div>
+	<jsp:include page="../main/footer.jsp"/>
+
   </body>
 </html>

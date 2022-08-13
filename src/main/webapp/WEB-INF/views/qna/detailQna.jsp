@@ -8,7 +8,7 @@
 <head>
    <meta charset="UTF-8">
    <title>Insert title here</title>
-   <link href="${conPath }/css/style.css" rel="stylesheet">
+   <link href="${conPath }/css/board/reviewdetail.css" rel="stylesheet">
 </head>
 <style>
 </style>
@@ -31,7 +31,7 @@
 	</c:if>
 <div id="content">
 <table>
-
+<jsp:include page="../board/boardmain.jsp"/>
 	<caption>${qnaDto.qnum }번 글 상세보기 ${qnaDto.qindent }</caption>
 	<tr>
 	   <th>제목</th>
@@ -46,16 +46,24 @@
 	   <c:if test="${qnaDto.qfile1 eq null or '' and qnaDto.qfile2 eq null or '' }">
 	     <td colspan="2">등록된 사진이 없습니다</td>
 	   </c:if>
-	   <td colspan="2">
+	   </tr>
+	   
+	   
+	   
 	     <c:if test="${qnaDto.qfile1 != null or '' }">
-	       <img src="${conPath }/fileUpload/${qnaDto.qfile1 }" width='200'><br>
+	     <tr>
+	   		<td colspan="2">
+	       		<img src="${conPath }/fileUpload/${qnaDto.qfile1 }" width='200'><br>
+	       	</td></tr>	
 	     </c:if>
 	     <c:if test="${qnaDto.qfile2 != null or '' }">
+	     <tr>
+	   		<td colspan="2">
 	       <img src="${conPath }/fileUpload/${qnaDto.qfile2 }" width='200'>
+	       </td></tr>
 	    </c:if>
-	</tr>
 	<tr>
-	  <td colspan="3">
+	  <td colspan="3" class="btn">
 	    <c:if test="${not empty member && member.mid eq qnaDto.qid }"> <!-- 회원로그인 && 수정 삭제  -->
 	      <button onclick="location='${conPath }/qna.do?method=qnaModifyForm&qnum=${qnaDto.qnum}&pageNum=${param.pageNum}'">수정</button>
 	      <button onclick="deleteCheck()"> 삭제</button>	
@@ -80,7 +88,7 @@
 </div>
 
 
-
+<jsp:include page="../main/footer.jsp"/>
   
 </body>
 </html>

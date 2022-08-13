@@ -33,20 +33,20 @@
 		<p>여권정보</p>  		
   		<table>
   		<tr>
-  			<td>여권정보</td><td>${member.mname } / ${member.mgender }</td>
-  			<td>생년월일</td><td>${member.mbirth }</td>
+  			<th>성함/성별</th><td>${member.mname } / ${member.mgender }</td>
+  			<th>생년월일</th><td>${member.mbirth }</td>
   		</tr>
   		<tr>
-  			<td>국적</td><td>대한민국</td>
-  			<td>여권번호</td><td> </td>
+  			<th>국적</th><td>대한민국</td>
+  			<th>여권번호</th><td> </td>
   		</tr>
   		<tr>
-	  		<td>여권이름(영문)</td><td>${member.mename }</td>
-	  		<td>주소</td><td>${member.maddress }</td>
+	  		<th>여권이름(영문)</th><td>${member.mename }</td>
+	  		<th>주소</th><td>${member.maddress }</td>
   		</tr>
 
   		<tr>
-  			<td colspan="4">
+  			<td colspan="4" class="passportinfo">
   			출국자 여권번호가 일치하지 않거나, 구 여권번호 혹은 잘못 입력하신 여권번호로 주문하시면 상품 수령이 불가능합니다. <br>
 			영문이름은 여권에 기입된 영문이름과 동일해야 상품 수령이 가능합니다.
   			</td>
@@ -55,12 +55,12 @@
 	</div>
 	
 	
-	<table>
-  		<tr>  		
-	  		<td colspan="4"><b>출국정보</b></td>
-  		</tr>
+	<div id="Passengerinfo">
+	
+		<p>출국정보</p>
+	<table >
   		<tr>
-  			<td>출발지</td>
+  			<th>출발지</th>
   			<td><select name="departure">
   					<option>출발장소 선택</option>
   					<option>인천국제공항</option>
@@ -70,75 +70,89 @@
   					<option>대구국제공항</option>
   				</select>
   			</td>
-  			<td>출국일시</td>
+  			<th>출국일시</th>
   			<td><input type="date"></td>
   		</tr>
   		<tr>
-  			<td>항공편</td><td><input type="text" placeholder="KE"><input type="text" placeholder="1234" size="4"></td>
-  			<td>경유지</td><td><input type="radio" value="직항" checked="checked"> 직항 &nbsp;<input type="radio" value="경유" size="4"> 경유</td>
+  			<th>항공편</th><td><input type="text" placeholder="KE"><input type="text" placeholder="1234" size="4"></td>
+  			<th>경유지</th><td><input type="radio" value="직항" checked="checked"> 직항 &nbsp;<input type="radio" value="경유" size="4"> 경유</td>
   		</tr>
+  		</table>
+  		</div> <!-- Passengerinfo -->
   		
-  		<tr>
-  			<th colspan="2">상품정보</th><th>수량</th><th>가격</th><th>총가격</th>
-  		</tr>
-  		<c:forEach items="${cartList }" var="cart">
-  		<tr>
-  			<td><img src="${conPath }/taxfree/${cart.pimage1 }" width="100" height="100"></td>
-  			<td>${cart.pname }</td>
-  			<td>${cart.qty }</td>
-  			<td>${cart.pprice }</td>
-  			<td>${cart.cost }</td>
-  		</tr>
-  		</c:forEach>
   		
-  		<tr>
-  			<td colspan="4"><b>결제정보</b></td>
-  		</tr>
-  		<tr>
-  			<td>결제방법</td>
-  			<td colspan="3">
-  			카드선택 
-  				<select>
-  					<option>카드사 선택</option>
-  					<option>KB국민카드</option>
-  					<option>롯데카드</option>
-  					<option>신한카드</option>
-  					<option>하나카드</option>
-  					<option>BC카드</option>
-  					<option>삼성카드</option>
-  					<option>현대카드</option>
-  					<option>우리카드</option>
-  					<option>NH농협카드</option>
-  					<option>씨티카드</option>
-  					<option>카카오뱅크카드</option>
-  					<option>토스뱅크카드</option>
-  					<option>기타(은행/증권)카드</option>
-  				</select>
-  				<input type="text" size="4">
-  				<input type="password" size="4">
-  				<input type="password" size="4">
-  				<input type="text" size="4">
-  			&nbsp;&nbsp; 할부기간 
-  			<select>
-  					<option>일시불</option>
-  					<option>2개월(무이자)</option>
-  					<option>3개월(무이자)</option>
-  					<option>4개월</option>
-  					<option>5개월</option>
-  					<option>6개월</option>
-  					<option>7개월</option>
-  					<option>8개월</option>
-  				</select>
-  			</td>
-  		</tr>
   		
-  		<tr>
-  			<td colspan="4">
+  		<div id="Productinfo">
+  		<p>상품정보</p>
+	  		<table>
+	  		<tr>
+	  			<th class="th-1">상품이미지</th><th class="th-2">상품정보</th><th class="th-3">수량</th><th class="th-4">가격</th><th class="th-5">총가격</th>
+	  		</tr>
+	  		<c:forEach items="${cartList }" var="cart">
+	  		<tr>
+	  			<td><img src="${conPath }/taxfree/${cart.pimage1 }" width="1
+	  			00" height="100"></td>
+	  			<td>${cart.pname }</td>
+	  			<td>${cart.qty }</td>
+	  			<td>＄${cart.pprice }</td>
+	  			<td>＄${cart.cost }</td>
+	  		</tr>
+	  		</c:forEach>
+	  	
+	  		</table>
+  		</div>
+  		
+  		
+  		
+  		
+  	<div id="Payinfo">
+ 		  	<p>결제수단선택</p>
+   			<table>
+   				<tr>
+   				<td>카드사</td>
+   				<td>
+   					<select id="cardselect">
+   						<option>삼성카드</option>
+   						<option>하나카드</option>
+   						<option>농협카드</option>
+   						<option>우리카드</option>
+   						<option>국민카드</option>
+   					</select>
+   				</td>
+   				</tr>
+   				<tr>
+   				<td>카드번호</td>
+   				<td>
+	   				<input type="text" name="card1">-
+				    <input type="text" name="card2">-
+				    <input type="text" name="card3">
+			    </td>
+   				</tr>
+				<tr>
+				<td>카드소유자</td>
+				<td><input type="text" name="cardname" placeholder="카드소유자명을 입력해주세요"></td>
+				</tr>
+				<tr>
+				<td>법정생년월일</td>
+				<td><input type="date" name="cardbirth" placeholder="법정생년월일을 입력해주세요"></td>
+				</tr>
+					<tr>
+   				<td>유효기간</td>
+   				<td>
+	   				<input type="text" name="cardmonth" placeholder="월(MM)">
+				    <input type="text" name="cardyear" placeholder="년도(YYYY)">
+			    </td>
+   				</tr>
+   			</table>
+   		</div> <!-- Payinfo -->
+  		
+  		
+  		
+  		
+  		<div id="submitbutton">
   				<input type="button" value="뒤로가기" onclick="history.back();">
   				<input type="submit" value="결제하기" onclick="alert('주문이 성공되었습니다.');">
-  			</td>
-  		</tr>
-  	</table> 
+		</div>
   	</form>
   	</section> 
   	<jsp:include page="../main/footer.jsp"/>

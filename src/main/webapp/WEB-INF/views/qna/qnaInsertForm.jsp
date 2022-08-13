@@ -8,7 +8,8 @@
 <head>
    <meta charset="UTF-8">
    <title>Insert title here</title>
-   <link href="${conPath }/css/style.css" rel="stylesheet">
+   <link href="${conPath }/css/board/qnawrite.css" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css2?family=Domine:wght@500&family=IBM+Plex+Sans+KR:wght@300;400&family=Libre+Baskerville&family=Nanum+Gothic&family=Satisfy&family=The+Nautigal:wght@400;700&display=swap" rel="stylesheet">
      <script src="http://code.jquery.com/jquery-3.6.0.js"></script>
    <script>
 	$(document).ready(function() {
@@ -22,22 +23,21 @@
 </script>
 </head>
 <body>
+<jsp:include page="../board/boardmain.jsp"/>
 <div id="content">
 		<form action="${conPath }/qna.do?method=insertQna" method="post"enctype="multipart/form-data">
 
 			<%-- <input type="text" name="qid" value= "${qid}"> --%>
-			<input type="text" name="qid" value="${member.mid }">
+			<input type="hidden" name="qid" value="${member.mid }">
 			<table>
-				<caption>${param.qnum }</caption>
-				
-
+				<caption>WRITE</caption>
 				<tr>
-					<th>글제목</th>
+					<th class="th-1">글제목</th>
 					<td><input type="text" name="qtitle" required="required"
 						value="${qnaDto.qtitle }"></td>
 				</tr>
 				<tr>
-					<th>글본문</th>
+					<th class="th-2">글본문</th>
 					<td><input type="text" name="qcontent" required="required"></td>
 				</tr>
 				<tr>
@@ -49,7 +49,7 @@
 					<td><input type="file" name="temprimage2"></td>
 				</tr>
 				<tr>
-					<th>비밀글여부</th>
+					<th class="th-3">비밀글여부</th>
 					<td><input type="radio" name="qsecret" id="cs_channel_etc" value="1" class="radio" /><span class="ml_10">비밀글</span>&nbsp; 
 					<input type="radio" name="qsecret" id="cs_channel" value="0"class="radio" /><span class="ml_10">공개글</span>&nbsp; <br> <br>
 						
@@ -58,13 +58,14 @@
 								placeholder="글 비밀번호를 입력하세요 " />
 				   </div>
 				<tr>
-					<td colspan="2"><input type="submit" value="등록"> <input
+					<td colspan="2" class="btn"><input type="submit" value="등록"> <input
 						type="button" value="목록"
 						onclick="location='${conPath }/qna.do?method=qnaList&pageNum=${param.pageNum}'">
 					</td>
 				</tr>
 			</table>
 		</form>
-	</div>   
+	</div>  
+	<jsp:include page="../main/footer.jsp"/> 
 </body>
 </html>

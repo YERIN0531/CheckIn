@@ -8,8 +8,16 @@
 <head>
 <meta charset="UTF-8">
   <title>Insert title here</title>
-  <link href="${conPath }/css/style.css" rel="stylesheet">
+  <link href="${conPath }/css/taxfree/orderform.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Domine:wght@500&family=IBM+Plex+Sans+KR:wght@300;400&family=Libre+Baskerville&family=Nanum+Gothic&family=Satisfy&family=The+Nautigal:wght@400;700&display=swap" rel="stylesheet">
  <style>
+  #reserve {
+            padding-left: 4px;
+            background: url("${conPath}/image/tax1.png") no-repeat;
+            background-size:100%;
+            width: 100%;
+            height: 400px;
+        }
  </style>
  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
  <script>
@@ -20,41 +28,59 @@
 </head>
   <body>
    <jsp:include page="../main/header.jsp"/>
-   
-   	<!-- 주문 디테일  -->
-   	<table>
-   		<caption>ORDER DETAILS</caption>
-   		<tr>
-   			<td colspan="7">
-   				<button onclick="location='${conPath}/taxfree.do?method=category&pageNum=1'">면세점으로</button>
-   			</td>
-   		</tr>
-   		<tr>
-   			<th></th><th>PRODUCT</th><th>QTY</th><th>PRICE</th><th>TOTAL</th>
-   		</tr>
-   		<c:if test="${orderDetailList.size() == 0 }">
-   		<tr>
-   			<td colspan="7">WE'RE WATING FOR YOUR ORDER</td>
-   		</tr>
-   		</c:if>
-		<c:set var="or_num_temp" value="0"/>
-		<c:forEach items="${orderDetailList }" var="order">
-		<c:if test="${or_num_temp != order.or_num}">
-	   		<tr>
-	   			<td colspan="7" class="order">주문번호 ${order.or_num } | 주문날짜 ${order.ordate }</td>
-	   		</tr>
-	   		<c:set var="or_num_temp" value="${order.or_num }"/>
-	   	</c:if>
-   		<tr>
-   			 <td><img src="${conPath }/taxfree/${order.pimage1 }" alt="${order.pimage1 }" width="100" height="100"></td>
-   			 <td>${order.pname }</td>
-   			 <td>${order.qty }</td>
-   			 <td>${order.pprice }</td>
-   			 <td>${order.cost }</td>
-   		</tr>
- 		</c:forEach>
-   	</table>
+    <div id="list">
+            <div id="lnb">
+                <ul>
+	                   <li><a href="${conPath }/air.do?method=airMain">항공</a></li>
+	                   <li><a href="${conPath }/hotel.do?method=hotelMain">호텔</a></li>
+	                   <li><a href="${conPath}/taxfree.do?method=category">면세점</a></li>
+	                   <li><a href="${conPath}/notice.do?method=boardmain">게시판</a></li>
+	              </ul>
+            </div><!-- lnb -->
+        </div><!-- list -->
+	
+        <div id="reserve">
+            <div id="word">
+                <p>DUTY FREE</p>
+            </div><!-- word -->
 
+        </div><!-- reserve -->
+        <div id="logos">
+        	<p>ORDER DETAILS</p>
+    	</div> <!-- logos -->
+   	
+   	<!-- 주문 디테일  -->
+	<div id="orderdetail">
+		<div class="taxfreemain">
+	   		<button onclick="location='${conPath}/taxfree.do?method=category&pageNum=1'" class="mainbutton">Click to the Duty Free Shop</button>
+	   	</div>	<!-- taxfreemain -->
+	   	<div class="noorder">
+	   		<c:if test="${orderDetailList.size() == 0 }">
+	   			<p>WE'RE WATING FOR YOUR ORDER</p>
+	   		</c:if>
+	   	</div><!-- noorder -->
+	   	<div class="orders">	
+			<c:set var="or_num_temp" value="0"/>
+			<c:forEach items="${orderDetailList }" var="order">
+				<table>
+					<c:if test="${or_num_temp != order.or_num}">
+				   	
+				   		<tr>
+				   			<td colspan="7" class="td-1">ORDER NUM ${order.or_num }</td>
+				   		</tr>
+				   		<c:set var="or_num_temp" value="${order.or_num }"/>
+				   	</c:if>
+			   		<tr>
+			   			 <th class="th-1"><img src="${conPath }/taxfree/${order.pimage1 }" alt="${order.pimage1 }" width="150" height="150"></th>
+			   			 <th class="th-2">${order.pname }</th>
+			   			 <th class="th-3">${order.qty }</th>
+			   			 <th class="th-4">＄${order.pprice }</th>
+			   			 <th class="th-5">＄${order.cost }</th>
+			   		</tr>
+		 		</table>
+	 		</c:forEach>
+	 	</div>	<!-- order -->
+	</div><!-- orderdetail -->
    	<jsp:include page="../main/footer.jsp"/>
   </body>
 </html>

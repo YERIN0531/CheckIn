@@ -39,6 +39,9 @@
    <div id="logos">
         <p>NOTICE_BOARD</p>
     </div>
+    
+    
+    
     <div id="wrap">
      <c:if test="${not empty manager }">
             <div id="register">

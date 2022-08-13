@@ -8,7 +8,8 @@
 <head>
 <meta charset="UTF-8">
   <title>Insert title here</title>
-  <link href="${conPath }/css/style.css" rel="stylesheet">
+  <link href="${conPath }/css/board/reviewdetail.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Domine:wght@500&family=IBM+Plex+Sans+KR:wght@300;400&family=Libre+Baskerville&family=Nanum+Gothic&family=Satisfy&family=The+Nautigal:wght@400;700&display=swap" rel="stylesheet">
  <style>
  
  </style>
@@ -32,6 +33,7 @@
  </script>  
 </head>
   <body>
+  <jsp:include page="../board/boardmain.jsp"/>
   	<c:if test="${empty member and empty admin }">
   		<script>
   			alert('로그인 후 이용해주세요');
@@ -41,18 +43,22 @@
   	<form action="${conPath }/trip.do?method=applyTeamView" method="post" >
   		<input type="hidden" name="tnum" value="${tripBoard.tnum }">
 		<table>
+			<caption>DETAIL</caption>
 			<tr>
-				<td>글번호 : ${tripBoard.tnum }</td>
+				<th>글번호</th>
+				<td>${tripBoard.tnum }</td>
 			</tr>
 			<tr>
-				<td>작성자 : ${tripBoard.mid }</td>
+				<th>작성자</th>
+				<td>${tripBoard.mid }</td>
 			</tr>
 			<tr>
-				<td>제목 : ${tripBoard.ttitle }</td>
+			<th>제목</th>
+				<td>${tripBoard.ttitle }</td>
 			</tr>
 			<tr>
+				<th>모집성별</th>
 				<td>
-					모집 성별 :
 					<c:if test="${tripBoard.tgender eq 'M' }">
 						남성
 					</c:if>
@@ -65,11 +71,12 @@
 				</td>
 			</tr>
 			<tr>
-				<td>팀 이름 : ${tripBoard.teamname }</td>
+				<th>팀이름</th>
+				<td>${tripBoard.teamname }</td>
 			</tr>
 			<tr>
+				<th>현재인원</th>
 				<td>
-					현재인원 :
 					<c:if test="${tripBoard.tnowmembercount != tripBoard.tmaxmembercount }">
 						 ${tripBoard.tnowmembercount } / ${tripBoard.tmaxmembercount }
 					</c:if>					
@@ -79,25 +86,31 @@
 				</td>
 			</tr>
 			<tr>
-				<td>여행 스타일 : ${tripBoard.tstyle }</td>
+				<th>여행스타일</th>
+				<td>${tripBoard.tstyle }</td>
 			</tr>
 			<tr>
-				<td>숙소 스타일 : ${tripBoard.thotelstyle }</td>
+				<th>숙소스타일</th>
+				<td>${tripBoard.thotelstyle }</td>
 			</tr>
 			<tr>
-				<td>놀이 스타일 : ${tripBoard.tplaystyle }</td>
+				<th>놀이스타일</th>
+				<td>${tripBoard.tplaystyle }</td>
 			</tr>
 			<tr>
-				<td>글 본문 : ${tripBoard.tcontent }</td>
+				<th>글본문</th>
+				<td>${tripBoard.tcontent }</td>
 			</tr>
 			<tr>
-				<td>이미지 태그 써서 사진 뿌리세요 : ${tripBoard.timage }</td>
+				<th>사진</th>
+				<td><img src="${conPath}/fileUpload/${tripBoard.timage }"></td>
 			</tr>
 			<tr>
-				<td>작성 시점 : ${tripBoard.trdate }</td>  
+				<th>작성시점</th>
+				<td>${tripBoard.trdate }</td>  
 			</tr>
 			<tr>
-				<td>
+				<td colspan="2" class="btn">
 					<c:if test="${tripBoard.tnowmembercount != tripBoard.tmaxmembercount and member.mid != tripBoard.mid}">
 						<input type="submit" value="신청하기">
 					</c:if>										
@@ -113,5 +126,6 @@
 			</tr>
 		</table>
 	</form>     
+	  <jsp:include page="../main/footer.jsp"/>
   </body>
 </html>
