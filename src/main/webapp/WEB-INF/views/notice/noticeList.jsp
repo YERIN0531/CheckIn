@@ -19,7 +19,7 @@
 		$('tr').click(function(){
 			var nnum = Number($(this).children().eq(0).text());
 			if(!isNaN(nnum)){
-				 alert(nnum); 
+				 //alert(nnum); 
 				 location.href = '${conPath }/notice.do?method=detailNotice&nnum='+nnum+'&pageNum=${paging.currentPage}';
 		}
 	});
@@ -42,7 +42,7 @@
     <div id="wrap">
      <c:if test="${not empty manager }">
             <div id="register">
-                <p><a href="${conPath}/notice.do?method=insertNoticeForm&pageNum=${param.pageNum }">공지글등록</a></p>
+                <p><a href="${conPath}/notice.do?method=insertNoticeForm&pageNum=${paging.currentPage }">공지글등록</a></p>
              </div>
        </c:if> 
         <div id="listform">

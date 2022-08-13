@@ -26,9 +26,9 @@
 		<form action="${conPath }/qna.do?method=insertQna" method="post"enctype="multipart/form-data">
 
 			<%-- <input type="text" name="qid" value= "${qid}"> --%>
-			<input type="text" name="qid" value="${member.mid }">
+			<input type="hidden" name="qid" value="${member.mid }">
 			<table>
-				<caption>${param.qnum }</caption>
+				<caption>문의사항</caption>
 				
 
 				<tr>

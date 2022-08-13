@@ -37,11 +37,11 @@
 			var qnum = Number($(this).children().eq(0).text().trim());
 			if(!isNaN(qnum)){
 				if(aid != '' && mid == '' && qsecreat2 == -1){ // 관리자 , 비밀글  비번 창 없이 바로 상세보기 
-					alert('관리자');
+					//alert('관리자');
 					location.href = '${conPath }/qna.do?method=detailQna&qnum='+qnum+'&pageNum=${paging.currentPage}';
 				}else if(mid != '' && qsecreat2 == -1){  // 회원 , 비밀글 , 비번 view 로 
 					//alert(mid);
-					 alert('회원');
+					// alert('회원');
 					 location.href ='${conPath }/qna.do?method=secreatQna&qnum='+qnum+'&pageNum=${paging.currentPage}';
 				}else if(mid == '' && aid == ''){ // 비회원  , 로그인창
 				     alert('로그인후 이용하세요');
