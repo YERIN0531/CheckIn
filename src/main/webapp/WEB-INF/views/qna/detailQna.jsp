@@ -32,7 +32,7 @@
 <div id="content">
 <table>
 
-	<caption>${qnaDto.qnum }번 글 상세보기 ${qnaDto.qindent }</caption>
+	<caption>${qnaDto.qnum }번 글 상세보기 </caption>
 	<tr>
 	   <th>제목</th>
 	   <td>${qnaDto.qtitle }</td>

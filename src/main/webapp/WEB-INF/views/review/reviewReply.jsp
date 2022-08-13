@@ -13,11 +13,11 @@
 <body>
  <div id="content">
    <form action="${conPath }/review.do?method=replyReview" method="post" enctype="multipart/form-data">
-   		<input type="text" name="mid" value= "${mid}">
-   		<input type="text" name="pageNum" value="${param.pageNum }">
-		<input type="text" name="rgroup" value="${replyDto.rgroup }">
-		<input type="text" name="rstep" value="${replyDto.rstep }">
-		<input type="text" name="rindent" value="${replyDto.rindent }">
+   		<input type="hidden" name="mid" value= "${mid}">
+   		<input type="hidden" name="pageNum" value="${param.pageNum }">
+		<input type="hidden" name="rgroup" value="${replyDto.rgroup }">
+		<input type="hidden" name="rstep" value="${replyDto.rstep }">
+		<input type="hidden" name="rindent" value="${replyDto.rindent }">
    		<table>
    				<caption>${param.rnum }번 글의 답글 쓰기 </caption>
    				<tr>

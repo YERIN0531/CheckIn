@@ -66,7 +66,9 @@ UPDATE CUSTOMER SET MNAME='서팀장',
 update customer set mpw ='111'
                     where mid ='aaa';
 commit;
-
+UPDATE CUSTOMER SET MGENDER='M'
+        WHERE MID = 'bbb';
+SELECT * FROM CUSTOMER;
 --5.회원탈퇴 탈퇴여부 UPDATE (1 , 0)
 --withdrawMember
 UPDATE CUSTOMER SET mwithd = 0 WHERE MID ='eee';
