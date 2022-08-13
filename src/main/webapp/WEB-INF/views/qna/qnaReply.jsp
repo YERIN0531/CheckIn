@@ -21,7 +21,7 @@
 </script>
 </head>
 <body>
-
+<!--  -->
 	<div id="content">
 		<form action="${conPath }/qna.do?method=replyQna" method="post"enctype="multipart/form-data">
 
