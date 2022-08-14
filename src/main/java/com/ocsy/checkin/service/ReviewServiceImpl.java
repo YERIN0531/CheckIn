@@ -28,7 +28,7 @@ public class ReviewServiceImpl implements ReviewService{
 	String backupPath ="C:\\TeamCheckin\\CheckIn\\src\\main\\webapp\\fileUpload\\";
 	@Override
 	public List<ReviewBoard> listReview(String pageNum) {
-		Paging paging = new Paging(reviewDao.countReview(), pageNum, 5, 5);
+		Paging paging = new Paging(reviewDao.countReview(), pageNum, 10, 10);
 		ReviewBoard review = new ReviewBoard();
 		review.setStartRow(paging.getStartRow());
 		review.setEndRow(paging.getEndRow());

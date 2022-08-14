@@ -166,12 +166,7 @@ CREATE SEQUENCE REVIEW_SEQ
     MAXVALUE 999999
     NOCACHE
     NOCYCLE;
-INSERT INTO REVIEW_BOARD(RNUM , MID ,RTITLE ,RCONTENT,RIP, RGROUP,RSTEP,RINDENT)
-        VALUES (REVIEW_SEQ.NEXTVAL,'aaa','후기제목','후기본문', '192.168.10.30' ,REVIEW_SEQ.CURRVAL,0,0);
-INSERT INTO REVIEW_BOARD(RNUM , MID ,RTITLE ,RCONTENT,RIP, RGROUP,RSTEP,RINDENT)
-        VALUES (REVIEW_SEQ.NEXTVAL,'bbb','후기제목2','후기본문2', '192.100.10.30' ,REVIEW_SEQ.CURRVAL,0,0);
-INSERT INTO REVIEW_BOARD(RNUM , MID ,RTITLE ,RCONTENT,RIP, RGROUP,RSTEP,RINDENT)
-        VALUES (REVIEW_SEQ.NEXTVAL,'ccc','후기제목3','후기본문3', '192.555.10.30' ,REVIEW_SEQ.CURRVAL,0,0);
+
 --1.글목록
 -- listReview
 SELECT * FROM (SELECT ROWNUM RN, A.* 
@@ -179,18 +174,16 @@ SELECT * FROM (SELECT ROWNUM RN, A.*
         WHERE RN BETWEEN 1 AND 6;
         
         
---2. 1번글에대한 답변(관리자만 답변가능 qid 관리자 아이디)
--- replyReview
-INSERT INTO REVIEW_BOARD (RNUM,MID,RTITLE,RCONTENT, RIP, RGROUP,RSTEP, RINDENT)
-    VALUES (REVIEW_SEQ.NEXTVAL, 'bbb','1번글답변','1번글답변본문','192.222.333',1, 1, 1);
+
+    commit;
 -- 더미데이터 (위의 1번글에 대한 두번째 답변글)
 -- 3. 답변글 추가전 STEP a 수행
 -- replyPreStepReview
-UPDATE REVIEW_BOARD SET RSTEP = RSTEP+1 
-    WHERE RGROUP = 1 AND RSTEP>0;
+--UPDATE REVIEW_BOARD SET RSTEP = RSTEP+1 
+--    WHERE RGROUP = 1 AND RSTEP>0;
 --1번글에대한 답답변
-INSERT INTO REVIEW_BOARD (RNUM,MID,RTITLE,RCONTENT, RIP, RGROUP,RSTEP, RINDENT)
-    VALUES (REVIEW_SEQ.NEXTVAL, 'aaa','1번글답답변','1번글답답변본문','192.111.111',1, 3, 2);
+--INSERT INTO REVIEW_BOARD (RNUM,MID,RTITLE,RCONTENT, RIP, RGROUP,RSTEP, RINDENT)
+--    VALUES (REVIEW_SEQ.NEXTVAL, 'aaa','1번글답답변','1번글답답변본문','192.111.111',1, 3, 2);
 SELECT * FROM REVIEW_BOARD;
 --4.RNUM 으로 상세보기(DTO)
 --detailReview
@@ -202,24 +195,71 @@ SELECT COUNT(*) FROM REVIEW_BOARD;
 --insertReview
 INSERT INTO REVIEW_BOARD(RNUM , MID ,RTITLE ,RCONTENT,RIMAGE1,RIP, RGROUP,RSTEP,RINDENT)
         VALUES (REVIEW_SEQ.NEXTVAL,'aaa','원글작성','원글본문','NOIMG.JPG', '192.168.10.30' ,REVIEW_SEQ.CURRVAL,0,0);
+--1. 일본 오카사 후기 
+INSERT INTO REVIEW_BOARD (RNUM , MID ,RTITLE ,RCONTENT,RIMAGE1,RIMAGE2,RIMAGE3,RIMAGE4,RIP, RGROUP,RSTEP,RINDENT)
+    VALUES (REVIEW_SEQ.NEXTVAL,'ccc','일본 오사카 후기','오늘은 일전에 말씀드린 일본 오사카 여행기(여행준비)에 관한 포스팅을 하려해요~ 제가 여행하면서 준비한 소소한 것들이 일본여행을 이제 준비하는 분들에게 도움이 될까 싶어 시리즈로 올려보려합니다.','Osaka1.jpg','Glico.jpeg','Osaka2.jpeg','Osaka3.jpeg', '192.168.10.30',REVIEW_SEQ.CURRVAL,0,0);
+--2. 1번글에대한 답변
+-- replyReview
+INSERT INTO REVIEW_BOARD (RNUM,MID,RTITLE,RCONTENT, RIP, RGROUP,RSTEP, RINDENT)
+    VALUES (REVIEW_SEQ.NEXTVAL, 'bbb','오사카 저도 가볼게요 !!','야호 !!!','192.222.333',1, 1, 1);
+    
+--2. 일본 오사카 라멘
+INSERT INTO REVIEW_BOARD (RNUM , MID ,RTITLE ,RCONTENT,RIMAGE1,RIMAGE2,RIMAGE3,RIMAGE4,RIP, RGROUP,RSTEP,RINDENT)
+    VALUES (REVIEW_SEQ.NEXTVAL,'ccc','일본 오사카 이치란 라멘 후기 ','저는 개인적으로 금룡라멘이 더맛있더라구요 이치란은 너~~~무 기대하고가서 기대이하였던 느낌쓰 호불호가 많이 갈린다는데 저는 불인가봐요 ㅜㅜ 그래도 일본 처음 가신다면 경험상 사람들 다가니까 한번쯤 먹어볼만해요 !!','Ramen1.jpeg','Ramen2.jpeg','Ramen3.jpeg','Ramen4.jpeg', '192.168.10.30',REVIEW_SEQ.CURRVAL,0,0);
+commit;
+
+COMMIT;
+--3. 베트남 다낭 미케비치
+INSERT INTO REVIEW_BOARD (RNUM , MID ,RTITLE ,RCONTENT,RIMAGE1,RIMAGE2,RIMAGE3,RIMAGE4,RIMAGE5,RIP, RGROUP,RSTEP,RINDENT)
+    VALUES (REVIEW_SEQ.NEXTVAL,'ccc','베트남 미케비치 ','오후 혹시나해서 베트남 다낭 유명관광지인 미케비치를 가보았습니다. 베트남 다낭은 아직 봉쇄된 구역이 많으며 제가 사는 동네는 약 3주간 확진자가 나오지않아 그린존이 되어 구역내에서는 눈치껏 다닐수가 있게되었습니다.약 2달만에 누리는 시간이라 살것 같다는 생각이 들며 이렇게 조금씩 풀리다보면 해외여행 재개도 되겠다는 희망이 생기기도 하네요.코로나가 소박함이 주는 행복을 알게해주었네요.','MyKheBeach1.jpeg','MyKheBeach2.jpeg','MyKheBeach3.png','MyKheBeach4.jpeg','MyKheBeach5.jpeg', '192.112.40.60',REVIEW_SEQ.CURRVAL,0,0);
+
+--4. 태국 골프 여행
+INSERT INTO REVIEW_BOARD (RNUM , MID ,RTITLE ,RCONTENT,RIMAGE1,RIMAGE2,RIMAGE3,RIMAGE4,RIP, RGROUP,RSTEP,RINDENT)
+    VALUES (REVIEW_SEQ.NEXTVAL,'bbb','태국 골프 여행 ','지금까지 여러 동남아골프여행 그리고 태국골프여행을 경험 했지만 알파인CC는 3손가락 안에 들정도로 코스가 재미있었던 골프장중 한곳이였습니다. 만약에 제 지인이 방콕골프 일정을 진행한다면 꼭 한번 가보라고 말하고싶은 골프장이기도 하구요. 저역시 다음방콕일정에는 여기는 꼭 다시 재방문할예정입니다. 스코어는 그렇게 좋은편은 아니였지만 "재미있게 플레이했다" 라는 생각이 드는 몇안되는 골프장중 한곳이였습니다. ','Thailand1.jpg','Thailand2.jpg','Thailand3.jpg','Thailand4.jpg', '192.998.60.10',REVIEW_SEQ.CURRVAL,0,0);
+
+        COMMIT;
+--5. 보라카이 여행
+INSERT INTO REVIEW_BOARD (RNUM , MID ,RTITLE ,RCONTENT,RIMAGE1,RIMAGE2,RIMAGE3,RIMAGE4,RIP, RGROUP,RSTEP,RINDENT)
+    VALUES (REVIEW_SEQ.NEXTVAL,'aaa','보라카이 여행 ','친구와 즐겁게 놀다왔던 보라카이 여행 후기 공유드립니다 필리핀 첫 여행이었는데 걱정과 달리 보라카이는 관광지라 안전해서 밤에도 잘 돌아다니고 즐기고 왔어요! ','Boracay1.jpg','Boracay2.jpg','Boracay3.jpg','Boracay4.jpg', '192.222.20.20',REVIEW_SEQ.CURRVAL,0,0);
+--6. 런던 여행
+INSERT INTO REVIEW_BOARD (RNUM , MID ,RTITLE ,RCONTENT,RIMAGE1,RIMAGE2,RIMAGE3,RIMAGE4,RIMAGE5,RIP, RGROUP,RSTEP,RINDENT)
+    VALUES (REVIEW_SEQ.NEXTVAL,'ddd','런던 여행 ','개인 여행으로 후반에는 일로 방문했던 영국 런던. 문화적으로나 역사적으로나 머물고 싶게 만드는 환경을 가진 런던이어서 택한 이유도 있다.','London1.jpeg','London2.jpeg','London3.jpeg','London4.jpeg','London5.jpeg', '192.222.20.20',REVIEW_SEQ.CURRVAL,0,0);
+select * from customer;
+--7. 프랑스 여행
+INSERT INTO REVIEW_BOARD (RNUM , MID ,RTITLE ,RCONTENT,RIMAGE1,RIMAGE2,RIMAGE3,RIMAGE4,RIMAGE5,RIP, RGROUP,RSTEP,RINDENT)
+    VALUES (REVIEW_SEQ.NEXTVAL,'ddd','프랑스 여행 ','오늘은 제가 코시국 이전에 다녀온 파리 여행 후기를 보여드리려고 해요~ 노옵션 노쇼핑이라 정말 마음 편하게 놀다 온 거 같아요!','France4.jpeg','France1.jpeg','France2.jpeg','France3.jpeg','France5.jpeg', '192.111.20.20',REVIEW_SEQ.CURRVAL,0,0);
+--8. 독일 축구 직관 여행
+INSERT INTO REVIEW_BOARD (RNUM , MID ,RTITLE ,RCONTENT,RIMAGE1,RIMAGE2,RIMAGE3,RIMAGE4,RIP, RGROUP,RSTEP,RINDENT)
+    VALUES (REVIEW_SEQ.NEXTVAL,'ccc','독일 축구 직관 ','독일 축구 직관후기 드디어 들고왔습니다 !!! ','soccer1.jpeg','soccer2.jpeg','soccer3.jpeg','soccer4.jpeg', '192.555.40.10',REVIEW_SEQ.CURRVAL,0,0);
+
+-- 9 .독일 베를린 맛집
+--9. 독일 축구 직관 여행
+INSERT INTO REVIEW_BOARD (RNUM , MID ,RTITLE ,RCONTENT,RIMAGE1,RIMAGE2,RIMAGE3,RIMAGE4,RIP, RGROUP,RSTEP,RINDENT)
+    VALUES (REVIEW_SEQ.NEXTVAL,'aaa','베를린 여행 후기 ',' 독일 베를린에 다녀왔습니다.  정말 뜻 깊은 여행이였습니다.  ','Germany1.webp','Germany2.jpg','Germany3.jpg','Germany4.jpg', '192.003.10.10',REVIEW_SEQ.CURRVAL,0,0);
+commit;
+--10 . 오사카 유니버셜
+INSERT INTO REVIEW_BOARD (RNUM , MID ,RTITLE ,RCONTENT,RIMAGE1,RIMAGE2,RIMAGE3,RIMAGE4,RIP, RGROUP,RSTEP,RINDENT)
+    VALUES (REVIEW_SEQ.NEXTVAL,'bbb','일본 유니버셜 후기 ','일본 유니버셜 스튜디오 재팬에 가시는 분들은 몇 가지 준비하셔야 할 것이 있습니다. 가장 필요한 건 입장권 그다음으로 필요한 건 강철 체력이지요. 저도 한 체력 하는 1인이지만 유니버셜 스튜디오 재팬 갈 때만큼은 체력적으로 힘들었답니다 .. ','Universal1.jpg','Universal2.jpg','Universal3.jpg','Universal4.jpg', '192.222.11.11',REVIEW_SEQ.CURRVAL,0,0);
+commit;
+
 --7. 조회수올리기
 --hitupReview
 SELECT * FROM REVIEW_BOARD;
 UPDATE REVIEW_BOARD SET RHIT = RHIT +1 WHERE RNUM=1;
 --8.글 수정
 --modifyReview
-UPDATE REVIEW_BOARD SET RTITLE ='수정제목1',
-                     RCONTENT = '수정본문1',
-                     RIMAGE1 = 'UPDATE.JPG',
-                     RIP    = '192.111.1'
-                     WHERE RNUM = 6;
+--UPDATE REVIEW_BOARD SET RTITLE ='수정제목1',
+ --                    RCONTENT = '수정본문1',
+ --                    RIMAGE1 = 'UPDATE.JPG',
+  --                   RIP    = '192.111.1'
+  --                   WHERE RNUM = 6;
 --9.글삭제
 --원글 지울때 답글 다지우기 (꼬일까봐 아직 실행 안해봄 실행 해보고 복붙 바람 )
 --deleteReview
-DELETE FROM REVIEW_BOARD WHERE RGROUP = 1 AND (RSTEP>=0 AND RSTEP<(select NVL(MIN(RSTEP),9999) FROM REVIEW_BOARD WHERE RGROUP=1 AND RSTEP>0 AND RINDENT<=0));
---qnum으로 글지우기 
---deleteReview
-DELETE FROM REVIEW_BOARD WHERE RNUM =5;
+--DELETE FROM REVIEW_BOARD WHERE RGROUP = 1 AND (RSTEP>=0 AND RSTEP<(select NVL(MIN(RSTEP),9999) FROM REVIEW_BOARD WHERE RGROUP=1 AND RSTEP>0 AND RINDENT<=0));
+----qnum으로 글지우기 
+----deleteReview
+--DELETE FROM REVIEW_BOARD WHERE RNUM =5;
 ------------------------------REVIEW_BOARD---------------------------------------
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------

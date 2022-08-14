@@ -98,7 +98,7 @@
    		  <tr><td colspan="3" class="btn">
    		  <c:if test="${not empty manager }"> <!-- 관리자 로그인 시  삭제  -->
    		  <button onclick="deleteCheck()"> 삭제</button>
-   		   <button onclick="location='${conPath }/review.do?method=replyForm&rnum=${reviewDto.rnum}&pageNum=${param.pageNum}'">답변</button>	
+   		  <%--  <button onclick="location='${conPath }/review.do?method=replyForm&rnum=${reviewDto.rnum}&pageNum=${param.pageNum}'">답변</button>	 --%>
    		  </c:if>
    		  <c:if test="${member.mid eq reviewDto.mid }"> <!-- 본인 글 수정 삭제  -->
 				<button onclick="deleteCheck()"> 삭제</button>
