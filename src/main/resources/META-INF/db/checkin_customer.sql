@@ -21,11 +21,11 @@ CREATE TABLE CUSTOMER(
     MMILEAGE    NUMBER(10) DEFAULT 0 NOT NULL
 );
 SELECT * FROM CUSTOMER;
-INSERT INTO CUSTOMER VALUES ('aaa', '123', '서예린', 'SEOYERIN',NULL,'010-1111-1111','12345','서울 구로구','101동 101호','f','19950531',1,'tjqud531531@naver.com',SYSDATE,0,0);
-INSERT INTO CUSTOMER VALUES ('bbb', '123', '윤정임', 'YOONJEONGIM',NULL,'010-2222-2222','12346','서울 용산구','102동 102호','f','19950822',1,'zeolim@naver.com',SYSDATE,0,0);
-INSERT INTO CUSTOMER VALUES ('ccc', '123', '오동준', 'OHDONGJUN',NULL,'010-3333-3333','12347','서울 강남구','103동 103호','m','19951010',1,'dong@naver.com',SYSDATE,0,0);
-INSERT INTO CUSTOMER VALUES ('ddd', '123', '최진영', 'CHOIJINYOUNG',NULL,'010-4444-4444','12348','서울 서초구','104동 104호','m','19991203',1,'jin@naver.com',SYSDATE,0,0);
-INSERT INTO CUSTOMER VALUES ('eee', '123', '김빈', 'KIMBIN',NULL,'010-5555-6666','12349','서울 광진구','105동 105호','m','19960826',1,'bin@naver.com',SYSDATE,0,0);
+INSERT INTO CUSTOMER VALUES ('aaa', '123', '서예린', 'SEOYERIN',NULL,'010-1111-1111','12345','서울 구로구','101동 101호','F','19950531',1,'tjqud531531@naver.com',SYSDATE,0,0);
+INSERT INTO CUSTOMER VALUES ('bbb', '123', '윤정임', 'YOONJEONGIM',NULL,'010-2222-2222','12346','서울 용산구','102동 102호','F','19950822',1,'zeolim@naver.com',SYSDATE,0,0);
+INSERT INTO CUSTOMER VALUES ('ccc', '123', '오동준', 'OHDONGJUN',NULL,'010-3333-3333','12347','서울 강남구','103동 103호','M','19951010',1,'dong@naver.com',SYSDATE,0,0);
+INSERT INTO CUSTOMER VALUES ('ddd', '123', '최진영', 'CHOIJINYOUNG',NULL,'010-4444-4444','12348','서울 서초구','104동 104호','M','19991203',1,'jin@naver.com',SYSDATE,0,0);
+INSERT INTO CUSTOMER VALUES ('eee', '123', '김빈', 'KIMBIN',NULL,'010-5555-6666','12349','서울 광진구','105동 105호','M','19960826',1,'bin@naver.com',SYSDATE,0,0);
 --1. 회원가입
 --joinMember
 INSERT INTO CUSTOMER VALUES 
@@ -66,7 +66,9 @@ UPDATE CUSTOMER SET MNAME='서팀장',
 update customer set mpw ='111'
                     where mid ='aaa';
 commit;
-
+UPDATE CUSTOMER SET MGENDER='M'
+        WHERE MID = 'bbb';
+SELECT * FROM CUSTOMER;
 --5.회원탈퇴 탈퇴여부 UPDATE (1 , 0)
 --withdrawMember
 UPDATE CUSTOMER SET mwithd = 0 WHERE MID ='eee';

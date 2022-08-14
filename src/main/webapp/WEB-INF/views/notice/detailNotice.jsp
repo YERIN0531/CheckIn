@@ -10,7 +10,6 @@
   <title>Insert title here</title>
   <link href="${conPath }/css/style.css" rel="stylesheet">
  <style>
- 
  </style>
  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
  <script>
@@ -26,38 +25,31 @@
     	}
     }
  </script>  
- <style>
-  img{width: 100px;}
- </style>
+
 </head>
   <body>
     <div id="content">
     <table>
-    	
     	<caption>${noticeDto.nnum }번 글 상세보기 </caption>
-    	
     	<tr>
     	  <th>제목</th>
-    	  <td>${noticeDto.ntitle }</td>
+    	  <td class="ntitle">${noticeDto.ntitle }</td>
     	</tr>
     	<tr>
     	  <th>본문</th>
-    	  <td>${noticeDto.ncontent }</td>
+    	  <td>
+    	  <c:if test="${not empty noticeDto.nimage }">
+    	  	<img src="${conPath }/fileUpload/${noticeDto.nimage}"> <br><br>
+    	  </c:if>
+    	  ${noticeDto.ncontent }
+    	  </td>
     	</tr>
     	<tr>
-    	  <th>사진</th>
-    	  
-    	<td>  <img src="${conPath }/fileUpload/${noticeDto.nimage}"></td>
-    	
-    	</tr> 
-    	<tr>
-    	 <td colspan="3">
+    	 <td colspan="3" class="btn">
     	 <c:if test="${not empty manager }">
     	 <button onclick="location='notice.do?method=noticeModifyForm&nnum=${noticeDto.nnum}&pageNum=${param.pageNum}'">수정</button>
-		 <button onclick="deleteCheck()">삭제할텨?</button>
-		 <button onclick="location='${conPath }/notice.do?method=deleteNotice&nnum=${noticeDto.nnum}&pageNum=${param.pageNum}'">삭제</button>
+		 <button onclick="deleteCheck()">삭제</button>
     	 </c:if>
-    	 
 		 <button onclick="location='notice.do?method=noticeList&pageNum=${param.pageNum}'">목록</button>	
 		 </td>
     	

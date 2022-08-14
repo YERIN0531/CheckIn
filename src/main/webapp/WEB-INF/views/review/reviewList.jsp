@@ -76,7 +76,7 @@
 	<table>
 		<tr><td>
 		<c:if test="${not empty member }">
-		<a href="${conPath}/review.do?method=insertReviewForm&pageNum=${pageNum }">글쓰기</a>
+		<a href="${conPath}/review.do?method=insertReviewForm&pageNum=${paging.currentPage}">글쓰기</a>
 		</c:if>	
 		<c:if test="${empty member }">
 		<a href="${conPath}/member.do?method=loginForm">글쓰기는 사용자 로그인 후에 이용 가능합니다</a>

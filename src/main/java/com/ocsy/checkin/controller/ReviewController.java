@@ -23,7 +23,7 @@ public class ReviewController {
 	@RequestMapping(params="method=reviewList",  method= {RequestMethod.GET, RequestMethod.POST})
 	public String reviewList(String pageNum , Model model) { 
 		model.addAttribute("reviewList", reviewService.listReview(pageNum));
-		model.addAttribute("paging", new Paging(reviewService.countReview(), pageNum, 5, 5));
+		model.addAttribute("paging", new Paging(reviewService.countReview(), pageNum, 10, 10));
 		return "review/reviewList";
 	}
 	//2. 글상세보기 

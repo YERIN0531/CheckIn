@@ -26,7 +26,7 @@ public class NoticeController {
 	@RequestMapping(params="method=noticeList",method= {RequestMethod.GET, RequestMethod.POST})
 	public String noticeList(String pageNum , Model model) {
 		model.addAttribute("noticeList",noticeService.listNotice(pageNum));
-		model.addAttribute("paging", new Paging(noticeService.countNotice(), pageNum, 3, 3));
+		model.addAttribute("paging", new Paging(noticeService.countNotice(), pageNum, 10, 10));
 		return "notice/noticeList";
 	}
 	//2. 글작성 db 처리

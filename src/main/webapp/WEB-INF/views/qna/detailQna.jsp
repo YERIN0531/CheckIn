@@ -31,8 +31,13 @@
 	</c:if>
 <div id="content">
 <table>
+<<<<<<< HEAD
 <jsp:include page="../board/boardmain.jsp"/>
 	<caption>${qnaDto.qnum }번 글 상세보기 ${qnaDto.qindent }</caption>
+=======
+
+	<caption>${qnaDto.qnum }번 글 상세보기 </caption>
+>>>>>>> 9ead364ddc77762dd694a6b1eb93ed5307acb731
 	<tr>
 	   <th>제목</th>
 	   <td>${qnaDto.qtitle }</td>

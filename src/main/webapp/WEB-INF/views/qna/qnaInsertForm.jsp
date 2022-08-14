@@ -30,7 +30,13 @@
 			<%-- <input type="text" name="qid" value= "${qid}"> --%>
 			<input type="hidden" name="qid" value="${member.mid }">
 			<table>
+<<<<<<< HEAD
 				<caption>WRITE</caption>
+=======
+				<caption>문의사항</caption>
+				
+
+>>>>>>> 9ead364ddc77762dd694a6b1eb93ed5307acb731
 				<tr>
 					<th class="th-1">글제목</th>
 					<td><input type="text" name="qtitle" required="required"
