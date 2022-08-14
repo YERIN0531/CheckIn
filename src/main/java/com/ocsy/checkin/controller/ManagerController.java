@@ -17,6 +17,11 @@ public class ManagerController {
 	@Autowired
 	private ManagerService managerService;
 	
+	@RequestMapping(params = "method=managermain", method=RequestMethod.GET)
+	public String managermain() {
+		return "manager/managermain";
+	}
+	
 	//1. 관리자 로그인 view
 	@RequestMapping(params = "method=mLoginForm", method=RequestMethod.GET)
 	public String loginForm() {
@@ -26,7 +31,8 @@ public class ManagerController {
 	@RequestMapping(params ="method=login", method= {RequestMethod.GET, RequestMethod.POST})
 	public String loginCheck(String aid , String apw ,HttpSession httpSession, Model model) {
 		model.addAttribute("managerLogin", managerService.login(aid, apw, httpSession));
-		return "forward:main.do";
+//		return "forward:main.do";
+		return "manager/managermain";
 	}
 	//3. 관리자 로그아웃
 	@RequestMapping(params ="method=logout", method= RequestMethod.GET)

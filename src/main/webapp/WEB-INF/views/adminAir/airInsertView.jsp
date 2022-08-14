@@ -8,7 +8,8 @@
 <head>
 <meta charset="UTF-8">
   <title>Insert title here</title>
-  <link href="${conPath }/css/style.css" rel="stylesheet">
+  <link href="${conPath }/css/manager/managerairinsert.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Domine:wght@500&family=IBM+Plex+Sans+KR:wght@300;400&family=Libre+Baskerville&family=Nanum+Gothic&family=Satisfy&family=The+Nautigal:wght@400;700&display=swap" rel="stylesheet">
  <style>
  
  </style>
@@ -20,19 +21,47 @@
  </script>  
 </head>
   <body>
+  	<jsp:include page="../main/header.jsp" />
+	<div class="slider">
+		<div class="image">
+			<input type="radio" name="slide" id="slide1" checked>
+			<input type="radio" name="slide" id="slide2"> 
+			<input type="radio" name="slide" id="slide3"> <input type="radio" name="slide" id="slide4">
+			<ul id="imgholder" class="imgs">
+				<li><img src="${conPath }/image/slide1.png"></li>
+				<li><img src="${conPath }/image/slide3.png"></li>
+				<li><img src="${conPath }/image/slide2.png"></li>
+				<li><img src="${conPath }/image/slide22.png"></li>
+			</ul>
+		</div>
+		<div class="bullets">
+			<label for="slide1">&nbsp;</label> <label for="slide2">&nbsp;</label>
+			<label for="slide3">&nbsp;</label> <label for="slide4">&nbsp;</label>
+		</div>
+	</div>
+
+	<div id="logos">
+        <p>AIR REGISTER</p>
+    </div>
+  <section>
   	<form action="${conPath }/air.do?method=airInsert" method="post">
-  		<table>
-  			<tr><td>항공코드</td><td><input type="text" name="acode"></td></tr>
-  			<tr><td>항공사</td><td><input type="text" name="airline"></td></tr>
-  			<tr><td>출발지</td><td><input type="text" name="adepartloc"></td></tr>
-  			<tr><td>도착지</td><td><input type="text" name="aariveloc"></td></tr>
-  			<tr><td>가는날출발시간</td><td><input type="text" name="agotime"></td></tr>
-  			<tr><td>가는날도착시간</td><td><input type="text" name="ago_arrivetime"></td></tr>
-  			<tr><td>오는날도착시간</td><td><input type="text" name="acome_departtime"></td></tr>
-  			<tr><td>오는날도착시간</td><td><input type="text" name="acome_arrivetime"></td></tr>
-  			<tr><td>비행가격</td><td><input type="number" name="aprice"></td></tr>
-  			<tr><td colspan="2"><input type="submit" value="등록"></td></tr>
-  		</table>
+		<div id="joinform">
+	  		<table>
+	  		<caption>CHECK IN</caption>
+	  			<tr><th>항공코드</th><td><input type="text" name="acode" placeholder="AIRCODE"></td></tr>
+	  			<tr><th>항공사</th><td><input type="text" name="airline" placeholder="AIRLINE"></td></tr>
+	  			<tr><th>출발지</th><td><input type="text" name="adepartloc"></td></tr>
+	  			<tr><th>도착지</th><td><input type="text" name="aariveloc"></td></tr>
+	  			<tr><th>가는날출발시간</th><td><input type="text" name="agotime"></td></tr>
+	  			<tr><th>가는날도착시간</th><td><input type="text" name="ago_arrivetime"></td></tr>
+	  			<tr><th>오는날도착시간</th><td><input type="text" name="acome_departtime"></td></tr>
+	  			<tr><th>오는날도착시간</th><td><input type="text" name="acome_arrivetime"></td></tr>
+	  			<tr><th>비행가격</th><td><input type="number" name="aprice" placeholder="AIRPRICE"></td></tr>
+	  			<tr><td colspan="2"><input type="submit" value="등록"></td></tr>
+	  		</table>
+	  	</div>	
   	</form>
+  	</section>
+  		<jsp:include page="../main/footer.jsp" />
   </body>
 </html>

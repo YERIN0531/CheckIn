@@ -8,7 +8,8 @@
 <head>
 <meta charset="UTF-8">
   <title>Insert title here</title>
-  <link href="${conPath }/css/style.css" rel="stylesheet">
+  <link href="${conPath }/css/manager/managehotellist.css" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css2?family=Domine:wght@500&family=IBM+Plex+Sans+KR:wght@300;400&family=Libre+Baskerville&family=Nanum+Gothic&family=Satisfy&family=The+Nautigal:wght@400;700&display=swap" rel="stylesheet">
  <style>
  	.paging {
  		text-align: center;8
@@ -43,39 +44,73 @@
 			alert('호텔 삭제에 실패했습니다.');
 		</script>
 	</c:if>
-	<h1>오지게 관리자 호텔 리스트 뿌리는 페이지입니다</h1>
-	<table>
-		<c:forEach var="hotel" items="${hotelList }">
-			<tr>
-				<td>호텔 아이디 : ${hotel.hotelid }</td>
-				<td>호텔 국가 : ${hotel.hotelcountry }</td>
-				<td>호텔 이름 : ${hotel.hotelname }</td>
-				<td>호텔 사진 : ${hotel.hotelimage }</td>
-				<td>호텔 주소 : ${hotel.hoteladdress }</td>
-				<td>
-					<button onclick="location='${conPath }/hotel.do?method=updateHotelView&hotelid=${hotel.hotelid }&pageNum=${paging.currentPage }'">수정하기</button>
-				</td>
-				<td>
-					<button onclick="location='${conPath }/hotel.do?method=deleteHotelView&hotelid=${hotel.hotelid }&pageNum=${paging.currentPage }'">삭제하기</button>
-				</td>
-			</tr>
-		</c:forEach>
-	</table>
-		<div class="paging">
-		<c:if test="${paging.startPage > paging.blockSize }">
-			[ <a href="${conPath }/hotel.do?method=adminHotelList&pageNum=${paging.startPage-1}">이전</a> ]
-		</c:if>
-		<c:forEach var="i" begin="${paging.startPage }" end="${paging.endPage }">
-			<c:if test="${i eq paging.currentPage }">
-				[ <b> ${i } </b> ]
-			</c:if>
-			<c:if test="${i != paging.currentPage }">
-				[ <a href="${conPath }/hotel.do?method=adminHotelList&pageNum=${i}">${i }</a> ]
-			</c:if>
-		</c:forEach>
-		<c:if test="${paging.endPage < paging.pageCnt }">
-			[ <a href="${conPath }/hotel.do?method=adminHotelList&pageNum=${paging.endPage+1}">다음</a> ]
-		</c:if>
+	
+	
+	<jsp:include page="../main/header.jsp" />
+	<div class="slider">
+		<div class="image">
+			<input type="radio" name="slide" id="slide1" checked>
+			<input type="radio" name="slide" id="slide2"> 
+			<input type="radio" name="slide" id="slide3"> <input type="radio" name="slide" id="slide4">
+			<ul id="imgholder" class="imgs">
+				<li><img src="${conPath }/image/slide1.png"></li>
+				<li><img src="${conPath }/image/slide3.png"></li>
+				<li><img src="${conPath }/image/slide2.png"></li>
+				<li><img src="${conPath }/image/slide22.png"></li>
+			</ul>
+		</div>
+		<div class="bullets">
+			<label for="slide1">&nbsp;</label> <label for="slide2">&nbsp;</label>
+			<label for="slide3">&nbsp;</label> <label for="slide4">&nbsp;</label>
+		</div>
 	</div>
+	<div id="logos">
+        <p>HOTEL LIST</p>
+    </div>
+	
+	<section>
+			<div id="register">
+	                <p><a href="${conPath }/hotel.do?method=insertHotel">호텔 등록 	바로가기</a></p>
+	        </div>
+		<div id="content">
+			<table>
+				<tr>
+					<th>호텔아이디</th><th>국가</th><th>이름</th><th>호텔주소</th><th></th><th></th>
+					
+				</tr>	
+				<c:forEach var="hotel" items="${hotelList }">
+					<tr>
+						<td>${hotel.hotelid }</td>
+						<td> ${hotel.hotelcountry }</td>
+						<td> ${hotel.hotelname }</td>
+						<td>${hotel.hoteladdress }</td>
+						<td>
+							<button onclick="location='${conPath }/hotel.do?method=updateHotelView&hotelid=${hotel.hotelid }&pageNum=${paging.currentPage }'">수정</button>
+						</td>
+						<td>
+							<button onclick="location='${conPath }/hotel.do?method=deleteHotelView&hotelid=${hotel.hotelid }&pageNum=${paging.currentPage }'">삭제</button>
+						</td>
+					</tr>
+				</c:forEach>
+			</table>
+		</div>
+		<div class="paging">
+			<c:if test="${paging.startPage > paging.blockSize }">
+				[ <a href="${conPath }/hotel.do?method=adminHotelList&pageNum=${paging.startPage-1}">이전</a> ]
+			</c:if>
+			<c:forEach var="i" begin="${paging.startPage }" end="${paging.endPage }">
+				<c:if test="${i eq paging.currentPage }">
+					[ <b> ${i } </b> ]
+				</c:if>
+				<c:if test="${i != paging.currentPage }">
+					[ <a href="${conPath }/hotel.do?method=adminHotelList&pageNum=${i}">${i }</a> ]
+				</c:if>
+			</c:forEach>
+			<c:if test="${paging.endPage < paging.pageCnt }">
+				[ <a href="${conPath }/hotel.do?method=adminHotelList&pageNum=${paging.endPage+1}">다음</a> ]
+			</c:if>
+		</div>
+	</section>
+	<jsp:include page="../main/footer.jsp" />
   </body>
 </html>

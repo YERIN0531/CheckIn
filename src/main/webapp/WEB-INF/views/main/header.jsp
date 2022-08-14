@@ -12,29 +12,62 @@
 </head>
 <body>
  <header>
-        <div id="gnb">
+ 		<!-- 멤버와 관리자 모두 로그인이 안될떄  -->
+  <c:if test="${empty member and empty manager}">
+  	<div id="gnb">
             <div id="logo">
                 <p class="p1"><a href="${conPath }/main2.do">CHECK IN</a></p>
                 <p class="p2"><a href="${conPath }/main2.do">for your life</a></p>
             </div>
-            <div id="right">
-           	 <c:if test="${empty member }">
+  			<div id="right">
                 <ul>
-                    <li><a href="#">NOTICE</a></li>
+                    <li><a href="${conPath}/notice.do?method=boardmain">BOARD</a></li>
                     <li><a href="${conPath }/member.do?method=joinAgreePage">JOIN</a></li>
                     <li><a href="${conPath }/member.do?method=loginForm">LOGIN</a></li>
                 </ul>
-             </c:if>   
-             <c:if test="${not empty member }">
-             	<ul>
-             		<li><a href="#">NOTICE</a></li>
+			</div>  	
+  	</div>
+  </c:if>
+  
+  <!-- 멤버 로그인 후 화면  -->
+ <c:if test="${not empty member and empty manager}">
+ 	<div id="gnb">
+            <div id="logo">
+                <p class="p1"><a href="${conPath }/main2.do">CHECK IN</a></p>
+                <p class="p2"><a href="${conPath }/main2.do">for your life</a></p>
+            </div>
+  			<div id="right">
+                <ul>
+             		<li><a href="${conPath}/notice.do?method=boardmain">BOARD</a></li>
                     <li><a href="${conPath }/member.do?method=myPage">MYPAGE</a></li>
                     <li><a href="${conPath }/member.do?method=logout">LOGOUT</a>
                     <li><a href="#">${member.mname } 님</a></li>
                 </ul>    
-             </c:if>
+		</div>  	
+  	</div>
+  </c:if>
+  
+  
+  <!-- 관리자 로그인 후 화면  -->
+ <c:if test="${empty member and not empty manager}">
+  	<div id="gnb">
+            <div id="logo">
+                <p class="p1"><a href="${conPath }/main2.do">CHECK IN</a></p>
+                <p class="p2"><a href="${conPath }/main2.do">for your life</a></p>
             </div>
-        </div>
+  			<div id="right">
+                <ul>
+                    <li><a href="${conPath }/manager.do?method=managerList">ADMINLIST</a></li>
+                    <li><a href="${conPath }/manager.do?method=managermain">MODE</a></li>
+                    <li><a href="${conPath }/member.do?method=logout">LOGOUT</a>
+                    <li><a href="#">${manager.aid } 님</a></li>
+                </ul>    
+		</div>  	
+  	</div>
+  </c:if>
+
+
+
     </header>
 </body>
 </html>
