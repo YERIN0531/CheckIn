@@ -8,7 +8,8 @@
 <head>
 <meta charset="UTF-8">
   <title>Insert title here</title>
-  <link href="${conPath }/css/style.css" rel="stylesheet">
+  <link href="${conPath }/css/manager/manageairlist.css" rel="stylesheet">
+     <link href="https://fonts.googleapis.com/css2?family=Domine:wght@500&family=IBM+Plex+Sans+KR:wght@300;400&family=Libre+Baskerville&family=Nanum+Gothic&family=Satisfy&family=The+Nautigal:wght@400;700&display=swap" rel="stylesheet">
  <style>
  
  </style>
@@ -51,68 +52,93 @@
 		</script>
 	</c:if>	
 	
-	<div>
-		<table>
-			<caption>관리자 항공 LIST</caption>
-			<tr>
-			<td>항공코드</td><td>항공사</td><td>출발지</td><td>도착지</td><td>출발시간</td><td>도착시간</td><td>출발시간</td><td>도착시간</td><td>가격</td>
-			<td>수정</td><td>삭제</td>
-			</tr>			
-			<c:forEach var="air" items="${allAirList }">
-			<tr>
-				<td>
-					${air.acode }
-					</td>
-					<td>${air.airline }</td>
-					<td>
-					${air.adepartloc }
-					</td>
-				
-					<td>
-					${air.aariveloc }
-					</td>
-					<td>
-					${air.agotime} 
-					</td>
-					<td>
-					${air.ago_arrivetime }
-					</td>
-					<td>
-					${air.acome_departtime }
-					</td>
-					<td>
-					${air.acome_arrivetime }
-					</td>
-					<td>
-					${air.aprice }
-					</td>
-					<td>
-						<button onclick="location='${conPath }/air.do?method=airModifyView&pageNum=${param.pageNum}&acode=${air.acode}'">수정</button>
-					</td>
-					<td>
-						<button onclick="location='${conPath }/air.do?method=airDelete&acode=${air.acode}'">삭제</button>
-					</td>
-			</tr>
-			</c:forEach>						
-		</table>
+	<jsp:include page="../main/header.jsp" />
+	<div class="slider">
+		<div class="image">
+			<input type="radio" name="slide" id="slide1" checked>
+			<input type="radio" name="slide" id="slide2"> 
+			<input type="radio" name="slide" id="slide3"> <input type="radio" name="slide" id="slide4">
+			<ul id="imgholder" class="imgs">
+				<li><img src="${conPath }/image/slide1.png"></li>
+				<li><img src="${conPath }/image/slide3.png"></li>
+				<li><img src="${conPath }/image/slide2.png"></li>
+				<li><img src="${conPath }/image/slide22.png"></li>
+			</ul>
+		</div>
+		<div class="bullets">
+			<label for="slide1">&nbsp;</label> <label for="slide2">&nbsp;</label>
+			<label for="slide3">&nbsp;</label> <label for="slide4">&nbsp;</label>
+		</div>
 	</div>
+
+	<div id="logos">
+        <p>AIR LIST</p>
+    </div>
+	<section>
+			 <div id="register">
+                <p><a href="${conPath }/air.do?method=airInsertView">항공기 등록 	바로가기</a></p>
+             </div>
+			<div id="content">
+				<table>
+					<tr>
+					<th>항공코드</th><th>출발지</th><th>도착지</th><th>출발시간</th><th>도착시간</th><th>출발시간</th><th>도착시간</th><th>가격</th>
+					<th>수정</th><th>삭제</th>
+					</tr>			
+					<c:forEach var="air" items="${allAirList }">
+					<tr>
+						<td>
+							${air.acode }
+							</td>
+							<td>
+							${air.adepartloc }
+							</td>
+						
+							<td>
+							${air.aariveloc }
+							</td>
+							<td>
+							${air.agotime} 
+							</td>
+							<td>
+							${air.ago_arrivetime }
+							</td>
+							<td>
+							${air.acome_departtime }
+							</td>
+							<td>
+							${air.acome_arrivetime }
+							</td>
+							<td>
+							${air.aprice }
+							</td>
+							<td>
+								<button onclick="location='${conPath }/air.do?method=airModifyView&pageNum=${param.pageNum}&acode=${air.acode}'">수정</button>
+							</td>
+							<td>
+								<button onclick="location='${conPath }/air.do?method=airDelete&acode=${air.acode}'">삭제</button>
+							</td>
+					</tr>
+					</c:forEach>						
+				</table>
+			</div>
 	
-	<div>
-	<c:if test="${paging.startPage>paging.blockSize}">
-		[ <a href="${conPath }/air.do?method=allAirList&pageNum=${paging.startPage+1 }">이전</a> ]
-	</c:if>	
-	<c:forEach var="i" begin="${paging.startPage}" end="${paging.endPage }">
-		<c:if test="${paging.currentPage==i }"> 
-			<b>[ ${i } ]</b> 
+		<div id="paging">
+		<c:if test="${paging.startPage>paging.blockSize}">
+			[ <a href="${conPath }/air.do?method=allAirList&pageNum=${paging.startPage+1 }">이전</a> ]
+		</c:if>	
+		<c:forEach var="i" begin="${paging.startPage}" end="${paging.endPage }">
+			<c:if test="${paging.currentPage==i }"> 
+				<b>[ ${i } ]</b> 
+			</c:if>
+			<c:if test="${paging.currentPage != i }">
+				[ <a href="${conPath }/air.do?method=allAirList&pageNum=${i }">${i }</a> ]
+			</c:if>
+		</c:forEach>
+		<c:if test="${paging.endPage<paging.pageCnt }">
+			[ <a href="${conPath }/air.do?method=allAirList&pageNum=${paging.endPage+1 }">다음</a> ]
 		</c:if>
-		<c:if test="${paging.currentPage != i }">
-			[ <a href="${conPath }/air.do?method=allAirList&pageNum=${i }">${i }</a> ]
-		</c:if>
-	</c:forEach>
-	<c:if test="${paging.endPage<paging.pageCnt }">
-		[ <a href="${conPath }/air.do?method=allAirList&pageNum=${paging.endPage+1 }">다음</a> ]
-	</c:if>
-	</div>
-	
+		</div>
+	</section>
+	<jsp:include page="../main/footer.jsp" />
   </body>
 </html>

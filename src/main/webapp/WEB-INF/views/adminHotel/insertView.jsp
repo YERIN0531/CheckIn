@@ -8,7 +8,9 @@
 <head>
 <meta charset="UTF-8">
   <title>Insert title here</title>
-  <link href="${conPath }/css/style.css" rel="stylesheet">
+  <link href="${conPath }/css/manager/managerhotelinsert.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Domine:wght@500&family=IBM+Plex+Sans+KR:wght@300;400&family=Libre+Baskerville&family=Nanum+Gothic&family=Satisfy&family=The+Nautigal:wght@400;700&display=swap" rel="stylesheet">
+ 
  <style>
  
  </style>
@@ -20,10 +22,34 @@
  </script>  
 </head>
   <body>
-	<h1>관리자가 호텔 등록 페이지입니다.</h1>
+   	<jsp:include page="../main/header.jsp" />
+	<div class="slider">
+		<div class="image">
+			<input type="radio" name="slide" id="slide1" checked>
+			<input type="radio" name="slide" id="slide2"> 
+			<input type="radio" name="slide" id="slide3"> <input type="radio" name="slide" id="slide4">
+			<ul id="imgholder" class="imgs">
+				<li><img src="${conPath }/image/slide1.png"></li>
+				<li><img src="${conPath }/image/slide3.png"></li>
+				<li><img src="${conPath }/image/slide2.png"></li>
+				<li><img src="${conPath }/image/slide22.png"></li>
+			</ul>
+		</div>
+		<div class="bullets">
+			<label for="slide1">&nbsp;</label> <label for="slide2">&nbsp;</label>
+			<label for="slide3">&nbsp;</label> <label for="slide4">&nbsp;</label>
+		</div>
+	</div>
+
+	<div id="logos">
+        <p>HOTEL REGISTER</p>
+    </div>
+    
+    <section>
 	<form action="${conPath }/hotel.do?method=adminInsertHotel" method="post" enctype="multipart/form-data"> 
+		<div id="joinform">
 		<table>
-			<caption>호텔 등록</caption>
+			<caption>CHECK IN</caption>
 			<tr>
 				<th>호텔 이름</th>
 				<td>
@@ -55,37 +81,37 @@
 				</td>
 			</tr>
 			<tr>
-				<th>스탠다드 룸 가격</th>
+				<th>스탠다드 가격</th>
 				<td>
 					<input type="number" name="standardprice">
 				</td>
 			</tr>
 			<tr>
-				<th>스탠다드 룸 사진</th>
+				<th>스탠다드 사진</th>
 				<td>
 					<input type="file" name="tempstandardimage">
 				</td>
 			</tr>
 			<tr>
-				<th>디럭스 룸 가격</th>
+				<th>디럭스 가격</th>
 				<td>
 					<input type="number" name="deluxeprice">
 				</td>
 			</tr>
 			<tr>
-				<th>디럭스 룸 사진</th>
+				<th>디럭스 사진</th>
 				<td>
 					<input type="file" name="tempdeluxeimage">
 				</td>
 			</tr>
 			<tr>
-				<th>스위트 룸 가격</th>
+				<th>스위트 가격</th>
 				<td>
 					<input type="number" name="sweetprice">
 				</td>
 			</tr>		
 			<tr>
-				<th>스위트 룸 사진</th>
+				<th>스위트 사진</th>
 				<td>
 					<input type="file" name="tempsweetimage">
 				</td>
@@ -93,10 +119,12 @@
 			<tr>
 				<td colspan="2">
 					<input type="submit" value="등록">
-					<input type="button" value="뒤로가기" onclick="history.back()">
 				</td>
 			</tr>
 		</table>
+		</div>
 	</form>
+	</section>
+	  	<jsp:include page="../main/footer.jsp" />
   </body>
 </html>
