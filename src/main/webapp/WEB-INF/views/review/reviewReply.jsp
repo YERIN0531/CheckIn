@@ -13,7 +13,6 @@
 <body>
  <div id="content">
    <form action="${conPath }/review.do?method=replyReview" method="post" enctype="multipart/form-data">
-   		<input type="hidden" name="mid" value= "${mid}">
    		<input type="hidden" name="pageNum" value="${param.pageNum }">
 		<input type="hidden" name="rgroup" value="${replyDto.rgroup }">
 		<input type="hidden" name="rstep" value="${replyDto.rstep }">
@@ -23,7 +22,7 @@
    				<tr>
    				  <th> 작성자 </th>
    				  <td>
-   				  	<input type="text" name="rname" value="${member.mname }" readonly="readonly">
+   				  	<input type="text" name="mid" value="${member.mid }" readonly="readonly">
    				  </td>
    				<tr>
    					<th>글제목</th>
