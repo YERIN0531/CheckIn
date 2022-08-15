@@ -25,5 +25,7 @@ public interface AirDao {
 	
 	public List<String> seatList(Air air);
 	
+
 	public List<Air> myAirReserveList(String mid);
+
 }
