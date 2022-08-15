@@ -105,6 +105,12 @@ public class AirController {
 		return "air/airReserve";
 	}
 	
+	@RequestMapping(params="method=myAirReserveList",method={RequestMethod.GET, RequestMethod.POST})
+	public String myAirReserveList(String mid, Model model) {
+		model.addAttribute("myAirReserveList",airService.myAirReserveList(mid));
+		return "myPage/myAirList";
+	}
+	
 	
 	
 }

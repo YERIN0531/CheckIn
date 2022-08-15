@@ -8,7 +8,8 @@
 <head>
 <meta charset="UTF-8">
   <title>Insert title here</title>
-  <link href="${conPath }/css/style.css" rel="stylesheet">
+  <link href="${conPath }/css/manager/managerhotelmodify.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Domine:wght@500&family=IBM+Plex+Sans+KR:wght@300;400&family=Libre+Baskerville&family=Nanum+Gothic&family=Satisfy&family=The+Nautigal:wght@400;700&display=swap" rel="stylesheet">
  <style>
  
  </style>
@@ -40,37 +41,63 @@
   			alert('호텔룸 수정 실패');
   		</script>
   	</c:if>
-	<h1>관리자가 호텔 수정 페이지입니다.</h1>
+  	
+  	<jsp:include page="../main/header.jsp" />
+	<div class="slider">
+		<div class="image">
+			<input type="radio" name="slide" id="slide1" checked>
+			<input type="radio" name="slide" id="slide2"> 
+			<input type="radio" name="slide" id="slide3"> <input type="radio" name="slide" id="slide4">
+			<ul id="imgholder" class="imgs">
+				<li><img src="${conPath }/image/slide1.png"></li>
+				<li><img src="${conPath }/image/slide3.png"></li>
+				<li><img src="${conPath }/image/slide2.png"></li>
+				<li><img src="${conPath }/image/slide22.png"></li>
+			</ul>
+		</div>
+		<div class="bullets">
+			<label for="slide1">&nbsp;</label> <label for="slide2">&nbsp;</label>
+			<label for="slide3">&nbsp;</label> <label for="slide4">&nbsp;</label>
+		</div>
+	</div>
+
+	<div id="logos">
+        <p>HOTEL MODIFY</p>
+    </div>
+  	<section>
+  	
+  	 <div id="content">
+  	
 	<form action="${conPath }/hotel.do?method=updateHotel" method="post" enctype="multipart/form-data"> 
 			<input type="hidden" name="hotelid" value="${hotelDetail[0].hotelid }">
 		<table>
 			<caption>호텔 수정</caption>
 			<tr>
-				<th>호텔 이름</th>
+				<th class="th-1">호텔 이름</th>
 				<td>
 					<input type="text" name="hotelname" value="${hotelDetail[0].hotelname }" required="required">
 				</td>
 			</tr>
 			<tr>
-				<th>호텔 국가</th>
+				<th class="th-1">호텔 국가</th>
 				<td>
 					<input type="text" name="hotelcountry" value="${hotelDetail[0].hotelcountry }">
 				</td>
 			</tr>
 			<tr>
-				<th>호텔 주소</th>
+				<th class="th-1">호텔 주소</th>
 				<td>
 					<input type="text" name="hoteladdress" value="${hotelDetail[0].hoteladdress }">
 				</td>
 			</tr>
 			<tr>
-				<th>호텔 사진</th>
+				<th class="th-1">호텔 사진</th>
 				<td>
 					<input type="file" name="temphotelimage">
 				</td>
 			</tr>
 			<tr>
-				<td colspan="2">
+				<td colspan="2" class="btn">
 					<input type="submit" value="호텔 수정">
 				</td>
 			</tr>
@@ -88,7 +115,7 @@
 						</c:if>
 					</c:forEach>
 				</td>
-				<td rowspan="2">
+				<td rowspan="2" class="btn">
 					<input type="submit" value="스탠다드룸 수정">
 				</td>
 			</tr>
@@ -112,7 +139,7 @@
 						</c:if>
 					</c:forEach>
 				</td>
-				<td rowspan="2">
+				<td rowspan="2" class="btn">
 					<input type="submit" value="디럭스룸 수정">
 				</td>
 			</tr>
@@ -136,7 +163,7 @@
 						</c:if>
 					</c:forEach>
 				</td>
-				<td rowspan="2">
+				<td rowspan="2" class="btn">
 					<input type="submit" value="스위트룸 수정">
 				</td>
 			</tr>		
@@ -148,7 +175,10 @@
 			</tr>
 		</table>
 	</form>
-	<button onclick="location='${conPath }/hotel.do?method=adminHotelList&'">뒤로가기</button>
-	<button onclick="location='${conPath }/main.do'">메인으로</button>
+	<button onclick="location='${conPath }/hotel.do?method=adminHotelList&'" class="back">뒤로가기</button>
+	<button onclick="location='${conPath }/main.do'" >메인으로</button>
+	</div>
+	</section>
+	<jsp:include page="../main/footer.jsp" />
   </body>
 </html>

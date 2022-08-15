@@ -79,7 +79,7 @@
 	<div id="reserveCheck">
 		<div id="reservetitle"><p>RESERVE CHECK</p></div>
 		
-<%-- 			<form action="${conPath }/hotel.do?method=payPage" method="post"> --%>
+
 			<form action="${conPath }/hotel.do?method=insertHotelReservation" method="post" >
 				<input type="hidden" name="mid" value="${member.mid }">	
 				<input type="hidden" name="hotelid" value="${reservationInfo.hotelid }">

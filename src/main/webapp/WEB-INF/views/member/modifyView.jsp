@@ -10,8 +10,8 @@
 <head>
 <meta charset="UTF-8">
   <title>Insert title here</title>
-  <link href="${conPath }/css/style.css" rel="stylesheet">
-  
+  <link href="${conPath }/css/member/myPage.css" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css2?family=Domine:wght@500&family=IBM+Plex+Sans+KR:wght@300;400&family=Libre+Baskerville&family=Nanum+Gothic&family=Satisfy&family=The+Nautigal:wght@400;700&display=swap" rel="stylesheet">
  <style>
  
  </style>
@@ -103,8 +103,72 @@
  		location="${conPath }/member.do?method=selectMileage&mmileage=${memberDto.mmileage }&mtotal=${memberDto.mtotal }";
  	</script>
  </c:if>
- 	<jsp:include page="../main/header.jsp" />
-   <jsp:include page="myPage.jsp" />
+<%--    <jsp:include page="myPage.jsp" /> --%>
+	 <jsp:include page="../main/header.jsp" />
+	 
+	   <div class="slider">
+		<div class="image">
+			<input type="radio" name="slide" id="slide1" checked>
+			<input type="radio" name="slide" id="slide2"> 
+			<input type="radio" name="slide" id="slide3"> <input type="radio" name="slide" id="slide4">
+			<ul id="imgholder" class="imgs">
+				<li><img src="${conPath }/image/slide1.png"></li>
+				<li><img src="${conPath }/image/slide3.png"></li>
+				<li><img src="${conPath }/image/slide2.png"></li>
+				<li><img src="${conPath }/image/slide22.png"></li>
+			</ul>
+		</div>
+		<div class="bullets">
+			<label for="slide1">&nbsp;</label> <label for="slide2">&nbsp;</label>
+			<label for="slide3">&nbsp;</label> <label for="slide4">&nbsp;</label>
+		</div>
+	</div>
+
+	<div id="logos">
+        <p>MYPAGE</p>
+    </div>
+	 
+	<section>
+	<div id="navigation">
+      <ul class="menu">
+         <li>
+            <a href="#">마이 페이지</a>
+            <ul class="submenu">
+               <li><a href="${conPath }/member.do?method=modifyPWCheck&modify=all">개인정보 변경</a></li>  
+               <li><a href="${conPath }/member.do?method=modifyPWCheck&modify=pw">비밀번호 변경</a></li>
+               <li><a href="${conPath }/member.do?method=modifyPWCheck&modify=mileage">마일리지 조회</a></li>
+            </ul>
+         </li>
+         <li>
+            <a href="#">조회</a>
+            <ul class="submenu">
+               <li><a href="${conPath }/air.do?method=myAirReserveList&mid=${member.mid }">항공권 조회</a></li>
+               <li><a href="${conPath }/hotel.do?method=myHotelReservationList&mid=${member.mid }">호텔예약 조회</a></li>
+               <li><a href="${conPath }/cart.do?method=orderDetailList">주문 조회</a></li>
+               <li><a href="${conPath }/trip.do?method=myTeamList">내 여행팀 조회</a></li>
+            </ul>
+         </li>
+         <li>
+            <a href="#">기타</a>
+            <ul class="submenu">
+               
+               <li><a href="#">예약 조회</a></li>
+               <li><a href="#">배송 조회</a></li>
+            </ul>
+         </li>
+         <li>
+            <a href="#">회원탈퇴</a>
+            <ul class="submenu">
+               <li><a href="#">회원 탈퇴</a></li>
+            </ul>
+         </li>
+      </ul>
+   </div>
+
+
+
+<div id="content">
+	<div id="changeinfo">
    <form action="${conPath }/member.do?method=modifyMember" method="post">
      <input type="hidden" name="modify" value="${param.modify }">
      <input type="hidden" name="mid" value="${memberDto.mid }">
@@ -112,12 +176,11 @@
       <table>
       <c:if test="${param.modify eq 'all' }">
          <caption>회원 정보 수정</caption>
-        <tr><td class="join"><div>&nbsp;</div>SIGN UP</td></tr>                   
 					<tr><td></td></tr>
                    
 
                    <tr>
-                        <td>이름<b>*</b></td>
+                        <th>이름<b>*</b></th>
                     </tr>
                     <tr>
                         <td>
@@ -126,7 +189,7 @@
                     </tr>					
                    	
                    	<tr>
-                        <td>영문 이름</td>
+                        <th>영문 이름</th>
                     </tr>
                     <tr>
                         <td>
@@ -135,7 +198,7 @@
                     </tr>
                     
                     <tr>
-                        <td>여권 번호</td>
+                        <th>여권 번호</th>
                     </tr>
                     <tr>
                         <td>
@@ -144,7 +207,7 @@
                     </tr>
                     
                     <tr>
-                        <td>전화번호<b>*</b></td>
+                        <th>전화번호<b>*</b></th>
                     </tr>
                     <tr>
                         <td>
@@ -153,7 +216,7 @@
                     </tr>
                     
                     <tr>
-                        <td>우편번호<b>*</b></td>
+                        <th>우편번호<b>*</b></th>
                     </tr>
                     <tr>
                         <td>
@@ -164,7 +227,7 @@
                     </tr>
                     
                     <tr>
-                        <td>주소<b>*</b></td>
+                        <th>주소<b>*</b></th>
                     </tr>
                     <tr>
                         <td>
@@ -174,7 +237,7 @@
                     </tr>
                     
                     <tr>
-                        <td>상세주소<b>*</b></td>
+                        <th>상세주소<b>*</b></th>
                     </tr>
                     <tr>
                         <td>
@@ -183,7 +246,7 @@
                     </tr>
                     
                     <tr>
-                        <td>성별<b>*</b></td>
+                        <th>성별<b>*</b></th>
                     </tr>
                     <tr>
                         <td>
@@ -193,7 +256,7 @@
                     </tr>
                     
                      <tr>
-                        <td>생년월일<b>*</b></td>
+                        <th>생년월일<b>*</b></th>
                     </tr>
                     <tr>
                         <td>
@@ -202,7 +265,7 @@
                     </tr>                   
                     
                     <tr>
-                        <td>메일</td>
+                        <th>메일</th>
                     </tr>
                     <tr>
                         <td>
@@ -223,30 +286,26 @@
                     </tr> 
            
       </c:if>
-      
       <c:if test="${param.modify eq 'pw' }">
          
          <caption>비밀번호 변경</caption>
-         
-       
-         
           <tr>
-                  <td>새로운 비밀번호<b>*</b></td>
+                  <th>새로운 비밀번호<b>*</b></th>
              </tr>
              <tr>
                    <td>
                       <input type="password" name="mpw"  required="required" placeholder="8~16자 영문자,숫자,특수문자 를 사용하세요">
-                      <div id="patternCheckResult"> &nbsp; </div>
+                      <div id="patternCheckResult"></div>
                   </td>
              </tr>
 
                     <tr>
-                        <td>새로운 비밀번호확인<b>*</b></td>
+                        <th>새로운 비밀번호확인<b>*</b></th>
                     </tr>
                     <tr>
                         <td>
                             <input type="password" name="mpwChk" required="required">
-                            <div id="pwChkResult"> &nbsp; </div>
+                            <div id="pwChkResult"></div>
                         </td>
                     </tr>
 			<tr>
@@ -257,6 +316,9 @@
 		</c:if>
 		</table>
 	</form>
-<jsp:include page="../main/footer.jsp" />
-  </body>
+	</div>
+	</div>
+	</section>
+	<jsp:include page="../main/footer.jsp" />
+	  </body>
 </html>

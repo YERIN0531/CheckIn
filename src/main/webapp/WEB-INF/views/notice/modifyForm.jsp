@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
   <title>Insert title here</title>
-  <link href="${conPath }/css/style.css" rel="stylesheet">
+  <link href="${conPath }/css/board/write.css"" rel="stylesheet">
  <style>
  
  </style>
@@ -20,6 +20,7 @@
  </script>  
 </head>
   <body>
+      <jsp:include page="../board/boardmain.jsp"/>
    <div id="content">
    <form action="${conPath }/notice.do?method=noticeModify" method="post" enctype="multipart/form-data">
    		<input type="hidden" name="pageNum" value="${param.pageNum }">
@@ -29,20 +30,24 @@
    				
    				<tr>
    					<th>글제목</th>
-   						<td><input type="text" name="ntitle" value="${noticeDto.ntitle }"></td>
+   						<td>
+   						<input type="text" name="ntitle" value="${noticeDto.ntitle }"></td>
    				</tr>
    				<tr>
    					<th>글본문</th>
-   						<td><input type="text" name="ncontent" value="${noticeDto.ncontent }"></td>
+   						<td>
+   						<textarea name="ncontent" rows="3" cols="32" required="required">${noticeDto.ncontent }</textarea>
+   						</td>
    				</tr>
    				<tr>
    					<th>사진등록</th><td><input type="file" name="tempnimage1" ></td>
    			     </tr>
-   					<tr><td colspan="2">
+   					<tr><td colspan="2" class="btn">
 				<input type="submit" value="등록">
 				<input type="button" value="목록" onclick="location='${conPath }/notice.do?method=noticeList&pageNum=${param.pageNum}'">	
    		</table>
    </form>
    </div>   
+       <jsp:include page="../main/footer.jsp"/> 
   </body>
 </html>

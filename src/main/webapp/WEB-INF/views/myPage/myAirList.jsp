@@ -8,10 +8,10 @@
 <head>
 <meta charset="UTF-8">
   <title>Insert title here</title>
-  <link href="${conPath }/css/member/myPage.css" rel="stylesheet">
+<link href="${conPath }/css/member/myPage.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Domine:wght@500&family=IBM+Plex+Sans+KR:wght@300;400&family=Libre+Baskerville&family=Nanum+Gothic&family=Satisfy&family=The+Nautigal:wght@400;700&display=swap" rel="stylesheet">
  <style>
-
+ 
  </style>
  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
  <script>
@@ -21,7 +21,7 @@
  </script>  
 </head>
   <body>
-  	  <jsp:include page="../main/header.jsp" />
+    	  <jsp:include page="../main/header.jsp" />
   <div class="slider">
 		<div class="image">
 			<input type="radio" name="slide" id="slide1" checked>
@@ -41,7 +41,7 @@
 	</div>
 
 	<div id="logos">
-        <p>MYPAGE</p>
+        <p>AIRTICKET</p>
     </div>
   
   
@@ -81,30 +81,74 @@
          </li>
       </ul>
    </div>
+  
+  
+    <div id="content">
+  <div id="reservedair">
+          <div id="airlist">
 
-  	<div id="content">
-  		<div id="pwcheck">
-	<form action="${conPath }/member.do?method=modifyView" method="post">
-		<input type="hidden" name="mid" value="${member.mid }">
-		<input type="hidden" name="modify" value="${param.modify }">
-		<table>
-		<caption>PWCHECK</caption>
-			<tr>
-				<th>PW</th>
-				<td>
-					<input type="password" name="mpw" required="required" >
-				</td>
-			</tr>
-			<tr>
-				<td colspan="2">
-					<input type="submit" value="확인">
-				</td>
-			</tr>
-		</table>
-	</form>
-	</div>
-	</div>
+            <c:forEach var="airList" items="${myAirReserveList }">
+                <div class="airticket">
+                    <table>
+                    
+                        <tr>
+                        <td rowspan="2" >${airList.acode }</td>
+                            <td>${airList.adepartloc }</td>
+                            <td>------------------------</td>
+                            <td>${airList.aariveloc }</td>
+                            <td rowspan="2" colspan="2" class="w3">
+                            ${airList.aprice} / ${airList.seatid }
+                            </td>
+                        </tr>
+                        <tr>
+                               <td>${airList.agodate }</td>
+                              <td>------------------------</td>
+                               <td>${airList.acomedate }</td>
+                        </tr>
+                    </table>
+                </div>
+            </c:forEach>
+            </div>
+            </div>
+        </div>
+  
+  
+  
+<!--   <div id="content"> -->
+<!--   <div id="reservedair"> -->
+<%-- 		<c:forEach var="airList" items="${myAirReserveList }"> --%>
+<!-- 	<div class="airticket"> -->
+<!-- 		<table> -->
+<%-- 			<caption>RESERVED AIR</caption>			 --%>
+		
+<!-- 				<tr> -->
+<!-- 					<th>출발 도시</th> -->
+<%-- 					<td>${airList.adepartloc }</td> --%>
+<!-- 				</tr> -->
+<!-- 				<tr> -->
+<!-- 					<th>도착 도시</th> -->
+<%-- 					<td>${airList.aariveloc }</td> --%>
+<!-- 				</tr> -->
+<!-- 				<tr> -->
+<!-- 					<th>좌석 번호</th> -->
+<%-- 					<td>${airList.seatid }</td> --%>
+<!-- 				</tr> -->
+<!-- 				<tr> -->
+<!-- 					<th>가는날</th> -->
+<%-- 					<td>${airList.agodate }</td> --%>
+<!-- 				</tr> -->
+<!-- 				<tr> -->
+<!-- 					<th>오는날</th> -->
+<%-- 					<td>${airList.acomedate }</td> --%>
+<!-- 				</tr> -->
+	
+	
+<!-- 		</table>		 -->
+<!-- 	</div>		  -->
+<%-- 		</c:forEach> --%>
+<!-- 		</div> -->
+<!-- 	</div> -->
 	</section>
-	   <jsp:include page="../main/footer.jsp" />
+	 <jsp:include page="../main/footer.jsp" />
   </body>
 </html>

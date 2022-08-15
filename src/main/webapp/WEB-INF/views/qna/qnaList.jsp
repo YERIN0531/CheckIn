@@ -62,9 +62,7 @@
 <jsp:include page="../board/boardmain.jsp"/>
 	
     
-    <c:if test="${not empty manager }">
-      관리자
-    </c:if>
+ 
     
     <c:if test="${not empty qndDelete and  qndDelete eq 1}">
      <script>
@@ -90,19 +88,20 @@
     <div id="wrap">
     	<div id="writeform">
 	    	<table>
-				<tr><td>
-					<c:if test="${not empty member }">
+					<c:if test="${not empty member and empty manager}">
+						<tr><td>
 						<a href="${conPath}/qna.do?method=insertQnaForm&pageNum=${paging.currentPage}">글쓰기</a>
+						</td></tr>
 					</c:if>	
 					<c:if test="${empty member and empty manager}">
+					<tr><td>
 						<a href="${conPath}/member.do?method=loginForm">글쓰기는 사용자 로그인 후에 이용 가능합니다</a>
+						</td></tr>
 					</c:if>	
-				</td></tr>
 			</table>
     	</div>
     <div id="listform">
     <table>
-    	<caption>문의사항 게시판</caption>
     	<tr>
     	  <th class="qth-1">글번호</th>
     	  <th class="qth-2">아이디</th>

@@ -9,6 +9,7 @@
 <meta charset="UTF-8">
   <title>Insert title here</title>
   <link href="${conPath }/css/member/myPage.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Domine:wght@500&family=IBM+Plex+Sans+KR:wght@300;400&family=Libre+Baskerville&family=Nanum+Gothic&family=Satisfy&family=The+Nautigal:wght@400;700&display=swap" rel="stylesheet">
  <style>
  
  </style>
@@ -21,6 +22,30 @@
 </head>
   <body>
   <jsp:include page="../main/header.jsp" />
+  <div class="slider">
+		<div class="image">
+			<input type="radio" name="slide" id="slide1" checked>
+			<input type="radio" name="slide" id="slide2"> 
+			<input type="radio" name="slide" id="slide3"> <input type="radio" name="slide" id="slide4">
+			<ul id="imgholder" class="imgs">
+				<li><img src="${conPath }/image/slide1.png"></li>
+				<li><img src="${conPath }/image/slide3.png"></li>
+				<li><img src="${conPath }/image/slide2.png"></li>
+				<li><img src="${conPath }/image/slide22.png"></li>
+			</ul>
+		</div>
+		<div class="bullets">
+			<label for="slide1">&nbsp;</label> <label for="slide2">&nbsp;</label>
+			<label for="slide3">&nbsp;</label> <label for="slide4">&nbsp;</label>
+		</div>
+	</div>
+
+	<div id="logos">
+        <p>MYPAGE</p>
+    </div>
+  
+  
+  <section>
 	<div id="navigation">
       <ul class="menu">
          <li>
@@ -34,15 +59,16 @@
          <li>
             <a href="#">조회</a>
             <ul class="submenu">
-               <li><a href="#">항공권 조회</a></li>
+               <li><a href="${conPath }/air.do?method=myAirReserveList&mid=${member.mid }">항공권 조회</a></li>
                <li><a href="${conPath }/hotel.do?method=myHotelReservationList&mid=${member.mid }">호텔예약 조회</a></li>
-               <li><a href="${conPath }/cart.do?method=orderDetailList">주문목록</a></li>
+               <li><a href="${conPath }/cart.do?method=orderDetailList">주문 조회</a></li>
+               <li><a href="${conPath }/trip.do?method=myTeamList">내 여행팀 조회</a></li>
             </ul>
          </li>
          <li>
-            <a href="#">시부렁시부렁</a>
+            <a href="#">기타</a>
             <ul class="submenu">
-               <li><a href="${conPath }/trip.do?method=myTeamList">내 여행팀 조회</a></li>
+               
                <li><a href="#">예약 조회</a></li>
                <li><a href="#">배송 조회</a></li>
             </ul>
@@ -55,6 +81,7 @@
          </li>
       </ul>
    </div>
+</section>
    <jsp:include page="../main/footer.jsp" />
   </body>
 </html>
