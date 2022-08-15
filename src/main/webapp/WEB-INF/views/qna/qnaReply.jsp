@@ -8,6 +8,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="${conPath }/css/board/qnawrite.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Domine:wght@500&family=IBM+Plex+Sans+KR:wght@300;400&family=Libre+Baskerville&family=Nanum+Gothic&family=Satisfy&family=The+Nautigal:wght@400;700&display=swap" rel="stylesheet">
+
 <script src="http://code.jquery.com/jquery-3.6.0.js"></script>
 <script>
 	$(document).ready(function() {
@@ -22,6 +25,7 @@
 </head>
 <body>
 <!--  -->
+<jsp:include page="../board/boardmain.jsp"/>
 	<div id="content">
 		<form action="${conPath }/qna.do?method=replyQna" method="post"enctype="multipart/form-data">
 
@@ -63,7 +67,7 @@
 								placeholder="글 비밀번호를 입력하세요 " />
 				   </div>
 				<tr>
-					<td colspan="2"><input type="submit" value="등록"> <input
+					<td colspan="2" class="btn"><input type="submit" value="등록"> <input
 						type="button" value="목록"
 						onclick="location='${conPath }/qna.do?method=qnaList&pageNum=${param.pageNum}'">
 					</td>
@@ -71,5 +75,6 @@
 			</table>
 		</form>
 	</div>
+		<jsp:include page="../main/footer.jsp"/> 
 </body>
 </html>

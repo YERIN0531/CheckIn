@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
   <title>Insert title here</title>
-  <link href="${conPath }/css/style.css" rel="stylesheet">
+  <link href="${conPath }/css/board/noticedetail.css" rel="stylesheet">
  <style>
  </style>
  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -28,6 +28,7 @@
 
 </head>
   <body>
+  <jsp:include page="../board/boardmain.jsp"/>
     <div id="content">
     <table>
     	<caption>${noticeDto.nnum }번 글 상세보기 </caption>
@@ -38,8 +39,8 @@
     	<tr>
     	  <th>본문</th>
     	  <td>
-    	  <c:if test="${not empty noticeDto.nimage }">
-    	  	<img src="${conPath }/fileUpload/${noticeDto.nimage}"> <br><br>
+    	  <c:if test="${not empty noticeDto.nimage }" >
+    	  	<img src="${conPath }/fileUpload/${noticeDto.nimage}" width="300" height="300"> <br><br>
     	  </c:if>
     	  ${noticeDto.ncontent }
     	  </td>
@@ -55,8 +56,9 @@
     	
     </table>
     
-    
+  
     
     </div>
+      <jsp:include page="../main/footer.jsp"/> 
   </body>
 </html>

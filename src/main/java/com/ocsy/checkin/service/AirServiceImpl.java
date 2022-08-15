@@ -84,6 +84,11 @@ public class AirServiceImpl implements AirService {
 		}
 		return seats;
 	}
+	
+	@Override
+	   public List<Air> myAirReserveList(String mid) {
+	      return airDao.myAirReserveList(mid);
+	}
 
 	
 }

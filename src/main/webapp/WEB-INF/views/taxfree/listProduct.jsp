@@ -92,8 +92,8 @@
 		   			<c:if test="${not empty manager }">
 		   			<tr>
 		   				<td colspan="3">
-		   				<button onclick="location='${conPath }/taxfree.do?method=insertForm&aid=${manager.aid }'">INSERT</button>
-		   				<button onclick="location='${conPath }/main2.do?'">MAIN</button>
+		   				<button onclick="location='${conPath }/taxfree.do?method=insertForm&aid=${manager.aid }'"  class="mycart">INSERT</button>
+		   				<button onclick="location='${conPath }/main2.do?'"  class="mycart">MAIN</button>
 						</td>   			
 		   			</tr>
 		   			</c:if>

@@ -19,6 +19,7 @@
  </script>  
 </head>
   <body>
+    <jsp:include page="../board/boardmain.jsp"/>
   <div id="content">
    <form action="${conPath }/notice.do?method=insertNotice" method="post" enctype="multipart/form-data">
    		<input type="hidden" name="aid" value="${manager.aid }">
@@ -41,9 +42,10 @@
    			    
    					<tr><td colspan="2" class="btn">
 				<input type="submit" value="등록">
-				<button onclick="location='${conPath }/notice.do?method=noticeList&pageNum=${param.pageNum}'">목록</button>
+				<input type="button" value="목록" onclick="location='${conPath }/notice.do?method=noticeList&pageNum=${param.pageNum}'">	
 		</table>
    </form>
-   </div>   
+   </div>  
+         <jsp:include page="../main/footer.jsp"/> 
   </body>
 </html>

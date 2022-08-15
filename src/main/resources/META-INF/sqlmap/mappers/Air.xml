@@ -94,8 +94,10 @@
 	</select>
 	
 	<select id="myAirReserveList" parameterType="String" resultMap="AirResult">
+
 		SELECT * FROM AIR_RESERVE AR, ASCD A WHERE MID=#{mid} AND AR.ACODE = A.ACODE ORDER BY AGODATE,AGOTIME;
 	</select>
+
   </mapper>
   
   

@@ -9,8 +9,16 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
-	<link href="conPath/css/style.css" rel="stylesheet">
+	<link href="${conPath }/css/taxfree/insertproduct.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Domine:wght@500&family=IBM+Plex+Sans+KR:wght@300;400&family=Libre+Baskerville&family=Nanum+Gothic&family=Satisfy&family=The+Nautigal:wght@400;700&display=swap" rel="stylesheet">
 	<style>
+	  #reserve {
+            padding-left: 4px;
+            background: url("${conPath}/image/tax1.png") no-repeat;
+            background-size:100%;
+            width: 100%;
+            height: 400px;
+        }
 	</style>
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	<script>
@@ -24,13 +32,34 @@
 	
 	<jsp:include page="../main/header.jsp"/>
 	
+	   		 <div id="list">
+            <div id="lnb">
+                <ul>
+	                   <li><a href="${conPath }/air.do?method=airMain">항공</a></li>
+	                   <li><a href="${conPath }/hotel.do?method=hotelMain">호텔</a></li>
+	                   <li><a href="${conPath}/taxfree.do?method=category">면세점</a></li>
+	                   <li><a href="${conPath}/notice.do?method=boardmain">게시판</a></li>
+	              </ul>
+            </div><!-- lnb -->
+        </div><!-- list -->
+	
+        <div id="reserve">
+            <div id="word">
+                <p>DUTY FREE</p>
+            </div><!-- word -->
+
+        </div><!-- reserve -->
+        <div id="logos">
+        <p>PRODUCT REGISTER</p>
+    </div>
+	
+	
+	
 	<section>
 		<form action="${conPath }/taxfree.do?method=insert" method="post" enctype="multipart/form-data">
 			<!-- <input type="hidden" name="method" value="insert"> -->
 			<table>
-				<!-- <tr><th>제품번호</th>
-					<td><input type="text" name="pnum" required="required"></td>
-				</tr> -->
+				<caption>PRODUCT REGISTER</caption>
 				<tr><th>제품명</th>
 					<td><input type="text" name="pname" required="required"></td>
 				</tr>
@@ -61,11 +90,10 @@
 				<tr><th>제품위치</th>
 					<td><input type="text" name="ploc" required="required"></td>
 				</tr>
-				<tr><td colspan="2">
-					<input type="submit" value="등록하기">
-					<input type="reset" value="초기화">
-					<button onclick="history.back();">이전으로</button>
-					<button onclick="location='main2.do'">메인페이지로</button>
+				<tr><td colspan="2" class="btn">
+					<input type="submit" value="REGISTER">
+					<button onclick="history.back();" class="button">BACK</button>
+					<button onclick="location='main2.do'" class="button">MAIN</button>
 				</td></tr>
 			</table>
 		</form>

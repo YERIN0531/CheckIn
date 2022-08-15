@@ -68,9 +68,13 @@ public class HotelController {
 	@RequestMapping(params="method=insertHotelReservation",method= {RequestMethod.GET, RequestMethod.POST})
 	public String insertHotelReservation(Hotel_rs hotel_rs,Member member,HttpSession session, Model model) {
 		memberService.minusMileage(member);
+		System.out.println(1);
 		memberService.plusMileage(member,session);
+		System.out.println(2);
 		memberService.updateMtotal(member);
+		System.out.println(3);
 		model.addAttribute("insertHotelReservation",hotelService.insertHotelReservation(hotel_rs));
+		System.out.println(4);
 		return "main/reserveResult";
 	}
 	

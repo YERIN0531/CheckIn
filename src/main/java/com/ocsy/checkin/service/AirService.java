@@ -21,6 +21,7 @@ public interface AirService {
 	public int airDelete(Air air);
 	
 	public List<String> seatList(Air air);
-	
-	
+
+	public List<Air> myAirReserveList(String mid);
+
 }

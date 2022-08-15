@@ -8,7 +8,9 @@
 <head>
 <meta charset="UTF-8">
   <title>Insert title here</title>
-  <link href="${conPath }/css/hotel/hotelmain.css" rel="stylesheet">
+  <link href="${conPath }/css/member/myPage.css" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css2?family=Domine:wght@500&family=IBM+Plex+Sans+KR:wght@300;400&family=Libre+Baskerville&family=Nanum+Gothic&family=Satisfy&family=The+Nautigal:wght@400;700&display=swap" rel="stylesheet">
+
  <style>
  
  </style>
@@ -20,15 +22,81 @@
  </script>  
 </head>
   <body>
-  <jsp:include page="../main/header.jsp" />
-		<h1>내가 예약한 호텔 조회 페이지.</h1>
+ <jsp:include page="../main/header.jsp" />
+	 
+	   <div class="slider">
+		<div class="image">
+			<input type="radio" name="slide" id="slide1" checked>
+			<input type="radio" name="slide" id="slide2"> 
+			<input type="radio" name="slide" id="slide3"> <input type="radio" name="slide" id="slide4">
+			<ul id="imgholder" class="imgs">
+				<li><img src="${conPath }/image/slide1.png"></li>
+				<li><img src="${conPath }/image/slide3.png"></li>
+				<li><img src="${conPath }/image/slide2.png"></li>
+				<li><img src="${conPath }/image/slide22.png"></li>
+			</ul>
+		</div>
+		<div class="bullets">
+			<label for="slide1">&nbsp;</label> <label for="slide2">&nbsp;</label>
+			<label for="slide3">&nbsp;</label> <label for="slide4">&nbsp;</label>
+		</div>
+	</div>
+
+	<div id="logos">
+        <p>MYPAGE</p>
+    </div>
+	 
+	<section>
+	<div id="navigation">
+      <ul class="menu">
+         <li>
+            <a href="#">마이 페이지</a>
+            <ul class="submenu">
+               <li><a href="${conPath }/member.do?method=modifyPWCheck&modify=all">개인정보 변경</a></li>  
+               <li><a href="${conPath }/member.do?method=modifyPWCheck&modify=pw">비밀번호 변경</a></li>
+               <li><a href="${conPath }/member.do?method=modifyPWCheck&modify=mileage">마일리지 조회</a></li>
+            </ul>
+         </li>
+         <li>
+            <a href="#">조회</a>
+            <ul class="submenu">
+               <li><a href="${conPath }/air.do?method=myAirReserveList&mid=${member.mid }">항공권 조회</a></li>
+               <li><a href="${conPath }/hotel.do?method=myHotelReservationList&mid=${member.mid }">호텔예약 조회</a></li>
+               <li><a href="${conPath }/cart.do?method=orderDetailList">주문 조회</a></li>
+               <li><a href="${conPath }/trip.do?method=myTeamList">내 여행팀 조회</a></li>
+            </ul>
+         </li>
+         <li>
+            <a href="#">기타</a>
+            <ul class="submenu">
+               
+               <li><a href="#">예약 조회</a></li>
+               <li><a href="#">배송 조회</a></li>
+            </ul>
+         </li>
+         <li>
+            <a href="#">회원탈퇴</a>
+            <ul class="submenu">
+               <li><a href="#">회원 탈퇴</a></li>
+            </ul>
+         </li>
+      </ul>
+   </div>
+  
+  
+  
+  
+  
+  	<div id="content">
+  	<div id="reservedhotel">
 	<c:forEach var="hotel" items="${myHotelList }">
 		<div class="hotelticket">
 		<table>
+		<caption>RESERVED HOTEL</caption>
 			<tr class="hotelListTr">
-				<td rowspan="5">
+				<td rowspan="7">
 
-					<img src="${conPath }/hotelImg/room.png">
+					<img src="${conPath }/hotelImg/${hotel.hotelimage}" width="200" height="300">
 				</td>
 				<td class="td-1">
 					${hotel.hotelname }
@@ -39,7 +107,7 @@
 				<td></td>
 			</tr>
 			<tr>		
-				<td class="td-3">방 타입 : 
+				<td class="td-3">
 					<c:if test="${hotel.hotelid.substring(4) eq 'SD' }">
 						스탠다드
 					</c:if>
@@ -55,6 +123,8 @@
 				<td>
 					<fmt:formatDate value="${hotel.checkin }" dateStyle="long"/>
 				</td>
+				</tr>
+				<tr>
 				<td>
 					<fmt:formatDate value="${hotel.checkout }" dateStyle="long"/>
 				</td>
@@ -63,13 +133,18 @@
 				<td>
 					${hotel.headcount } 명
 				</td>
-				<td>
-					가격 : <fmt:formatNumber value="${hotel.roomprice }" pattern="#,### 원" />
+				</tr>
+				<tr>
+				<td class="td-5">
+					 <fmt:formatNumber value="${hotel.roomprice }" pattern="#,### 원" />
 				</td>
 			</tr>
 		</table>
 		</div>
 	</c:forEach>
+	</div>
+	</div>
+	</section>
 	 <jsp:include page="../main/footer.jsp" />	
   </body>
 </html>

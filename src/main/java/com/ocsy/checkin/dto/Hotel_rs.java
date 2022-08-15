@@ -15,5 +15,6 @@ public class Hotel_rs {
 	private String hotelname;
 	private int roomprice;
 	private String hotelimage;
+	private int paymoney;
 	
 }
