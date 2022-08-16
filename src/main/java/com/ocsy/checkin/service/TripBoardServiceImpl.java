@@ -124,10 +124,15 @@ public class TripBoardServiceImpl implements TripBoardService {
 
 	@Override
 	public int agreeTeam(TripRequest tripRequest) {
-		int result = tripDao.agreeTeam1(tripRequest);
-		result += tripDao.agreeTeam2(tripRequest);
-		result += tripDao.agreeTeam3(tripRequest);
-		return result;
+		TripMate_Board board = tripDao.tripCountCheck(tripRequest.getTnum());
+		if(board.getTnowmembercount() < board.getTmaxmembercount()) {
+			int result = tripDao.agreeTeam1(tripRequest);
+			result += tripDao.agreeTeam2(tripRequest);
+			result += tripDao.agreeTeam3(tripRequest);
+			return result;
+		}else {
+			return -1;
+		}
 	}
 	
 	@Override
@@ -244,6 +249,8 @@ public class TripBoardServiceImpl implements TripBoardService {
 		message.setText(content);
 		mailSender.send(message);
 	}
+
+
 
 	
 

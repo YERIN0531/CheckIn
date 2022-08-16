@@ -36,7 +36,7 @@
                 height: 400px;
             }
 	</style>
-</head>
+</head>`
 <body>
 <c:if test="${reserveResult >= 1 }">
    <script>

@@ -165,6 +165,10 @@
 		DELETE FROM TRIPTEAM WHERE TNUM=#{tnum} AND mid=#{mid}
 	</delete>
 	
+	<select id="tripCountCheck" parameterType="int" resultType="TripMate_Board">
+		SELECT TNOWMEMBERCOUNT,TMAXMEMBERCOUNT FROM TRIPMATE_BOARD WHERE TNUM=${tnum}
+	</select>
+	
 	
 	
 	

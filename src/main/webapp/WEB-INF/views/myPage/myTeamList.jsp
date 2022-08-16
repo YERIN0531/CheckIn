@@ -32,11 +32,12 @@
 			alert('요청 수락이 완료되었습니다.');
 		</script>
 	</c:if>
-	<c:if test="${not empty agreeTeamResult and agreeTeamResult != 3 }">
+	<c:if test="${agreeTeamResult eq -1 }">
 		<script>
-			alert('요청 수락에 실패했습니다');
+			alert('해당팀 인원이 가득 찼습니다.');
 		</script>
 	</c:if>
+	
 	<c:if test="${disagreeTeamResult eq 1 }">  
 		<script>
 			alert('요청을 거절 처리 완료했습니다.');
@@ -47,8 +48,6 @@
 			alert('요청 거절 처리에 실패하였습니다.');
 		</script>
 	</c:if>
-	
-	
 	<jsp:include page="../main/header.jsp" />
 	 
 	   <div class="slider">

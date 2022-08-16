@@ -45,5 +45,7 @@ public interface TripBoardDao {
 	
 	public int deleteMemberTeam(TripTeam tripTeam);
 	
+	public TripMate_Board tripCountCheck(int tnum);
+	
 	
 }

@@ -91,8 +91,11 @@ public class TripController {
 	
 	@RequestMapping(params="method=agreeTeam",method= {RequestMethod.GET, RequestMethod.POST})
 	public String agreeTeam(TripRequest tripRequest,HttpSession httpSession, Model model) {
-		model.addAttribute("agreeTeamResult",tripService.agreeTeam(tripRequest));
-		tripService.agreeMailSend(tripRequest);
+		int result = tripService.agreeTeam(tripRequest);
+		model.addAttribute("agreeTeamResult",result);
+		if(result == 3) {
+			tripService.agreeMailSend(tripRequest);
+		}
 		return "forward:trip.do?method=myTeamList";
 	}
 	
