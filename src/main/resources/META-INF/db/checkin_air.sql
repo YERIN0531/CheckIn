@@ -123,7 +123,8 @@ INSERT INTO ASCD VALUES ('KO024','대한한공','한국(인천)','베트남(다�
 INSERT INTO ASCD VALUES ('AS024','아시아나','한국(인천)','베트남(다낭)','10:10','15:10','15:10','20:10',290000);
 INSERT INTO ASCD VALUES ('JE024','제주항공','한국(인천)','베트남(다낭)','10:20','15:20','15:20','20:20',260000);
 
-
+select * from ascd;
+commit;
 ---------------------------------- AIR_RESERVE ---------------------------------
 --① DROP & CREATE TABLE
 
@@ -159,7 +160,8 @@ INSERT INTO AIR_RESERVE VALUES(ARESERVE_SEQ.NEXTVAL ,'KO002', 'eee', '20220101',
 INSERT INTO AIR_RESERVE VALUES(ARESERVE_SEQ.NEXTVAL ,'KO002', 'bbb', '20220103','20220108', 'A4',SYSDATE);
 INSERT INTO AIR_RESERVE VALUES(ARESERVE_SEQ.NEXTVAL ,'KO003', 'ccc', '20220103','20220108', 'A2',SYSDATE);
 SELECT * FROM AIR_RESERVE WHERE MID='ccc';
-
+commit;
+select * from ascd;
 ---------------------------------- AIR_ZZIM ------------------------------------
 --① DROP & CREATE TABLE
 

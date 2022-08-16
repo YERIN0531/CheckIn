@@ -38,6 +38,17 @@
 	</style>
 </head>
 <body>
+<c:if test="${reserveResult >= 1 }">
+   <script>
+      alert('예약 성공하셧습니다. 마이페이지에서 확인해주세요');
+   </script>
+</c:if>
+<c:if test="${reserveResult eq 0 }">
+   <script>
+      alert('예약 실패하셧습니다.');
+      history.back();
+   </script>
+</c:if>
 <jsp:include page="../main/header.jsp"/>
 	<section>
         <div id="list">

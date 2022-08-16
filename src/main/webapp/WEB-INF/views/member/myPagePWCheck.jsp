@@ -28,7 +28,7 @@
 			<input type="radio" name="slide" id="slide2"> 
 			<input type="radio" name="slide" id="slide3"> <input type="radio" name="slide" id="slide4">
 			<ul id="imgholder" class="imgs">
-				<li><img src="${conPath }/image/slide1.png"></li>
+				<li><img src="${conPath }/image/main8.png"></li>
 				<li><img src="${conPath }/image/slide3.png"></li>
 				<li><img src="${conPath }/image/slide2.png"></li>
 				<li><img src="${conPath }/image/slide22.png"></li>

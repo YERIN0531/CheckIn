@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -49,7 +50,7 @@ public class AirController {
 	}
 	
 	@RequestMapping(params="method=airReserve", method= {RequestMethod.GET, RequestMethod.POST})
-	public String airReserve(Member member, Air air, HttpSession session, Model model, String[] seatid) {
+	public String airReserve(@ModelAttribute("m")Member member, Air air, HttpSession session, Model model, String[] seatid) {
 		memberService.minusMileage(member);
 		memberService.plusMileage(member, session);
 		model.addAttribute("reserveResult", airService.airReserve(air, seatid));
