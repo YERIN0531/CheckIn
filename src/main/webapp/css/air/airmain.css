@@ -15,6 +15,7 @@
         }
             #list #lnb ul li {
                 background-color: #8fa8b3;
+                background-color: #3e6170;
                 float: left;
                 width: 12%;
                 height: 35px;
@@ -26,6 +27,7 @@
             }
                 #list #lnb ul li:hover {
                     background-color: #3e6170;
+                    background-color:#2c4451; /*d*/
                 }
 
                 #list #lnb ul li a {
@@ -37,6 +39,8 @@
 
             #list #lnb ul li:first-child {
                 background-color: #3e6170;
+                background-color: black;
+                background-color:#2c4451; /*d*/
             }
                 #list #lnb ul li:first-child a {
                     font-family: 'IBM Plex Sans KR', sans-serif;
@@ -47,14 +51,14 @@
                
 
          
-            #reserve {
-                padding-left: 4px;
-                background: url("../../image/hotel.jpg") no-repeat; /*ㅇ*/
-                background: url("../../image/air.jpg") no-repeat;
-                background-size:100%;
-                width: 100%;
-                height: 400px;
-            }
+/*             #reserve { */
+/*                 padding-left: 4px; */
+/*                 background: url("../../image/hotel.jpg") no-repeat; ㅇ */
+/*                 background: url("../../image/air2.png") no-repeat; */
+/*                 background-size:100%; */
+/*                 width: 100%; */
+/*                 height: 400px; */
+/*             } */
         #word {
             color: white;
             width: 70%;

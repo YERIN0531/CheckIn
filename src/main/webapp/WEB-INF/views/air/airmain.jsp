@@ -13,9 +13,28 @@
   <link href="https://fonts.googleapis.com/css2?family=Domine:wght@500&family=IBM+Plex+Sans+KR:wght@300;400&family=Libre+Baskerville&family=Nanum+Gothic&family=Satisfy&family=The+Nautigal:wght@400;700&display=swap" rel="stylesheet">
 	<style>
 	img{
-	width:30px;
+	width:90px;
 	height:30px;
 	}
+	.ko{
+	width:80px;
+		height:20px;}
+	.as{
+		width:90px;
+		height:25px;
+	}
+	.je{
+		width:80px;
+		height:20px;
+	}
+	       
+            #reserve {
+                padding-left: 4px;
+                background: url("${conPath}/image/air6.png") no-repeat;
+                background-size:100%;
+                width: 100%;
+                height: 400px;
+            }
 	</style>
 </head>
 <body>
@@ -91,18 +110,21 @@
                         <tr>
                         <td rowspan="2" >${air.acode }</td>
                             <td>
-                               <c:if test="${air.acode.substring(0,2)  eq 'KO' }" >
-                               	<img src="${conPath }/image/air.jpg" alt="사진2">
-                               
+                            	<c:if test="${air.acode.substring(0,2)  eq 'KO' }" >
+                               		<img src="${conPath }/image/korea.png" alt="사진2" class="ko">
+                               		
                                </c:if>
                                <c:if test="${air.acode.substring(0,2) eq 'JE' }">
-                               	<img src="${conPath }/image/air.jpg" alt="사진1">
+                               		<img src="${conPath }/image/jeju.png" alt="사진1" class="je">
+                               </c:if>
+                                <c:if test="${air.acode.substring(0,2) eq 'AS' }">
+                               		<img src="${conPath }/image/as.png" alt="사진1" class="as">
                                </c:if>
                             </td>
                             <td>
                                 ${air.agotime}
                             </td>
-                            <td>------------------------</td>
+                            <td>--------------------</td>
                             <td>
                                 ${air.ago_arrivetime }
                             </td>
@@ -113,18 +135,21 @@
                         </tr>
                         <tr>
                             <td>
-                            	<c:if test="${air.acode.substring(0,2)  eq 'KO' }" >
-                               		<img src="${conPath }/image/air.jpg" alt="사진2">
+                               	<c:if test="${air.acode.substring(0,2)  eq 'KO' }" >
+                               		<img src="${conPath }/image/korea.png" alt="사진2" class="ko">
                                		
                                </c:if>
                                <c:if test="${air.acode.substring(0,2) eq 'JE' }">
-                               		<img src="${conPath }/image/air.jpg" alt="사진1">
+                               		<img src="${conPath }/image/jeju.png" alt="사진1" class="je">
+                               </c:if>
+                                <c:if test="${air.acode.substring(0,2) eq 'AS' }">
+                               		<img src="${conPath }/image/as.png" alt="사진1" class="as">
                                </c:if>
                             </td>
                             <td>
                                 ${air.acome_departtime }
                             </td>
-                            <td>------------------------</td>
+                            <td>--------------------</td>
 
                             <td>
                                 ${air.acome_arrivetime }

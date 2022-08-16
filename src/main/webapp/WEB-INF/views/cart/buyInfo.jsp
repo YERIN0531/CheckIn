@@ -90,8 +90,7 @@
 	  		</tr>
 	  		<c:forEach items="${cartList }" var="cart">
 	  		<tr>
-	  			<td><img src="${conPath }/taxfree/${cart.pimage1 }" width="1
-	  			00" height="100"></td>
+	  			<td><img src="${conPath }/taxfree/${cart.pimage1 }" width="100" height="100"></td>
 	  			<td>${cart.pname }</td>
 	  			<td>${cart.qty }</td>
 	  			<td>＄${cart.pprice }</td>

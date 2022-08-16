@@ -15,6 +15,7 @@
         }
             #list #lnb ul li {
                 background-color: #8fa8b3;
+                   background-color: #3e6170;
                 float: left;
                 width: 12%;
                 height: 35px;
@@ -26,6 +27,8 @@
             }
                 #list #lnb ul li:hover {
                     background-color: #3e6170;
+                    background-color:#2c4451; /*d*/
+                   
                 }
 
                 #list #lnb ul li a {
@@ -37,6 +40,7 @@
 	
             #list #lnb ul li:nth-child(2) {
                 background-color: #3e6170;
+                 background-color:#2c4451; /*d*/
             }
                 #list #lnb ul li:nth-child(2) a {
                     font-family: 'IBM Plex Sans KR', sans-serif;

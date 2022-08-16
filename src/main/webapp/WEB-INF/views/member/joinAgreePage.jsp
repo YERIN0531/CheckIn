@@ -8,33 +8,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="${conPath }/css/style.css" rel="stylesheet">
+<link href="${conPath }/css/member/joinagree.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Domine:wght@500&family=IBM+Plex+Sans+KR:wght@300;400&family=Libre+Baskerville&family=Nanum+Gothic&family=Satisfy&family=The+Nautigal:wght@400;700&display=swap" rel="stylesheet">
  <style>
-        #joinMessage {
-            width:1600px;
-            margin: 130px auto;
-        }
-        #joinMessage table {
-             margin:50px;
-        }
-        textarea {
-            margin:0 20px 20px 20px;
-        }
-        input[type="button"] {
-            float: right;
-            margin: 10px;
-            font-size: 2em;
-            background-color: #ffd1dc;
-            border-radius: 15px;
-            height:60px;
-        }
-        caption{
-            font-size:2em;
-            margin:30px;
-        }
-        b {
-            margin-left:20px;
-        }
+ 
+       
     </style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
@@ -321,8 +299,8 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="2">
-                            <input type="button" value="동의하지 않습니다" onclick="nochk()" />
+                        <td colspan="2" class="btn">
+                            <input type="button" value="비동의" onclick="nochk()" />
                             <input type="button" value="동의" onclick="chk()" />&nbsp;&nbsp;&nbsp;         
                         </td>
                     </tr>

@@ -9,6 +9,7 @@
 <meta charset="UTF-8">
   <title>Insert title here</title>
   <link href="${conPath }/css/member/join.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Domine:wght@500&family=IBM+Plex+Sans+KR:wght@300;400&family=Libre+Baskerville&family=Nanum+Gothic&family=Satisfy&family=The+Nautigal:wght@400;700&display=swap" rel="stylesheet">
  <style>
  
  </style>
@@ -100,11 +101,12 @@
  </script>  
 </head>
   <body>
-  <jsp:include page="../main/header.jsp"/>
 	<form action="${conPath }/member.do?method=joinMember" method="post">
             <div id="border">
                 <table>
-                    <caption>fucking Check In</caption>
+                    <caption>
+                    <a href="${conPath }/main2.do">Check In</a>
+                    </caption>
 					
 					<tr><td class="join"><div>&nbsp;</div>SIGN UP</td></tr>                   
 					<tr><td></td></tr>
@@ -209,7 +211,7 @@
                         <td>성별<b>*</b></td>
                     </tr>
                     <tr>
-                        <td>
+                        <td >
                             <input type="radio" name="mgender" value="M" checked="checked">남
                             <input type="radio" name="mgender" value="F">여
                         </td>
@@ -247,6 +249,5 @@
                 </table>
             </div>
         </form>
-    <jsp:include page="../main/footer.jsp"/>    
   </body>
 </html>
