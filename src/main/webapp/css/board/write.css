@@ -79,3 +79,52 @@ input[type="button"]{
 	border:none;
 	text-align: center;
 }
+
+
+
+/* .th-1{ */
+/* 	width:20px; */
+/* 	text-align: left; */
+/* 	height:20px; */
+/* }   */
+/* .th-3{ */
+/* 	width:20px; */
+/* 	text-align: left; */
+/* 	height:150px; */
+/* }   */
+/* p{ */
+/* 	   margin-left: 6px; */
+/*        padding: 8px; */
+/*        box-sizing:border-box; */
+/*        width: 97%; */
+/*        height:100%; */
+/*        border:none; */
+/*        width: 50px; */
+/* } */
+.teamapply{
+	margin: 50px auto;
+	height:200px;
+	width:700px;
+}
+.th-11{
+	width:10px;
+	text-align: left;
+	height:20px;
+	padding-left:10px;
+	
+}
+.th-33{
+	width:10px;
+	text-align: left;
+	height:250px;
+		padding-left:10px;
+}
+
+
+
+
+
+
+
+
+
