@@ -24,7 +24,7 @@ public class QnaController {
 	@RequestMapping(params="method=qnaList", method= {RequestMethod.GET, RequestMethod.POST})
 	public String qnaList(String pageNum , Model model ) {
 		model.addAttribute("qnaList" , qnaService.listQna(pageNum));
-		model.addAttribute("paging", new Paging(qnaService.countQna(), pageNum, 5, 5));
+		model.addAttribute("paging", new Paging(qnaService.countQna(), pageNum, 7, 7));
 		return "qna/qnaList";
 	}
 	//2. 글 비번 확인 view

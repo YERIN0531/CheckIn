@@ -24,7 +24,7 @@ public class NoticeServiceImpl implements NoticeService {
 	String backupPath ="C:\\TeamCheckin\\CheckIn\\src\\main\\webapp\\fileUpload\\";
 	@Override
 	public List<NoticeBoard> listNotice(String pageNum) {
-		Paging paging  = new Paging(noticeDao.countNotice(), pageNum, 3, 3);
+		Paging paging  = new Paging(noticeDao.countNotice(), pageNum, 7, 7);
 		NoticeBoard notice = new NoticeBoard();
 		notice.setStartRow(paging.getStartRow());
 		notice.setEndRow(paging.getEndRow());

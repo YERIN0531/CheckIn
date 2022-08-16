@@ -26,7 +26,7 @@ public class QnaServiceImpl implements QnaService {
 	String backupPath = "C:\\TeamCheckin\\CheckIn\\src\\main\\webapp\\fileUpload\\";
 	@Override
 	public List<QnaBoard> listQna(String pageNum) { // 글목록
-		Paging paging = new Paging(qnaDao.countQna(), pageNum, 5, 5);
+		Paging paging = new Paging(qnaDao.countQna(), pageNum, 7, 7);
 		QnaBoard qna = new QnaBoard();
 		qna.setStartRow(paging.getStartRow());
 		qna.setEndRow(paging.getEndRow());
