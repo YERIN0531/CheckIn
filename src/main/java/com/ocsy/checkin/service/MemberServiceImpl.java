@@ -61,9 +61,12 @@ public class MemberServiceImpl implements MemberService {
 	}
 	@Override
 	public int plusMileage(Member member,HttpSession httpSession) {
+		System.out.println(member);
+		int result = memberDao.plusMileage(member);
 		Member newMember = memberDao.getMember(member.getMid());
+		System.out.println(newMember);
 		httpSession.setAttribute("member", newMember);
-		return memberDao.plusMileage(member);
+		return result;
 	}
 	
 	@Override

@@ -36,7 +36,7 @@
                 height: 400px;
             }
 	</style>
-</head>
+</head>`
 <body>
 <jsp:include page="../main/header.jsp"/>
 	<section>
