@@ -23,6 +23,7 @@ CREATE TABLE QNA_BOARD(
   QSTEP       NUMBER(10) NOT NULL,
   QINDENT     NUMBER(10) NOT NULL
 );
+
 commit;
  CREATE SEQUENCE QNA_SEQ
     MAXVALUE 999999
@@ -32,20 +33,17 @@ SELECT * FROM QNA_BOARD;
 SELECT * FROM manager;
 -- 원글은QID 멤버 ID
 -- 답글은 관리자 ID 
---사진첨부문의
-INSERT INTO QNA_BOARD(QNUM,QID,QTITLE,QCONTENT,QFILE1,QFILE2,QIP,QSECRET,QPASSWORD,QGROUP,QSTEP,QINDENT)
-    VALUES(QNA_SEQ.NEXTVAL,'ccc','문의제목4','문의본문4','noimg.jpg4','noimg.jpg4','192.168.10.30',1,111,QNA_SEQ.NEXTVAL,0,0);
---사진 없이 문의 
-INSERT INTO QNA_BOARD(QNUM,QID,QTITLE,QCONTENT,QIP,QSECRET,QPASSWORD,QGROUP,QSTEP,QINDENT)
-    VALUES(QNA_SEQ.NEXTVAL,'aaa','문의제목','문의본문','192.168.10.30',1,111,QNA_SEQ.NEXTVAL,0,0);
-INSERT INTO QNA_BOARD(QNUM,QID,QTITLE,QCONTENT,QIP,QSECRET,QPASSWORD,QGROUP,QSTEP,QINDENT)
-    VALUES(QNA_SEQ.NEXTVAL,'bbb','문의제목2','문의본문2','192.168.10.30',1,222,QNA_SEQ.NEXTVAL,0,0);
-INSERT INTO QNA_BOARD(QNUM,QID,QTITLE,QCONTENT,QIP,QSECRET,QPASSWORD,QGROUP,QSTEP,QINDENT)
-    VALUES(QNA_SEQ.NEXTVAL,'aaa','문의제목','문의본문','192.168.10.30',1,333,QNA_SEQ.NEXTVAL,0,0);
-SELECT * FROM QNA_BOARD ORDER BY QGROUP DESC, QSTEP;
+
+--qna 더미
 -- 공개글
 INSERT INTO QNA_BOARD(QNUM,QID,QTITLE,QCONTENT,QFILE1,QFILE2,QIP,QSECRET,QGROUP,QSTEP,QINDENT)
-    VALUES(QNA_SEQ.NEXTVAL,'ccc','공개글','문의본문4','noimg.jpg4','noimg.jpg4','192.168.10.30',0,QNA_SEQ.NEXTVAL,0,0);
+    VALUES(QNA_SEQ.NEXTVAL,'ccc','관리자님!!','이벤트 언제해요 !!!','France5.jpeg','France5.jpeg','192.168.10.30',0,QNA_SEQ.NEXTVAL,0,0);
+-- 비밀글
+INSERT INTO QNA_BOARD(QNUM,QID,QTITLE,QCONTENT,QFILE1,QFILE2,QIP,QSECRET,QPASSWORD,QGROUP,QSTEP,QINDENT)
+    VALUES(QNA_SEQ.NEXTVAL,'aaa','이건아니죠!','영국 가는게 너무 비싸자나요 !! 서치코님!','France5.jpeg','France5.jpeg','192.168.10.30',1,111,QNA_SEQ.NEXTVAL,0,0);
+-- 비밀글
+INSERT INTO QNA_BOARD(QNUM,QID,QTITLE,QCONTENT,QFILE1,QFILE2,QIP,QSECRET,QPASSWORD,QGROUP,QSTEP,QINDENT)
+    VALUES(QNA_SEQ.NEXTVAL,'bbb','환불 할래요 !','사정이 생겨 환불 하려고 합니다 !!!','France5.jpeg','France5.jpeg','192.168.10.30',1,111,QNA_SEQ.NEXTVAL,0,0);
     commit;
 --1.글목록 listQna
 SELECT * FROM (SELECT ROWNUM RN, A.* 
@@ -191,10 +189,9 @@ SELECT * FROM REVIEW_BOARD WHERE RNUM=1 ;
 --5. 글 개수 
 -- countReview
 SELECT COUNT(*) FROM REVIEW_BOARD;
---6. 후기쓰기 원글
+--6. 후기쓰기 원글 리뷰 더미
 --insertReview
-INSERT INTO REVIEW_BOARD(RNUM , MID ,RTITLE ,RCONTENT,RIMAGE1,RIP, RGROUP,RSTEP,RINDENT)
-        VALUES (REVIEW_SEQ.NEXTVAL,'aaa','원글작성','원글본문','NOIMG.JPG', '192.168.10.30' ,REVIEW_SEQ.CURRVAL,0,0);
+
 --1. 일본 오카사 후기 
 INSERT INTO REVIEW_BOARD (RNUM , MID ,RTITLE ,RCONTENT,RIMAGE1,RIMAGE2,RIMAGE3,RIMAGE4,RIP, RGROUP,RSTEP,RINDENT)
     VALUES (REVIEW_SEQ.NEXTVAL,'ccc','일본 오사카 후기','오늘은 일전에 말씀드린 일본 오사카 여행기(여행준비)에 관한 포스팅을 하려해요~ 제가 여행하면서 준비한 소소한 것들이 일본여행을 이제 준비하는 분들에게 도움이 될까 싶어 시리즈로 올려보려합니다.','Osaka1.jpg','Glico.jpeg','Osaka2.jpeg','Osaka3.jpeg', '192.168.10.30',REVIEW_SEQ.CURRVAL,0,0);
@@ -499,14 +496,37 @@ CREATE SEQUENCE NOTICE_SEQ
     NOCYCLE;
 --더미데이터 원글
 SELECT * FROM NOTICE_BOARD;
-INSERT INTO NOTICE_BOARD(NNUM , AID ,NTITLE ,NCONTENT,NIMAGE)
-        VALUES (NOTICE_SEQ.NEXTVAL,'admin','옥시화이팅','화이팅','NOIMG.JPG');
-INSERT INTO NOTICE_BOARD(NNUM , AID ,NTITLE ,NCONTENT,NIMAGE)
-        VALUES (NOTICE_SEQ.NEXTVAL,'admin','옥시화이팅2','화이팅2','NOIMG.JPG2');
-INSERT INTO NOTICE_BOARD(NNUM , AID ,NTITLE ,NCONTENT,NIMAGE)
-        VALUES (NOTICE_SEQ.NEXTVAL,'admin','옥시화이팅3','화이팅3','NOIMG.JPG3');
 
---1.글목록 (최신글 위로)
+-- notice 더미
+INSERT INTO NOTICE_BOARD(NNUM , AID ,NTITLE ,NCONTENT,NIMAGE)
+        VALUES (NOTICE_SEQ.NEXTVAL,'admin','국내선 탑승 게이트 위탁 수하물 요금 시행 안내','국내선 탑승 게이트 위탁 수하물 요금이 아래와 같이 부과될 예정이오니 참고하여 주시기 바랍니다.
+
+1. 적용노선 : 국내선
+
+
+2. 적용일 : 2022년 07월 01일 부 (출발일 기준)
+
+ 
+3. 요금 안내
+
+- 허용량 외의 기내 수하물은 반드시 위탁해야 하며, 탑승구에서 위탁 시 아래의 수수료가 부과됩니다. (무게/개수 초과 요금 별도부과)
+
+
+*요금(1개당, 출발지 현지 통화 기준)
+
+: 10,000원/ USD 10
+
+ 
+*국내선에 한하여 적용됩니다. (국제선의 경우 1개당 20,000원 부과)
+
+*승객의 편의를 위한 휠체어 및 유모차는 수수료를 부과하지 않습니다.
+
+4. 이 외 기타 유의사항은 기존과 동일하며 홈페이지 내 세부 규정 참고 바랍니다.
+
+ *탑승 수속 안내 > 수하물 안내 > 기내수하물 안내  확인하기','notice.jpeg');
+commit;
+
+--1.글목록 (최신글 위로)cruise.jpeg
 -- listNotice
 SELECT * FROM (SELECT ROWNUM RN, A.* 
             FROM (SELECT * FROM NOTICE_BOARD ORDER BY NNUM DESC)A)
@@ -521,7 +541,7 @@ SELECT * FROM NOTICE_BOARD WHERE NNUM=1 ;
 SELECT COUNT(*) FROM NOTICE_BOARD;
 --4. 후기쓰기 원글
 -- insertNotice
-INSERT INTO NOTICE_BOARD(NNUM , AID ,NTITLE ,NCONTENT,NIMAGE)
+INSERT INTO NOTICE_BOARD(NNUM , AID ,NTITLE,NCONTENT,NIMAGE)
         VALUES (NOTICE_SEQ.NEXTVAL,'admin','옥시화이팅','화이팅','NOIMG.JPG');
 -- 5. HITUP
 -- hitupNotice 

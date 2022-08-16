@@ -42,7 +42,7 @@
     	  <c:if test="${not empty noticeDto.nimage }" >
     	  	<img src="${conPath }/fileUpload/${noticeDto.nimage}" width="300" height="300"> <br><br>
     	  </c:if>
-    	  ${noticeDto.ncontent }
+    	 <pre> ${noticeDto.ncontent }</pre>
     	  </td>
     	</tr>
     	<tr>

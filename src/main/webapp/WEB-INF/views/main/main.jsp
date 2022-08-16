@@ -17,12 +17,7 @@
           history.back();
        </script> 
     </c:if>
-<c:if test="${not empty managerLogin and managerLogin != '관리자 로그인 성공' }"> 
-       <script> 
-          alert('${managerLogin }');
-          history.back();
-       </script> 
-    </c:if>  
+
     
     <c:if test="${not empty memberModifyResult and memberModifyResult eq 1 }"> 
        <script> 

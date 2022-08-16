@@ -19,8 +19,15 @@
  		
  	});
  </script>  
+ 
 </head>
   <body>
+  <c:if test="${not empty managerLogin and managerLogin != '관리자 로그인 성공' }"> 
+       <script> 
+          alert('${managerLogin }');
+          history.back();
+       </script> 
+    </c:if>  
 	<jsp:include page="../main/header.jsp" />
 	<div class="slider">
 		<div class="image">
