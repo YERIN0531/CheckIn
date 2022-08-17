@@ -18,15 +18,13 @@
     $(document).ready(function(){
     	var airprice = Number('${airDto.totalprice }');
  		var mmileage = Number($('input[name=mmileage]').val());
- 		$('.result').val(airprice - mmileage); 		
  		$('input[name="mmileage"]').keyup(function(){
  			var airprice = Number('${airDto.totalprice }');
  			var mmileage = Number($('input[name=mmileage]').val());
  			if(mmileage > Number('${member.mmileage }') ){
  				mmileage = Number('${member.mmileage}');
  				$('input[name="mmileage"]').val(Number('${member.mmileage }'));
- 			}
- 			$('.result').val(airprice - mmileage);
+ 			}		
  		});
     });
  </script>  
@@ -125,7 +123,7 @@
    		</tr>
    		<tr>
    			<td>마일리지</td>
-   			<td><input type="text" name="mmileage" value="${member.mmileage }"></td>
+   			<td><input type="text" name="mmileage" value="${member.mmileage }" class="useMmileage"></td>
    		</tr>
    		<tr>
    			<td>총 결제금액</td>

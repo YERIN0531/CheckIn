@@ -38,7 +38,7 @@
 			<tr>
 			<th class="th-33">한줄메모</th>
 				<td>
-					<input type="text" name="trmemo" placeholder="한줄 메모를 남겨주세요">
+					<input type="text" name="trmemo" placeholder="한줄 메모를 남겨주세요" required="required">
 				</td>
 			</tr>
 			<tr>

@@ -100,10 +100,9 @@
  </c:if>
  <c:if test="${param.modify eq 'mileage' }">
  	<script>
- 		location="${conPath }/member.do?method=selectMileage&mmileage=${memberDto.mmileage }&mtotal=${memberDto.mtotal }";
+ 		location="${conPath }/member.do?method=selectMileage&mmileage=${memberDto.mmileage }&mtotal=${memberDto.mtotal }&mid=${member.mid }";
  	</script>
  </c:if>
-<%--    <jsp:include page="myPage.jsp" /> --%>
 	 <jsp:include page="../main/header.jsp" />
 	 
 	   <div class="slider">

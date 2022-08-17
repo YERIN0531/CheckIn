@@ -41,7 +41,8 @@
                     WHERE MID= #{mid}
   	</update>
   	<update id="plusMileage" parameterType="Member">
-  		UPDATE CUSTOMER SET MMILEAGE = MMILEAGE + ( #{paymoney} *0.03)
+  		UPDATE CUSTOMER SET MMILEAGE = MMILEAGE + ( #{paymoney} *0.03),
+  								MTOTAL = MTOTAL + #{paymoney}
                     WHERE MID= #{mid}
   	</update>
   	

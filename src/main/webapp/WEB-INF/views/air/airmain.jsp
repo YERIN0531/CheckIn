@@ -74,19 +74,19 @@
                         <tr>
                             <td>
                                 <p class="w1">출발지</p>
-                                <input type="text" name="adepartloc" value="" placeholder="국가(도시)">
+                                <input type="text" name="adepartloc" value="${param.adepartloc }" placeholder="국가(도시)" required="required">
                             </td>
                             <td>
                                 <p class="w1">도착지</p>
-                                <input type="text" name="aariveloc" value="" placeholder="국가(도시)">
+                                <input type="text" name="aariveloc" value="${param.aariveloc }" placeholder="국가(도시)" >
                             </td>
                             <td>
                                 <p class="w1">가는날</p>
-                                <input type="text" name="agodate" id="datepicker">
+                                <input type="text" name="agodate" id="datepicker" required="required" value="${param.agodate }">
                             </td>
                             <td>
                                 <p class="w1">오는날</p>
-                                <input type="text" name="acomedate" id="datepicker2">
+                                <input type="text" name="acomedate" id="datepicker2" required="required" value="${param.acomedate }">
                             </td>
                         </tr>
                         <tr>

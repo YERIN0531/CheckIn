@@ -21,13 +21,19 @@
  </script>  
 </head>
   <body>
+  <c:if test="${empty member and empty manager }">
+  	<script>
+  		alert('로그인 후 이용해주세요');
+  		location="${conPath }/member.do?method=loginForm";
+  	</script>
+  </c:if>
   <jsp:include page="../main/header.jsp"/>
      <div id="list">
 	         <div id="lnb">
 	              <ul>
 	                   <li><a href="${conPath }/air.do?method=airMain">항공</a></li>
 	                   <li><a href="${conPath }/hotel.do?method=hotelMain">호텔</a></li>
-	                   <li><a href="#">면세점</a></li>
+	                   <li><a href="${conPath}/taxfree.do?method=category">면세점</a></li>
 	                   <li><a href="${conPath}/notice.do?method=boardmain">게시판</a></li>
 	              </ul>
 	         </div>
@@ -85,7 +91,6 @@
 			<c:forEach var="hotel" items="${hotelDetail }" >
 			<c:if test="${hotel.roomtype eq '스탠다드' }">
 				<tr>
-					<td > 호텔 아이디 : ${hotel.hotelid }</td>
 					<td>방 사진 : ${hotel.roomimage }</td>
 					<td>스탠다드</td>
 					<td>매진</td>						
@@ -159,7 +164,7 @@
 							<tr>
 								<td><img src="${conPath }/hotelImg/${hotelDetail.roomimage }"></td>
 								<td>${hotelDetail.roomtype }</td>
-								<td>매진이다;</td>
+								<td>매진</td>
 							</tr>
 						</c:if>
 					</c:forEach>	
@@ -205,9 +210,9 @@
 					<c:forEach var="hotelDetail" items="${hotelDetail }">
 						<c:if test="${hotelDetail.roomtype eq '디럭스' }">
 							<tr>
-								<td>방사진 : ${hotelDetail.roomimage }</td>
+								<td><img src="${conPath }/hotelImg/${hotelDetail.roomimage }"></td>
 								<td>${hotelDetail.roomtype }</td>
-								<td>매진이다;</td>
+								<td>매진</td>
 							</tr>
 						</c:if>
 					</c:forEach>	
@@ -252,9 +257,9 @@
 					<c:forEach var="hotelDetail" items="${hotelDetail }">
 						<c:if test="${hotelDetail.roomtype eq '스위트' }">
 							<tr>
-								<td>방사진 : ${hotelDetail.roomimage }</td>
+								<td><img src="${conPath }/hotelImg/${hotelDetail.roomimage }"></td>
 								<td>${hotelDetail.roomtype }</td>
-								<td>매진이다;</td>
+								<td>매진</td>
 							</tr>
 						</c:if>
 					</c:forEach>	

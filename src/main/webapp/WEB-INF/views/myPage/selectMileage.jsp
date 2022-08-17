@@ -88,15 +88,15 @@
   				<caption>MILEAGE</caption>
   				<tr>
   					<th>아이디</th>
-  					<td>${mileageResult.mid }</td>
+  					<td>${member.mid }</td>
   				</tr>
   				<tr>
   					<th>구매금액</th>
-  					<td>${mileageResult.mtotal }</td>
+  					<td><fmt:formatNumber value="${mileageResult.mtotal }" pattern="#,### 원" /></td>
   				</tr>
   				<tr>
   					<th>마일리지</th>
-  					<td>${mileageResult.mmileage }</td>
+  					<td><fmt:formatNumber value="${mileageResult.mmileage }" pattern="#,### 점" /></td>
   				</tr>
   			</table>
   			</div>

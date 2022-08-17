@@ -70,6 +70,12 @@
 	</script> 
 </head>
   <body>
+    <c:if test="${empty member and empty manager }">
+  	<script>
+  		alert('로그인 후 이용해주세요');
+  		location="${conPath }/member.do?method=loginForm";
+  	</script>
+  </c:if>
   <jsp:include page="../main/header.jsp"/>
   	<div id="reserve">
             <div id="word">
