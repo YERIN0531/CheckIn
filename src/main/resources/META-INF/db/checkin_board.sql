@@ -197,8 +197,8 @@ INSERT INTO REVIEW_BOARD (RNUM , MID ,RTITLE ,RCONTENT,RIMAGE1,RIMAGE2,RIMAGE3,R
     VALUES (REVIEW_SEQ.NEXTVAL,'ccc','일본 오사카 후기','오늘은 일전에 말씀드린 일본 오사카 여행기(여행준비)에 관한 포스팅을 하려해요~ 제가 여행하면서 준비한 소소한 것들이 일본여행을 이제 준비하는 분들에게 도움이 될까 싶어 시리즈로 올려보려합니다.','Osaka1.jpg','Glico.jpeg','Osaka2.jpeg','Osaka3.jpeg', '192.168.10.30',REVIEW_SEQ.CURRVAL,0,0);
 --2. 1번글에대한 답변
 -- replyReview
-INSERT INTO REVIEW_BOARD (RNUM,MID,RTITLE,RCONTENT, RIP, RGROUP,RSTEP, RINDENT)
-    VALUES (REVIEW_SEQ.NEXTVAL, 'bbb','오사카 저도 가볼게요 !!','야호 !!!','192.222.333',1, 1, 1);
+--INSERT INTO REVIEW_BOARD (RNUM,MID,RTITLE,RCONTENT, RIP, RGROUP,RSTEP, RINDENT)
+--    VALUES (REVIEW_SEQ.NEXTVAL, 'bbb','오사카 저도 가볼게요 !!','야호 !!!','192.222.333',1, 1, 1);
     
 --2. 일본 오사카 라멘
 INSERT INTO REVIEW_BOARD (RNUM , MID ,RTITLE ,RCONTENT,RIMAGE1,RIMAGE2,RIMAGE3,RIMAGE4,RIP, RGROUP,RSTEP,RINDENT)
@@ -497,9 +497,117 @@ CREATE SEQUENCE NOTICE_SEQ
 --더미데이터 원글
 SELECT * FROM NOTICE_BOARD;
 
--- notice 더미
+-- notice  2022년 8월부 국내선/국제선 유류할증료 인상 안내 ,  [해외항공] 전화상담 중단 안내 , [Best 여행후기] 6월 당첨자 발표!, [Best 여행후기] 4월 당첨자 발표!
 INSERT INTO NOTICE_BOARD(NNUM , AID ,NTITLE ,NCONTENT,NIMAGE)
         VALUES (NOTICE_SEQ.NEXTVAL,'admin','국내선 탑승 게이트 위탁 수하물 요금 시행 안내','국내선 탑승 게이트 위탁 수하물 요금이 아래와 같이 부과될 예정이오니 참고하여 주시기 바랍니다.
+
+1. 적용노선 : 국내선
+
+
+2. 적용일 : 2022년 07월 01일 부 (출발일 기준)
+
+ 
+3. 요금 안내
+
+- 허용량 외의 기내 수하물은 반드시 위탁해야 하며, 탑승구에서 위탁 시 아래의 수수료가 부과됩니다. (무게/개수 초과 요금 별도부과)
+
+
+*요금(1개당, 출발지 현지 통화 기준)
+
+: 10,000원/ USD 10
+
+ 
+*국내선에 한하여 적용됩니다. (국제선의 경우 1개당 20,000원 부과)
+
+*승객의 편의를 위한 휠체어 및 유모차는 수수료를 부과하지 않습니다.
+
+4. 이 외 기타 유의사항은 기존과 동일하며 홈페이지 내 세부 규정 참고 바랍니다.
+
+ *탑승 수속 안내 > 수하물 안내 > 기내수하물 안내  확인하기','notice.jpeg');
+commit;
+INSERT INTO NOTICE_BOARD(NNUM , AID ,NTITLE ,NCONTENT,NIMAGE)
+        VALUES (NOTICE_SEQ.NEXTVAL,'admin',' 2022년 8월부 국내선/국제선 유류할증료 인상 안내','국내선 탑승 게이트 위탁 수하물 요금이 아래와 같이 부과될 예정이오니 참고하여 주시기 바랍니다.
+
+1. 적용노선 : 국내선
+
+
+2. 적용일 : 2022년 07월 01일 부 (출발일 기준)
+
+ 
+3. 요금 안내
+
+- 허용량 외의 기내 수하물은 반드시 위탁해야 하며, 탑승구에서 위탁 시 아래의 수수료가 부과됩니다. (무게/개수 초과 요금 별도부과)
+
+
+*요금(1개당, 출발지 현지 통화 기준)
+
+: 10,000원/ USD 10
+
+ 
+*국내선에 한하여 적용됩니다. (국제선의 경우 1개당 20,000원 부과)
+
+*승객의 편의를 위한 휠체어 및 유모차는 수수료를 부과하지 않습니다.
+
+4. 이 외 기타 유의사항은 기존과 동일하며 홈페이지 내 세부 규정 참고 바랍니다.
+
+ *탑승 수속 안내 > 수하물 안내 > 기내수하물 안내  확인하기','notice.jpeg');
+commit;
+INSERT INTO NOTICE_BOARD(NNUM , AID ,NTITLE ,NCONTENT,NIMAGE)
+        VALUES (NOTICE_SEQ.NEXTVAL,'admin','[해외항공] 전화상담 중단 안내 ','국내선 탑승 게이트 위탁 수하물 요금이 아래와 같이 부과될 예정이오니 참고하여 주시기 바랍니다.
+
+1. 적용노선 : 국내선
+
+
+2. 적용일 : 2022년 07월 01일 부 (출발일 기준)
+
+ 
+3. 요금 안내
+
+- 허용량 외의 기내 수하물은 반드시 위탁해야 하며, 탑승구에서 위탁 시 아래의 수수료가 부과됩니다. (무게/개수 초과 요금 별도부과)
+
+
+*요금(1개당, 출발지 현지 통화 기준)
+
+: 10,000원/ USD 10
+
+ 
+*국내선에 한하여 적용됩니다. (국제선의 경우 1개당 20,000원 부과)
+
+*승객의 편의를 위한 휠체어 및 유모차는 수수료를 부과하지 않습니다.
+
+4. 이 외 기타 유의사항은 기존과 동일하며 홈페이지 내 세부 규정 참고 바랍니다.
+
+ *탑승 수속 안내 > 수하물 안내 > 기내수하물 안내  확인하기','notice.jpeg');
+commit;
+INSERT INTO NOTICE_BOARD(NNUM , AID ,NTITLE ,NCONTENT,NIMAGE)
+        VALUES (NOTICE_SEQ.NEXTVAL,'admin','[Best 여행후기] 6월 당첨자 발표!','국내선 탑승 게이트 위탁 수하물 요금이 아래와 같이 부과될 예정이오니 참고하여 주시기 바랍니다.
+
+1. 적용노선 : 국내선
+
+
+2. 적용일 : 2022년 07월 01일 부 (출발일 기준)
+
+ 
+3. 요금 안내
+
+- 허용량 외의 기내 수하물은 반드시 위탁해야 하며, 탑승구에서 위탁 시 아래의 수수료가 부과됩니다. (무게/개수 초과 요금 별도부과)
+
+
+*요금(1개당, 출발지 현지 통화 기준)
+
+: 10,000원/ USD 10
+
+ 
+*국내선에 한하여 적용됩니다. (국제선의 경우 1개당 20,000원 부과)
+
+*승객의 편의를 위한 휠체어 및 유모차는 수수료를 부과하지 않습니다.
+
+4. 이 외 기타 유의사항은 기존과 동일하며 홈페이지 내 세부 규정 참고 바랍니다.
+
+ *탑승 수속 안내 > 수하물 안내 > 기내수하물 안내  확인하기','notice.jpeg');
+commit;
+INSERT INTO NOTICE_BOARD(NNUM , AID ,NTITLE ,NCONTENT,NIMAGE)
+        VALUES (NOTICE_SEQ.NEXTVAL,'admin',' [Best 여행후기] 4월 당첨자 발표!','국내선 탑승 게이트 위탁 수하물 요금이 아래와 같이 부과될 예정이오니 참고하여 주시기 바랍니다.
 
 1. 적용노선 : 국내선
 

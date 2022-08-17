@@ -103,10 +103,6 @@
 
 	<!-- 방금 주문을 받은 상품들의 재고수정 / O  -->  	
   	<update id="updateStock" parameterType="Cart">
-  	<!-- UPDATE TAXFREE SET PSTOCK = (PSTOCK- ) WHERE PNUM = #{pnum} -->
-  	<!-- UPDATE TAXFREE SET PSTOCK = (PSTOCK - #{qty}) WHERE OR_NUM = (SELECT MAX(OR_NUM) FROM ORDER_DETAIL) AND PNUM = #{pnum} -->
-  	<!-- UPDATE TAXFREE SET PSTOCK = (PSTOCK - #{qty}) 
-  				WHERE PNUM = (SELECT PNUM FROM ORDER_DETAIL WHERE (OR_NUM = (SELECT MAX(OR_NUM) FROM ORDER_DETAIL) AND PNUM = #{pnum})) -->
   	UPDATE TAXFREE SET PSTOCK = PSTOCK - (SELECT QTY FROM CART WHERE PNUM = #{pnum}) WHERE PNUM = #{pnum}
   	</update>
  	

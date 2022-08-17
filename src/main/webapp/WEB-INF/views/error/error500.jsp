@@ -28,9 +28,21 @@
  </script>  
 </head>
   <body>
-  <div>
-	<h1>문제가 발생했습니다. 잠시후 이용해 주세요.</h1>
-	<h1>3초뒤에 메인페이지로 이동합니다.</h1>
-  </div>
+      <div id="error-page">
+                <div class="content">
+                    <h2 class="header" data-text="ERROR">
+                        ERROR
+                    </h2>
+                    <h4 data-text="Opps! Page ERROR">
+                        "Opps! Page ERROR"
+                    </h4>
+                    <p>
+                        문제가 발생했습니다. 잠시후 이용해 주세요
+                        <br />3초후 페이지 이동이 있습니다
+                    </p>
+                    <div class="btns">
+                    </div>
+                </div>
+            </div>
   </body>
 </html>

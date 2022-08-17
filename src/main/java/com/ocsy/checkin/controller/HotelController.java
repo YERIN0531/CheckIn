@@ -1,5 +1,7 @@
 package com.ocsy.checkin.controller;
 
+import java.sql.Date;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +55,11 @@ public class HotelController {
 	public String insertHotelReservationView(Hotel hotel,Model model,HttpSession session) {
 		model.addAttribute("reservationInfo",hotel);
 		model.addAttribute("hotelInfo",hotelService.getHotelDetail(hotel.getHotelid()));
+		long checkinDate = hotel.getSchcheckindate().getTime();
+		long checkOutDate = hotel.getSchcheckoutdate().getTime();
+		long whenDay = checkOutDate - checkinDate;
+		int whenResult = (int) (whenDay/(1000*60*60*24));
+		model.addAttribute("whenResult",whenResult);
 		return "hotel/hotelReservationInfo";
 	}
 	@RequestMapping(params="method=payPage",method= {RequestMethod.GET,RequestMethod.POST})
@@ -61,20 +68,16 @@ public class HotelController {
 		model.addAttribute("roomtype",roomtype);
 		model.addAttribute("hotelname",hotelname);
 		model.addAttribute("roomimage",roomimage);
-		model.addAttribute("hotel_rs", hotel_rs);
+		model.addAttribute("hotel_rs", hotel_rs); 
 		return "main/payPage";
 	}
 	
 	@RequestMapping(params="method=insertHotelReservation",method= {RequestMethod.GET, RequestMethod.POST})
 	public String insertHotelReservation(Hotel_rs hotel_rs,Member member,HttpSession session, Model model) {
 		memberService.minusMileage(member);
-		System.out.println(1);
 		memberService.plusMileage(member,session);
-		System.out.println(2);
 		memberService.updateMtotal(member);
-		System.out.println(3);
 		model.addAttribute("insertHotelReservation",hotelService.insertHotelReservation(hotel_rs));
-		System.out.println(4);
 		return "main/reserveResult";
 	}
 	

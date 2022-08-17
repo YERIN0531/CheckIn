@@ -121,24 +121,7 @@
     </style>
 </head>
 <body>
-<!--  <div id="back"> -->
-<%--           <img src="${conPath }/image/intro.png" alt="" /> --%>
-<!--     </div> -->
-<!--     <div id="front"> -->
-<!--         <p class="p1">Preimium Travel Service</p> -->
-<!--         <p class="p2">CHECK_IN</p> -->
-<!--     </div> -->
-<!--     <div id="list"> -->
-<!--         <ul> -->
-<%--             <li><a href="${conPath }/member.do?method=joinAgreePage">JOIN</a></li> --%>
-<%--             <li><a href="${conPath}/member.do?method=loginForm">LOGIN</a></li> --%>
-<%--             <li><a href="${conPath }/main2.do">MAIN</a></li> --%>
-<!--         </ul> -->
-<!--     </div> -->
-<!-- partial:index.partial.html -->
-    <!--
-    Sections animate in and out on scroll. Scroll up or down and the sections will wrap around after hitting the start or end. Uses GSAP for the animations.
-    -->
+
 
     <header>
         <div>Premium Trip Service </div>

@@ -21,32 +21,33 @@
  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script>
  	$(document).ready(function(){
-//  		var roomprice = Number('${payprice }');
-//  		var mmileage = Number($('input[name=mmileage]').val());
-//  		$('.result').val(roomprice - mmileage); 		
-//  		$('input[name="mmileage"]').keyup(function(){
-//  			var roomprice = Number('${payprice }');
-//  			var mmileage = Number($('input[name=mmileage]').val());
-//  			if(mmileage > Number('${member.mmileage }') ){
-//  				mmileage = Number('${member.mmileage}');
-//  				$('input[name="mmileage"]').val(Number('${member.mmileage }'));
-//  			}
-//  			$('.result').val(roomprice - mmileage);
-//  		});
- 		var roomprice = Number('${param.roomprice }');
+ 	var roomprice = Number('${param.roomprice }') * Number('${whenResult }');
+ 	var mmileage = Number($('input[name=mmileage]').val());	
+ 	if(mmileage > roomprice){
+		$('.result').val(0);
+		$('.useMmileage').val(roomprice);    
+	}else {
+		$('.result').val(roomprice - mmileage);
+	}		
+ 	$('input[name="mmileage"]').keyup(function(){
+ 		var roomprice = Number('${param.roomprice}')  * Number('${whenResult }');
  		var mmileage = Number($('input[name=mmileage]').val());
- 		$('.result').val(roomprice - mmileage); 		
- 		$('input[name="mmileage"]').keyup(function(){
- 			var roomprice = Number('${param.roomprice }');
- 			var mmileage = Number($('input[name=mmileage]').val());
- 			if(mmileage > Number('${member.mmileage }') ){
+ 		if(mmileage > Number('${member.mmileage }') ){
  				mmileage = Number('${member.mmileage}');
  				$('input[name="mmileage"]').val(Number('${member.mmileage }'));
  			}
- 			$('.result').val(roomprice - mmileage);
+ 			if(mmileage > roomprice){
+				$('.result').val(0);
+				$('.useMmileage').val(roomprice);    
+			}else {
+				$('.result').val(roomprice - mmileage);
+			}
+ 			
  		});
- 		
  	});
+ 	
+ 	
+ 	
  </script>  
 </head>
   <body>
@@ -56,7 +57,7 @@
 	              <ul>
 	                   <li><a href="${conPath }/air.do?method=airMain">항공</a></li>
 	                   <li><a href="${conPath }/hotel.do?method=hotelMain">호텔</a></li>
-	                   <li><a href="#">면세점</a></li>
+	                   <li><a href="${conPath}/taxfree.do?method=category">면세점</a></li>
 	                   <li><a href="${conPath}/notice.do?method=boardmain">게시판</a></li>
 	              </ul>
 	         </div>
@@ -183,8 +184,8 @@
 							<td class="td-16">
 								<c:forEach var="resInfo" items="${hotelInfo }">
 									<c:if test="${resInfo.hotelid eq reservationInfo.hotelid }">
-										 <fmt:formatNumber value="${resInfo.roomprice }" pattern="￦ #,### " />
-										<input type="hidden" name="payprice" value="${resInfo.roomprice }">
+										 <fmt:formatNumber value="${resInfo.roomprice * whenResult }" pattern="￦ #,### " />
+										<input type="hidden" name="payprice" value="${resInfo.roomprice * whenResult }">
 									</c:if>
 								</c:forEach>
 							</td>
@@ -220,13 +221,13 @@
 								<td class="td-27">호텔가격</td>
 							</tr>
 							<tr>
-								<td class="td-28"><fmt:formatNumber value="${param.roomprice }" pattern="￦ #,###"/></td>
+								<td class="td-28"><fmt:formatNumber value="${param.roomprice * whenResult }" pattern="￦ #,###"/></td>
 							</tr>
 							<tr>
 								<td class="td-29">사용가능 마일리지</td>
 							</tr>
 							<tr>
-								<td class="td-26"><input type="number" name="mmileage" value="${member.mmileage }" ></td>
+								<td class="td-26"><input type="number" name="mmileage" value="${member.mmileage }"  class="useMmileage"></td>
 							</tr>
 							<tr>
 								<td class="td-29">최종결제가격</td>

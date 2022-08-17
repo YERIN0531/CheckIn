@@ -47,18 +47,16 @@
 	   <c:if test="${qnaDto.qfile1 eq null or '' and qnaDto.qfile2 eq null or '' }">
 	     <td colspan="2">등록된 사진이 없습니다</td>
 	   </c:if>
-	   </tr>
-	   
 	   
 	   
 	     <c:if test="${qnaDto.qfile1 != null or '' }">
-	     <tr>
 	   		<td colspan="2">
 	       		<img src="${conPath }/fileUpload/${qnaDto.qfile1 }" width='200'><br>
-	       	</td></tr>	
+	       	</td>	
 	     </c:if>
 	     <c:if test="${qnaDto.qfile2 != null or '' }">
 	     <tr>
+	     	<th>사진</th>
 	   		<td colspan="2">
 	       <img src="${conPath }/fileUpload/${qnaDto.qfile2 }" width='200'>
 	       </td></tr>

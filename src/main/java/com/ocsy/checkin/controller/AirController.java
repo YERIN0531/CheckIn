@@ -54,7 +54,7 @@ public class AirController {
 		memberService.minusMileage(member);
 		memberService.plusMileage(member, session);
 		model.addAttribute("reserveResult", airService.airReserve(air, seatid));
-		return "air/airmain";	
+		return "main/reserveResult";	
 	}
 	@RequestMapping(params="method=airInsertView", method= {RequestMethod.GET, RequestMethod.POST})
 	public String airInsertView() {

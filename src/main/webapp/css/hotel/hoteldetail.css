@@ -305,16 +305,15 @@ input[type="submit"]{
 	color: gray;
 }
 #deluxe button{
-		width:130px;
+width:130px;
 	font-family: 'IBM Plex Sans KR', sans-serif;
 	border: none;
 	background-color : #3a4a54;
-	 
-	padding:10px;
 	margin-left: 180%;
 	margin-bottom: 5px;
 	color:white;
 	border-radius: 3px;
+	padding:10px;
 }
 
 

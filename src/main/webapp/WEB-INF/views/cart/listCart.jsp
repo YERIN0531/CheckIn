@@ -45,7 +45,6 @@
  			var cartnum = $(this).attr('id');
 			var qty = $('.qty'+cartnum).val();
 			location.href='${conPath}/cart.do?method=modify&cartnum='+cartnum+'&qty='+qty;
-			//location.reload();
 		  });
 		
 	});

@@ -72,11 +72,11 @@
 				</td>
 				<td  class="td-2">
 					<p class="w1">체크인</p>
-					<input type="text" name="schcheckindate" required="required" value="${hotel.schcheckindate }" id="datepicker">
+					<input type="text" name="schcheckindate" required="required" value="${hotel.schcheckindate }" id="datepicker" >
 				</td>
 				<td class="td-3">
 				<p class="w1">체크아웃</p>
-					<input type="text" name="schcheckoutdate" required="required" value="${hotel.schcheckoutdate }" id="datepicker2">
+					<input type="text" name="schcheckoutdate" required="required" value="${hotel.schcheckoutdate }" id="datepicker2" >
 				</td>
 				<td class="td-4">
 					<p class="w1">투숙객</p>
