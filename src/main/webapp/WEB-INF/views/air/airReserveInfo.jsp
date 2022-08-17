@@ -18,13 +18,27 @@
     $(document).ready(function(){
     	var airprice = Number('${airDto.totalprice }');
  		var mmileage = Number($('input[name=mmileage]').val());
+
+ 		if(mmileage >= airprice){
+             $('.result').val(0);
+             $('.useMmileage').val(airprice);    
+        }else{
+	  		$('.result').val(airprice - mmileage); 		
+          }
  		$('input[name="mmileage"]').keyup(function(){
  			var airprice = Number('${airDto.totalprice }');
  			var mmileage = Number($('input[name=mmileage]').val());
  			if(mmileage > Number('${member.mmileage }') ){
  				mmileage = Number('${member.mmileage}');
  				$('input[name="mmileage"]').val(Number('${member.mmileage }'));
- 			}		
+
+ 			}
+ 			if(mmileage > airprice){
+ 	             $('.result').val(0);
+ 	             $('.useMmileage').val(airprice);    
+ 	          }
+ 			$('.result').val(airprice-mmileage);
+
  		});
     });
  </script>  
@@ -115,8 +129,8 @@
    	</div> <!-- Pay -->
    		
    	<div id="mileage">
-   	<table>
    	<p class="title">총 결제금액</p>
+   	<table>
    		<tr>
    			<td>항공권가격</td>
    			<td><p><fmt:formatNumber value="${airDto.totalprice }" pattern="#,### 원"/></p></td>
