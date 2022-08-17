@@ -34,11 +34,13 @@ INSERT INTO CUSTOMER VALUES
 --idConfirm
 SELECT COUNT(*) FROM CUSTOMER WHERE MID = 'aaa';
 commit;
+select * from customer;
+commit;
 
 --2. 로그인
 --loginMember
 SELECT * FROM CUSTOMER WHERE MID='aaa' AND MPW='123';
-
+SELECT * FROM CUSTOMER;
 --3.회원상세보기(MID)
 --getDetailMember
 SELECT * FROM CUSTOMER WHERE MID ='aaa';
@@ -52,6 +54,10 @@ SELECT * FROM CUSTOMER WHERE MID='aaa';
 COMMIT;
 -- 106850
 --modifyMember
+select * from customer where mid='aaa';
+select * from customer where mid='bbb';
+
+
 UPDATE CUSTOMER SET MNAME='서팀장',
                     MENAME='tjqud',
                     MPASSPORT='111-111-11',
@@ -64,7 +70,7 @@ UPDATE CUSTOMER SET MNAME='서팀장',
                     MEMAIL='ABC@NAVER.COM'
             WHERE MID ='aaa';
 update customer set mpw ='111'
-                    where mid ='aaa';
+                    where mid ='ccc';
 commit;
 UPDATE CUSTOMER SET MGENDER='M'
         WHERE MID = 'bbb';
@@ -93,7 +99,7 @@ COMMIT;
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 --------------------------CUSTOMER_GRADE-----------------------------------------
-
+select * from customer;
 DROP TABLE CUSTOMER_GRADE;
 
 CREATE TABLE CUSTOMER_GRADE(
@@ -125,13 +131,10 @@ DROP TABLE MANAGER;
 CREATE TABLE MANAGER(
     AID VARCHAR2(20) PRIMARY KEY,
     APW VARCHAR2(20) NOT NULL,
- 
-•••
    ANAME VARCHAR2(20) NOT NULL,
     AEMAIL VARCHAR2(50) NOT NULL,
     gradfe 
 );
-
 INSERT INTO MANAGER VALUES ('1','123','총관리자','chlwlsdud69@naver.com');
 INSERT INTO MANAGER VALUES ('subadmin','123','서브관리자','kok3443@naver.com');
     --1.관리자 등록

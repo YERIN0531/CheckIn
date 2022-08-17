@@ -18,7 +18,7 @@ public class ManagerController {
 	@Autowired
 	private ManagerService managerService;
 	
-	@RequestMapping(params = "method=managermain", method=RequestMethod.GET)
+	@RequestMapping(params = "method=managermain", method={RequestMethod.GET, RequestMethod.POST})
 	public String managermain() {
 		return "manager/managermain";
 	}

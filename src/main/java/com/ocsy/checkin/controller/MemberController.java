@@ -125,7 +125,7 @@ public class MemberController {
 			mailSender.send(message);
 		}
 		model.addAttribute("joinResult",result);
-		return "member/loginForm";
+		return "forward:member.do?method=loginForm";
 	}
 	
 	@RequestMapping(params="method=myPage",method= {RequestMethod.GET, RequestMethod.POST})
@@ -148,9 +148,10 @@ public class MemberController {
 		  if(result ==1 ) { SimpleMailMessage message = new SimpleMailMessage();
 		  message.setFrom("tjqud531@gmail.com"); message.setTo(member.getMemail());
 		  message.setSubject("[CheckIn] CheckIn 정보수정"); 
-		  String content ="정보수정 축하한다. 이놈아!"; message.setText(content); mailSender.send(message); }
-		  model.addAttribute("memberModifResult",result);
-		return "member/loginForm";
+		  String content ="정보수정 성공!"; 
+		  message.setText(content); 
+		  mailSender.send(message); }
+		return "redirect:member.do?method=logout";
 	}
 	
 	@RequestMapping(params="method=selectMileage",method= {RequestMethod.GET , RequestMethod.POST})
