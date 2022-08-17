@@ -41,6 +41,17 @@
 	 			});
 			}
 		});
+       $('.modifyAll').submit(function(){
+			var inputEmailKey = $('input[name="emailCheckPW"]').val().trim();
+			if(!isNaN(inputEmailKey)){
+				inputEmailKey = Number(inputEmailKey);
+			}
+			if(inputEmailKey != email_key){
+				alert('메일 인증번호가 일치하지 않습니다.');
+				return false;
+			}
+		});
+       
        
        $('input[name="mpw"]').keyup(function(){  // 비밀번호 패턴 keyup 
 			var patternPw = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,16}$/;
@@ -53,7 +64,6 @@
 				$('#patternCheckResult').css('color','red');  
 			}			
 		}); 
-
 		$('input[name="mpwChk"]').keyup(function() {   // 비밀번호 확인 key up
 			var mpw = $('input[name="mpw"]').val();
 			var mpwChk = $('input[name="mpwChk"]').val();
@@ -68,26 +78,19 @@
 		
 		
  	 	
-		$('form').submit(function(){
- 			var patternCheckResult = $('#patternCheckResult').text().trim();
+		
+		$('.modifyPw').submit(function(){
+			var patternCheckResult = $('#patternCheckResult').text().trim();
  			var pwChkResult = $('#pwChkResult').text().trim();
- 			var inputEmailKey = $('input[name="emailCheckPW"]').val().trim();
- 			if(!isNaN(inputEmailKey)){
- 				inputEmailKey = Number(inputEmailKey);
- 			}
- 			else if(patternCheckResult != '안전'){
+ 			if(patternCheckResult != '안전'){
  				alert('비밀번호 형식을 지켜주세요');
  				return false;
- 			
  			} else if(pwChkResult != 'OK'){
  				alert('두 비밀번호가 다릅니다.');
  				$('#pwChkResult').focus();
  				return false;
- 			} else if(inputEmailKey != email_key){
- 				alert('메일 인증번호가 일치하지 않습니다.');
- 				return false;
  			}
- 		});
+		});
  	});
  </script>  
 </head>
@@ -103,7 +106,6 @@
  		location="${conPath }/member.do?method=selectMileage&mmileage=${memberDto.mmileage }&mtotal=${memberDto.mtotal }";
  	</script>
  </c:if>
-<%--    <jsp:include page="myPage.jsp" /> --%>
 	 <jsp:include page="../main/header.jsp" />
 	 
 	   <div class="slider">
@@ -169,12 +171,12 @@
 
 <div id="content">
 	<div id="changeinfo">
-   <form action="${conPath }/member.do?method=modifyMember" method="post">
+	 <c:if test="${param.modify eq 'all' }">
+   <form action="${conPath }/member.do?method=modifyMember" method="post" class="modifyAll">
      <input type="hidden" name="modify" value="${param.modify }">
      <input type="hidden" name="mid" value="${memberDto.mid }">
-     <input type="hidden" name="memail" value="${memberDto.memail }">
       <table>
-      <c:if test="${param.modify eq 'all' }">
+     
          <caption>회원 정보 수정</caption>
 					<tr><td></td></tr>
                    
@@ -284,10 +286,16 @@
                             <input type="submit" value="정보수정" class="btn">
                         </td>
                     </tr> 
-           
+           	</table>
+	</form>
       </c:if>
       <c:if test="${param.modify eq 'pw' }">
-         
+         <form action="${conPath }/member.do?method=modifyMember" method="post" class="modifyPw">
+          <input type="hidden" name="modify" value="${param.modify }">
+    	 <input type="hidden" name="mid" value="${memberDto.mid }">
+    	  <input type="hidden" name="memail" value="${memberDto.memail }">
+         <table>
+        
          <caption>비밀번호 변경</caption>
           <tr>
                   <th>새로운 비밀번호<b>*</b></th>
@@ -313,9 +321,10 @@
 					<input type="submit" value="수정">
 				</td>
 			</tr>
+			 </table>
+         </form>
 		</c:if>
-		</table>
-	</form>
+	
 	</div>
 	</div>
 	</section>

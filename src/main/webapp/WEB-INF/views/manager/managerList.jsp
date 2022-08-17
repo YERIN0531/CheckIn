@@ -40,7 +40,7 @@
 	</div>
 
 	<div id="logos">
-        <p>MANAGER LIST</p>
+        <p>${manager }</p>
     </div>
 	
 	

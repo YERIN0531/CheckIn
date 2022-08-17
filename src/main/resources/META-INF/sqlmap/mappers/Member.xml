@@ -52,7 +52,7 @@
 	
   	<insert id="joinMember" parameterType="Member">
   		INSERT INTO CUSTOMER VALUES (#{mid}, #{mpw}, #{mname}, #{mename},#{mpassport},
-  			#{mtel},#{mpost},#{maddress},#{mdeaddress},#{mgender},#{mbirth},1,#{c},SYSDATE,0,0)
+  			#{mtel},#{mpost},#{maddress},#{mdeaddress},#{mgender},#{mbirth},1,#{memail},SYSDATE,0,0)
   	</insert>
   	
   	<update id="modifyMember" parameterType="Member">
