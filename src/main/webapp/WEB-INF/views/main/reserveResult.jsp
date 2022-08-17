@@ -21,7 +21,13 @@
  </script>  
 </head>
   <body>
-  
+
+<c:if test="${reserveResult eq 0 }">
+   <script>
+      alert('예약 실패하셧습니다.');
+      history.back();
+   </script>
+</c:if>
   	<c:if test="${insertHotelReservation eq 0 }">
   		<script>
   			alert('예약에 실패하였습니다. 다시 시도해주세요.');
@@ -35,7 +41,7 @@
 	              <ul>
 	                   <li><a href="${conPath }/air.do?method=airMain">항공</a></li>
 	                   <li><a href="${conPath }/hotel.do?method=hotelMain">호텔</a></li>
-	                   <li><a href="#">면세점</a></li>
+	                   <li><a href="${conPath}/taxfree.do?method=category">면세점</a></li>
 	                   <li><a href="${conPath}/notice.do?method=boardmain">게시판</a></li>
 	              </ul>
 	         </div>
@@ -52,8 +58,8 @@
 		<div id="reservetable"> 	
 		 	<p class="p1">예약이 완료되었습니다.</p>
 		 	<p class="p2">예약내역은 마이페이지에서 확인하실수 있습니다.<p>
-		 	<button onclick="location='${conPath }/main.do'">MAIN</button>
-		 	<button>MYPAGE</button>
+		 	<button onclick="location='${conPath }/main2.do'">MAIN</button>
+		 	<button onclick="location='${conPath}/member.do?method=myPage'">MYPAGE</button>
 	 	</div>
 	 </div>
   </section>

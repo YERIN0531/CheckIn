@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -31,7 +32,6 @@ public class ManagerController {
 	@RequestMapping(params ="method=login", method= {RequestMethod.GET, RequestMethod.POST})
 	public String loginCheck(String aid , String apw ,HttpSession httpSession, Model model) {
 		model.addAttribute("managerLogin", managerService.login(aid, apw, httpSession));
-//		return "forward:main.do";
 		return "manager/managermain";
 	}
 	//3. 관리자 로그아웃
@@ -42,7 +42,7 @@ public class ManagerController {
 	}
 	//4. 관리자 등록
 	@RequestMapping(params = "method=join", method=RequestMethod.POST )
-	public String joinManager(Manager manager , HttpSession httpSession, Model model) {
+	public String joinManager(@ModelAttribute("admin") Manager manager , HttpSession httpSession, Model model) {
 		model.addAttribute("managerInsert", managerService.joinManager(manager, httpSession));
 		return "forward:main.do";
 	}
@@ -59,7 +59,7 @@ public class ManagerController {
 	}
 	//7. 관리자 리스트 
 	@RequestMapping(params = "method=managerList", method = RequestMethod.GET)
-	public String managerList(Manager manager , Model model ) {
+	public String managerList(@ModelAttribute("admin") Manager manager , Model model ) {
 		model.addAttribute("managerList", managerService.managerList(manager));
 		return "manager/managerList";
 	}

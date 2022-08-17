@@ -10,6 +10,9 @@
   <title>Insert title here</title>
   <link href="${conPath }/css/board/noticedetail.css" rel="stylesheet">
  <style>
+
+
+    
  </style>
  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
  <script>
@@ -30,19 +33,20 @@
   <body>
   <jsp:include page="../board/boardmain.jsp"/>
     <div id="content">
-    <table>
+    <table class="noticetable">
     	<caption>${noticeDto.nnum }번 글 상세보기 </caption>
     	<tr>
-    	  <th>제목</th>
+    	  <th class="thtitle" >제목</th>
     	  <td class="ntitle">${noticeDto.ntitle }</td>
     	</tr>
     	<tr>
-    	  <th>본문</th>
+    	  <th class="thcontent">본문</th>
     	  <td>
     	  <c:if test="${not empty noticeDto.nimage }" >
     	  	<img src="${conPath }/fileUpload/${noticeDto.nimage}" width="300" height="300"> <br><br>
     	  </c:if>
-    	 <pre> ${noticeDto.ncontent }</pre>
+    
+    	 <pre>${noticeDto.ncontent }</pre>
     	  </td>
     	</tr>
     	<tr>

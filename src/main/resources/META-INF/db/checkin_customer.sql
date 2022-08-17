@@ -81,6 +81,9 @@ SELECT MID FROM CUSTOMER WHERE MID ='ddd';
 --7. 비밀번호찾기 (아이디 ,이메일 )
 --findPwMember
 SELECT MPW FROM CUSTOMER WHERE MID='aaa' AND MEMAIL='ABC@NAVER.COM';
+SELECT * FROM CUSTOMER WHERE MID='aaa';
+UPDATE CUSTOMER SET MMILEAGE=100000 WHERE MID='aaa';
+COMMIT;
 -------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 ---------------------------- CUSTOMER TABLE--------------------------------------------

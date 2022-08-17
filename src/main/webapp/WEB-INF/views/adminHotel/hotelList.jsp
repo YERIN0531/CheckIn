@@ -13,7 +13,13 @@
  <style>
  	.paging {
  		text-align: center;8
+ 	margin-top:20px;
+ 	
  	}
+ 	 a{
+ text-decoration: none;
+ color:black;
+ }
  </style>
  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
  <script>
@@ -96,18 +102,18 @@
 		</div>
 		<div class="paging">
 			<c:if test="${paging.startPage > paging.blockSize }">
-				[ <a href="${conPath }/hotel.do?method=adminHotelList&pageNum=${paging.startPage-1}">이전</a> ]
+				 <a href="${conPath }/hotel.do?method=adminHotelList&pageNum=${paging.startPage-1}">이전</a> 
 			</c:if>
 			<c:forEach var="i" begin="${paging.startPage }" end="${paging.endPage }">
 				<c:if test="${i eq paging.currentPage }">
-					[ <b> ${i } </b> ]
+					 <b> ${i } </b> 
 				</c:if>
 				<c:if test="${i != paging.currentPage }">
-					[ <a href="${conPath }/hotel.do?method=adminHotelList&pageNum=${i}">${i }</a> ]
+					 <a href="${conPath }/hotel.do?method=adminHotelList&pageNum=${i}">${i }</a> 
 				</c:if>
 			</c:forEach>
 			<c:if test="${paging.endPage < paging.pageCnt }">
-				[ <a href="${conPath }/hotel.do?method=adminHotelList&pageNum=${paging.endPage+1}">다음</a> ]
+				 <a href="${conPath }/hotel.do?method=adminHotelList&pageNum=${paging.endPage+1}">다음</a> 
 			</c:if>
 		</div>
 	</section>

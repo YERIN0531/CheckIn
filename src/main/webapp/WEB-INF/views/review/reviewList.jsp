@@ -22,6 +22,15 @@
    <title>Insert title here</title>
    <link href="${conPath }/css/board/notice.css" rel="stylesheet">
    <script src="http://code.jquery.com/jquery-3.6.0.js"></script>
+   <style>
+    a{
+ text-decoration: none;
+ color:black;
+ }
+ .paging{
+ margin-top:20px;
+ }
+   </style>
 	<script>
 	$(document).ready(function(){ // jquery 
 		var aid = '${aid}';
@@ -128,18 +137,18 @@
 	
 	<div class="paging">
 		<c:if test="${paging.startPage > paging.blockSize }">
-			[ <a href="${conPath }/review.do?method=reviewList&pageNum=${paging.startPage-1}">이전</a> ]
+			 <a href="${conPath }/review.do?method=reviewList&pageNum=${paging.startPage-1}">이전</a> 
 		</c:if>
 		<c:forEach var="i" begin="${paging.startPage }" end="${paging.endPage }">
 			<c:if test="${i eq paging.currentPage }">
-				[ <b> ${i } </b> ]
+				 <b> ${i } </b> 
 			</c:if>
 			<c:if test="${i != paging.currentPage }">
-				[ <a href="${conPath }/review.do?method=reviewList&pageNum=${i}">${i }</a> ]
+				 <a href="${conPath }/review.do?method=reviewList&pageNum=${i}">${i }</a> 
 			</c:if>
 		</c:forEach>
 		<c:if test="${paging.endPage < paging.pageCnt }">
-			[ <a href="${conPath }/review.do?method=reviewList&pageNum=${paging.endPage+1}">다음</a> ]
+			 <a href="${conPath }/review.do?method=reviewList&pageNum=${paging.endPage+1}">다음</a> 
 		</c:if>
 	</div>
 	</div><!-- wrap -->

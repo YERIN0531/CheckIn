@@ -11,7 +11,7 @@
    <link href="${conPath }/css/board/reviewdetail.css" rel="stylesheet">
    <link href="https://fonts.googleapis.com/css2?family=Domine:wght@500&family=IBM+Plex+Sans+KR:wght@300;400&family=Libre+Baskerville&family=Nanum+Gothic&family=Satisfy&family=The+Nautigal:wght@400;700&display=swap" rel="stylesheet">
    <style>
-   img {width : 200px;}
+   img {width : 400px;}
    </style>
    <script>
       function deleteCheck(){
@@ -53,22 +53,24 @@
    		  <td colspan="2">${reviewDto.rcontent }</td></tr>
    		
    		
-   		<tr>
- 			<th class="th-2">사진</th>	
    			<c:if test="${ reviewDto.rimage1  eq null or  ''  and reviewDto.rimage2 eq null or  ''  and reviewDto.rimage3 eq null or  ''  and reviewDto.rimage4 eq null or  ''  and reviewDto.rimage5 == null or  ''  }">
+   		<tr>
+ 				<th class="th-2">사진</th>	
 	   			<td colspan="2">등록된 사진이 없습니다</td>
-   			</c:if>
    			</tr>
+   			</c:if>
    			
    		
    			<c:if test="${reviewDto.rimage1 != null or '' }">
    			<tr>
+ 			<th class="th-2">사진</th>
    			<td colspan="2">
    			<img src="${conPath }/fileUpload/${reviewDto.rimage1}"><br>
    			</td></tr>
    			</c:if>
    			<c:if test="${reviewDto.rimage2 != null or '' }">
    			<tr>
+ 				<th class="th-2">사진</th>	
    			<td colspan="2">
    			<img src="${conPath }/fileUpload/${reviewDto.rimage2}"><br>
    			</td></tr>
@@ -76,18 +78,21 @@
    			
    			<c:if test="${reviewDto.rimage3 != null or '' }">
    			<tr>
+   			 				<th class="th-2">사진</th>	
    			<td colspan="2">
    			<img src="${conPath }/fileUpload/${reviewDto.rimage3}"><br>
    			</td></tr>
    			</c:if>
    			<c:if test="${reviewDto.rimage4 != null or '' }">
    			<tr>
+   			 				<th class="th-2">사진</th>	
    			<td colspan="2">
    			<img src="${conPath }/fileUpload/${reviewDto.rimage4}"><br>
    			</td></tr>
    			</c:if>
    			<c:if test="${reviewDto.rimage5 != null or '' }">
    			<tr>
+   			 				<th class="th-2">사진</th>	
    			<td colspan="2">
    			<img src="${conPath }/fileUpload/${reviewDto.rimage5}">
    			</td></tr>

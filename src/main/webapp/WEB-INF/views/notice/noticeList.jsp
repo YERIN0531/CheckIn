@@ -11,7 +11,13 @@
   <link href="${conPath }/css/board/notice.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Domine:wght@500&family=IBM+Plex+Sans+KR:wght@300;400&family=Libre+Baskerville&family=Nanum+Gothic&family=Satisfy&family=The+Nautigal:wght@400;700&display=swap" rel="stylesheet">
  <style>
- 
+ a{
+ text-decoration: none;
+ color:black;
+ }
+ .paging{
+ margin-top:20px;
+ }
  </style>
  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
  <script>
@@ -78,18 +84,18 @@
     
     <div class="paging">
 		<c:if test="${paging.startPage > paging.blockSize }">
-			[ <a href="${conPath }/notice.do?method=noticeList&pageNum=${paging.startPage-1}">이전</a> ]
+			 <a href="${conPath }/notice.do?method=noticeList&pageNum=${paging.startPage-1}">이전</a> 
 		</c:if>
 		<c:forEach var="i" begin="${paging.startPage }" end="${paging.endPage }">
 			<c:if test="${i eq paging.currentPage }">
-				[ <b> ${i } </b> ]
+				 <b> ${i } </b> 
 			</c:if>
 			<c:if test="${i != paging.currentPage }">
-				[ <a href="${conPath }/notice.do?method=noticeList&pageNum=${i}">${i }</a> ]
+				 <a href="${conPath }/notice.do?method=noticeList&pageNum=${i}">${i }</a> 
 			</c:if>
 		</c:forEach>
 		<c:if test="${paging.endPage < paging.pageCnt }">
-			[ <a href="${conPath }/notice.do?method=noticeList&pageNum=${paging.endPage+1}">다음</a> ]
+			 <a href="${conPath }/notice.do?method=noticeList&pageNum=${paging.endPage+1}">다음</a> 
 		</c:if>
 	</div>
 	</div><!--wrap-->

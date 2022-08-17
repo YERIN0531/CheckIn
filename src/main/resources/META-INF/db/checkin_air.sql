@@ -2,6 +2,9 @@
 --① DROP & CREATE TABLE 
 DROP SEQUENCE ASC_SEQ;
 DROP TABLE ASCD;
+select * from ascd;
+select * from air_reserve;
+
 
 CREATE SEQUENCE ASC_SEQ MAXVALUE 9999999999 NOCACHE NOCYCLE;
 CREATE TABLE ASCD(
@@ -127,6 +130,7 @@ select * from ascd;
 commit;
 ---------------------------------- AIR_RESERVE ---------------------------------
 --① DROP & CREATE TABLE
+DROP TABLE AIR_RESERVE CASCADE CONSTRAINTS;
 
 DROP SEQUENCE ARESERVE_SEQ;
 DROP TABLE AIR_RESERVE;
@@ -142,7 +146,10 @@ CREATE TABLE AIR_RESERVE(
     ARDATE      DATE  DEFAULT SYSDATE NOT NULL -- 예약 완료 날짜
 );
 
-
+SELECT * FROM AIR_RESERVE WHERE MID='aaa';
+COMMIT;
+select * from ascd;
+select * from air_reserve;
 -- ② AIR_RESERVE DUMMY DATA
 
 INSERT INTO AIR_RESERVE VALUES(ARESERVE_SEQ.NEXTVAL ,'KO001', 'aaa', '20220101','20220105', 'A2',SYSDATE);
@@ -241,7 +248,7 @@ SELECT * FROM AIR_RESERVE AR, ASCD A WHERE AR.ACODE=A.ACODE AND MID='aaa';
 SELECT * FROM AIR_RESERVE AR, ASCD A WHERE MID='aaa' AND AR.ACODE = A.ACODE ORDER BY AGODATE,AGOTIME;
 commit;
 SELECT * FROM AIR_RESERVE;
-
+select * from air;
                             ----- 찜하기  -----
 
 -- insert into (내아이디는 session 있을 거고,  
