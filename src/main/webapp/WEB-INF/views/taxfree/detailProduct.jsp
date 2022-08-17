@@ -28,13 +28,11 @@
     $(document).ready(function(){
     	$('.add').click(function(){
     		var qty = $('.qty').val();
- 			//alert('상품 현재 재고 : ' + ${taxfreeDto.pstock });
-			//alert('담으려는 상품 갯수 : ' + qty);
-			if(qty >= ${taxfreeDto.pstock } ) {
+			if(qty > ${taxfreeDto.pstock } ) {
 				alert('재고가 부족합니다.');
 				return false;
 			}
-		  });
+		});
     });
  </script>  
 </head>
