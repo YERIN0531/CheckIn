@@ -60,6 +60,7 @@
 		 	<p class="p2">예약내역은 마이페이지에서 확인하실수 있습니다.<p>
 		 	<button onclick="location='${conPath }/main2.do'">MAIN</button>
 		 	<button onclick="location='${conPath}/member.do?method=myPage'">MYPAGE</button>
+
 	 	</div>
 	 </div>
   </section>

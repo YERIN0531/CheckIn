@@ -37,15 +37,15 @@
 		<caption>동행구하기</caption>
 			<tr>
 				<th>글제목</th>
-				<td><input type="text" name="ttitle"></td>
+				<td><input type="text" name="ttitle" required="required"></td>
 			</tr>
 			<tr>
 				<th>팀 이름</th>
-				<td><input type="text" name="teamname"></td>
+				<td><input type="text" name="teamname" required="required"></td>
 			</tr>
 			<tr>
 				<th>인원수</th>
-				<td class="td-6"><input type="number" name="tmaxmembercount"></td>
+				<td class="td-6"><input type="number" name="tmaxmembercount" required="required"></td>
 			</tr>
 			<tr>
 				<th>원하는성별구성 </th>
@@ -81,7 +81,7 @@
 			<tr>
 				<th>하고싶은말</th>
 				<td>
-					<input type="text" name="tcontent">
+					<input type="text" name="tcontent" required="required">
 				</td>
 			</tr>
 			<tr>

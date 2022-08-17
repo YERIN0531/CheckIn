@@ -18,6 +18,7 @@
     $(document).ready(function(){
     	var airprice = Number('${airDto.totalprice }');
  		var mmileage = Number($('input[name=mmileage]').val());
+
  		if(mmileage >= airprice){
              $('.result').val(0);
              $('.useMmileage').val(airprice);    
@@ -30,12 +31,14 @@
  			if(mmileage > Number('${member.mmileage }') ){
  				mmileage = Number('${member.mmileage}');
  				$('input[name="mmileage"]').val(Number('${member.mmileage }'));
+
  			}
  			if(mmileage > airprice){
  	             $('.result').val(0);
  	             $('.useMmileage').val(airprice);    
  	          }
  			$('.result').val(airprice-mmileage);
+
  		});
     });
  </script>  

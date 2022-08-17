@@ -11,7 +11,9 @@
   <link href="${conPath }/css/board/reviewdetail.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Domine:wght@500&family=IBM+Plex+Sans+KR:wght@300;400&family=Libre+Baskerville&family=Nanum+Gothic&family=Satisfy&family=The+Nautigal:wght@400;700&display=swap" rel="stylesheet">
  <style>
- 
+ 	.boardImage {
+ 		width:200px;
+ 	}
  </style>
  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
  <script>
@@ -33,13 +35,13 @@
  </script>  
 </head>
   <body>
+   <c:if test="${empty member and empty manager }">
+  	<script>
+  		alert('로그인 후 이용해주세요');
+  		location="${conPath }/member.do?method=loginForm";
+  	</script>
+  </c:if> 
   <jsp:include page="../board/boardmain.jsp"/>
-  	<c:if test="${empty member and empty admin }">
-  		<script>
-  			alert('로그인 후 이용해주세요');
-  			location="${conPath}/member.do?method=loginForm"; 
-  		</script>
-  	</c:if>
   	<form action="${conPath }/trip.do?method=applyTeamView" method="post" >
   		<input type="hidden" name="tnum" value="${tripBoard.tnum }">
 		<table>
@@ -101,10 +103,12 @@
 				<th>글본문</th>
 				<td>${tripBoard.tcontent }</td>
 			</tr>
-			<tr>
-				<th>사진</th>
-				<td><img src="${conPath}/fileUpload/${tripBoard.timage }"></td>
-			</tr>
+			<c:if test="${tripBoard.timage != null }">
+				<tr>
+					<th>사진</th>
+					<td><img src="${conPath}/fileUpload/${tripBoard.timage }" class="boardImage"></td>
+				</tr>
+			</c:if>
 			<tr>
 				<th>작성시점</th>
 				<td>${tripBoard.trdate }</td>  

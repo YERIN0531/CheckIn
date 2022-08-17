@@ -9,6 +9,7 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -112,7 +113,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping(params="method=joinMember",method= {RequestMethod.GET, RequestMethod.POST})
-	public String joinMember(HttpSession httpSession,Member member,Model model) {
+	public String joinMember(HttpSession httpSession,@ModelAttribute("mDto") Member member,Model model) {
 		int result = memberService.joinMember(member, httpSession);
 		if(result == 1) {
 			SimpleMailMessage message = new SimpleMailMessage();
@@ -133,16 +134,16 @@ public class MemberController {
 	}
 	@RequestMapping(params="method=modifyPWCheck",method= {RequestMethod.GET, RequestMethod.POST})
 	public String modifyPWCheck(String modify) {
-		System.out.println(modify);
+		System.out.println("선택한 마이페이지 메뉴 : " +modify);
 		return "member/myPagePWCheck";
 	}	
 	@RequestMapping(params="method=modifyView",method= {RequestMethod.GET, RequestMethod.POST})
-	public String modifyView(String modify, Member member, Model model) {
+	public String modifyView(String modify,@ModelAttribute("mDto")  Member member, Model model) {
 		model.addAttribute("memberDto",memberService.getMember(member.getMid(),member.getMpw()));
 		return "member/modifyView";
 	}
 	@RequestMapping(params="method=modifyMember", method= {RequestMethod.GET , RequestMethod.POST})
-	public String modifyMember(Member member, HttpSession httpSession ,Model model ) {
+	public String modifyMember(@ModelAttribute("mDto") Member member, HttpSession httpSession ,Model model ) {
 		int result = memberService.modifyMember(member, httpSession);
 		  if(result ==1 ) { SimpleMailMessage message = new SimpleMailMessage();
 		  message.setFrom("tjqud531@gmail.com"); message.setTo(member.getMemail());
@@ -153,7 +154,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping(params="method=selectMileage",method= {RequestMethod.GET , RequestMethod.POST})
-	public String selectMileage(Member member,Model model) {
+	public String selectMileage(@ModelAttribute("mDto") Member member,Model model) {
 		model.addAttribute("mileageResult",member);
 		return "myPage/selectMileage";
 	}
