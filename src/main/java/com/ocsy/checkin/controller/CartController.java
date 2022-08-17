@@ -24,7 +24,6 @@ public class CartController {
 	@RequestMapping(params="method=insert", method= {RequestMethod.GET, RequestMethod.POST})
 	public String insertCart(Cart cart, Model model) {
 		model.addAttribute("insertCart", cartService.insertCart(cart));
-		System.out.println("cart insert controller");
 		return "forward:taxfree.do?method=detail&pnum="+cart.getPnum();
 	}
 	
@@ -32,7 +31,6 @@ public class CartController {
 	@RequestMapping(params="method=list", method= {RequestMethod.GET, RequestMethod.POST})
 	public String listCart(HttpSession session, String mid, Model model) {
 		model.addAttribute("cartList", cartService.listCart(session));
-		System.out.println("controller : finish and go to listCart.jsp");
 		return "cart/listCart";
 	}
 	
@@ -67,15 +65,13 @@ public class CartController {
 		return "cart/buyInfo";
 	}
 	
-	// 상품구매하기 - 진행중
+	// 상품구매하기 - O
 	@RequestMapping(params="method=buyProduct", method= {RequestMethod.GET, RequestMethod.POST})
 	public String buyProduct(HttpSession session, Model model) {
 		cartService.insertCartOrder(session); // ORDERS RETURN
 		System.out.println("controller : insertOrders"); // or_num 리스트 리턴	
 		cartService.insertOrderDetail(session); // 주문번호 등록, 주문번호 리턴 ORDER_DETAIL INSERT		
 		System.out.println("controller : insertOrderDetail 성공");
-		//model.addAttribute("myOrderDetailList", cartService.myOrderDetail(session)); // 주문상세내역 출력
-		// List<Cart> cart = cartService.myOrderDetail(session);
 		List<Cart> cart = cartService.listCart(session); // 카트 받아오기
 		cartService.updateStock(cart); // 재고 수정해주기
 		cartService.cartDelete(session);// 장바구니 비우기
@@ -84,7 +80,7 @@ public class CartController {
 		return "forward:cart.do?method=orderDetailList"; // 넘겨주기
 	}
 	
-	// 주문 디테일 리스트 출력하기는 따로 분리
+	// 주문 디테일 리스트 출력 - O
 	@RequestMapping(params="method=orderDetailList", method={RequestMethod.GET, RequestMethod.POST})
 	public String orderDetailList(HttpSession session, Model model) {
 		model.addAttribute("orderDetailList", cartService.myOrderDetail(session));
